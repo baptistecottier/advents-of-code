@@ -18,7 +18,7 @@ macro_rules! main {
 
         fn main() {
             let input =
-                generator(include_str!(concat!("../inputs/", module_path!(), ".txt")).trim_end());
+                generator(include_str!(concat!("../../../inputs/", module_path!(), ".txt")).trim_end());
             println!("{}", part_1(input.clone()));
             println!("{}", part_2(input));
         }
