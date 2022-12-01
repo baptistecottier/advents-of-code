@@ -1,11 +1,7 @@
 import collections
 from math import prod 
 import os
-from sys import argv
 
-def read_input():
-    path=argv[0].replace('src', 'inputs').replace('.py', '.txt')
-    return open(path, "r").read()
 
 def print_grid(grid, convert=False):
     for g in grid : 
