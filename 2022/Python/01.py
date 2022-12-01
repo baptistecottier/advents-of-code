@@ -1,8 +1,8 @@
 def generator(file) :
-    return [[int(x) for x in item.split("\n")] for item in file.split("\n\n")]
+    return [[int(calories) for calories in reeinder.splitlines()] for reeinder in file.split("\n\n")]
 
 def part_1(input) : 
-    return max([sum(x) for x in input])
+    return max([sum(reeinder) for reeinder in input])
 
 def part_2(input) : 
     return sum(sorted([sum(item) for item in input])[-3:])

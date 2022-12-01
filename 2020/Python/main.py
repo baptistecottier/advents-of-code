@@ -1,8 +1,7 @@
 import sys
 
 module = __import__(sys.argv[1])
-path='../inputs/'+sys.argv[1]+'.txt'
-input_file=open(path, "r").read()
+input_file=open('../inputs/'+sys.argv[1]+'.txt', "r").read()
 
 
 input = module.generator(input_file) 
