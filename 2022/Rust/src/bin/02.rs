@@ -9,17 +9,17 @@ fn generator(input : &str) -> Vec<(u32, u32)> {
 }
 
 fn part_1(input : Vec<(u32, u32)>) -> u32 {
-    solver(input, 1)
+    solver(input, false)
 }
 
 fn part_2(input :Vec<(u32, u32)>) -> u32 {
-    solver(input, 2)
+    solver(input, true)
 }
 
-fn solver(input : Vec<(u32, u32)>, part : usize) -> u32 {
+fn solver(input : Vec<(u32, u32)>, real_rules : bool) -> u32 {
     input
     .iter()
-    .map(|l| [(l.1 + (3 - part) as u32 * l.0) % 3 , l.1])
-    .map(|l|  1 + 3 * l[(1 + part) % 2] + l[part % 2])
+    .map(|l| [(l.1 + (2 - real_rules as u32) * l.0) % 3 , l.1])
+    .map(|l| 3 * l[real_rules as usize] + l[1 - real_rules as usize] + 1)
     .sum()
 }
