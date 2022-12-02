@@ -5,15 +5,14 @@ def generator(input) :
     for i in input.splitlines() :
         m = i.rsplit(' ',3)
         match m[0] :
-            case "turn off" : instructions.append([0,[int(item) for item in m[1].split(',')],[int(item) for item in m[3].split(',')]])
-            case "turn on" : instructions.append([1,[int(item) for item in m[1].split(',')],[int(item) for item in m[3].split(',')]])
-            case "toggle" : instructions.append([2,[int(item) for item in m[1].split(',')],[int(item) for item in m[3].split(',')]])
+            case "turn off" : instr = 0
+            case "turn on" :instr = 1
+            case "toggle" : instr = 2
+        instructions.append([instr,[int(item) for item in m[1].split(',')],[int(item) for item in m[3].split(',')]])
     return instructions
-
 
 def part_1(instructions) :
     return solver(instructions, 1)
-
     
 def part_2(instructions) :
     return solver(instructions, 2)
