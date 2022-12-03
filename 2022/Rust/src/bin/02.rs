@@ -19,7 +19,7 @@ fn part_2(input :Vec<(u32, u32)>) -> u32 {
 fn solver(input : Vec<(u32, u32)>, real_rules : bool) -> u32 {
     input
     .iter()
-    .map(|l| [(l.1 + (2 - real_rules as u32) * l.0) % 3 , l.1])
-    .map(|l| 3 * l[real_rules as usize] + l[1 - real_rules as usize] + 1)
+    .map(|l| [(l.1 + (1 + real_rules as u32) * 2 * l.0) % 3 , l.1])
+    .map(|l| 3 * l[real_rules as usize] + l[!real_rules as usize] + 1)
     .sum()
 }
