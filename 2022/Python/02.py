@@ -1,9 +1,5 @@
 def generator(input) :
-    duels = []
-    for duel in input.splitlines():
-        [a, b] = duel.split(' ')
-        duels.append([ord(a) - 63 , ord(b) - 88])
-    return duels
+    return [[ord(duel.split(' ')[0]) - 63 , ord(duel.split(' ')[1]) - 88] for duel in input.splitlines()]
 
 def part_1(input) :
     return solver(input , real_rules = False)
@@ -12,8 +8,4 @@ def part_2(input) :
     return solver(input , real_rules = True)
 
 def solver(input, real_rules) :
-    s = 0
-    for [a, b] in input :
-        v = [(b + (1 + real_rules) * 2 * a) % 3 , b]
-        s += 1 + 3 * v[real_rules] + v[not real_rules]
-    return s
+    return sum([1 + 3 * [(b + (1 + real_rules) * 2 * a) % 3 , b][real_rules] + [(b + (1 + real_rules) * 2 * a) % 3 , b][not real_rules] for [a, b] in input])
