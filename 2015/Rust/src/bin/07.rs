@@ -19,11 +19,21 @@ fn generator(input: &str) -> Vec<(u8, &str, &str, &str)> {
 }
 
 fn part_1(input : Vec<(u8, &str, &str, &str)> ) -> usize {
+    solver(input, 1) 
+}
+
+fn part_2(input :  Vec<(u8, &str, &str, &str)> ) -> usize {
+    solver(input, 2) 
+}
+
+fn solver(input :  Vec<(u8, &str, &str, &str)> , part : usize) -> usize {
     let mut wire : HashMap<&str, u16> = HashMap::new();
-        input
+    if part == 2 {wire.insert("b", solver(input.clone(),1) as u16)} 
+    else {wire.insert("b",0)};
+    input
         .iter()
             .cycle()
-            .skip(1)
+            .skip(part)
             .take(input.len())
             .for_each(|(i, in1, in2, out)|{
                 match i {
@@ -46,34 +56,3 @@ fn part_1(input : Vec<(u8, &str, &str, &str)> ) -> usize {
             };});
          wire["a"].into()
 }
-
-fn part_2(input :  Vec<(u8, &str, &str, &str)> ) -> usize {
-        let mut wire : HashMap<&str, u16> = HashMap::new();
-        wire.insert("b", part_1(input.clone()) as u16);
-        input
-            .iter()
-                .cycle()
-                .skip(2)
-                .take(input.len())
-                .for_each(|(i, in1, in2, out)|{
-                    match i {
-                    0 => wire.insert(out, match in1.parse::<u16>(){
-                                                                        Ok(v) => v ,
-                                                                        _ => wire[in1],
-                                                                    }) ,
-                    1 => wire.insert(out, match in1.parse::<u16>(){
-                                                                    Ok(v) => v ,
-                                                                    _ => wire[in1],
-                                                                } & wire[in2]),
-                    2 => wire.insert(out, match in1.parse::<u16>(){
-                                                                    Ok(v) => v ,
-                                                                    _ => wire[in1],
-                                                                } | wire[in2]),
-                    3 => wire.insert(out, wire[in1] << in2.parse::<u16>().unwrap()),
-                    4 => wire.insert(out, wire[in1] >> in2.parse::<u16>().unwrap()),
-                    5 => wire.insert(out, !wire[in1]),
-                    _ => unreachable!(),
-                };});
-             wire["a"].into()
-    }
-
