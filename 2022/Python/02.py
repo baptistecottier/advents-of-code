@@ -14,6 +14,6 @@ def part_2(input) :
 def solver(input, real_rules) :
     s = 0
     for [a, b] in input :
-        v = [(b + (2 - real_rules) * a) % 3 , b]
-        s += 1 + 3 * v[real_rules] + v[1 - real_rules]
+        v = [(b + (1 + real_rules) * 2 * a) % 3 , b]
+        s += 1 + 3 * v[real_rules] + v[not real_rules]
     return s
