@@ -1,7 +1,7 @@
 from parse import * 
 
 def generator(input) :
-    return [[int(n) for n in parse("{}-{},{}-{}", line)[:4]] for line in input.splitlines()]
+    return [parse("{:d}-{:d},{:d}-{:d}", line)[:4] for line in input.splitlines()]
 
 def part_1(input):
     return solver(input)
