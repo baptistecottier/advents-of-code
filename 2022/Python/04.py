@@ -10,4 +10,4 @@ def part_2(input) :
     return solver([[a ,b, d, c] for [a, b, c, d] in input])
 
 def solver(input) :
-    return sum([(a - c) * (b - d) <= 0 for [a,b,c,d] in input])
+    return sum([(a - c) * (b - d) <= 0 for [a, b, c, d] in input])

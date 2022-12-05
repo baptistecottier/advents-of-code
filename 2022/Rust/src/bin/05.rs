@@ -29,11 +29,11 @@ fn generator(input : &str) -> (Vec<String> , Vec<(usize, usize, usize)>) {
 }
 
 fn part_1(input : (Vec<String> , Vec<(usize, usize, usize)>)) -> String {
-    solver(input, |c| c.rev().join(""))
+    solver(input, |c| c.rev().collect::<String>())
 }
 
 fn part_2(input : (Vec<String> , Vec<(usize, usize, usize)>)) -> String {
-    solver(input, |mut c| c.join(""))
+    solver(input, |c| c.collect::<String>())
 }
 
 fn solver<F>(input : (Vec<String> , Vec<(usize, usize, usize)>) , f : F) -> String 
@@ -50,5 +50,5 @@ where
     stacks
         .iter()
         .map(|c| c.chars().nth(0).unwrap())
-        .join("")
+        .collect::<String>()
 }

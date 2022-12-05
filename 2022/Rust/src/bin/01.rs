@@ -8,18 +8,18 @@ fn generator(input : &str) -> Vec<Vec<u32>>{
 }
 
 fn part_1(input : Vec<Vec<u32>>) -> u32 {
-    input
-        .iter()
-        .map(|r| r.iter().sum::<u32>())
-        .max()
-        .unwrap()
+    solver(input, 1)
 }
 
 fn part_2(input : Vec<Vec<u32>>) -> u32 {
+    solver(input, 3)   
+}
+
+fn solver(input : Vec<Vec<u32>>, n : usize) -> u32 {
     input
-        .iter()
-        .map(|r| r.iter().sum::<u32>())
-        .sorted_by(|a,b| b.cmp(a))
-        .take(3)
-        .sum()    
+    .iter()
+    .map(|r| r.iter().sum::<u32>())
+    .sorted_by(|a,b| b.cmp(a))
+    .take(n)
+    .sum() 
 }
