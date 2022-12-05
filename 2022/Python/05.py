@@ -7,7 +7,7 @@ def generator(input) :
         rearrangements.append(parse("move {:d} from {:d} to {:d}", r)[:3])
     
     cargo_lines = a.splitlines()
-    cargo_width = int(cargo_lines[-1][-2])
+    cargo_width = len(cargo_lines[-1].replace(' ',''))
     cargo = ["" for _ in range(cargo_width)]
     for c in cargo_lines[:-1] : 
         v = c.split('[')
