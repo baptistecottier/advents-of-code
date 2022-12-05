@@ -4,7 +4,6 @@ fn generator(input : &str) -> (Vec<String> , Vec<(usize, usize, usize)>) {
     let (crates, rearrangements) = input.split("\n\n").collect_tuple().unwrap() ;   
     let h = crates.lines().count() - 1  ;
     let w = (crates.len()-h) / (4 * h);
-    println!("{:?}", (h, w)) ; 
    (crates
         .replace("    ","_")
         .replace(['[',']',' '], "")
@@ -30,7 +29,6 @@ fn generator(input : &str) -> (Vec<String> , Vec<(usize, usize, usize)>) {
 }
 
 fn part_1(input : (Vec<String> , Vec<(usize, usize, usize)>)) -> String {
-    println!("{:?}", input.0);
     solver(input, |c| c.rev().join(""))
 }
 
