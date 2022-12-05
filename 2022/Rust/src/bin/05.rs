@@ -1,27 +1,27 @@
 aoc2022::main!(); 
 
 fn generator(input : &str) -> (Vec<String> , Vec<(usize, usize, usize)>) {
-    let (crates, rearrangements) = input.split("\n\n").collect_tuple().unwrap() ; 
-    
-    let mut stacks = vec!["".to_string() ; crates.chars().nth_back(1).unwrap().to_digit(10).unwrap() as usize] ;
-        crates
-            .lines()
-            .for_each( |level| {
-                let containers = level.split('[').collect_vec() ; 
-                let mut row = containers[0].len() / 4 ;
-                (containers[1..])
-                .iter()
-                .for_each( |container| {
-                    stacks[row].push(container.chars().nth(0).unwrap()) ;
-                    row += 1 + container.chars().filter(|char| char.is_whitespace()).count() / 4 ;
-                })
-            });
+    let (crates, rearrangements) = input.split("\n\n").collect_tuple().unwrap() ;   
+    let w = crates.trim().chars().last().unwrap().to_digit(10).unwrap() as usize;
+    let h = crates.split('\n').collect_vec().len() - 1 ;
 
-    (stacks , rearrangements
-                .lines()
-                .map(|r| r.split_whitespace().collect_vec().iter().filter_map(|s| s.parse().ok()).collect_tuple().unwrap())
-                .map(|(n, start, end)| (n, start-1, end-1))
-                .collect_vec())
+   (crates.replace("    ","_").replace(['[',']','\n',' '], "")
+        .chars()
+        .take(w * h)
+        .enumerate()
+        .sorted_by(|(m,_),(n,_)| (m % w).cmp(&(n % w)))
+        .map(|(_, c)| c)
+        .chunks(h)
+        .into_iter()
+        .map(|mut c| c.join("").replace("_", ""))
+        .collect_vec() 
+        ,
+
+    rearrangements
+        .lines()
+        .map(|r| r.split_whitespace().collect_vec().iter().filter_map(|s| s.parse().ok()).collect_tuple().unwrap())
+        .map(|(n, start, end)| (n, start-1, end-1))
+        .collect_vec())
 }
 
 fn part_1(input : (Vec<String> , Vec<(usize, usize, usize)>)) -> String {
