@@ -1,55 +1,30 @@
-def myord(string):
-    c=0
-    for char in string:
-        c*=26
-        c+=ord(char)-96
-    return c-1
+def generator(input) : 
+    circuit = [gate.rsplit(' ', 1) for gate in input.splitlines()]
+    circuit.sort(key=lambda c : (len(c[1]) , c[1]))
+    return circuit
 
-wires=[-1 for col in range(myord('zz'))] 
-print(wires)
-with open("Day7/input.txt") as f: 
-    instructions=f.read().splitlines()
-    done=[]
-    i=0
-    while (len(done)!=len(instructions)):
-        print(len(done))
-        i=i%len(instructions)
-        if instructions[i] not in done:
-            inputs, output = instructions[i].split(' -> ')
-            input=inputs.split(' ')    
-            if len(input)==1:
-                if input[0].isdigit():
-                    wires[myord(output)]=int(input[0])
-                    done.append(instructions[i])
+def part_1(input) : 
+    return solver(input, 0)
+    
+def part_2(input) : 
+    return solver(input, solver(input, 0))
 
-                elif wires[myord(input[0])] != -1 : 
-                    wires[myord(output)]=wires[myord(input[0])]
-                    done.append(instructions[i])
-                
-            elif len(input)==2 and (wires[myord(input[1])] != -1) : 
-                wires[myord(output)] = ~ wires[myord(input[1])] % 2**16
-                done.append(instructions[i])
 
-            elif len(input)==3 :
-                if (not input[2].isdigit()) and (not input[2].isdigit()) and (wires[myord(input[0])] != -1 ) and  (wires[myord(input[2])] != -1 ) : 
-                    if input[1]=='AND': wires[myord(output)]=(wires[myord(input[0])] & wires[myord(input[2])]) % 2**16
-                    elif input[1]=='OR': wires[myord(output)]=(wires[myord(input[0])] | wires[myord(input[2])]) % 2**16
-                    elif input[1]=='LSHIFT': wires[myord(output)]= (wires[myord(input[0])] << int(input[2])) % 2**16
-                    elif input[1]=='RSHIFT': wires[myord(output)]=(wires[myord(input[0])] >> int(input[2])) % 2**16
-                    done.append(instructions[i])
-               
-                elif (wires[myord(input[0])] != -1 ) and  (input[2].isdigit()) : 
-                    if input[1]=='AND': wires[myord(output)]=(wires[myord(input[0])] & int(input[2])) % 2**16
-                    elif input[1]=='OR': wires[myord(output)]=(wires[myord(input[0])] | int(input[2])) % 2**16
-                    elif input[1]=='LSHIFT': wires[myord(output)]= (wires[myord(input[0])] << int(input[2])) % 2**16
-                    elif input[1]=='RSHIFT': wires[myord(output)]=(wires[myord(input[0])] >> int(input[2])) % 2**16
-                    done.append(instructions[i])
+def mymap(input, dict) :
+    if input in dict :  
+        return dict[input] 
+    else : 
+        return int(input)
 
-                elif (not input[2].isdigit()) and (wires[myord(input[2])] != -1 ) and  (input[0].isdigit()) : 
-                    if input[1]=='AND': wires[myord(output)]=(wires[myord(input[2])] & int(input[0])) % 2**16
-                    elif input[1]=='OR': wires[myord(output)]=(wires[myord(input[2])] | int(input[0])) % 2**16
-                    elif input[1]=='LSHIFT': wires[myord(output)]= (wires[myord(input[2])] << int(input[0])) % 2**16
-                    elif input[1]=='RSHIFT': wires[myord(output)]=(wires[myord(input[2])] >> int(input[0])) % 2**16
-                    done.append(instructions[i])
-        i += 1            
-print(wires[myord('a')])
+def solver(circuit, b) :
+    wires = {"b" : b}
+    for [input, out] in circuit[2-(b==0):]+[circuit[0]] :
+        [in1, in2, in3] = (input.split(' ')+[0])[:3]
+        match in2 :
+            case "AND" : wires[out] = mymap(in1, wires) & mymap(in3, wires) 
+            case "OR" : wires[out] = mymap(in1, wires) | mymap(in3, wires)
+            case "RSHIFT" : wires[out] = wires[in1] >> int(in3)
+            case "LSHIFT" : wires[out] = wires[in1] << int(in3)
+            case "->" :wires[out] = mymap(in1, wires)
+            case _ : wires[out] = ~ mymap(in2, wires)
+    return wires["a"]
