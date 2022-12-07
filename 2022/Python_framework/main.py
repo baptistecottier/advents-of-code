@@ -1,8 +1,10 @@
 import sys
 
+sys.path.append("../"+sys.argv[1])
 module = __import__(sys.argv[1])
 
-path='../inputs/'+sys.argv[1]+'.txt'
+
+path='../'+sys.argv[1]+'/'+sys.argv[1]+'.txt'
 input_file=open(path, "r").read()
 
 
