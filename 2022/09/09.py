@@ -3,15 +3,11 @@ import numpy as np
 def generator(input) :
     x, y = 0, 0
     path = [[x,y]]
+    orientation = {'D' : (0, -1) , 'L' : (-1, 0) ,  'R' : (1, 0), 'U' : (0, 1)}
     for dir, step in [ins.split(' ') for ins in input.splitlines()]:
-        match dir :
-            case 'D' : (dx, dy) = (0, -1)
-            case 'L' : (dx, dy) = (-1, 0)
-            case 'R' : (dx, dy) = (1, 0)
-            case 'U' : (dx, dy) = (0, 1)
-        for _ in range(int(step)):
-            x , y = x + dx , y + dy
-            path.append([x,y])
+        (dx , dy) = orientation[dir]
+        path.append((x + i * dx , y + i * dy) for i in range(int(step)))
+        (x , y) =(x + step * dx, y + step * dy)
     return path
             
 def part_1(input) :
@@ -24,11 +20,11 @@ def solver(path, knots) :
     for _ in range(knots-1):
         tx , ty = 0 , 0
         visited = []
-        for [hx, hy] in path :
+        for (hx, hy) in path :
             d = abs(hy  - ty) > 1 or abs(hx - tx) > 1
             tx += d * np.sign(hx - tx)
             ty += d * np.sign(hy - ty)
-            visited.append([tx, ty])
+            visited.append((tx, ty))
         path = visited
         
     return len([list(x) for x in set(tuple(x) for x in visited)])
