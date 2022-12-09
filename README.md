@@ -1,7 +1,7 @@
 # Advents of code
 
 This is my repository for my solutions to the [Advent of Code](https://adventofcode.com) challenges 🎄⭐️🎅🏻.
-Solutions may be in either Rust, that I am actually learning or Python, where I try to minimise the amount of lines of code.
+Solutions may be in either Rust, that I am learning or Python.
 
 For each language, one can find the appropriate framework working as follows.
 Each file require three functions :
@@ -9,12 +9,12 @@ Each file require three functions :
 - `part_1`: takes the puzlle input returned by `generator` and returns the answer for part one of the challenge
 - `part_2`: takes the puzlle input returned by `generator` and returns the answer for part two of the challenge
 
-To run a Rust file, the command is:
+To run a Rust file, place yourself in the `Rust_framework` directory and enter following command:
 
 ```Python
 cargo r --bin <day> 
 ```
-while for a Python file, the command is:
+For a Python file, place yourself in the `Python_framework`directory and enter the following command:
 ```python
 python3 main.py <day> 
 ```
