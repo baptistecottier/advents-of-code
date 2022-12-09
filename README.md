@@ -24,7 +24,7 @@ python3 main.py <day>
 Thanks [Scotow](https://github.com/scotow) for the initial framework and precious coding advices
 
 ### Remarks
-- Organisation update is till ongoing. Only year 2022 is correctly organised for now.
+- Organisation update is still ongoing. Only year 2022 is correctly organised for now.
 - Enter the code `1349697-f730f285` in your [Private Leaderboard Homepage](https://adventofcode.com/2022/leaderboard/private) to integrate my leaderboard.
 - Score as of December 8 :
   - 2015: 48 ⭐️
