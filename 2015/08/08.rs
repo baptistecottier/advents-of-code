@@ -1,4 +1,4 @@
-aoc_2015::main!();
+aoc2015::main!();
 
 fn generator(input : &str) -> Vec<&str> {
     input
@@ -15,9 +15,9 @@ fn part_1(input : Vec<&str>) -> usize {
         .iter()
         .map(|l| l.replace("\\\\","a").replace("\\\"", "a"))
         .fold(0, |acc , l| acc +
-                                                    l.len()
-                                                    - 3*l.matches("\\x").count()
-                                                    - 2
+            l.len()
+            - 3*l.matches("\\x").count()
+            - 2
                                                 )
 }
 

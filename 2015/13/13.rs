@@ -14,20 +14,14 @@ fn generator(input : &str) -> Vec<i16> {
 
 
 fn part_1(input: Vec<i16>) -> i16 {
-    *solve(input,1)
-            .iter()
-            .max()
-            .unwrap()
+    solve(input,1)
     }
 
 fn part_2(input: Vec<i16>) -> i16 {
-    *solve(input,2)
-            .iter()
-            .max()
-            .unwrap()
+    solve(input,2)
     }
 
-fn solve(input : Vec<i16>, part : usize) -> Vec<i16> {
+fn solve(input : Vec<i16>, part : usize) -> i16 {
     let c = ((input.len()) as f64).sqrt() as usize + part ;
     (0..c)
     .permutations(c)
@@ -39,15 +33,16 @@ fn solve(input : Vec<i16>, part : usize) -> Vec<i16> {
             .take(c+1)
             .into_iter()
             .tuple_windows()
-            .fold(0, |acc, (a,b)| {
-                if part == 1 || (part == 2 && *a != c-1 && *b!= c-1) {
-                let index1 = (c-part) * *a + *b - (b > a) as usize;
-                let index2 = (c-part) * *b + *a - (a > b) as usize;
+            .fold(0, |acc, (&a,&b)| {
+                if ![a,b].contains(&(c - part + 1))  {
+                let index1 = (c-part) * a + b - (b > a) as usize;
+                let index2 = (c-part) * b + a - (a > b) as usize;
                 acc + input[index1] + input[index2]
             } else {
                 acc
             }
             })}
     )
-    .collect_vec()
+    .max()
+    .unwrap()
 }
