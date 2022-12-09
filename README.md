@@ -34,5 +34,5 @@ Thanks [Scotow](https://github.com/scotow) for the initial framework and preciou
   - 2019: 00 ⭐️ 
   - 2020: 16 ⭐️ 
   - 2021: 42 ⭐️
-  - 2022: 16 ⭐️
-  - Total : 202
+  - 2022: 18 ⭐️
+  - Total : 204
