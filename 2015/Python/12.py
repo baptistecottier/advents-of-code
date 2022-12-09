@@ -1,28 +1,20 @@
-from ast import parse
 import re
-
-with open("Day12/input.txt") as f:
-    s=f.read()
-    numbers = re.findall("[-+]?[.]?[\d]+(?:,\d\d\d)*[\.]?\d*(?:[eE][-+]?\d+)?", s)
-    value=0
-    for number in numbers:
-        value+=sum([int(item) for item in number.split(',')])
-    print("Part I : ",value)
-
 from json import loads
+import builtins
 
-def n(j):
-    if type(j) == int:
-        return j
-    if type(j) == list:
-        return sum([n(j) for j in j])
-    if type(j) != dict:
-        return 0
-    if 'red' in j.values():
-        return 0
-    return n(list(j.values()))
+def generator(input) : 
+    return input
 
-print(n(loads(s)))
+def part_1(input) :
+    return solver(loads(input), 0)
 
+def part_2(input) : 
+    return solver(loads(input),1)
 
-    # 104046 34786
+def solver(j ,reject_red):
+    match type(j) :
+        case builtins.int : return j
+        case builtins.list : return sum([solver(j , reject_red) for j in j])
+        case builtins.dict : return (reject_red or 'red' not in j.values()) * solver(list(j.values()), reject_red)
+        case _: return 0
+        

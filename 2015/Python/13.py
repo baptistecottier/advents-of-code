@@ -1,18 +1,24 @@
-import itertools
+from itertools import permutations, pairwise
 
-with open("Day13/input.txt") as f:
-    criterions=f.read().splitlines()
-    attendees=list(set([item.split(' ')[0] for item in criterions]))+['Me']
-    print(attendees)
-    happiness=[[0 for x in range(len(attendees))] for y in range(len(attendees))]
-    for criterion in criterions:
-        words=criterion.replace('.','').split(' ')
-        happiness[attendees.index(words[0])][attendees.index(words[-1])]=(-1+2*(words[2]=='gain')) * int(words[3])
-    print(happiness)
+def generator(input) : 
+    return [(-1) ** ('lose' in rule) * int(rule.split(' ')[3]) for rule in input.splitlines()]
 
-    max_happiness=0
-    for arrangement in list(itertools.permutations(attendees)):
-        arrangement=list(arrangement)
-        happy_rate=sum([happiness[attendees.index(arrangement[i])][attendees.index(arrangement[(i+1)%len(attendees)])] for i in range(len(arrangement))]) + sum([happiness[attendees.index(arrangement[(i+1)%len(attendees)])][attendees.index(arrangement[(i)%len(attendees)])] for i in range(len(arrangement))])
-        max_happiness=max(max_happiness,happy_rate)
-    print(max_happiness)
+def part_1(input) :
+    return solver(input, me = False)
+
+def part_2(input) : 
+    return solver(input, me = True)
+
+def solver(input, me) :
+    best = 0
+    n = int(len(input) ** 0.5) + 1 + me
+    for arrangement in permutations(range(n)):
+        acc = 0
+        for (a,b) in pairwise(arrangement + (arrangement[0],)):
+            if n-me not in (a,b) :
+                i1 = (n - 1 - me) * a + b - (b>a)
+                i2 = (n - 1 - me) * b + a - (a>b)
+                acc += input[i1] + input[i2]
+        best = max(best, acc)
+    return best
+            
