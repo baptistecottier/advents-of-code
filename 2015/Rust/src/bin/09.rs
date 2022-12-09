@@ -12,34 +12,31 @@ fn generator(input: &str) -> Vec<u16> {
 }
 
 fn part_1(input: Vec<u16>) -> u16 {
-    *solve(input)
-            .iter()
-            .min()
-            .unwrap()
+    solve(input,1)
     }
 
 fn part_2(input: Vec<u16>) -> u16 {
-    *solve(input)
-            .iter()
-            .max()
-            .unwrap()
+    solve(input.clone(), -1)
     }
 
-fn solve(input: Vec<u16>) -> Vec<u16>{
-    let l = input.len(); 
-    let c = ((2*l) as f64).sqrt() as usize + 1 ;
+fn solve(input: Vec<u16>, polarity : i16) -> u16 {
+    let c = ((2*input.len()) as f64).sqrt() as usize + 1 ;
     (0..c)
         .permutations(c)
         .into_iter()
-        .map(|perm| perm
-                                .iter()
-                                .tuple_windows()
-                                .fold(0, |acc, (a,b)| {
-                                    let n = if a < b { a } else { b };
-                                    let x = a + b - 2 * n - 1;
-                                    let index =  n * (2 * c - n - 1)/ 2 + x  ;
-                                    acc + input[index]
-                                })
+        .map(|perm| 
+            perm
+            .iter()
+            .tuple_windows()
+            .fold(0, |acc, (a,b)| {
+                let n = if a < b { a } else { b };
+                let x = a + b - 2 * n - 1;
+                let index =  n * (2 * c - n - 1)/ 2 + x  ;
+                acc + input[index]
+            })
         )
-        .collect_vec()
+        .sorted_by_key(|d| polarity * (*d as i16) )
+        .nth(0)
+        .unwrap()
+
 }
