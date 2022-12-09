@@ -1,8 +1,6 @@
 aoc2022::main!();
 
 fn generator(input : &str) -> Vec<(i32, i32)> {
-    let mut x = 0 ;
-    let mut y = 0 ;
     input
         .lines()
         .map(|l| l.split_whitespace().collect_vec())
@@ -12,14 +10,14 @@ fn generator(input : &str) -> Vec<(i32, i32)> {
             "R" => (1 , 0),
             "L" => (-1, 0),
             _ => unreachable!(), } ))
-        .map(|(n , (dx , dy))| (0..n).map(| _ |{
-            x += dx ;
-            y += dy ;
-            (x , y)
-            })
-            .collect_vec())
-        .flatten()
-        .collect_vec()
+        .fold(vec![(0,0)] , |mut head_pos,  (n , (dx , dy))| {
+            head_pos.append(&mut 
+                (1..=n).scan( 
+                    head_pos.last().unwrap() , | new_pos , i |{
+                    Some((new_pos.0 + i * dx , new_pos.1 + i * dy))})
+            .collect_vec()) ; 
+            head_pos.clone()})
+       
 }
 
 fn part_1(path : Vec<(i32, i32)>) -> usize {
