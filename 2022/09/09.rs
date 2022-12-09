@@ -32,17 +32,16 @@ fn part_2(path : Vec<(i32, i32)>) -> usize {
 
 fn solver(mut path : Vec<(i32 ,i32)>, knots : usize) -> usize {
     (0 .. knots-1)
-        .for_each(| _| {
-            let mut tx = 0 ; 
-            let mut ty = 0 ; 
+        .for_each(|_| {
+            let mut tail_pos = (0 , 0) ; 
             path.clone()
                 .iter()
                 .enumerate()
-                .for_each(|(n, (hx, hy))| {
-                    let d = ((hx - tx).abs() > 1 || (hy - ty).abs() > 1 ) as i32 ;
-                    tx += d * (hx - tx).signum() ;
-                    ty += d * (hy - ty).signum() ;
-                    path[n] = (tx, ty)
+                .for_each(|(n, head_pos)| {
+                    let d = ((head_pos.0 - tail_pos.0).abs() > 1 || (head_pos.1 - tail_pos.1).abs() > 1 ) as i32 ;
+                    tail_pos.0 += d * (head_pos.0 - tail_pos.0).signum() ;
+                    tail_pos.1 += d * (head_pos.1 - tail_pos.1).signum() ;
+                    path[n] = (tail_pos.0, tail_pos.1)
                 })
         });
     path.iter().unique().count()
