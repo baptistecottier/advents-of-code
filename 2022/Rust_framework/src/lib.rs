@@ -7,18 +7,21 @@ macro_rules! main {
             itertools::{chain, iproduct, repeat_n, FoldWhile, Itertools},
             std::cmp::Ordering,
             std::collections::{HashMap, HashSet, VecDeque},
-            std::fmt::{Debug, Display, Formatter},
             std::iter::zip,
-            std::iter::{once, successors},
-            std::ops::{Add, Sub},
             std::ops::{Range, RangeInclusive},
             std::str::FromStr,
+            std::env,
         };
+        
 
         fn main() {
-            let input_path = include_str!(concat!("../", module_path!(), "/",module_path!(),".txt")).trim_end() ;
+            let args: Vec<String> = env::args().collect();
+            let input_path = if args.len() == 1  { 
+                include_str!(concat!("../", module_path!(), "/",module_path!(),".txt")).trim_end() } else {
+                include_str!(concat!("../", module_path!(), "/",module_path!(),"_test.txt")).trim_end()};
             let input =
                 generator(input_path);
+
             println!("{}", part_1(input.clone()));
             println!("{}", part_2(input));
         }
