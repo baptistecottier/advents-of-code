@@ -1,5 +1,5 @@
 import sys
-
+import copy 
 sys.path.append("../"+sys.argv[1][:2])
 module = __import__(sys.argv[1])
 
@@ -11,5 +11,5 @@ input_file=open(path, "r").read()
 
 
 input = module.generator(input_file) 
-print(module.part_1(input))
+print(module.part_1(copy.deepcopy(input)))
 print(module.part_2(input))
