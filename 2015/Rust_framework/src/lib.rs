@@ -8,6 +8,7 @@ macro_rules! main {
             std::cmp::Ordering,
             std::collections::{HashMap, HashSet, VecDeque},
             std::iter::zip,
+            mod_exp::mod_exp,
             std::ops::{Range, RangeInclusive},
             std::str::FromStr,
             std::env,
@@ -16,9 +17,7 @@ macro_rules! main {
 
         fn main() {
             let args: Vec<String> = env::args().collect();
-            let input_path = if args.len() == 1  { 
-                include_str!(concat!("../", module_path!(), "/",module_path!(),".txt")).trim_end() } else {
-                include_str!(concat!("../", module_path!(), "/",module_path!(),"_test.txt")).trim_end()};
+            let input_path = include_str!(concat!("../", module_path!(), "/",module_path!(),".txt")).trim_end();
             let input =
                 generator(input_path);
 
