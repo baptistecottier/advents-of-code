@@ -15,10 +15,7 @@ macro_rules! main {
         
 
         fn main() {
-            let args: Vec<String> = env::args().collect();
-            let input_path = if args.len() == 1  { 
-                include_str!(concat!("../", module_path!(), "/",module_path!(),".txt")).trim_end() } else {
-                include_str!(concat!("../", module_path!(), "/",module_path!(),"_test.txt")).trim_end()};
+            let input_path = include_str!(concat!("../", module_path!(), "/",module_path!(),".txt")).trim_end() ;
             let input =
                 generator(input_path);
 
@@ -33,3 +30,4 @@ pub fn rev_slice(input : &[u32]) -> Vec<u32> {
     a.reverse() ; 
     a
 }
+

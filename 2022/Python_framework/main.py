@@ -1,12 +1,11 @@
 import sys
 import copy 
-sys.path.append("../"+sys.argv[1][:2])
+sys.path.append("../"+sys.argv[1])
 module = __import__(sys.argv[1])
 
 
 
-if len(sys.argv) == 3 : path='../'+sys.argv[1][:2]+'/'+sys.argv[1][:2]+'_'+sys.argv[2]+'.txt'
-else : path='../'+sys.argv[1][:2]+'/'+sys.argv[1][:2]+'.txt'
+path='../'+sys.argv[1][:2]+'/'+sys.argv[1]+'.txt'
 input_file=open(path, "r").read()
 
 
