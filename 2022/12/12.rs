@@ -43,7 +43,8 @@ fn solver(input : Vec<Vec<i16>>, start : i16) -> usize {
 
 fn bfs(maze : Vec<Vec<i16>>, start : (usize, usize), end : (usize, usize)) -> usize {
     let (h, w) = (maze.len(), maze.iter().next().unwrap().len()) ;
-    let mut seen = [start].to_vec();
+    let mut seen = HashSet::new();
+    seen.insert(start) ; 
     let mut queue = [[start].to_vec()].to_vec();
     while !queue.is_empty() {
         let path = queue.pop().unwrap() ;
@@ -52,14 +53,13 @@ fn bfs(maze : Vec<Vec<i16>>, start : (usize, usize), end : (usize, usize)) -> us
         if (x,y) == end  {return path.len()-1}
         neighbors(x,y)
             .iter()
-            .filter(|(x2, y2)| (0..w).contains(y2) && (0..h).contains(x2) && !temp_seen.contains(&(*x2, *y2)) && (maze[*x2][*y2]-maze[x][y] < 2))
-            .for_each(|(x2, y2)| {
-               queue.insert(0, [[(*x2, *y2)].to_vec(), path.clone()].concat()) ;
-               seen.push((*x2, *y2));
-                // println!("{:?}", queue)
+            .filter(|(x2, y2)| *y2 < w && *x2 < h && !temp_seen.contains(&(*x2, *y2)) && (maze[*x2][*y2]-maze[x][y] < 2))
+            .for_each(|&(x2, y2)| {
+                queue.insert(0, [[(x2, y2)].to_vec(), path.clone()].concat()) ;
+                seen.insert((x2, y2));
             })
     };
-    return 10_000 as usize
+    usize::MAX
 }
 
 fn neighbors(x: usize, y: usize) -> Vec<(usize, usize)> {
