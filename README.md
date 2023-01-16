@@ -4,7 +4,7 @@ This is my repository for my solutions to the [Advent of Code](https://adventofc
 Solutions may be in either Rust, that I am learning or Python.
 
 For each language, one can find the appropriate framework working as follows.
-Each file require three functions :
+Each file require three functions:
 - `generator` : takes the puzzle input, and returns it with appropriate parsing and modifcations to solve the puzzle
 - `part_1`: takes the puzzle input returned by `generator` and returns the answer for part one of the challenge
 - `part_2`: takes the puzzle input returned by `generator` and returns the answer for part two of the challenge
