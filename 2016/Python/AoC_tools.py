@@ -1,6 +1,5 @@
 import collections
 from math import prod 
-import os
 from sys import argv
 
 def read_input():
