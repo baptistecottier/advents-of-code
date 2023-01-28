@@ -14,8 +14,7 @@ fn part_1(input: Vec<[String;2]>) -> usize {
     solver(input, 4)
         .iter()
         .filter(|x| ! x[0].is_empty() && x[1].is_empty())
-        .count()
-    
+        .count() 
 }
 
 fn part_2(input: Vec<[String;2]>) -> usize {
@@ -23,7 +22,6 @@ fn part_2(input: Vec<[String;2]>) -> usize {
         .iter()
         .filter(|x| iproduct!(x[0].chunks(3), x[1].chunks(3)).any(|(ca,cb)| ca[0] == cb[1] && ca[1] == cb[0]))
         .count()
-    
 }
 
 fn solver(input: Vec<[String;2]>, size: usize) -> Vec<Vec<Vec<u8>>> {
@@ -38,7 +36,6 @@ fn solver(input: Vec<[String;2]>, size: usize) -> Vec<Vec<Vec<u8>>> {
             .map(|s| s.to_vec())
             .flatten()
             .collect())
-            .collect_vec())
-        .collect_vec()
-        
-        }
+        .collect_vec())
+    .collect_vec()
+}
