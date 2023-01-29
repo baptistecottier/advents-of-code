@@ -1,15 +1,21 @@
-from AoC_tools import read_input
+from itertools import permutations
 
-instructions=read_input().splitlines()
+def generator(input) : return input.splitlines()
 
-def scramble(input):
-    pw=input
+def part_1(input): return solver('abcdefgh', input)
+
+def part_2(input): 
+    for word in permutations('abcdefgh'):
+        if solver(word, input)=='fbgdceah' : return ''.join(word)
+
+
+def solver(pw, instructions):
     for inst in instructions : 
         command , details = inst.split(' ', 1)
         match command :
             case 'swap': 
                 _ , x , _ , _ , y = details.split(' ')
-                if 'position' in details : #position X with position Y 
+                if 'position' in details : 
                     x , y = list(map(int,[x,y]))
                     pw[x] , pw[y] = pw[y] , pw[x]
                 else :
@@ -35,14 +41,6 @@ def scramble(input):
                 x , y = list(map(int,[x,y]))
                 t=pw[x]            
                 pw=pw[:x]+pw[x+1:]
-                pw=pw[:y]+list(t)+pw[y:]
+                pw=pw[:y]+t+pw[y:]
     return ''.join(pw)
 
-print('Scrambling \'abcdefgh\' results in', '\''+scramble('abcdefgh')+'\'')
-
-from itertools import permutations
-
-for input in permutations('abcdefgh'):
-    if scramble(input)=='fbgdceah' : 
-        print('Unscrambling \'fbgdceah\' results in','\'' + ''.join(input) + '\'') 
-        break
