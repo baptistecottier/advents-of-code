@@ -15,7 +15,7 @@ def solver(input):
     steps = 1
     
     while 1:
-        over = True
+        done = True
         while input[y+dy][x+dx] != ' ':
             if input[y][x] not in [' ', '|', '-']: letters.append(input[y][x])
             x, y = x + dx, y + dy
@@ -26,10 +26,10 @@ def solver(input):
                 dx, dy = nx, ny
                 x, y = x + dx, y + dy
                 steps += 1
-                over = False
+                done = False
                 break
             
-        if over == True: 
+        if done == True: 
             if input[y][x] not in [' ', '|', '-'] : letters.append(input[y][x])
             return [''.join(letters), steps]
         
