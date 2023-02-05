@@ -1,10 +1,9 @@
-from itertools import product
-
 def generator(input):
     return [passphrase.split(' ') for passphrase in input.splitlines()]
 
 def part_1(input):
     return solver(input, lambda x: x)
+
 def part_2(input):
     return solver(input, sorted)
 

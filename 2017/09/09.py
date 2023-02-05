@@ -19,5 +19,5 @@ def solver(input, i):
             case (0, '{'): score, step = score + step + 1, step + 1
             case (0, '}'): step = step - 1
             case (0, _): pass
-            case _ : garb_count += 1
+            case _: garb_count += 1
     return [score, garb_count][i]

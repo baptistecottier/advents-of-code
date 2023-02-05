@@ -7,11 +7,11 @@ def part_2(input): return len(solver(input))
 
 def solver(input):
     grps, sorted = [], []
-    while len([item for sublist in grps for item in sublist]) != len(input) : 
+    while len([item for sublist in grps for item in sublist]) != len(input): 
         i = min([n for n in range(len(input)) if n not in sorted])
         pipes = input[i]
         grp = []
-        while not all([x in grp for x in pipes]) :
+        while not all([x in grp for x in pipes]):
             npipes = []
             for item in pipes:
                 grp.append(item)

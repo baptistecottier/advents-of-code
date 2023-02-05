@@ -33,17 +33,17 @@ def rotate(input, n):
 def solver(input, grid, iterations):
     for m in range(iterations):
         size = int(len(grid) ** 0.5)
-        if size % 2 == 0 : divisor = 2 
-        else : divisor = 3
+        if size % 2 == 0: divisor = 2 
+        else: divisor = 3
         enhanced_grid = []
         for r, c in product(range(size // divisor), range(size // divisor)):
             index = (r * size + c) * divisor
-            mini_grid = ''.join([grid[index + i * size: index + i *size + (divisor)] for i in range(divisor)])
+            mini_grid = ''.join([grid[index + i * size: index + i * size + (divisor)] for i in range(divisor)])
             enhanced_grid.append(input[mini_grid])
         grid = ''
         for i in range(size + size // divisor):
             ii = (i * (divisor + 1)) % (divisor + 1) ** 2
             jj = (i // (divisor + 1)) * (size // divisor) 
             for j in range(size // divisor):
-                grid+= enhanced_grid[jj+j][ii:ii + (divisor + 1)]
+                grid += enhanced_grid[jj + j][ii: ii + (divisor + 1)]
     return grid.count('#')

@@ -15,7 +15,7 @@ def part_2(instructions):
         while stack:
             (x, y) = stack.pop()
             for dx, dy in ((1, 0), (-1, 0), (0, 1), (0, -1)):
-                candidate = x+dx, y+dy
+                candidate = x + dx, y + dy
                 if candidate in maze:
                     stack.append(candidate)
                     maze.remove(candidate)

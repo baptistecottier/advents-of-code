@@ -6,8 +6,8 @@ def generator(input):
     details = []
     for state in infos[1:]:
         a, b, c, d, e, f, g = parse("In state {}:\n  If the current value is 0:\n    - Write the value {:d}.\n    - Move one slot to the {}.\n    - Continue with state {}.\n  If the current value is 1:\n    - Write the value {:d}.\n    - Move one slot to the {}.\n    - Continue with state {}.", state)
-        details.append([[b,c == 'left',ord(d)-65],[e, f == 'left',ord(g)-65]])
-    return (ord(starting_state)-65, trigger, details)
+        details.append([[b,c == 'left',ord(d) - 65],[e, f == 'left', ord(g) - 65]])
+    return (ord(starting_state) - 65, trigger, details)
 
 def part_1(input): 
     state, trigger, details = input

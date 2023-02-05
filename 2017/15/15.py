@@ -10,12 +10,12 @@ def part_2(input):
 def solver(input, rounds, mult_a, mult_b): 
     a, b = input
     matching_pairs = 0 
-    for i in range(rounds):
+    for _ in range(rounds):
         a = (a * 16807) % 2147483647
-        while a % mult_a != 0 : a = (a * 16807) % 2147483647
+        while a % mult_a != 0: a = (a * 16807) % 2147483647
 
         b = (b * 48271) % 2147483647
-        while b % mult_b != 0 : b = (b * 48271) % 2147483647
+        while b % mult_b != 0: b = (b * 48271) % 2147483647
         
         if a % (2 ** 16) == b % (2 ** 16): matching_pairs += 1
     return matching_pairs

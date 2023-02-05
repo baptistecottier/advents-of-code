@@ -30,6 +30,6 @@ def solver(input):
                 break
             
         if done == True: 
-            if input[y][x] not in [' ', '|', '-'] : letters.append(input[y][x])
+            if input[y][x] not in [' ', '|', '-']: letters.append(input[y][x])
             return [''.join(letters), steps]
         
