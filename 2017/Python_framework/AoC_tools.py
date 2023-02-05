@@ -4,9 +4,9 @@ from math import prod
 
 
 def print_grid(grid, convert=False):
-    for g in grid : 
-        if isinstance(g, list) : print(''.join(g))
-        else : print(g)
+    for g in grid: 
+        if isinstance(g, list): print(''.join(g))
+        else: print(g)
 
 def manhattan_distance(x1, x2):
     x1, y1 = x1
@@ -19,7 +19,7 @@ def knot_hash(string,size):
     pos=0
     numbers=[i for i in range(size)]
     lengths=([ord(k) for k in list(string)]+[17, 31, 73, 47, 23])*64
-    for l in lengths :
+    for l in lengths:
         temp=numbers.copy()
         for i in range(l):
             numbers[(pos+i)%size]=temp[(pos+l-i-1) % size]

@@ -6,8 +6,8 @@ module = __import__(sys.argv[1])
 
 
 
-if len(sys.argv) == 3 : path='../'+sys.argv[1][:2]+'/'+sys.argv[1][:2]+'_'+sys.argv[2]+'.txt'
-else : path='../'+sys.argv[1][:2]+'/'+sys.argv[1][:2]+'.txt'
+if len(sys.argv) == 3: path='../'+sys.argv[1][:2]+'/'+sys.argv[1][:2]+'_'+sys.argv[2]+'.txt'
+else: path='../'+sys.argv[1][:2]+'/'+sys.argv[1][:2]+'.txt'
 input_file=open(path, "r").read()
 
 
