@@ -1,4 +1,5 @@
 import sys
+import AoC_tools
 
 sys.path.append("../"+sys.argv[1][:2])
 module = __import__(sys.argv[1])
