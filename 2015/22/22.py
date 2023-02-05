@@ -1,5 +1,3 @@
-import sys
-import numpy as np
 import copy
 
 def generator(specs) : 
@@ -10,21 +8,20 @@ def generator(specs) :
 
 
 def part_1(input) : 
-    list_manas = [10000000]
-    player_turn([], 50 , 500 , 71,10 , 0 , False, list_manas)
+    list_manas = []
+    player_turn([], 50 , 500 , input[0], input[1] , 0 , False, list_manas)
     return min(list_manas)
 
 def part_2(input) : 
-    list_manas = [10000000]
-    player_turn([], 50 , 500 , 71, 10 , 0 , True, list_manas)
+    list_manas = []
+    player_turn([], 50 , 500 ,  input[0], input[1] , 0 , True, list_manas)
     return min(list_manas)
 
 
     
 def player_turn(effects_t, player_hp, player_mana,  boss_hp, boss_damage, spent_mana, hard_mode, list_manas):
-    if spent_mana > min(list_manas) :
-        return 
     effects = copy.deepcopy(effects_t)
+    
     # Damages application
     player_damage = sum([effect[2] for effect in effects])
     boss_hp -= player_damage
@@ -48,12 +45,11 @@ def player_turn(effects_t, player_hp, player_mana,  boss_hp, boss_damage, spent_
      # New cast   
     if player_mana < 53 : return
     le = [effect[0] for effect in effects]
-    if spent_mana > min(list_manas) : return 
-    if player_mana >= 53 : a = boss_turn(effects, player_hp, player_mana - 53,  boss_hp - 4, boss_damage, spent_mana + 53, hard_mode, list_manas)
-    if player_mana >= 73 : b = boss_turn(effects, player_hp + 2, player_mana - 73,  boss_hp - 2, boss_damage, spent_mana + 73, hard_mode, list_manas)
-    if player_mana >= 229 and 229 not in le: e = boss_turn(effects + [[229 , 5, 0, 0, 101]], player_hp, player_mana - 229,  boss_hp , boss_damage, spent_mana + 229, hard_mode, list_manas) 
-    if player_mana >= 113 and 113 not in le: c = boss_turn(effects + [[113 , 6, 0, 7, 0]], player_hp, player_mana - 113,  boss_hp , boss_damage, spent_mana + 113, hard_mode, list_manas) 
-    if player_mana >= 173 and 173 not in le: d = boss_turn(effects + [[173, 6, 3, 0, 0]], player_hp, player_mana - 173,  boss_hp , boss_damage, spent_mana + 173, hard_mode, list_manas) 
+    if player_mana >= 53 : boss_turn(effects, player_hp, player_mana - 53,  boss_hp - 4, boss_damage, spent_mana + 53, hard_mode, list_manas)
+    if player_mana >= 73 : boss_turn(effects, player_hp + 2, player_mana - 73,  boss_hp - 2, boss_damage, spent_mana + 73, hard_mode, list_manas)
+    if player_mana >= 229 and 229 not in le: boss_turn(effects + [[229 , 5, 0, 0, 101]], player_hp, player_mana - 229,  boss_hp , boss_damage, spent_mana + 229, hard_mode, list_manas) 
+    if player_mana >= 113 and 113 not in le: boss_turn(effects + [[113 , 6, 0, 7, 0]], player_hp, player_mana - 113,  boss_hp , boss_damage, spent_mana + 113, hard_mode, list_manas) 
+    if player_mana >= 173 and 173 not in le: boss_turn(effects + [[173, 6, 3, 0, 0]], player_hp, player_mana - 173,  boss_hp , boss_damage, spent_mana + 173, hard_mode, list_manas) 
 
 
 
@@ -62,6 +58,8 @@ def player_turn(effects_t, player_hp, player_mana,  boss_hp, boss_damage, spent_
 def boss_turn(effects_t, player_hp, player_mana,  boss_hp, boss_damage, spent_mana, hard_mode, list_manas):
     effects = copy.deepcopy(effects_t)
 
+    if list_manas!= [] and spent_mana > min(list_manas): return 
+    
     # Damage application application
     player_damage = sum([effect[2] for effect in effects])
     boss_hp -= player_damage
@@ -77,8 +75,7 @@ def boss_turn(effects_t, player_hp, player_mana,  boss_hp, boss_damage, spent_ma
     if player_hp <= 0 : 
         return 
     
-    # Effect update
-
+    # Effects update
     for effect in effects :
         effect[1] -= 1
 
