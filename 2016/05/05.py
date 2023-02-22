@@ -2,9 +2,7 @@ import hashlib
 
 def generator(input): return input
 
-
 def part_1(input) : return solver(input, position = False)
-
 
 def part_2(input) : return solver(input, position = True)
 

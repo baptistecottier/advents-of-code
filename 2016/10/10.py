@@ -1,6 +1,5 @@
 from parse import parse
 
-
 def generator(input):
     values=[[] for _ in range(len(input.splitlines()))]
     instructions=[None for _ in range(len(input.splitlines()))]
