@@ -1,4 +1,4 @@
 target
 .DS_Store
 **.pyc
-2016/.vscode/settings.json
+*/.vscode/settings.json
