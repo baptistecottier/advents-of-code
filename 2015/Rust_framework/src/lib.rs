@@ -3,12 +3,11 @@ macro_rules! main {
     () => {
         #[allow(unused_import)]
         use {
-            aoc2015::{rev_slice},
+            aoc_2015::{rev_slice},
             itertools::{chain, iproduct, repeat_n, FoldWhile, Itertools},
             std::cmp::Ordering,
             std::collections::{HashMap, HashSet, VecDeque},
             std::iter::zip,
-            mod_exp::mod_exp,
             std::ops::{Range, RangeInclusive},
             std::str::FromStr,
             std::env,
