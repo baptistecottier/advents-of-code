@@ -22,15 +22,14 @@ python3 main.py <day>
 Thanks [Scotow](https://github.com/scotow) for the initial framework and precious coding advices.
 
 ### Remarks
-- Organisation update is still ongoing.
 - Enter the code `1349697-f730f285` in your [Private Leaderboard Homepage](https://adventofcode.com/2022/leaderboard/private) to integrate my leaderboard.
-- Score as of February 5:
+- Score as of May 14:
   - 2015: 50 ⭐️
   - 2016: 50 ⭐️
   - 2017: 50 ⭐️
   - 2018: 26 ⭐️ 
-  - 2019: 00 ⭐️ 
-  - 2020: 16 ⭐️ 
-  - 2021: 42 ⭐️
+  - 2019: 18 ⭐️ 
+  - 2020: 45 ⭐️ 
+  - 2021: 42 ⭐️ (ongoing reorganisation)
   - 2022: 36 ⭐️
-  - Total : 270
+  - Total : 317
