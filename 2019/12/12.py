@@ -21,8 +21,6 @@ def apply_motion(scans, rounds = -1):
     while (r := r + 1) != rounds:
         if (scans, gravity) in visited: return r
         else : visited.add((scans, gravity))
-        gravity = tuple(g + sum(sign(p, q) for q in scans) for g, p in zip(gravity,scans))
+        gravity = tuple(g + sum((p < q) - (q < p) for q in scans) for g, p in zip(gravity,scans))
         scans = tuple((p + g) for p, g in zip(scans, gravity))
     return scans, gravity
-
-def sign(a, b): return (a < b) - (a > b)
