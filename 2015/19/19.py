@@ -1,50 +1,29 @@
-from random import shuffle
+from collections import defaultdict
 
+def generator(input):
+    replacements = defaultdict(list)
+    text_replacements, molecule = input.split('\n\n')
+    for replacement in text_replacements.splitlines():
+        start, end = replacement.split(" => ")
+        replacements[start].append(end)
+    return replacements, molecule
 
-def nth_repl(s, sub, repl, n):
-    find = s.find(sub)
-    # If find is not -1 we have found at least one match for the substring
-    i = find != -1
-    # loop util we find the nth or we find no match
-    while find != -1 and i != n:
-        # find + 1 means we start searching from after the last match
-        find = s.find(sub, find + 1)
-        i += 1
-    # If i is equal to n we found nth match so replace
-    if i == n:
-        return s[:find] + repl + s[find+len(sub):]
-    return s
+def part_1(data): 
+    candidates = set()
+    replacements, molecule = data
+    for mol in replacements.keys():
+        pieces = molecule.split(mol)
+        for replacement in replacements[mol]:
+            for index in range(1, 1 + molecule.count(mol)):
+                candidates.add(mol.join(pieces[:index]) + replacement + mol.join(pieces[index:]))
+    return len(candidates)
 
-with open("Day19/input") as f:
-    input=f.read().splitlines()
-    transformations=input[:-2]
-    mol=input[-1]
-transformations=[transformation.split(' => ') for transformation in transformations]
-transformations.sort(key=lambda item : len(item[1]))
-
-created_mols=[]
-for atom_a, atom_z in transformations:
-    for i in range(mol.count(atom_a)):
-        created_mols+=[nth_repl(mol,atom_a,atom_z,i+1)]
-
-count=len(list(set(created_mols)))
-print(count)
-
-target = mol
-part2 = 0
-
-while target != 'e':
-    tmp = target
-    for a, b in transformations:
-        if b not in target:
-            continue
-
-        target = target.replace(b, a, 1)
-        part2 += 1
-
-    if tmp == target:
-        target = mol
-        part2 = 0
-        shuffle(transformations)
-
-print(part2)
+def part_2(data):
+    '''
+    https://www.reddit.com/r/adventofcode/comments/3xflz8/comment/cy4etju/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button
+    '''
+    _, molecule = data
+    a = len([c for c in molecule if c.isupper()])
+    b = molecule.count('Rn') + molecule.count('Ar')
+    c = molecule.count('Y')
+    return a - b - 2 * c - 1

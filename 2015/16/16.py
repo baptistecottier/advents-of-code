@@ -1,44 +1,30 @@
-with open("input.txt") as f:
-    aunts=f.read().splitlines()
-    aunts=[item.split(': ',1)[1] for item in aunts]
-    aunts=[item.replace(':','').replace(',','') for item in aunts]
-    aunts=[item.split(' ') for item in aunts]
-    criterions=[]
-    for aunt in aunts:
-        criterion=[item for item in aunt if not item.isdigit()]
-        criterions=list(set(criterions+criterion))
+from parse import parse
+from operator import eq, lt, gt
 
-    infos=[[-1 for x in range(len(criterions))] for y in range(len(aunts))]
-    for i in range(len(aunts)):
-        for c in range(3):
-            infos[i][criterions.index(aunts[i][2*c])]=int(aunts[i][2*c+1])
+def generator(input): 
+    aunts = {}
+    for aunt_data in input.splitlines():
+        n, c1, v1, c2, v2, c3, v3 = parse("Sue {:d}: {}: {:d}, {}: {:d}, {}: {:d}", aunt_data)
+        aunts[n] = {c1: v1, c2: v2, c3: v3}
+    return aunts
 
-with open("infos_sue.txt") as f:
-    temp=f.read().splitlines()
-    temp=[item.split(': ') for item in temp]
-    infos_sue=[0 for x in range(len(temp))]
-    for i in range(len(temp)):
-        infos_sue[criterions.index(temp[i][0])]=int(temp[i][1])
+def part_1(aunts): 
+    return find_Sue(aunts, eq, eq)
+
+def part_2(aunts): 
+    return find_Sue(aunts, gt, lt)
+        
+def find_Sue(aunts, op1, op2):
+    Sue = { "children": 3, "cats":     7, "samoyeds": 2, "pomeranians":  3, "akitas":   0, \
+            "vizslas":  0, "goldfish": 5, "trees":    3, "cars":         2, "perfumes": 1}
     
-for sue in range(len(aunts)):
-    score=1
-    for i in range(len(infos_sue)):
-        if infos[sue][i] != -1 :
-            if infos[sue][i]!=infos_sue[i]: score=0
-    if score==1 : print("PART I :", sue+1)
-
-
-for sue in range(500):
-    score=1
-    for i in range(len(infos_sue)):
-        if infos[sue][i] != -1 :
-            if criterions[i] in ['cats','trees']:
-                if infos[sue][i]<=infos_sue[i]: score=0
-            elif criterions[i] in ['pomeranians','goldfish']:
-                if infos[sue][i]>=infos_sue[i]: score=0
-            elif infos[sue][i]!=infos_sue[i]: score=0
-    if score==1 : print("PART II :", sue+1)
-
-   # print(aunts)
-
-#    In particular, the cats and trees readings indicates that there are greater than that many (due to the unpredictable nuclear decay of cat dander and tree pollen), while the pomeranians and goldfish readings indicate that there are fewer than that many (due to the modial interaction of magnetoreluctance).
+    for n, compounds in aunts.items():
+        for compound, value in list(compounds.items()):
+            if compound in ['cats', 'trees']:
+                if op1(value, Sue[compound]): del aunts[n][compound]
+                else: break
+            elif compound in ['pomeranians', 'goldfish']:
+                if op2(value, Sue[compound]): del aunts[n][compound]
+                else: break
+            elif value == Sue[compound]: del aunts[n][compound]
+        if compounds == {}: return n

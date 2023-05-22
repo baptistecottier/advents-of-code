@@ -1,15 +1,22 @@
-import itertools
-import sys
+from itertools import combinations
 
-with open("Day17/input.txt") as f:
-    stuff = [int(x) for x in f.read().splitlines()]
-    count=0
-    stop=0
-    for L in range(0, len(stuff)+1):
-        for subset in itertools.combinations(stuff, L):
-            if sum(list(subset))==150 : 
-                stop=1
-                count += 1
-        if stop==1 :
-            print(count)
-            sys.exit()
+def generator(input):
+    return tuple(int(container) for container in input.splitlines())
+
+def part_1(containers): 
+    size = 0
+    good_combination = 0
+    while size < len(containers):
+        for comb in combinations(containers, size := size + 1):
+            if sum(comb) == 150:
+                good_combination += 1
+    return good_combination
+
+def part_2(containers): 
+    size = 0
+    good_combination = 0
+    while good_combination == 0:
+        for comb in combinations(containers, size := size + 1):
+            if sum(comb) == 150: 
+                good_combination += 1
+    return good_combination

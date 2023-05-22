@@ -1,22 +1,19 @@
 from math import sqrt
 
-goal=29000000
+def generator(input):
+    return int(input)
+
+def part_1(target):
+    return find_lucky_house(target // 10, lambda n: 1 + int(sqrt(n)))
+
+def part_2(target):
+    return find_lucky_house(target // 11, lambda _: 50)
 
 
-def sum_divisors(n) : 
-    total=[]
-    for item in range(1,int(sqrt(n))+1):
-        if n%item==0  : 
-            total.append(item)
-            if item**2 != n : total.append(n//item)
-
-    total=[item for item in total if n//item <= 50]
-    
-    return sum(total)
-
-print([11*sum_divisors(n) for n in range(1,11)])
-n=100000
-while (11*sum_divisors(n)) < goal :
-    if n%10000==0 : print(n,11*sum_divisors(n) ) 
-    n+=1
-print(n)
+def find_lucky_house(target, bound):
+    def sum_divisors(n):
+        return sum(k + (n // k) for k in range(1, 1 + bound(n)) if n % k == 0)
+    n = 1
+    while sum_divisors(n) < target:
+        n += 1
+    return n
