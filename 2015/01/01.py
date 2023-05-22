@@ -1,13 +1,16 @@
-def generator(input) : 
-    return input
+def generator(input): 
+    directions = []
+    for direction in input:
+        if direction == '(': directions.insert(0, 1)
+        else: directions.insert(0, -1)
+    return directions
 
-def part_1(input) : 
-    return input.count('(') - input.count(')')
+def part_1(directions): 
+    return sum(directions)
 
-def part_2(input) : 
-    floor = 0
-    for i in range(len(input)) :
-        if input[i]=='(' : floor += 1
-        else : floor -= 1
-        if floor < 0 : return i+1
-    
+def part_2(directions): 
+    floor, initial_length = 0, len(directions)
+    while floor >= 0: 
+        floor += directions.pop()
+    return initial_length - len(directions)
+       
