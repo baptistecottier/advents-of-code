@@ -1,26 +1,49 @@
-with open("Day21/input") as f:
-    weapons , armor ,rings =[[[item for item in weapon.split(' ') if item != ''] for weapon in things] for things in [item.split('\n')[1:] for item in f.read().split('\n\n')]]
-    print(weapons, armor, rings)
+from itertools import product, combinations
+
+class Item:
+    def __init__(self, cost, damage, armor) -> None:
+        self.cost = cost
+        self.damage = damage
+        self.armor = armor
+    
+class Player:
+    def __init__(self, hp, damage, armor) -> None:
+        self.hp = hp
+        self.damage = damage
+        self.armor = armor
+    
+def generator(input):
+    (hp, damage, armor) = (int(item.split(": ")[1]) for item in input.splitlines())
+    return hp, damage, armor
+
+def part_1(boss_stats): 
+    return min(test_all_fights(*boss_stats)["win"])
+
+def part_2(boss_stats):    
+    return max(test_all_fights(*boss_stats)["lose"])
 
 
+def test_all_fights(boss_hp, boss_damage, boss_armor):
+    WEAPONS =   {Item(8, 4, 0), Item(10, 5, 0), Item(25, 6, 0), Item(40, 7, 0), Item(74, 8, 0)}
+    ARMORS =    {Item(0, 0, 0), Item(13, 0, 1), Item(31, 0, 2), Item(53, 0, 3), Item(75, 0, 4), Item(102, 0, 5)}
+    RINGS =     {Item(0, 0, 0), Item(0, 0, 0),  Item(20, 0, 1), Item(25, 1, 0), Item(40, 0, 2), Item(50, 2, 0), Item(80, 0, 3), Item(100, 3, 0)}
+    
+    costs = {"win": set(), "lose": set()}
 
-best_cost=500
-worst_cost=0
-for weapon in weapons : 
-    for arm in armor+[['None' , '0' , '0', '0']] : 
-        for ring_a in rings + [['None' , '+0', '0' , '0', '0']]:
-            for ring_b in [item for item in rings if item != ring_a]+ [['None' , '+0', '0' , '0', '0']]:
-                player_hp = 100 
-                boss_hp = 109
-                boss_damage = 8
-                boss_armor = 2
-                cost=int(weapon[1])+int(arm[1])+int(ring_a[2])+int(ring_b[2])
-                damage=int(weapon[2])+int(ring_a[3])+int(ring_b[3])
-                armo=int(arm[3])+int(ring_a[4])+int(ring_b[4])
-                while(player_hp > 0 and boss_hp > 0):
-                    boss_hp=boss_hp-max(1,damage-boss_armor)
-                    if boss_hp > 0 : player_hp=player_hp - max(1,boss_damage-armo)
-                if boss_hp <=0  : best_cost=min(best_cost, cost)
-                elif player_hp <= 0 : worst_cost=max(worst_cost, cost)
-print("PART I :",best_cost)
-print("PART II :",worst_cost)
+    for (weapon, armor, (left_ring, right_ring)) in product(WEAPONS, ARMORS, combinations(RINGS, 2)):
+        
+            player          = Player(100, 0, 0)
+            player.damage   = max(1, sum(item.damage for item in (weapon, armor, left_ring, right_ring)) - boss_armor)
+            player.armor    = sum(item.armor  for item in (weapon, armor, left_ring, right_ring))
+
+            boss            = Player(boss_hp, max(1, boss_damage - player.armor), boss_armor)
+            
+            while boss.hp > 0 and player.hp > 0:
+                boss.hp     -= player.damage
+                player.hp   -= boss.damage
+            
+            if boss.hp <= 0: 
+                costs["win"].add(sum(item.cost for item in (weapon, armor, left_ring, right_ring)))
+            else:            
+                costs["lose"].add(sum(item.cost for item in (weapon, armor, left_ring, right_ring)))
+    return costs
