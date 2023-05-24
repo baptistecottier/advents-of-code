@@ -31,7 +31,7 @@ def test_all_fights(boss_hp, boss_damage, boss_armor):
     costs = {"win": set(), "lose": set()}
 
     for (weapon, armor, (left_ring, right_ring)) in product(WEAPONS, ARMORS, combinations(RINGS, 2)):
-        
+            
             player          = Player(100, 0, 0)
             player.damage   = max(1, sum(item.damage for item in (weapon, armor, left_ring, right_ring)) - boss_armor)
             player.armor    = sum(item.armor  for item in (weapon, armor, left_ring, right_ring))

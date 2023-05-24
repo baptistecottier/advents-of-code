@@ -1,28 +1,37 @@
 def generator(input):
-    return input.splitlines()
+    ops = []
+    for line in input.splitlines():
+        data = line.split(' ')
+        match data[0]:
+            case 'hlf': 
+                ops.append((0, lambda x: x // 2, data[1]))
+            case 'tpl': 
+                ops.append((0, lambda x: x * 3, data[1]))
+            case 'inc': 
+                ops.append((0, lambda x: x + 1, data[1]))
+            case 'jmp': 
+                ops.append((1, lambda x: 1, int(data[1]) - 1))
+            case 'jie': 
+                ops.append((2, lambda x: (1 + x) % 2, int(data[2]) - 1))
+            case 'jio': 
+                ops.append((2, lambda x: x == 1, int(data[2]) - 1))
+    return ops
 
 def part_1(lines): 
-    return run_circuit(lines, 0)
+    return execute_program(lines, 0)
         
-
 def part_2(lines): 
-    return run_circuit(lines, 1)
+    return execute_program(lines, 1)
 
-def run_circuit(lines, a):
+
+def execute_program(lines, a):
     reg = {"a": a , "b": 0}
-    i = 0
-    while i < len(lines): 
-        [ins , rem] = lines[i].split(' ', 1)
-        match ins: 
-            case 'hlf': reg[rem]/=2 
-            case 'tpl': reg[rem]*=3 
-            case 'inc': reg[rem]+=1 
-            case 'jmp': i += int(rem)-1
-            case 'jie': 
-                [r, offset] = rem.split(', ', 1)
-                if reg[r] % 2 == 0: i += int(offset) - 1
-            case 'jio': 
-                [r, offset] = rem.split(', ', 1)
-                if reg[r]  == 1: i += int(offset) - 1
-        i += 1
+    line = -1
+    while (line := line + 1) < len(lines): 
+        v, f, n = lines[line]
+        match v:
+            case 0: reg[n] = f(reg[n])
+            case 1: line += n
+            case 2: 
+                if f(reg["a"]): line += n
     return reg['b']

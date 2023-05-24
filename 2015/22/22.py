@@ -32,9 +32,12 @@ def player_turn(effects, player_hp, player_mana,  boss_hp, boss_damage, spent_ma
     if player_mana >= 73 : boss_turn(copy.deepcopy(effects), player_hp + 2, player_mana - 73,  boss_hp - 2, boss_damage, spent_mana + 73, hard_mode, list_manas)
     
     le = [effect[0] for effect in effects]
-    if player_mana >= 113 and 113 not in le: boss_turn(copy.deepcopy(effects) + [[113 , 6, 0, 7, 0]], player_hp, player_mana - 113,  boss_hp , boss_damage, spent_mana + 113, hard_mode, list_manas) 
-    if player_mana >= 173 and 173 not in le: boss_turn(copy.deepcopy(effects) + [[173, 6, 3, 0, 0]], player_hp, player_mana - 173,  boss_hp , boss_damage, spent_mana + 173, hard_mode, list_manas) 
-    if player_mana >= 229 and 229 not in le: boss_turn(copy.deepcopy(effects) + [[229 , 5, 0, 0, 101]], player_hp, player_mana - 229,  boss_hp , boss_damage, spent_mana + 229, hard_mode, list_manas) 
+    if player_mana >= 113 and 113 not in le: 
+        boss_turn(copy.deepcopy(effects) + [[113 , 6, 0, 7, 0]], player_hp, player_mana - 113,  boss_hp , boss_damage, spent_mana + 113, hard_mode, list_manas) 
+    if player_mana >= 173 and 173 not in le: 
+        boss_turn(copy.deepcopy(effects) + [[173, 6, 3, 0, 0]], player_hp, player_mana - 173,  boss_hp , boss_damage, spent_mana + 173, hard_mode, list_manas) 
+    if player_mana >= 229 and 229 not in le: 
+        boss_turn(copy.deepcopy(effects) + [[229 , 5, 0, 0, 101]], player_hp, player_mana - 229,  boss_hp , boss_damage, spent_mana + 229, hard_mode, list_manas) 
 
 
 def boss_turn(effects, player_hp, player_mana,  boss_hp, boss_damage, spent_mana, hard_mode, list_manas):
