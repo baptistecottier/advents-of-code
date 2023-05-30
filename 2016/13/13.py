@@ -1,26 +1,18 @@
 from AoC_tools import bfs
+from itertools import product
 
 def generator(input): 
-    return int(input)
+    n = int(input)
+    maze = set()
+    for x, y in product(range(50), repeat = 2):
+        v = x * (x + 3 + 2 * y) + y * (1 + y) + n 
+        if bin(v).count('1') % 2 == 0: 
+            maze.add((x, y))
+    return maze
 
+def part_1(walls): 
+    return bfs(walls, (1,1), (31, 39))
 
-def part_1(input): 
-    return solver(input, (31, 39))
-
-
-def part_2(input): 
-    values = [solver(input,(x,y)) for x in range(50) for y in range(50-x)]
-    return sum([item <= 50 for item in values if item != None])
-
-
-def solver(input, target):
-    maze=[['.' for _ in range(50)] for _ in range(50)]
-
-    for x in range(50):
-        v = x * (x + 3) + input
-        for y in range(50):
-            if bin(v).count('1') % 2 : maze[y][x]='#'
-            v += 2 * (x + y + 1)
-
-    return bfs(maze, (1,1) , target)
-
+def part_2(walls): 
+    distances = (bfs(walls, (1,1) , (x, y), 50) != None for x in range(50) for y in range(50 - x))
+    return sum(distances)

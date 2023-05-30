@@ -2,15 +2,14 @@ from parse import parse
 
 def generator(input): return input
 
-def part_1(input) : return solver(input, len)
+def part_1(file): return get_file_size(file, len)
 
-def part_2(input) : return solver(input, part_2)
+def part_2(file): return get_file_size(file, part_2)
 
-def solver(s, func):
-    for i, c in enumerate(s):
+def get_file_size(file, func):
+    for i, c in enumerate(file):
         if c == '(':
-            width, rep, _ = parse('({:d}x{:d}){}',s[i:]) 
+            width, rep, _ = parse('({:d}x{:d}){}',file[i:]) 
             length = i + len(str(width)+str(rep)) + 3
-            return i + solver(s[length + width:], func) + rep * func(s[length : length + width])
-    return len(s)
-
+            return i + get_file_size(file[length + width:], func) + rep * func(file[length: length + width])
+    return len(file)

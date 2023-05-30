@@ -1,11 +1,20 @@
-def generator(input): return [int(item) for item in input]
+from ast import pattern
+from sys import int_info
 
-def part_1(input): return checksum(input, 272)
 
-def part_2(input): return checksum(input, 35651584)
+def generator(input): 
+    return list(int(item) for item in input)
 
-def checksum(s,disk_length):
-    while len(s) < disk_length: s += [0] + [1 - b for b in s][::-1]
-    s=s[:disk_length] 
-    while len(s) % 2 == 0: s = [s[i]==s[i+1] for i in range(0,len(s),2)]
-    return ''.join([str(int(item)) for item in s])
+def part_1(initial_state): 
+    return checksum(initial_state, 272)
+
+def part_2(initial_state): 
+    return checksum(initial_state, 35_651_584)
+
+def checksum(state, disk_length):
+    while len(state) < disk_length: 
+        state += [0] + [1 - b for b in state][::-1]
+    state = state[:disk_length]
+    while len(state) % 2 == 0: 
+        state = [1 - state[i] ^ state[i + 1] for i in range(0, len(state), 2)]
+    return ''.join(str(item) for item in state)

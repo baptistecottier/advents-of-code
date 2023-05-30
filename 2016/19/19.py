@@ -1,13 +1,17 @@
 from math import log
 
-def generator(input): return int(input)
+def generator(input): 
+    return int(input)
 
-def part_1(input): return solver(input, 2)
+def part_1(nb_players): 
+    return play_game(nb_players, 2)
 
-def part_2(input): return solver(input, 3)
+def part_2(nb_players): 
+    return play_game(nb_players, 3)
 
-def solver(input, n):
-    logn = int(log(input, n))
-    winner = input % (n ** logn)
-    if n-1 < input / (n ** logn) < n : winner += n ** ((n-2) * logn) + winner
+def play_game(nb_players, base):
+    logn   = int(log(nb_players, base))
+    winner = nb_players % (base ** logn)
+    if base - 1 < nb_players / (base ** logn) < base: 
+        winner += base ** ((base - 2) * logn) + winner
     return winner

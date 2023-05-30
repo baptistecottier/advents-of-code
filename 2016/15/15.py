@@ -1,19 +1,26 @@
 from math import prod
-from AoC_tools import chinese_remainder
-from parse import parse
+from re   import findall
 
 def generator(input):
-    a , n = [], []
-    for disc in input.splitlines():
-        d , tn , ta = parse('Disc #{:d} has {:d} positions; at time=0, it is at position {:d}.',disc)
-        n.append(tn) 
-        a.append(-(ta + d)) 
-    return a, n
+    values    = list(int(item) for item in findall(r'[0-9]+', input))
+    equations = set()
+    while values:
+        ta, _, tn, d = values.pop(), values.pop(), values.pop(), values.pop()
+        equations.add((-(ta + d), tn))
+    return equations
 
-def part_1(input) : 
-    a, n = input
-    return chinese_remainder(n, a)
+def part_1(equations): 
+    return chinese_remainder(equations)
 
-def part_2(input) : 
-    a, n = input
-    return chinese_remainder([prod(n),11], [chinese_remainder(n, a), -7] )
+def part_2(equations: set): 
+    equations.add((-7, 11))
+    return chinese_remainder(equations)
+
+
+def chinese_remainder(equations):
+    sum     = 0
+    product = prod(modulo for _, modulo in equations)
+    for remainder, modulo in equations:
+        sub_product = product // modulo
+        sum        += remainder * pow(sub_product, -1, modulo) * sub_product
+    return sum % product

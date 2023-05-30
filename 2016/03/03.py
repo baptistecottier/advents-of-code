@@ -1,23 +1,18 @@
-import re
+from itertools import product
 
-def generator(input): 
-    return [int(item) for item in re.findall('[0-9]+', input)]
+def generator(input: str): 
+    return list(int(item) for item in input.split())
+
+def part_1(lengths):
+    triangles = list(lengths[i: i + 3] for i in range(0, len(lengths), 3))
+    return count_possible_triangles(triangles)
+
+def part_2(lengths):
+    triangles = list((lengths[i + j],     \
+                      lengths[i + j + 3], \
+                      lengths[i + j + 6]) for i, j in product(range(0, len(lengths), 9), range(3)))
+    return count_possible_triangles(triangles)
 
 
-def part_1(input): 
-    return solver(input, 1)
-
-
-def part_2(input):
-    return solver(input, 3)
-
-
-def solver(input, v):
-    valid = 0
-    for t in range(len(input) // 3):
-        first_elem = t % v + (t // v) * (3 * v)
-        sides = input[first_elem : first_elem + 1 + 2 * v][::v]
-        sides.sort()
-        valid += (sides[0] + sides[1] > sides[2]) 
-        
-    return valid
+def count_possible_triangles(triangles):
+    return sum(sum(triangle) > 2 * max(triangle) for triangle in triangles)

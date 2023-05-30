@@ -1,36 +1,25 @@
-def generator(input): 
-    details = []
+def generator(input: str): 
+    x, y : int = 0 , 0
     ways = [(1,0) , (0, -1), (-1, 0), (0,1)]
+    path = [(x,y)]
     dir = 0
-    
     for step in input.split(', '):
-        dir = (dir  - 1 + 2 * (step[0] == 'R')) % 4
-        details.append((ways[dir],int(step[1:])))
-    
-    return details
+        match step[0]:
+            case 'L': dir = (dir - 1) % 4
+            case 'R': dir = (dir + 1) % 4
+        dx, dy = ways[dir]
+        for step in range(int(step[1:])):
+            path.append((x:= x + dx, y:= y + dy))
+    return path
 
-
-def part_1(input):
-    x, y = solver(input)[-1]
+def part_1(path):
+    x, y = path.pop()
     return abs(x) + abs(y)
 
-
-def part_2(input): 
-    path = solver(input)
-    visited = []
-    for x, y in path: 
-        if (x, y) in visited : return abs(x) + abs(y)
-        else : visited.append((x,y))
-
-
-def solver(input):
-    x, y = 0 , 0
-    path = [(x,y)]
-    for (dx, dy) , steps in input: 
-        for _ in range(1,steps + 1):
-            x += dx
-            y += dy
-            path.append((x, y))
-    
-    return path
-        
+def part_2(path): 
+    path = path[::-1]
+    x, y = path.pop()
+    visited = {(x, y)}
+    while (point := path.pop()) not in visited: 
+        visited.add(point) 
+    return abs(point[0]) + abs(point[1])

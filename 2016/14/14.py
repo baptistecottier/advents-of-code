@@ -1,29 +1,32 @@
-from hashlib import md5
+from _md5 import md5
 import re
 
-def generator(input): return input
+def generator(input): 
+    return input
 
-def part_1(input): return solver(input, 1)
+def part_1(salt): 
+    return get_OTP_key(salt, 1)[63]
 
-def part_2(input): return solver(input, 2017)
+def part_2(salt): 
+    return get_OTP_key(salt, 2017)[63]
 
 
-def solver(input, n) : 
-    i,keys=0,[]
+def get_OTP_key(salt, recursions): 
+    index, keys = 0, []
     while len(keys) < 70: 
-        hash = rec_md5(input + str(i), n)
-        for t in range(28) :
-            if hash[t:t+5] == hash[t] * 5 :
-                target = hash[t]
-                for j in range(max(0,i - 1000) + 1, i):
-                    hash = rec_md5(input + str(j), n)
-                    triplets = re.findall(r'(\w)?\1\1', hash)
-                    if triplets and triplets[0] == target: keys.append(j)
-                break
-        i+=1
-    keys=sorted(list(set(keys)))
-    return keys[63]
+        hash = rec_md5(f"{salt}{index}", recursions)
+        for start in range(28):
+            if hash[start: start + 5] == hash[start] * 5:
+                target = hash[start: start + 3]
+                for candidate in range(max(0, index - 1000) + 1, index):
+                    candidate_hash = rec_md5(f"{salt}{candidate}", recursions)
+                    triplets = re.search(r'(\w)?\1\1', candidate_hash)
+                    if triplets and triplets.group() == target: 
+                        keys.append(candidate)
+        index += 1
+    return sorted(list(set(keys)))
 
-def rec_md5(s,n): 
-    for _ in range(n): s = md5(s.encode('utf-8')).hexdigest()
-    return s
+def rec_md5(m, recursions): 
+    for _ in range(recursions): 
+        m = md5(m.encode()).hexdigest()
+    return m
