@@ -23,13 +23,12 @@ Thanks [Scotow](https://github.com/scotow) for the initial framework and preciou
 
 ### Remarks
 - Enter the code `1349697-f730f285` in your [Private Leaderboard Homepage](https://adventofcode.com/2022/leaderboard/private) to integrate my leaderboard.
-- Score as of May 14:
+- Score as of June, 8th:
   - 2015: 50 ⭐️
   - 2016: 50 ⭐️
   - 2017: 50 ⭐️
-  - 2018: 26 ⭐️ 
-  - 2019: 18 ⭐️ 
-  - 2020: 45 ⭐️ 
-  - 2021: 42 ⭐️ (ongoing reorganisation)
+  - 2018: 39 ⭐️ 
+  - 2019: 23 ⭐️ 
+  - 2020: 47 ⭐️ 
+  - 2021: 42 ⭐️ 
   - 2022: 36 ⭐️
-  - Total : 317
