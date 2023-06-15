@@ -1,5 +1,4 @@
-import hashlib
-
+import _md5
 def generator(target): 
     return target
 
@@ -12,4 +11,4 @@ def part_2(target):
 def solver(target, length):
     counter = 0
     while (counter := counter + 1) > 0:
-        if hashlib.md5(f"{target}{counter}".encode()).hexdigest()[:length] == '0' * length: return counter
+        if _md5.md5(f"{target}{counter}".encode()).hexdigest().startswith('0' * length): return counter
