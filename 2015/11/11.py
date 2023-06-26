@@ -1,6 +1,6 @@
 from itertools import *
 
-def generator(input): 
+def parser(input): 
     return input 
 
 def part_1(pw):

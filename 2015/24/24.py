@@ -1,23 +1,20 @@
 from itertools import combinations
 import math
 
-def generator(input): 
+def parser(input): 
     return [int(package) for package in input.splitlines()]
     
-def part_1(packages): 
-    return get_QE(packages, 3)
-        
-def part_2(packages): 
-    return get_QE(packages, 4)
-
+def solver(packages): 
+    yield get_QE(packages, 3)
+    yield get_QE(packages, 4)
 
 def get_QE(packages, groups):
     target = sum(packages) // groups 
-    size = 0
-    while size := size + 1:
+    size = 1
+    while True:
         for package in combinations(packages,size):
             if sum(package) == target:
                 return math.prod(package)
-    
+        size += 1
 
     

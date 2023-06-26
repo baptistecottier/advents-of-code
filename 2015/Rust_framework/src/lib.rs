@@ -10,13 +10,14 @@ macro_rules! main {
             std::iter::zip,
             std::ops::{Range, RangeInclusive},
             std::str::FromStr,
+            mod_exp::mod_exp,
             std::env,
         };
         
 
         fn main() {
             let args: Vec<String> = env::args().collect();
-            let input_path = include_str!(concat!("../", module_path!(), "/",module_path!(),".txt")).trim_end();
+            let input_path = include_str!(concat!("../", module_path!(), "/",module_path!(),".input")).trim_end();
             let input =
                 generator(input_path);
 

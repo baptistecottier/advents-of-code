@@ -1,4 +1,4 @@
-def generator(input):
+def parser(input):
     ops = []
     for line in input.splitlines():
         data = line.split(' ')
@@ -17,11 +17,9 @@ def generator(input):
                 ops.append((2, lambda x: x == 1, int(data[2]) - 1))
     return ops
 
-def part_1(lines): 
-    return execute_program(lines, 0)
-        
-def part_2(lines): 
-    return execute_program(lines, 1)
+def solver(lines): 
+    yield execute_program(lines, 0)
+    yield execute_program(lines, 1)
 
 
 def execute_program(lines, a):

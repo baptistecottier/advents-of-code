@@ -1,16 +1,15 @@
-def generator(input): 
-    directions = []
-    for direction in input:
-        if direction == '(': directions.insert(0, 1)
-        else: directions.insert(0, -1)
+def parser(data): 
+    directions = list(1 if direction == '(' else -1 for direction in data)
     return directions
 
-def part_1(directions): 
-    return sum(directions)
-
-def part_2(directions): 
-    floor, initial_length = 0, len(directions)
-    while floor >= 0: 
-        floor += directions.pop()
-    return initial_length - len(directions)
-       
+def solver(directions):
+    floor  = 0
+    length = len(directions)
+    
+    yield sum(directions)
+    
+    while directions: 
+        floor += directions.pop(0)
+        if floor < 0: 
+            yield length - len(directions)
+            return

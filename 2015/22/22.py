@@ -1,16 +1,15 @@
 import copy
 
-def generator(input):
+def parser(input):
     (hp, damage) = (int(item.split(": ")[1]) for item in input.splitlines())
     return hp, damage
 
-def part_1(boss_data) : 
+def solver(boss_data): 
     player_turn([], 50, 500, *boss_data, 0, False, list_manas := set())
-    return min(list_manas)
+    yield min(list_manas)
 
-def part_2(boss_data) : 
     player_turn([], 50, 500, *boss_data, 0, True, list_manas := set())
-    return min(list_manas)
+    yield min(list_manas)
 
 def player_turn(effects, player_hp, player_mana,  boss_hp, boss_damage, spent_mana, hard_mode, list_manas):
     
