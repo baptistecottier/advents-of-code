@@ -1,17 +1,16 @@
 from collections import Counter
+from typing import Iterable
 
-def generator(input):
-    return input.splitlines()
+def parser(data: str):
+    return data.splitlines()
 
-def part_1(messages): 
-    return correct_code(messages, 0)
-
-def part_2(messages): 
-    return correct_code(messages, -1)
-
-def correct_code(messages, order):
-    original_message = ""
-    for i in range(8):
+def solver(messages: list[str]) -> Iterable[str]:
+    most_commons:  str = ""
+    least_commons: str = ""
+    for i in range(len(messages[0])):
         letters = (message[i] for message in messages)
-        original_message += Counter(letters).most_common()[order][0]
-    return original_message
+        cntr = Counter(letters).most_common()
+        most_commons  += cntr[0][0]
+        least_commons += cntr[-1][0]
+    yield most_commons
+    yield least_commons

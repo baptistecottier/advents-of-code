@@ -1,13 +1,10 @@
 from math import log
 
-def generator(input): 
-    return int(input)
+parser = int
 
-def part_1(nb_players): 
-    return play_game(nb_players, 2)
-
-def part_2(nb_players): 
-    return play_game(nb_players, 3)
+def solver(nb_players):
+    yield play_game(nb_players, 2)
+    yield play_game(nb_players, 3)
 
 def play_game(nb_players, base):
     logn   = int(log(nb_players, base))

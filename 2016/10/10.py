@@ -1,9 +1,9 @@
 from collections import defaultdict
 
-def generator(input: str):
+def parser(data: str):
     bots  = defaultdict(list)
     gifts = defaultdict(list)
-    for instruction in input.splitlines():
+    for instruction in data.splitlines():
         data = instruction.split()
         if data[0] == "value": 
             bots[int(data[-1])].append(int(data[1]))
@@ -14,22 +14,16 @@ def generator(input: str):
             if data[10] == "output": high = - (high + 1)               
             gifts[int(data[1])] = (low, high)
     return bots, gifts
-
-def part_1(instructions): 
-    return factory(*instructions, lambda x: x == [17, 61])
-
-def part_2(instructions): 
-    return factory(*instructions, lambda x: False)
     
-    
-def factory(bots, gifts, target):
+def solver(data):
+    bots, gifts = data
     while (to_distribute := [bot for bot in list(bots.items()) if len(bot[1]) == 2]):
         for bot, microchips in to_distribute:
             microchips.sort()
-            if target(microchips): 
-                return bot
+            if microchips == [17, 61]: 
+                yield bot
             low, high = gifts[bot]
             bots[high].append(microchips.pop())
             bots[low].append(microchips.pop())
-    return bots[-1].pop() * bots[-2].pop() * bots[-3].pop()
+    yield bots[-1].pop() * bots[-2].pop() * bots[-3].pop()
 

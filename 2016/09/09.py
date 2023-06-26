@@ -1,10 +1,11 @@
 from parse import parse
 
-def generator(input): return input
+def parser(data): return data
 
-def part_1(file): return get_file_size(file, len)
+def solver(file): 
+    yield get_file_size(file, len)
+    yield get_file_size(file, rec := lambda x: get_file_size(x, rec))
 
-def part_2(file): return get_file_size(file, part_2)
 
 def get_file_size(file, func):
     for i, c in enumerate(file):

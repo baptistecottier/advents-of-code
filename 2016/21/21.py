@@ -1,14 +1,15 @@
 from itertools import permutations
 
-def generator(input) : return input.splitlines()
+def parser(data) : 
+    return data.splitlines()
 
-def part_1(operations): 
-    return scramble('abcdefgh', operations)
+def solver(operations): 
+    yield scramble('abcdefgh', operations)
 
-def part_2(operations): 
     for word in permutations('abcdefgh'):
         if scramble(word, operations) == 'fbgdceah' : 
-            return ''.join(word)
+            yield ''.join(word)
+            break
 
 
 def scramble(pw, instructions):

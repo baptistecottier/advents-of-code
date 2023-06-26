@@ -1,25 +1,27 @@
-def generator(input: str): 
-    x, y : int = 0 , 0
+from aoctools import Point
+
+def parser(data: str): 
     ways = [(1,0) , (0, -1), (-1, 0), (0,1)]
-    path = [(x,y)]
     dir = 0
-    for step in input.split(', '):
+    path = list()
+    for step in data.split(', '):
         match step[0]:
             case 'L': dir = (dir - 1) % 4
             case 'R': dir = (dir + 1) % 4
-        dx, dy = ways[dir]
-        for step in range(int(step[1:])):
-            path.append((x:= x + dx, y:= y + dy))
+        path.append((ways[dir], int(step[1:])))
     return path
 
-def part_1(path):
-    x, y = path.pop()
-    return abs(x) + abs(y)
-
-def part_2(path): 
-    path = path[::-1]
-    x, y = path.pop()
-    visited = {(x, y)}
-    while (point := path.pop()) not in visited: 
-        visited.add(point) 
-    return abs(point[0]) + abs(point[1])
+def solver(path):
+    pos = Point()
+    visited = {pos.xy()}
+    twice   = False
+    while path:
+        (dx, dy), steps = path.pop(0)
+        for _ in range(steps):
+            pos.move(dx, dy)
+            if not twice:
+                if pos.xy() in visited:
+                    yield (2, pos.manhattan())
+                    twice = True
+                else: visited.add(pos.xy())
+    yield (1, pos.manhattan())

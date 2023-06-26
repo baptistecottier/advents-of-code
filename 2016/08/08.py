@@ -1,7 +1,7 @@
 import re
 from itertools import product
-
-def generator(input):
+from aoctools import screen_to_word
+def parser(input):
     sequence = []
     for seq in input.splitlines():
         data = re.split('[\sx=]', seq)
@@ -10,24 +10,18 @@ def generator(input):
             case "rotate", "row": sequence.append((1, int(data[-3]), int(data[-1])))
             case "rotate", _:     sequence.append((2, int(data[-3]), int(data[-1])))
     return sequence
-    
-def part_1(sequence): return get_code(sequence).count('█')
-
-def part_2(sequence): return get_code(sequence)  
-
-
-def get_code(sequence): 
+   
+def solver(sequence): 
     w, h = 50, 6
-    screen = [[' ' for _ in range(w)] for _ in range(h)]
+    screen = set()
     for op, a, b in sequence: 
         match op: 
             case 0: 
-                for x, y in product(range(a), range(b)): 
-                    screen[y][x] = '█' 
+                screen.update({(x, y) for x, y in product(range(a), range(b))})
             case 1: 
-                screen[a] = screen[a][-b:] + screen[a][:-b]
+                screen = {(x if y != a else (x + b) % w, y) for (x, y) in screen}
             case 2: 
-                temp = [screen[y][a] for y in range(h)]
-                for y in range(h) : 
-                    screen[y][a] = temp[(y - b) % h]
-    return '\n'.join(''.join(line) for line in screen)
+                screen = {(x, y if x != a else (y + b) % h) for (x, y) in screen}
+
+    yield len(screen)
+    yield screen_to_word(screen)
