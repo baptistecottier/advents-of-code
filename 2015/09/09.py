@@ -1,7 +1,9 @@
 from itertools import permutations, pairwise
 
+
 def parser(input):
     return list(int(dist.split(' = ')[1]) for dist in input.splitlines())
+
 
 def solver(routes): 
     nb_locations = 1 + round((2 * len(routes)) ** 0.5)

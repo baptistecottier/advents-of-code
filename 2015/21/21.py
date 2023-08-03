@@ -1,20 +1,24 @@
 from itertools import product, combinations
 
+
 class Item:
     def __init__(self, cost, damage, armor) -> None:
         self.cost = cost
         self.damage = damage
         self.armor = armor
-    
+
+
 class Player:
     def __init__(self, hp, damage, armor) -> None:
         self.hp = hp
         self.damage = damage
         self.armor = armor
-    
-def parser(input):
-    (hp, damage, armor) = (int(item.split(": ")[1]) for item in input.splitlines())
+
+
+def parser(input_):
+    (hp, damage, armor) = (int(item.split(": ")[1]) for item in input_.splitlines())
     return hp, damage, armor
+
 
 def solver(boss_stats):
     costs = test_all_fights(*boss_stats)

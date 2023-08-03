@@ -1,7 +1,9 @@
-from parse import * 
+from re import findall
 
-def parser(input):
-    return parse("{} row {:d}, column {:d}.", input)[1:3]
+
+def parser(input_):
+    return (int(n) for n in findall(r'[0-9]+', input_))
+
 
 def solver(coordinates):
     row , col = coordinates

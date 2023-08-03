@@ -1,30 +1,41 @@
-from aoctools import Register
+from aoctools.classes import Register
+from operator         import and_, lshift, or_, rshift, inv
+from copy             import deepcopy
 
-def parser(input): 
-    circuit = [gate.rsplit(' ', 1) for gate in input.splitlines()]
-    circuit.sort(key=lambda c: (len(c[1]) , c[1]))
-    b = circuit[1][0].split(' ')
-    return circuit[2:] + [circuit[0]], int(b[0])
 
-        
-def solver(circuit_infos):
-    circuit, b = circuit_infos
+def parser(input_): 
+    circuit = []
     
-    def run_circuit(b):
-        wires = Register({'b': b})
-        for (input, out) in circuit:
-            [in1, in2, in3] = (input.split(' ') + [0])[:3]
-            match in2:
-                case "AND"      : wires[out] = wires.get(in1) & wires.get(in3) 
-                case "OR"       : wires[out] = wires.get(in1) | wires.get(in3)
-                case "RSHIFT"   : wires[out] = wires[in1] >> int(in3)
-                case "LSHIFT"   : wires[out] = wires[in1] << int(in3)
-                case "->"       : wires[out] = wires.get(in1)
-                case _          : wires[out] = ~ wires.get(in2)
-        return wires["a"]
+    for gate in input_.splitlines():
+        in_, out_ = gate.split(' -> ')
+        data = in_.split(' ')
+        if len(data) == 1:   circuit.append((out_, lambda x: x, data[0]))
+        elif len(data) == 2: circuit.append((out_, inv, data[1]))
+        else: 
+            w1, op, w2 = data
+            match op:
+                case 'AND': f = and_
+                case 'OR' : f = or_
+                case 'RSHIFT': f = rshift
+                case 'LSHIFT': f = lshift
+            circuit.append((out_, f, w1, w2))
+    circuit.sort(key = lambda c: (len(c[0]) , c[0]))
+    
+    return circuit[1:] + [circuit[0]]
 
-    signal = run_circuit(b)
+
+def solver(circuit):
+    
+    def run(circuit):
+        wires = Register()
+        for out_, f, *args in circuit:
+            wires[out_] = f(*(wires.get(a) for a in args))
+        return wires['a']
+        
+    signal = run(circuit)
     yield signal
-    yield run_circuit(signal)
+    
+    circuit[0] = ('b', lambda x: x, str(signal))
+    yield run(circuit)
 
     

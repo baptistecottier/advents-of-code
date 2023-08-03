@@ -1,6 +1,6 @@
-def parser(input):
+def parser(input_):
     ops = []
-    for line in input.splitlines():
+    for line in input_.splitlines():
         data = line.split(' ')
         match data[0]:
             case 'hlf': 
@@ -16,6 +16,7 @@ def parser(input):
             case 'jio': 
                 ops.append((2, lambda x: x == 1, int(data[2]) - 1))
     return ops
+
 
 def solver(lines): 
     yield execute_program(lines, 0)

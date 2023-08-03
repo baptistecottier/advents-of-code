@@ -1,7 +1,20 @@
-def parser(data):
-    boxes = list(sorted(tuple(int(size) for size in present.split('x'))) for present in data.splitlines())
+from aoctools.functions import extract_chunks
+
+
+def parser(input_):
+    boxes = extract_chunks(input_, 3, neg = False, func = sorted)
     return boxes
 
-def solver(dimensions: list[tuple[int]]) -> int:
-    yield sum(2 * h * (l + w) + 3 * l * w for l, w, h in dimensions)
-    yield sum(2 * (l + w) + l * w * h for l, w, h in dimensions)
+
+def solver(dimensions):
+    paper  = 0
+    ribbon = 0
+
+    for l, w, h in dimensions:
+        preprod = l * w
+        presum  = 2 * (l + w)
+        paper  += 3 * preprod + presum * h
+        ribbon += h * preprod + presum
+
+    yield paper
+    yield ribbon

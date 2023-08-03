@@ -1,13 +1,9 @@
-import _md5
-def parser(target): 
-    return target
+from aoctools.functions import md5
+
 
 def solver(target):
-    def get_adventcoin(length):
+    for trigger in ['00000', '000000']:
         counter = 0
-        while (counter := counter + 1) > 0:
-            if _md5.md5(f"{target}{counter}".encode()).hexdigest().startswith('0' * length): 
-                return counter
-    
-    yield get_adventcoin(5)
-    yield get_adventcoin(6)
+        while not md5(f"{target}{counter}").startswith(trigger):
+            counter += 1
+        yield counter

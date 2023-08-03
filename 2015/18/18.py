@@ -1,21 +1,24 @@
 from itertools import product
 
-def parser(data: str) -> set:
-    lights: set       = set()
-    grid  : list[str] = data.splitlines()
+
+def parser(input_):
+    lights = set()
+    grid   = input_.splitlines()
     
     for (x, y) in product(range(100), repeat = 2):
         if grid[y][x] == '#': lights.add((x, y))
     return lights 
 
 
-def solver(lights: set) -> int:
-    yield apply_steps(lights, {(0, 0), (0, 99), (99, 0), (99, 99)})
+def solver(lights):
     yield apply_steps(lights, set())
+    yield apply_steps(lights, {(0, 0), (0, 99), (99, 0), (99, 99)})
         
-def apply_steps(lights, always_on) -> int:
-    neighbours: set = {(-1, 0), (-1, 1), (0, 1), (1, 1), (1, 0), (1, -1), (0, -1), (-1, -1)}
-    lights    : set = lights.union(always_on)
+
+def apply_steps(lights, always_on):
+    neighbours = {(-1, 0), (-1, 1), (0, 1), (1, 1), (1, 0), (1, -1), (0, -1), (-1, -1)}
+    lights     = lights.union(always_on)
+    
     for _ in range(100):
         updated_lights = always_on.copy()
         for (x, y) in product(range(100), repeat = 2):
@@ -25,4 +28,5 @@ def apply_steps(lights, always_on) -> int:
                 case 2: 
                     if (x, y) in lights: updated_lights.add((x, y))
         lights = updated_lights
+        
     return len(lights)

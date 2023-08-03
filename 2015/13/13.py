@@ -1,23 +1,26 @@
 from math      import sqrt
 from itertools import permutations, pairwise
 
-def parser(data: str):
-    changes: list = list()
-    for change in data.splitlines():
-        gain: int = int(change.split(' ')[3])
+
+def parser(input_):
+    changes = list()
+    for change in input_.splitlines():
+        gain = int(change.split(' ')[3])
         changes.append(gain if 'gain' in change else -gain)
     return changes
 
-def solver(changes: list[int]):
+
+def solver(changes):
+    
     def compute_changes(myself):
-        n   : int = 1 + int(sqrt(len(changes))) + myself
-        best: int = 0
+        n    = 1 + int(sqrt(len(changes))) + myself
+        best = 0
         for arrangement in permutations(range(n)):
-            acc: int = 0
+            acc = 0
             for (a, b) in pairwise(arrangement + (arrangement[0],)):
                 if n - myself in (a, b): continue
-                i1 :int = (n - 1 - myself) * a + b - (b > a)
-                i2 :int = (n - 1 - myself) * b + a - (a > b)
+                i1 = (n - 1 - myself) * a + b - (b > a)
+                i2 = (n - 1 - myself) * b + a - (a > b)
                 acc    += changes[i1] + changes[i2]
             if acc > best: best = acc
         return best

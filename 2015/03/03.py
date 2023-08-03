@@ -1,16 +1,16 @@
 from copy import deepcopy
 
 
-from copy import deepcopy
-
-def parser(data):
-    converter = {'^': (0, 1), '>': (1, 0), 'v': (0, -1), '<': (-1, 0)}
-    directions = list(converter.get(d) for d in data)
+def parser(input_):
+    converter  = {'^': (0, 1), '>': (1, 0), 'v': (0, -1), '<': (-1, 0)}
+    directions = list(converter.get(d) for d in input_)
     return directions
 
-def solver(DIRECTIONS):
+
+def solver(directions_):
+    
     def deliver(n):
-        directions = deepcopy(DIRECTIONS)
+        directions = deepcopy(directions_)
         deliverers = [(0, 0) for _ in range(n)]
         houses     = {(0, 0)}
         

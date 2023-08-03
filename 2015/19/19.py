@@ -1,8 +1,9 @@
 from collections import defaultdict
 
-def parser(data: str):
+
+def parser(input_):
     replacements = defaultdict(list)
-    text_replacements, molecule = data.split('\n\n')
+    text_replacements, molecule = input_.split('\n\n')
     for replacement in text_replacements.splitlines():
         start, end = replacement.split(" => ")
         replacements[start].append(end)
@@ -11,11 +12,13 @@ def parser(data: str):
 def solver(data):
     replacements, molecule = data
     candidates = set()
+    
     for mol in replacements.keys():
         pieces = molecule.split(mol)
         for replacement in replacements[mol]:
             for index in range(1, 1 + molecule.count(mol)):
                 candidates.add(mol.join(pieces[:index]) + replacement + mol.join(pieces[index:]))
+                
     yield len(candidates)
 
 

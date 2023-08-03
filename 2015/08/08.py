@@ -1,6 +1,14 @@
 def parser(data): 
     return data.splitlines()
 
+
 def solver(strings):
-    yield sum(len(string) - len(eval(string)) for string in strings)
-    yield sum(2 + string.count('\"') + string.count('\\') for string in strings)
+    decoded = 0
+    encoded = 0
+    
+    for string in strings:
+        encoded += len(string) - len(eval(string))
+        decoded += 2 + string.count('\"') + string.count('\\')
+        
+    yield encoded
+    yield decoded
