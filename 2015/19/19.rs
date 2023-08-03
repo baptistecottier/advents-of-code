@@ -4,13 +4,13 @@ fn parser(input: &str) -> (Vec<Vec<&str>>,&str) {
     let length = input.lines().count();
     
     (
-    data
+    input
     .lines()
     .take(length - 2)
     .map(|l| l.split(" => ").collect_vec())
     .collect_vec() 
     ,
-    data.lines().nth(length - 1).unwrap()
+    input.lines().nth(length - 1).unwrap()
     )
 }
 
