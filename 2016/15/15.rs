@@ -1,6 +1,6 @@
-aoc2016::main!();
+aoc::main!();
 
-fn generator(input: &str) -> Vec<(i64, i64)> {
+fn parser(input: &str) -> Vec<(i64, i64)> {
     input
     .lines()
     .map(|l| 
@@ -15,12 +15,12 @@ fn generator(input: &str) -> Vec<(i64, i64)> {
     .collect_vec()
 }
 
-fn part_1(input: Vec<(i64, i64)>) -> i64 {
-    chinese_remainder(input) - 1
+fn part_1(equations: Vec<(i64, i64)>) -> i64 {
+    chinese_remainder(equations) - 1
 }
 
-fn part_2(input: Vec<(i64, i64)>) -> i64 {
-    chinese_remainder([(input.iter().map(|l| l.0).product(), chinese_remainder(input) - 1),(11, -7)].to_vec())
+fn part_2(equations: Vec<(i64, i64)>) -> i64 {
+    chinese_remainder([(equations.iter().map(|l| l.0).product(), chinese_remainder(equations) - 1),(11, -7)].to_vec())
 }
 
 
@@ -37,9 +37,10 @@ fn mod_inv(x: i64, n: i64) -> i64 {
     egcd(x, n).1 % n
 }
 
-fn chinese_remainder(input: Vec<(i64, i64)>) -> i64 {
-    let prod = input.iter().map(|v| v.0).product::<i64>();
-    input
+fn chinese_remainder(equations: Vec<(i64, i64)>) -> i64 {
+    let prod = equations.iter().map(|v| v.0).product::<i64>();
+    
+    equations
     .iter()
     .map(|(modulus, residue)| (modulus, residue, prod / modulus))
     .map(|(modulus, residue, p)| residue * mod_inv(p, *modulus) * p)

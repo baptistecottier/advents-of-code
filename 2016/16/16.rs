@@ -1,39 +1,39 @@
-aoc2016::main!();
+aoc::main!();
 
-fn generator(input: &str) -> Vec<bool> {
+fn parser(input: &str) -> Vec<bool> {
     input
     .chars()
     .map(|b| b == '1')
     .collect()
 }
 
-fn part_1(input: Vec<bool>) -> String {
-    solver(input, 272)
+fn part_1(state: Vec<bool>) -> String {
+    solver(state, 272)
 }
 
-fn part_2(input: Vec<bool>) -> String {
-    solver(input, 35651584)
+fn part_2(state: Vec<bool>) -> String {
+    solver(state, 35651584)
 }
 
 
-fn solver(input: Vec<bool>, disk_length: usize) -> String{
+fn solver(state: Vec<bool>, disk_length: usize) -> String{
     (0..)
     .fold_while(
         (0..)
-        .fold_while(
-            input, 
-            |memory, _| 
+        .fold_while(state, |memory, _| 
             if memory.len() > disk_length {
                 FoldWhile::Done(memory[..disk_length].to_vec())} 
             else {
                 FoldWhile::Continue(
-                    [memory.clone(), 
-                        [false].to_vec(), 
-                            memory
-                            .iter()
-                            .rev()
-                            .map(|b| !b)
-                            .collect_vec()]
+                    [
+                    memory.clone(), 
+                    [false].to_vec(), 
+                    memory
+                    .iter()
+                    .rev()
+                    .map(|b| !b)
+                    .collect_vec()
+                    ]
                     .concat())})
         .into_inner(),
         | memory, _ | 
@@ -43,8 +43,8 @@ fn solver(input: Vec<bool>, disk_length: usize) -> String{
             .chunks(2)
             .map(|chunk| ! chunk[0] ^ chunk[1])
             .collect_vec())})
-        .into_inner()
-        .iter()
-        .map(|&b| if b {'1'} else {'0'})
-        .join("")
+    .into_inner()
+    .iter()
+    .map(|&b| if b {'1'} else {'0'})
+    .join("")
 }

@@ -1,15 +1,15 @@
-aoc2016::main!();
+aoc::main!();
 
-fn generator(input: &str) -> usize {
+fn parser(input: &str) -> usize {
     input.parse().unwrap()
 }
 
-fn part_1(input: usize) -> usize {
-    1 + 2 * solver(input, 2)
+fn part_1(nb_players: usize) -> usize {
+    1 + 2 * solver(nb_players, 2)
 }
 
-fn part_2(input: usize) -> usize {
-    solver(input, 3)
+fn part_2(nb_players: usize) -> usize {
+    solver(nb_players, 3)
 }
 fn solver(players: usize, step: usize) -> usize {
     let logn = (players as f64).log(step as f64) as u32;
