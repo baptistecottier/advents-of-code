@@ -1,12 +1,11 @@
 from collections import Counter
-from typing import Iterable
 
 def parser(data: str):
     return data.splitlines()
 
-def solver(messages: list[str]) -> Iterable[str]:
-    most_commons:  str = ""
-    least_commons: str = ""
+def solver(messages):
+    most_commons = ""
+    least_commons = ""
     for i in range(len(messages[0])):
         letters = (message[i] for message in messages)
         cntr = Counter(letters).most_common()

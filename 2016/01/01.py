@@ -1,20 +1,23 @@
-from aoctools import Point
+from aoctools.classes import Point
 
 def parser(data: str): 
     ways = [(1,0) , (0, -1), (-1, 0), (0,1)]
-    dir = 0
+    dir  = 0
     path = list()
+    
     for step in data.split(', '):
         match step[0]:
             case 'L': dir = (dir - 1) % 4
             case 'R': dir = (dir + 1) % 4
         path.append((ways[dir], int(step[1:])))
+        
     return path
 
 def solver(path):
-    pos = Point()
+    pos     = Point()
     visited = {pos.xy()}
     twice   = False
+    
     while path:
         (dx, dy), steps = path.pop(0)
         for _ in range(steps):

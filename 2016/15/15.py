@@ -1,5 +1,5 @@
 from re       import findall
-from aoctools import chinese_remainder
+from aoctools.functions import chinese_remainder
 
 def parser(data):
     values    = list(int(item) for item in findall(r'[0-9]+', data))

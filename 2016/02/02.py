@@ -12,7 +12,7 @@ def squared_keypad(procedure):
         match instruction, position:
             case ['D', (1| 2| 3| 4| 5| 6)]: position += 3
             case ['U', (4| 5| 6| 7| 8| 9)]: position -= 3
-            case ['L', (2| 3| 5| 6| 7| 8)]: position -= 1
+            case ['L', (2| 3| 5| 6| 8| 9)]: position -= 1
             case ['R', (1| 2| 4| 5| 7| 8)]: position += 1
     return format(position)
 

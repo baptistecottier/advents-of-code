@@ -1,5 +1,5 @@
 from itertools import permutations, pairwise
-from aoctools import bfs
+from aoctools.functions import bfs
 
 def parser(input): 
     grid        = set()

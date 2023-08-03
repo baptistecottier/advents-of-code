@@ -1,4 +1,4 @@
-from aoctools import bfs
+from aoctools.functions import bfs
 from itertools import product
 
 def parser(data): 
@@ -14,5 +14,5 @@ def parser(data):
 def solver(maze): 
     yield bfs(maze, (1,1), (31, 39))
 
-    distances = (bfs(maze, (1, 1), (x, y), 50) for x in range(51) for y in range(51 - x))
-    yield sum(distance != None for distance in distances)
+    distances = [bfs(maze, (1, 1), (x, y), 50) for x in range(51) for y in range(51 - x)]
+    yield sum(distance != -1 for distance in distances)

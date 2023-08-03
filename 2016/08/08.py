@@ -1,6 +1,6 @@
 import re
 from itertools import product
-from aoctools import screen_to_word
+from aoctools.functions import screen_reader
 def parser(input):
     sequence = []
     for seq in input.splitlines():
@@ -22,6 +22,5 @@ def solver(sequence):
                 screen = {(x if y != a else (x + b) % w, y) for (x, y) in screen}
             case 2: 
                 screen = {(x, y if x != a else (y + b) % h) for (x, y) in screen}
-
     yield len(screen)
-    yield screen_to_word(screen)
+    yield screen_reader(screen)

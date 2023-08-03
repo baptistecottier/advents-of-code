@@ -1,4 +1,4 @@
-from aoctools import Register
+from aoctools.classes import Register
 
 def parser(input):
     instructions = list()
@@ -16,7 +16,7 @@ def run(instructions, a):
     counter     = -1
     tictac      = 0 
     instruction = 0
-    register    = Register({'a': a, 'b': 0, 'c': 0, 'd': 0})
+    register    = Register(a, 0, 0, 0)
 
     while True:
         task, reg, val = instructions[instruction]

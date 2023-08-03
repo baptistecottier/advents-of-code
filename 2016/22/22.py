@@ -1,5 +1,6 @@
 from itertools import product
-from aoctools import extract_chunks, manhattan, Point
+from aoctools.functions import extract_chunks
+from aoctools.classes   import Point
 
 class Node():
     def __init__(self, x, y, size, used, avail) -> None:
