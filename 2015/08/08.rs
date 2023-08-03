@@ -1,36 +1,29 @@
-aoc2015::main!();
+aoc::main!();
 
-fn generator(input : &str) -> Vec<&str> {
+fn parser(input: &str) -> Vec<&str> {
     input
-        .lines()
-        .collect()
+    .lines()
+    .collect()
 }
 
-fn part_1(input : Vec<&str>) -> usize {
-    input
-        .iter()
-        .fold(0, |acc, l| acc  + l.len())
+fn part_1(strings : Vec<&str>) -> usize {
+    strings
+    .iter()
+    .fold(0, |acc, l| acc  + l.len())
     -
-    input
-        .iter()
-        .map(|l| l.replace("\\\\","a").replace("\\\"", "a"))
-        .fold(0, |acc , l| acc +
-            l.len()
-            - 3*l.matches("\\x").count()
-            - 2
-                                                )
+    strings
+    .iter()
+    .map(|l| l.replace("\\\\","a").replace("\\\"", "a"))
+    .fold(0, |acc , l| acc + l.len() - 3 * l.matches("\\x").count() - 2)
 }
 
-fn part_2(input : Vec<&str>) -> usize {
-    input
-        .iter()
-        .map(|l| l.replace("\\","aa").replace("\"","aa"))
-        .fold(0, |acc , l| acc +
-                                                        l.len()
-                                                        + 2
-                                                    )
+fn part_2(strings : Vec<&str>) -> usize {
+    strings
+    .iter()
+    .map(|l| l.replace("\\","aa").replace("\"","aa"))
+    .fold(0, |acc , l| acc + l.len() + 2)
     -
-    input
-        .iter()
-        .fold(0, |acc, l| acc  + l.len())
+    strings
+    .iter()
+    .fold(0, |acc, l| acc  + l.len())
 }

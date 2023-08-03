@@ -1,45 +1,41 @@
-aoc_2015::main!();
+aoc::main!();
 
-fn generator(input : &str) -> Vec<[u32 ; 10]> {
-    let mut aunts_sue = [[0,0,0,0,1000,0,1000,0,0,0] ; 500];
+fn parser(input: &str) -> Vec<HashMap<&str, u16>> {
     input
-        .lines()
-        .map(|l| l.split([':',',',' ']).collect_vec())
-        .enumerate()
-        .for_each(|(aunt,v)| {
-                        [3,7,11].iter()
-                        .for_each(|i| match v[*i] {
-                            "akitas" => aunts_sue[aunt][0] = v[i+2].parse().unwrap() ,
-                            "cars" => aunts_sue[aunt][1] = v[i+2].parse().unwrap(),
-                            "cats" => aunts_sue[aunt][2] = v[i+2].parse().unwrap(),
-                            "children" => aunts_sue[aunt][3] = v[i+2].parse().unwrap(),
-                            "goldfish" => aunts_sue[aunt][4] = v[i+2].parse().unwrap(),
-                            "perfumes" => aunts_sue[aunt][5] = v[i+2].parse().unwrap(),
-                            "pomeranians" => aunts_sue[aunt][6] = v[i+2].parse().unwrap(),
-                            "samoyeds" => aunts_sue[aunt][7] = v[i+2].parse().unwrap(),
-                            "trees" => aunts_sue[aunt][8] = v[i+2].parse().unwrap(),
-                            "vizslas" => aunts_sue[aunt][9] = v[i+2].parse().unwrap(),
-                            _ => unreachable!(),
-                        })
-                    }) ;
-        aunts_sue.into()
+    .lines()
+    .map(|l| -> Vec<&str> {l.split(&[':',',',' ']).collect_vec()})
+    .map(|v| 
+        HashMap::from([
+            (v[3], v[5].parse().unwrap()),
+            (v[7],  v[9].parse().unwrap()),
+            (v[11], v[13].parse().unwrap())]))
+    .collect_vec()
 }
 
-fn part_1(input : Vec<[u32 ; 10]>) -> usize {
-    solver(input, false)
+
+fn part_1(aunts : Vec<HashMap<&str, u16>>) -> usize {
+    find_sue(aunts, Vec::new(), Vec::new())
 }
 
-fn part_2(input : Vec<[u32 ; 10]>) -> usize {
-    solver(input, true)
+fn part_2(aunts : Vec<HashMap<&str, u16>>) -> usize {
+    find_sue(aunts, Vec::from(["cats", "trees"]), Vec::from(["pomeranians", "goldfish"]))
 }
 
-fn solver(input : Vec<[u32 ; 10]>, ranges : bool) -> usize {
-    input
+fn find_sue(aunts : Vec<HashMap<&str, u16>>, lower: Vec<&str>, greater: Vec<&str>) -> usize {
+    let sue = HashMap::from([
+        ("akitas", 0)  , ("children", 3)   ,  ("cars", 2)    ,  ("cats", 7) , ("goldfish", 5), 
+        ("perfumes", 1), ("pomeranians", 3),  ("samoyeds", 2),  ("trees", 3), ("vizslas", 0)]);
+    
+    aunts
+    .iter()
+    .find_position(|aunt| 
+        aunt
         .iter()
-        .find_position(|v| 
-            [v[0] == 0, v[1] == 2, v[3] == 3, v[5] == 1,  v[7] == 2 , v[9] == 0].into_iter().filter(|b| *b).count()+
-            if ranges == true {[v[2] > 7, v[4] < 5,v[6] < 3 , v[8] > 3].into_iter().filter(|b| *b).count()} 
-            else {[v[2] == 7, v[4] == 5,v[6] == 3 , v[8] == 3].into_iter().filter(|b| *b).count()} > 4)
-        .map(|(pos,_)| pos + 1)
-        .unwrap()
-        }
+        .all(|(k, v)| 
+            if lower.contains(k) {sue.get(k).unwrap() < v}
+            else if greater.contains(k) {sue.get(k).unwrap() > v} 
+            else {sue.get(k).unwrap() == v}))
+    .unwrap()
+    .0 
+    + 1
+    }

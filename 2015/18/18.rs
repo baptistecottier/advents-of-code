@@ -1,16 +1,16 @@
-aoc_2015::main!();
+aoc::main!();
 
-fn generator(input : &str) -> [[u8 ; 102] ; 102] {
+fn parser(input: &str) -> [[u8 ; 102] ; 102] {
     let mut grid = [[0 ; 102] ; 102];
     input
-        .lines()
-        .enumerate()
-        .for_each(|(i,l)| {
-            l.chars().enumerate().for_each(|(j,c)| {
-                if c == '#' {grid[i+1][j+1]=1};
-            })
-        });
-        grid
+    .lines()
+    .enumerate()
+    .for_each(|(i,l)| {
+        l.chars().enumerate().for_each(|(j,c)| {
+            if c == '#' {grid[i+1][j+1]=1};
+        })
+    });
+    grid
 }
 
 fn switch(bulb : u8, ngb : u8) -> u8 {

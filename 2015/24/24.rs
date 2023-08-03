@@ -1,6 +1,6 @@
-aoc2015::main!();
+aoc::main!();
 
-fn generator(input : &str) -> Vec<u64> {
+fn parser(input: &str) -> Vec<u64> {
     input.lines().map(|l| l.parse().unwrap()).collect_vec()
 }
 

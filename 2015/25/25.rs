@@ -1,6 +1,6 @@
-aoc2015::main!();
+aoc::main!();
 
-fn generator(input : &str) -> (u64, u64) {
+fn parser(input: &str) -> (u64, u64) {
     input.split([',',' ','.']).filter_map(|n| n.parse().ok()).collect_tuple().unwrap()
 }
 
