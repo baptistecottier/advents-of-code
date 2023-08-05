@@ -1,6 +1,6 @@
 aoc::main!();
 
-fn parser(input: &str) -> Vec<u16> {
+fn preprocessing(input: &str) -> Vec<u16> {
     input
     .split([' ', '\n'])
     .filter_map(|n| n.parse::<u16>().ok())

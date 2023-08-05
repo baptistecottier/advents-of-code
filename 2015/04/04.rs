@@ -1,6 +1,6 @@
 aoc::main!();
 
-fn parser(input: &str) -> &str {
+fn preprocessing(input: &str) -> &str {
     input
 }
 

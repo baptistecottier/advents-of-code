@@ -1,7 +1,7 @@
 aoc::main!(); 
 use md5;
 
-fn parser(input: &str) -> &str {
+fn preprocessing(input: &str) -> &str {
     input
 }
 

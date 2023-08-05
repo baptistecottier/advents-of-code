@@ -1,6 +1,6 @@
 aoc::main!(); 
 
-fn parser(input: &str) -> Vec<(u32, u32)> {
+fn preprocessing(input: &str) -> Vec<(u32, u32)> {
     input
     .lines()
     .map(|range| 
@@ -15,7 +15,6 @@ fn parser(input: &str) -> Vec<(u32, u32)> {
 }
 
 fn part_1(intervales: Vec<(u32,u32)>) -> usize {
-    println!("{:?}", intervales);
     2
 }
 

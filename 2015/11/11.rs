@@ -1,6 +1,6 @@
 aoc::main!() ; 
 
-fn parser(input: &str) -> String {
+fn preprocessing(input: &str) -> String {
     input.to_string()
 }
 

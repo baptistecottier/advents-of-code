@@ -1,6 +1,6 @@
 aoc::main!(); 
 
-fn parser(input: &str) -> i32 {
+fn preprocessing(input: &str) -> i32 {
     input
     .lines()
     .skip(19)

@@ -1,7 +1,7 @@
 aoc::main!();
 
 
-fn parser(input: &str) -> Vec<(u32, u32, u32)> {
+fn preprocessing(input: &str) -> Vec<(u32, u32, u32)> {
     input
     .lines()
     .map(|dimensions| 

@@ -1,6 +1,6 @@
 aoc::main!();
 
-fn parser(input: &str) -> Vec<(i64, i64)> {
+fn preprocessing(input: &str) -> Vec<(i64, i64)> {
     input
     .lines()
     .map(|l| 

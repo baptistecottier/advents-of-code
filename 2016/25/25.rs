@@ -1,5 +1,5 @@
 aoc::main!()
 
-fn parser(input: &str) -> Vec<Vec<&str>> {
+fn preprocessing(input: &str) -> Vec<Vec<&str>> {
     
 }

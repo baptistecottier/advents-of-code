@@ -1,6 +1,6 @@
 aoc::main!(); 
 
-fn parser(input: &str) -> Value {
+fn preprocessing(input: &str) -> Value {
     input.parse().unwrap()
 }
 

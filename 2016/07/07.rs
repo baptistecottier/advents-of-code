@@ -1,7 +1,7 @@
 aoc::main!(); 
 
 
-fn parser(input: &str) -> Vec<[String;2]> {
+fn preprocessing(input: &str) -> Vec<[String;2]> {
     input
     .lines()
     .map(|l| l.split(['[',']']).collect_vec())

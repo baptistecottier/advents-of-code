@@ -1,6 +1,6 @@
 aoc::main!() ; 
 
-fn parser(input: &str) -> Vec<String> {
+fn preprocessing(input: &str) -> Vec<String> {
     let k = input.len() / (input.lines().count()) ;
     
     (0..k)

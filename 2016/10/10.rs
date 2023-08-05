@@ -2,7 +2,7 @@ aoc::main!();
 
 use std::usize::MAX;
 
-fn parser(input: &str) -> Vec<(usize, usize, usize)> {
+fn preprocessing(input: &str) -> Vec<(usize, usize, usize)> {
     let n_bots = 
         input
         .lines()

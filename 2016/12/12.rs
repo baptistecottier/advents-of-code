@@ -1,6 +1,6 @@
 aoc::main!();
 
-fn parser(input: &str) -> Vec<usize> {
+fn preprocessing(input: &str) -> Vec<usize> {
     [2, 16, 17]
     .iter()
     .map(|&n| input.lines().nth(n).unwrap())

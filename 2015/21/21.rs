@@ -25,7 +25,7 @@ const RINGS: [(i16, i16, i16); 7] = [
     (80, 0, 3),
     (40, 0, 2)];
 
-fn parser(input: &str) -> Vec<i16> {
+fn preprocessing(input: &str) -> Vec<i16> {
     input
         .lines()
         .map(|l| l.split(": ").collect_vec()[1].parse::<i16>().unwrap())

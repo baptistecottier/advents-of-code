@@ -1,6 +1,6 @@
 aoc::main!();
 
-fn parser(input: &str) -> Vec<i32> {
+fn preprocessing(input: &str) -> Vec<i32> {
     input
     .chars()
     .map(|direction| 

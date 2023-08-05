@@ -1,6 +1,6 @@
 aoc::main!();
 
-fn parser(input: &str) -> Vec<(String, u32, String)> {
+fn preprocessing(input: &str) -> Vec<(String, u32, String)> {
     input
     .lines()
     .map(|l| l.rsplitn(4,['-','[',']']).collect_vec())

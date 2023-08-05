@@ -1,6 +1,6 @@
 aoc::main!();
 
-fn parser(input: &str) -> Vec<HashMap<&str, u16>> {
+fn preprocessing(input: &str) -> Vec<HashMap<&str, u16>> {
     input
     .lines()
     .map(|l| -> Vec<&str> {l.split(&[':',',',' ']).collect_vec()})

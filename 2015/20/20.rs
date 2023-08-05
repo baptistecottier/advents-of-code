@@ -1,6 +1,6 @@
 aoc::main!();
 
-fn parser(input: &str) -> usize {
+fn preprocessing(input: &str) -> usize {
     input.parse().unwrap()
 }
 

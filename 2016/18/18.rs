@@ -1,6 +1,6 @@
 aoc::main!(); 
 
-fn parser(input: &str) -> Vec<bool> {
+fn preprocessing(input: &str) -> Vec<bool> {
     input
     .chars()
     .map(|c| c == '^')

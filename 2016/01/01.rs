@@ -1,6 +1,6 @@
 aoc::main!();
 
-fn parser(input: &str) -> Vec<(i32,i32)> {
+fn preprocessing(input: &str) -> Vec<(i32,i32)> {
     let mut dir = (1,0);
     let mut pos = (0,0);
 

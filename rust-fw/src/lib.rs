@@ -1,5 +1,4 @@
 use std::collections::HashSet;
-
 use itertools::Itertools;
 
 #[macro_export]
@@ -11,6 +10,7 @@ macro_rules! main {
             grid::Grid,
             itertools::{chain, iproduct, repeat_n, FoldWhile, Itertools},
             mod_exp::mod_exp,
+            regex::Regex,
             serde_json::{json, Value},
             std::cmp::Ordering,
             std::collections::{HashMap, HashSet, VecDeque},
@@ -21,11 +21,12 @@ macro_rules! main {
             std::fs::read_to_string
         };   
 
-        fn main() {
+        fn main() {            
             let year = &module_path!()[..4];
             let day = &module_path!()[5..];
             let puzzle_input = read_to_string(format!("../{}/{}/{}.input", year, day, day).trim_end()).expect("File does not exist") ;
-            let input = parser(puzzle_input.as_str());
+            
+            let input = preprocessing(puzzle_input.as_str()); 
 
             println!(" <start>{}<end> ", part_1(input.clone()));
             println!(" <start>{}<end> ", part_2(input));
@@ -55,7 +56,9 @@ pub fn screen_reader(pixels: HashSet<(usize, usize)>) -> String {
                 if      v.contains(&(3, 0)) {'J'} 
                 else if v.contains(&(0, 5)) {'L'} 
                 else                        {'Y'}
-            10 =>                            'C',
+            10 =>
+                if      v.contains(&(0, 0)) {'I'}
+                else                        {'C'}
             11 =>
                 if      v.contains(&(0, 0)) {'F'}
                 else                        {'S'}
@@ -80,18 +83,27 @@ pub fn screen_reader(pixels: HashSet<(usize, usize)>) -> String {
 A: [(0, 1), (0, 2), (0, 3), (0, 4), (0, 5), (1, 0), (1, 3), (2, 0), (2, 3), (3, 1), (3, 2), (3, 3), (3, 4), (3, 5)]
 B: [(0, 0), (0, 1), (0, 2), (0, 3), (0, 4), (0, 5), (1, 0), (1, 2), (1, 5), (2, 0), (2, 2), (2, 5), (3, 1), (3, 3), (3, 4)]
 C: [(0, 1), (0, 2), (0, 3), (0, 4), (1, 0), (1, 5), (2, 0), (2, 5), (3, 1), (3, 4)]
+D: Not encountered yet
 E: [(0, 0), (0, 1), (0, 2), (0, 3), (0, 4), (0, 5), (1, 0), (1, 2), (1, 5), (2, 0), (2, 2), (2, 5), (3, 0), (3, 5)]
 F: [(0, 0), (0, 1), (0, 2), (0, 3), (0, 4), (0, 5), (1, 0), (1, 2), (2, 0), (2, 2), (3, 0)]
 G: [(0, 1), (0, 2), (0, 3), (0, 4), (1, 0), (1, 5), (2, 0), (2, 3), (2, 5), (3, 1), (3, 3), (3, 4), (3, 5)]
 H: [(0, 0), (0, 1), (0, 2), (0, 3), (0, 4), (0, 5), (1, 2), (2, 2), (3, 0), (3, 1), (3, 2), (3, 3), (3, 4), (3, 5)]
+I: [(1, 0), (1, 5), (2, 0), (2, 1), (2, 2), (2, 3), (2, 4), (2, 5), (3, 0), (3, 5)]
 J: [(0, 4), (1, 5), (2, 0), (2, 5), (3, 0), (3, 1), (3, 2), (3, 3), (3, 4)]
 K: [(0, 0), (0, 1), (0, 2), (0, 3), (0, 4), (0, 5), (1, 2), (2, 1), (2, 3), (2, 4), (3, 0), (3, 5)]
 L: [(0, 0), (0, 1), (0, 2), (0, 3), (0, 4), (0, 5), (1, 5), (2, 5), (3, 5)]
+M: Not encountered yet
+N: Not encountered yet
 O: [(0, 1), (0, 2), (0, 3), (0, 4), (1, 0), (1, 5), (2, 0), (2, 5), (3, 1), (3, 2), (3, 3), (3, 4)]
 P: [(0, 0), (0, 1), (0, 2), (0, 3), (0, 4), (0, 5), (1, 0), (1, 3), (2, 0), (2, 3), (3, 1), (3, 2)]
+Q: Not encountered yet
 R: [(0, 0), (0, 1), (0, 2), (0, 3), (0, 4), (0, 5), (1, 0), (1, 3), (2, 0), (2, 3), (2, 4), (3, 1), (3, 2), (3, 5)]
 S: [(0, 1), (0, 2), (0, 5), (1, 0), (1, 3), (1, 5), (2, 0), (2, 3), (2, 5), (3, 0), (3, 4)]
+T: Not encountered yet
 U: [(0, 0), (0, 1), (0, 2), (0, 3), (0, 4), (1, 5), (2, 5), (3, 0), (3, 1), (3, 2), (3, 3), (3, 4)]
+V: Not encountered yet
+W: Not encountered yet
+X: Not encountered yet
 Y: [(2, 5), (0, 1), (2, 4), (1, 2), (0, 0), (3, 2), (4, 1), (2, 3), (4, 0)]
 Z: [(0, 0), (0, 4), (0, 5), (1, 0), (1, 3), (1, 5), (2, 0), (2, 2), (2, 5), (3, 0), (3, 1), (3, 5)]
- */
+*/

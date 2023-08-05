@@ -1,6 +1,6 @@
 aoc::main!();
 
-fn parser(input: &str) -> Vec<Vec<char>> {
+fn preprocessing(input: &str) -> Vec<Vec<char>> {
     (0..50)
     .map(|y| 
         (0..50)

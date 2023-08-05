@@ -1,6 +1,6 @@
 aoc::main!();
 
-fn parser(input: &str) -> [[u8 ; 102] ; 102] {
+fn preprocessing(input: &str) -> [[u8 ; 102] ; 102] {
     let mut grid = [[0 ; 102] ; 102];
     input
     .lines()

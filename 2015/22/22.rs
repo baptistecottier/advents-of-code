@@ -1,6 +1,6 @@
 aoc::main!();
 
-fn parser(_input: &str) -> &str {
+fn preprocessing(_input: &str) -> &str {
     "unsolved"
 }
 
