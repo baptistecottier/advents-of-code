@@ -1,5 +1,5 @@
-def parser(input): 
-    return [line.split() for line in input.splitlines()]
+def preprocessing(input_): 
+    return [line.split() for line in input_.splitlines()]
 
 def solver(program):
     fibo = int(program[2][1])

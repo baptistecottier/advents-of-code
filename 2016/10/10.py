@@ -1,6 +1,6 @@
 from collections import defaultdict
 
-def parser(data):
+def preprocessing(data):
     bots  = defaultdict(list)
     gifts = defaultdict(list)
     

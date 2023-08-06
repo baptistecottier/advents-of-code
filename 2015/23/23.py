@@ -1,4 +1,4 @@
-def parser(input_):
+def preprocessing(input_):
     ops = []
     for line in input_.splitlines():
         data = line.split(' ')

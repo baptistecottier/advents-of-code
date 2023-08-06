@@ -1,8 +1,8 @@
-from aoctools.classes import Register
+from pythonfw.classes import Register
 
-def parser(input):
+def preprocessing(input_):
     instructions = list()
-    for instruction in input.splitlines():
+    for instruction in input_.splitlines():
         data = instruction.split()
         match data[0]:
             case 'cpy': instructions.append((0, data[2], data[1]))

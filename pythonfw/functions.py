@@ -85,7 +85,6 @@ def screen_reader(screen: set) -> str:
     for (x, y) in screen:
         letters[x // w].append((x % w, y))
     for letter in letters:
-        print(sorted(letter))
         match len(letter):
             case 9: # J, L, Y
                 if any(x == w - 1 for (x, y) in letter): word += 'Y'

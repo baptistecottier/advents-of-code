@@ -1,6 +1,6 @@
 
-def parser(input): 
-    return list(int(item) for item in input)
+def preprocessing(input_): 
+    return list(int(item) for item in input_)
 
 def solver(initial_state): 
     yield checksum(initial_state, 272)

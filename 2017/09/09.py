@@ -1,7 +1,7 @@
 import re
 
-def parser(input):                                               
-    return re.sub(r'\!.', '', input)
+def preprocessing(input_):                                               
+    return re.sub(r'\!.', '', input_)
 
 def solver(record): 
     garb_count, garbage, score, step= 0, 0, 0, 0

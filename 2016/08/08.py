@@ -1,9 +1,10 @@
 import re
 from itertools import product
-from aoctools.functions import screen_reader
-def parser(input):
+from pythonfw.functions import screen_reader
+
+def preprocessing(input_):
     sequence = []
-    for seq in input.splitlines():
+    for seq in input_.splitlines():
         data = re.split('[\sx=]', seq)
         match data[0], data[1]:
             case "rect", _:       sequence.append((0, int(data[1]),  int(data[2])))

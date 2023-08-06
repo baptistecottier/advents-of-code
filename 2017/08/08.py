@@ -1,7 +1,7 @@
 from parse import parse
 
-def parser(input): 
-    return [list(parse('{:l} {:l} {:d} if {:l} {}', instruction)) for instruction in input.splitlines()]
+def preprocessing(input_): 
+    return [list(parse('{:l} {:l} {:d} if {:l} {}', instruction)) for instruction in input_.splitlines()]
 
 def solver(instructions):
     max_reg   = 0

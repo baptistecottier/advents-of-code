@@ -1,5 +1,5 @@
-def parser(input): 
-    return list(map(int,input))
+def preprocessing(input_): 
+    return list(map(int,input_))
 
 def solver(captcha):
     def sum_matches(delta):

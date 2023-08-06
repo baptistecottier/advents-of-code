@@ -2,7 +2,7 @@ from itertools import combinations
 from math      import prod
 
 
-def parser(input_): 
+def preprocessing(input_): 
     return [int(package) for package in input_.splitlines()]
     
 

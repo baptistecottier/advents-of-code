@@ -2,7 +2,7 @@ from math      import sqrt
 from itertools import permutations, pairwise
 
 
-def parser(input_):
+def preprocessing(input_):
     changes = list()
     for change in input_.splitlines():
         gain = int(change.split(' ')[3])

@@ -1,9 +1,9 @@
-from aoctools.classes import Register
+from pythonfw.classes import Register
 from operator         import and_, lshift, or_, rshift, inv
 from copy             import deepcopy
 
 
-def parser(input_): 
+def preprocessing(input_): 
     circuit = []
     
     for gate in input_.splitlines():

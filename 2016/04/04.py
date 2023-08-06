@@ -1,6 +1,6 @@
 import collections
 
-def parser(data):
+def preprocessing(data):
     return [(room[:-11].replace('-',''), int(room[-10:-7]), room[-6:-1]) for room in data.split()]
 
 def solver(rooms):

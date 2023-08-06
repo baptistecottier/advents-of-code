@@ -1,4 +1,4 @@
-def parser(input_): 
+def preprocessing(input_): 
     directions = list(1 if direction == '(' else -1 for direction in input_)
     return directions
 

@@ -1,7 +1,7 @@
 from re import findall
 
 
-def parser(input_):
+def preprocessing(input_):
     return (int(n) for n in findall(r'[0-9]+', input_))
 
 

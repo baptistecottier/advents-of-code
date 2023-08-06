@@ -1,6 +1,6 @@
 from math import log
 
-parser = int
+preprocessing = int
 
 def solver(nb_players):
     yield play_game(nb_players, 2)

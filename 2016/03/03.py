@@ -1,6 +1,6 @@
 from itertools import product
 
-def parser(data: str): 
+def preprocessing(data: str): 
     return list(map(int, data.split()))
 
 def solver(lengths):

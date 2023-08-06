@@ -1,4 +1,4 @@
-def parser(data):
+def preprocessing(data):
     return [passphrase.split(' ') for passphrase in data.splitlines()]
 
 def solver(passphrases):

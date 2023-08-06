@@ -1,7 +1,7 @@
-from aoctools.classes import Point
+from pythonfw.classes import Point
 
-def parser(input):
-    return input.split(',')
+def preprocessing(input_):
+    return input_.split(',')
 
 def solver(directions):
     path = list()

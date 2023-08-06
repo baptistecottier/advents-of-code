@@ -1,12 +1,12 @@
 from itertools import count
 
 
-def parser(input):
-    return [int(line.rsplit(' ')[-1]) for line in input.splitlines()]
+def preprocessing(input_):
+    return [int(line.rsplit(' ')[-1]) for line in input_.splitlines()]
 
-def solver(input): 
-    yield count_matches(input, 40_000_000, 1, 1)
-    yield count_matches(input, 5_000_000, 4, 8)
+def solver(input_): 
+    yield count_matches(input_, 40_000_000, 1, 1)
+    yield count_matches(input_, 5_000_000, 4, 8)
 
 def count_matches(pair, rounds, mult_a, mult_b): 
     a, b = pair

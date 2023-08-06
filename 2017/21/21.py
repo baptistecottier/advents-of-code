@@ -1,8 +1,8 @@
 from itertools import product
 
-def parser(input):
+def preprocessing(input_):
     rules = {}
-    for line in input.splitlines():
+    for line in input_.splitlines():
         pattern, replacement = line.replace('/','').split(' => ')
         r1, r2, r3 = rotate(pattern, 1),  rotate(pattern, 2),  rotate(pattern, 3)
         f, f1, f2, f3 = flip(pattern), flip(r1), flip(r2) , flip(r3)
@@ -10,18 +10,18 @@ def parser(input):
             rules[p]=replacement
     return rules
 
-def flip(input):
-    size = int(len(input) ** 0.5)
-    return ''.join([''.join(input[i * (size): i * size + size])[::-1] for i in range(size)]) 
+def flip(input_):
+    size = int(len(input_) ** 0.5)
+    return ''.join([''.join(input_[i * (size): i * size + size])[::-1] for i in range(size)]) 
 
-def rotate(input, n):
+def rotate(input_, n):
     perm = [[2,0,3,1], [6,3,0,7,4,1,8,5,2]]
     for _ in range(n):
-        size = int(len(input) ** 0.5) - 2
-        input =''.join([input[perm[size][i]] for i in range(len(input))])
-    return input
+        size = int(len(input_) ** 0.5) - 2
+        input_ =''.join([input_[perm[size][i]] for i in range(len(input_))])
+    return input_
 
-def solver(input):
+def solver(input_):
     grid = '.#...####'
     for m in range(18):
         size = int(len(grid) ** 0.5)
@@ -31,7 +31,7 @@ def solver(input):
         for r, c in product(range(size // divisor), range(size // divisor)):
             index = (r * size + c) * divisor
             mini_grid = ''.join([grid[index + i * size: index + i * size + (divisor)] for i in range(divisor)])
-            enhanced_grid.append(input[mini_grid])
+            enhanced_grid.append(input_[mini_grid])
         grid = ''
         for i in range(size + size // divisor):
             ii = (i * (divisor + 1)) % (divisor + 1) ** 2

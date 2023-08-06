@@ -1,18 +1,18 @@
-from aoctools.classes import Register
+from pythonfw.classes import Register
 
-def parser(input):
-    return [line.split(' ') for line in input.splitlines()]
+def preprocessing(input_):
+    return [line.split(' ') for line in input_.splitlines()]
 
-def solver(input): 
-    yield (1, part_1(input))
-    yield (2, part_2(input))
+def solver(input_): 
+    yield (1, part_1(input_))
+    yield (2, part_2(input_))
     
-def part_1(input):
+def part_1(input_):
     reg = Register({'a': 0,'b': 0,'f': 0,'i': 0,'p': 0})
-    d = input[0]
+    d = input_[0]
     i = 0
-    while input[i][0] != 'rcv':
-        d = input[i]
+    while input_[i][0] != 'rcv':
+        d = input_[i]
         match d[0]:
             case 'snd': sound_frequency = reg.get(d[1])
             case 'set': reg[d[1]] = reg.get(d[2])
@@ -26,7 +26,7 @@ def part_1(input):
         i += 1
     return sound_frequency
 
-def part_2(input):
+def part_2(input_):
     reg = [Register({'a': 0,'b': 0,'f': 0,'i': 0,'p': 0}), 
            Register({'a': 0,'b': 0,'f': 0,'i': 0,'p': 1})]
     queue =[[], []]
@@ -34,7 +34,7 @@ def part_2(input):
     i = [0,0]
     cnt = 0 
     while 1:
-        d = input[i[p]]
+        d = input_[i[p]]
         match d[0]:
             case 'snd': 
                 cnt += p

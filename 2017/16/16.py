@@ -1,7 +1,7 @@
-def parser(input):
+def preprocessing(input_):
     dances = []
     
-    for move in input.split(','):
+    for move in input_.split(','):
         match move[0]:
             case 's': dance = (0,int(move[1:]))
             case 'x': dance = (1, sorted([int(item) for item in move[1:].split('/')]))
@@ -22,8 +22,8 @@ def solver(dance):
     yield orders[1_000_000_000 % cycle - 1]
 
 
-def order_program(input, programs): 
-    for dance, program in input:
+def order_program(input_, programs): 
+    for dance, program in input_:
         match dance:
             case 0: programs = programs[-program:] + programs[:-program]
             case 1: programs = programs[:program[0]] + programs[program[1]] + programs[program[0] + 1: program[1]] + programs[program[0]] + programs[program[1] + 1:]

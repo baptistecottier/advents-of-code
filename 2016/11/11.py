@@ -1,6 +1,6 @@
 
-def parser(input):
-    return [floor.count('microchip')+floor.count('generator') for floor in input.splitlines()]
+def preprocessing(input_):
+    return [floor.count('microchip')+floor.count('generator') for floor in input_.splitlines()]
 
 def solver(objects):
     yield move(objects)

@@ -1,6 +1,6 @@
 from parse import parse
 
-def parser(data): return data
+def preprocessing(data): return data
 
 def solver(file): 
     yield get_file_size(file, len)

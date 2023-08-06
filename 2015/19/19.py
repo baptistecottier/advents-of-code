@@ -1,7 +1,7 @@
 from collections import defaultdict
 
 
-def parser(input_):
+def preprocessing(input_):
     replacements = defaultdict(list)
     text_replacements, molecule = input_.split('\n\n')
     for replacement in text_replacements.splitlines():

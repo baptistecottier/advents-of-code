@@ -1,5 +1,5 @@
-def parser(input):
-    return [0] + [c == '^' for c in input] +  [0]
+def preprocessing(input_):
+    return [0] + [c == '^' for c in input_] +  [0]
 
 def solver(tiles):
     safe_tiles = tiles.count(0) - 2

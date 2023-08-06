@@ -1,7 +1,7 @@
 from math import lcm
 
-def parser(input):
-    return [[int(i) for i in item.split(': ')] for item in input.splitlines()]
+def preprocessing(input_):
+    return [[int(i) for i in item.split(': ')] for item in input_.splitlines()]
 
 def solver(record):
     pairs = list((layer, 2 * (depth - 1)) for layer, depth in record)

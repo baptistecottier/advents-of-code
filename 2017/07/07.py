@@ -1,9 +1,9 @@
 from parse       import parse
 from collections import defaultdict
 
-def parser(input):
+def preprocessing(input_):
     tree = {}
-    for node in input.splitlines():
+    for node in input_.splitlines():
         name, weight, children = parse("{} ({:d}{}", node)
         children = children[5:].split(', ')
         tree[name] = {"weight": weight, "children": children if children != [''] else []}

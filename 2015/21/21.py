@@ -15,7 +15,7 @@ class Player:
         self.armor = armor
 
 
-def parser(input_):
+def preprocessing(input_):
     (hp, damage, armor) = (int(item.split(": ")[1]) for item in input_.splitlines())
     return hp, damage, armor
 

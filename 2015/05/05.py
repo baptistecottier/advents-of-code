@@ -1,7 +1,7 @@
 from itertools import pairwise
 
 
-def parser(input_):
+def preprocessing(input_):
     return input_.splitlines()
 
 

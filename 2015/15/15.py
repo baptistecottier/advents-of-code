@@ -1,10 +1,10 @@
 from math                  import prod
 from re                    import findall
 from collections           import defaultdict
-from aoctools.functions    import extract_chunks
+from pythonfw.functions    import extract_chunks
 
 
-def parser(input_): 
+def preprocessing(input_): 
     return extract_chunks(input_, 5)
 
 

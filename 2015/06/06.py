@@ -1,8 +1,8 @@
 from itertools          import product
-from aoctools.functions import extract_chunks
+from pythonfw.functions import extract_chunks
 
 
-def parser(input_):
+def preprocessing(input_):
     instructions  = []
     coordinates   = extract_chunks(input_, 4)
 

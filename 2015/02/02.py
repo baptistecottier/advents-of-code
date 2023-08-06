@@ -1,7 +1,7 @@
-from aoctools.functions import extract_chunks
+from pythonfw.functions import extract_chunks
 
 
-def parser(input_):
+def preprocessing(input_):
     boxes = extract_chunks(input_, 3, neg = False, func = sorted)
     return boxes
 

@@ -1,6 +1,6 @@
 from copy import deepcopy
 
-def parser(input_):
+def preprocessing(input_):
     return [int(item) for item in input_.splitlines()]
 
 def solver(offsets):

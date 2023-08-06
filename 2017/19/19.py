@@ -1,9 +1,9 @@
 import enum
-from aoctools.classes import Point
+from pythonfw.classes import Point
 
-def parser(input): 
+def preprocessing(input_): 
     path = {}
-    for y, row in enumerate(input.splitlines()):
+    for y, row in enumerate(input_.splitlines()):
         for x, c in enumerate(row):
             if c != ' ': 
                 if y == 0: start = Point(x, y)

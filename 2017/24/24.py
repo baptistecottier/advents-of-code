@@ -1,7 +1,7 @@
 from copy import deepcopy
 
-def parser(input): 
-    return [[int(item) for item in component.split('/')] for component in input.splitlines()]
+def preprocessing(input_): 
+    return [[int(item) for item in component.split('/')] for component in input_.splitlines()]
         
 
 def solver(connections): 

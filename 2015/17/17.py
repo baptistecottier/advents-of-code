@@ -1,7 +1,7 @@
 from itertools import combinations
 
 
-def parser(input_):
+def preprocessing(input_):
     return tuple(int(container) for container in input_.splitlines())
 
 

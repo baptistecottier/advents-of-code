@@ -1,7 +1,7 @@
 from collections    import defaultdict
 from itertools      import product
 
-def parser(input): return int(input)
+def preprocessing(input_): return int(input_)
 
 def solver(square_position):
     circle_index = int(((square_position - 1) ** 0.5 + 1) // 2) 

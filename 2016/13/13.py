@@ -1,7 +1,7 @@
-from aoctools.functions import bfs
+from pythonfw.functions import bfs
 from itertools import product
 
-def parser(data): 
+def preprocessing(data): 
     n = int(data)
     maze = set()
     for x, y in product(range(50), repeat = 2):

@@ -1,20 +1,20 @@
-def parser(input): 
+def preprocessing(input_): 
     infected = []
-    grid = input.splitlines()
+    grid = input_.splitlines()
     size = len(grid)
     for y, line in enumerate(grid[::-1]):
         for x, c in enumerate(line):
             if c == '#': infected.append((x, y))
     return infected, size
 
-def solver(input): 
-    yield burst(input, 1)
-    yield burst(input, 2)
+def solver(input_): 
+    yield burst(input_, 1)
+    yield burst(input_, 2)
 
 
-def burst(input, bursts):
+def burst(input_, bursts):
     half_grid_size = 400
-    infected, size = input
+    infected, size = input_
     grid = [[0 for _ in range(2 * half_grid_size)] for _ in range(2 * half_grid_size)]
     for x, y in infected: grid[half_grid_size - (size // 2) + y][half_grid_size - (size // 2) + x] = bursts
     cx, cy = half_grid_size, half_grid_size

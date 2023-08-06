@@ -1,7 +1,7 @@
 from math import sqrt
 
 
-def parser(input_):
+def preprocessing(input_):
     return int(input_)
 
 

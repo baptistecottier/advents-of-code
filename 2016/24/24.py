@@ -1,12 +1,12 @@
 from itertools import permutations, pairwise
-from aoctools.functions import bfs
+from pythonfw.functions import bfs
 
-def parser(input): 
+def preprocessing(input_): 
     grid        = set()
     coordinates = {}
     distances   = {}    
     
-    for y, row in enumerate(input.splitlines()):
+    for y, row in enumerate(input_.splitlines()):
         for x, c in enumerate(row):
             if c != '#':
                 grid.add((x, y))

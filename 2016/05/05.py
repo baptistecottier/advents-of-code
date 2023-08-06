@@ -1,6 +1,6 @@
 from _md5 import md5
 
-def parser(data): 
+def preprocessing(data): 
     return data
 
 def solver(door_id):

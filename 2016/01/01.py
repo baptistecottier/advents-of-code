@@ -1,6 +1,6 @@
-from aoctools.classes import Point
+from pythonfw.classes import Point
 
-def parser(data: str): 
+def preprocessing(data: str): 
     ways = [(1,0) , (0, -1), (-1, 0), (0,1)]
     dir  = 0
     path = list()

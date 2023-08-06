@@ -1,4 +1,4 @@
-from aoctools.y2017 import knot_hash
+from pythonfw.y2017 import knot_hash
 
 def solver(salt):
     maze = get_maze(salt)   

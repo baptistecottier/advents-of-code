@@ -1,8 +1,8 @@
-from aoctools.classes import Particule
-from aoctools.functions import extract_chunks
+from pythonfw.classes import Particule
+from pythonfw.functions import extract_chunks
 
-def parser(input): 
-    return [Particule(*particule) for particule in extract_chunks(input, 9)]
+def preprocessing(input_): 
+    return [Particule(*particule) for particule in extract_chunks(input_, 9)]
 
 def solver(particules):
     yield min(range(len(particules)), key = lambda i: particules[i])

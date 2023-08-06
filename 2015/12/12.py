@@ -2,8 +2,8 @@ from json import loads
 import builtins
 
 
-def parser(input): 
-    return loads(input)
+def preprocessing(input_): 
+    return loads(input_)
 
 
 def solver(document):

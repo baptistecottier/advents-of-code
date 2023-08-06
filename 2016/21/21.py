@@ -1,6 +1,6 @@
 from itertools import permutations
 
-def parser(data) : 
+def preprocessing(data) : 
     return data.splitlines()
 
 def solver(operations): 

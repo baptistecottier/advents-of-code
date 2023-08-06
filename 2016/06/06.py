@@ -1,6 +1,6 @@
 from collections import Counter
 
-def parser(data: str):
+def preprocessing(data: str):
     return data.splitlines()
 
 def solver(messages):

@@ -1,7 +1,7 @@
 from parse import parse
 
-def parser(input):
-    infos = input.split('\n\n')
+def preprocessing(input_):
+    infos = input_.split('\n\n')
     starting_state, trigger = parse("Begin in state {}.\nPerform a diagnostic checksum after {:d} steps.", infos[0])
     details = []
     for state in infos[1:]:
@@ -9,8 +9,8 @@ def parser(input):
         details.append([[b,c == 'left',ord(d) - 65],[e, f == 'left', ord(g) - 65]])
     return (ord(starting_state) - 65, trigger, details)
 
-def solver(input): 
-    state, trigger, details = input
+def solver(input_): 
+    state, trigger, details = input_
     tape = [0 for _ in range(trigger)]
     pos = 0
     for i in range(trigger):

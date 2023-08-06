@@ -1,6 +1,6 @@
 import re
 
-def parser(data): 
+def preprocessing(data): 
     adresses = []
     
     for adress in data.splitlines():

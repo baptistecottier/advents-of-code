@@ -1,7 +1,7 @@
 from re       import findall
-from aoctools.functions import chinese_remainder
+from pythonfw.functions import chinese_remainder
 
-def parser(data):
+def preprocessing(data):
     values    = list(int(item) for item in findall(r'[0-9]+', data))
     equations = set()
     while values:

@@ -3,7 +3,7 @@ from operator import eq, lt, gt
 from copy     import deepcopy
 
 
-def parser(input_): 
+def preprocessing(input_): 
     aunts = {}
     for aunt_data in input_.splitlines():
         n, c1, v1, c2, v2, c3, v3 = parse("Sue {:d}: {}: {:d}, {}: {:d}, {}: {:d}", aunt_data)

@@ -1,4 +1,4 @@
-def parser(data): 
+def preprocessing(data): 
     return data.splitlines()
 
 

@@ -1,7 +1,7 @@
 from itertools import product
 
 
-def parser(input_):
+def preprocessing(input_):
     lights = set()
     grid   = input_.splitlines()
     

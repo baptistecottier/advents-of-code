@@ -1,6 +1,6 @@
-def parser(input): 
+def preprocessing(input_): 
     blacklist = set()
-    for element in input.splitlines():
+    for element in input_.splitlines():
         inf, sup = (int(item) for item in element.split('-'))
         blacklist.add((inf, sup))
     return blacklist

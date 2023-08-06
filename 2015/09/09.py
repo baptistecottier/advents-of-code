@@ -1,8 +1,8 @@
 from itertools import permutations, pairwise
 
 
-def parser(input):
-    return list(int(dist.split(' = ')[1]) for dist in input.splitlines())
+def preprocessing(input_):
+    return list(int(dist.split(' = ')[1]) for dist in input_.splitlines())
 
 
 def solver(routes): 

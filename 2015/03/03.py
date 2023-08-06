@@ -1,7 +1,7 @@
 from copy import deepcopy
 
 
-def parser(input_):
+def preprocessing(input_):
     converter  = {'^': (0, 1), '>': (1, 0), 'v': (0, -1), '<': (-1, 0)}
     directions = list(converter.get(d) for d in input_)
     return directions
