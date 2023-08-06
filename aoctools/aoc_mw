@@ -1,0 +1,27 @@
+#!/usr/bin/env python3
+
+import sys
+
+# Parsing arguments
+year, day = sys.argv[1:]
+day = day.zfill(2)
+
+# Adding folder containing aoctools to sys.path
+sys.path.append("path_to_aoctools_folder/")
+
+# Adding folder containing the python solver file to sys.path and importing it
+sys.path.append(f"path_to_aoctools_folder/{year}/{day}")
+module = __import__(day)
+
+# Loading input and preprocess it
+input_ = open("path_to_your_input", "r").read()
+if 'preprocessing' in dir(module): 
+    input_ = module.preprocessing(input_)
+
+# Retrieving answers
+answers = module.solver(input_)
+
+# Displaying answers
+for (part, answer) in enumerate(answers, 1):
+    if isinstance(answer, tuple): (part, answer) = answer
+    print(f"Part {part}: {answer}")
