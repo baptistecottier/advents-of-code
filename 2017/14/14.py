@@ -1,34 +1,26 @@
-from AoC_tools import knot_hash
+from aoctools.y2017 import knot_hash
 
-def generator(input):
-    return input
-
-def part_1(input):
-    return len(solver(input))
-
-def part_2(instructions):
+def solver(salt):
+    maze = get_maze(salt)   
+    yield len(maze)
+    
     regions = 0
-    maze = solver(instructions)   
-      
     while maze:
-        stack = [maze.pop()]
-        while stack:
-            (x, y) = stack.pop()
+        region = [maze.pop()]
+        while region:
+            (x, y) = region.pop()
             for dx, dy in ((1, 0), (-1, 0), (0, 1), (0, -1)):
                 candidate = x + dx, y + dy
                 if candidate in maze:
-                    stack.append(candidate)
+                    region.append(candidate)
                     maze.remove(candidate)
         regions += 1
-    return regions
+    yield regions
 
 
-def solver(instructions):
+def get_maze(instructions):
     maze = set()
     for row in range(128):
-        hex_hash = knot_hash(instructions + '-' + str(row),256)
-        bin_hash = "{0:128b}".format(int(hex_hash, 16))
-        for i, n in enumerate(bin_hash):
-            if n == '1':
-                maze.add((row, i))
+        hex_hash = int(knot_hash(f"{instructions}-{row}",256), 16)
+        maze.update(set((row, i) for i in range(128) if hex_hash >> i & 1))
     return maze

@@ -1,4 +1,4 @@
-def generator(input): 
+def parser(input): 
     infected = []
     grid = input.splitlines()
     size = len(grid)
@@ -7,14 +7,12 @@ def generator(input):
             if c == '#': infected.append((x, y))
     return infected, size
 
-def part_1(input): 
-    return(solver(input, 1))
-
-def part_2(input): 
-    return solver(input, 2)
+def solver(input): 
+    yield burst(input, 1)
+    yield burst(input, 2)
 
 
-def solver(input, bursts):
+def burst(input, bursts):
     half_grid_size = 400
     infected, size = input
     grid = [[0 for _ in range(2 * half_grid_size)] for _ in range(2 * half_grid_size)]

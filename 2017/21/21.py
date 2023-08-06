@@ -1,6 +1,6 @@
 from itertools import product
 
-def generator(input):
+def parser(input):
     rules = {}
     for line in input.splitlines():
         pattern, replacement = line.replace('/','').split(' => ')
@@ -9,15 +9,6 @@ def generator(input):
         for p in [pattern, r1, r2, r3, f, f1, f2, f3]:
             rules[p]=replacement
     return rules
-
-def part_1(input):
-    grid = '.#...####'
-    return solver(input, grid, 5)
-
-def part_2(input): 
-    grid = '.#...####'
-    return solver(input, grid, 18)
-
 
 def flip(input):
     size = int(len(input) ** 0.5)
@@ -30,8 +21,9 @@ def rotate(input, n):
         input =''.join([input[perm[size][i]] for i in range(len(input))])
     return input
 
-def solver(input, grid, iterations):
-    for m in range(iterations):
+def solver(input):
+    grid = '.#...####'
+    for m in range(18):
         size = int(len(grid) ** 0.5)
         if size % 2 == 0: divisor = 2 
         else: divisor = 3
@@ -46,4 +38,5 @@ def solver(input, grid, iterations):
             jj = (i // (divisor + 1)) * (size // divisor) 
             for j in range(size // divisor):
                 grid += enhanced_grid[jj + j][ii: ii + (divisor + 1)]
-    return grid.count('#')
+        if m == 4: yield grid.count('#')
+    yield grid.count('#')

@@ -1,21 +1,37 @@
-from parse import parse
-from itertools import chain
+from parse       import parse
+from collections import defaultdict
 
-def generator(input):
-    details = []
-    for p in input.splitlines():
-        match len(p.split(' -> ')):
-            case 1: details.append(list(parse("{} ({:d})",p)))
-            case 2: details.append(list(parse("{} ({:d}) -> {}", p))[:-1] + list(parse("{} ({:d}) -> {}", p))[-1].split(', '))
-    return details
+def parser(input):
+    tree = {}
+    for node in input.splitlines():
+        name, weight, children = parse("{} ({:d}{}", node)
+        children = children[5:].split(', ')
+        tree[name] = {"weight": weight, "children": children if children != [''] else []}
+    return tree
 
-def part_1(input): return [item for item in [p[0] for p in input] if item not in chain(*[p[2:] for p in input])][0]
+def solver(tree): 
+    list_children = sum((node["children"] for node in tree.values()), [])
+    for name in tree.keys():
+        if name not in list_children:
+            root = name
+            yield root
+            break
+    
+    for name, infos in tree.items():
+        tree[name]["sum_weight"] = sum_weight(tree, name)
+        
+    for name, infos in sorted(tree.items(), key = lambda x : x[1]["sum_weight"]):
+        if infos["children"]:
+            weights = defaultdict(list)
+            for child in infos["children"]: weights[tree[child]["sum_weight"]].append(child) 
+            if len(weights) != 1:
+                weights = sorted(weights.items(), key = lambda x : len(x[1]))
+                (u_weight, u_name), (b_weight, _) = weights
+                yield tree[u_name.pop()]["weight"] + b_weight - u_weight
+                return
 
-def part_2(input):
-    w = {}
-    for program in [p[0] for p in input]: w[program] = weight(input, program)
-    pp = min([program[2:] for program in [item for item in input if len(item) > 2] if not all(w[p] == w[program[2:][0]] for p in program[2:])], key = lambda x: sum([w[item] for item in x]))
-    return input[[p[0] for p in input].index([x for x in pp if sum([w[x] == w[xx] for xx in pp])==1][0])][1] + min([w[x] for x in pp]) - max([w[x] for x in pp])
-
-
-def weight(input, program): return input[[p[0] for p in input].index(program)][1] + sum([weight(input, item) for item in input[[p[0] for p in input].index(program)][2:]])
+def sum_weight(tree, child):
+    if tree[child]["children"] == ['']: 
+        return tree[child]["weight"]
+    else:
+        return tree[child]["weight"] + sum(sum_weight(tree, c) for c in tree[child]["children"])

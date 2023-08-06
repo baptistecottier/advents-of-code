@@ -1,6 +1,6 @@
 from parse import parse
 
-def generator(input):
+def parser(input):
     infos = input.split('\n\n')
     starting_state, trigger = parse("Begin in state {}.\nPerform a diagnostic checksum after {:d} steps.", infos[0])
     details = []
@@ -9,7 +9,7 @@ def generator(input):
         details.append([[b,c == 'left',ord(d) - 65],[e, f == 'left', ord(g) - 65]])
     return (ord(starting_state) - 65, trigger, details)
 
-def part_1(input): 
+def solver(input): 
     state, trigger, details = input
     tape = [0 for _ in range(trigger)]
     pos = 0
@@ -19,6 +19,4 @@ def part_1(input):
         tape[pos] = infos[current_value][0]
         pos = pos + 1 - 2 * infos[current_value][1] % trigger
         state = infos[current_value][2]
-    return sum(tape)
-            
-def part_2(input): return "Merry Christmas 2017"
+    yield sum(tape)

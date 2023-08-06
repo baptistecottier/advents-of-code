@@ -1,21 +1,17 @@
-from parse import parse
+from aoctools.classes import Particule
+from aoctools.functions import extract_chunks
 
-def generator(input): 
-    return [parse("p=<{:d},{:d},{:d}>, v=<{:d},{:d},{:d}>, a=<{:d},{:d},{:d}>", line) for line in input.splitlines()]
+def parser(input): 
+    return [Particule(*particule) for particule in extract_chunks(input, 9)]
 
-def part_1(input):
-    return min(range(len(input)), key = lambda x:
-        (sum([abs(item) for item in input[x][-3:]]), sum([abs(item) for item in input[x][3:6]]), sum([abs(item) for item in input[x][:3]])))
+def solver(particules):
+    yield min(range(len(particules)), key = lambda i: particules[i])
 
-def part_2(input): 
-    p = [particule[:3] for particule in input]
-    v = [particule[3:6] for particule in input]
-    a = [particule[-3:] for particule in input]
-    
-    for j in range(100):
-        p = [[p[i][k] + v[i][k] + (j+1) * a[i][k] for k in range(3)] for i in range(len(p))]
-        for i in [i for i in range(len(p) - 1, -1, -1) if p.count(p[i]) != 1]: del p[i], v[i], a[i]
-    return len(p)
-            
-            
-        
+    for j in range(50):
+        for particule in particules:
+            particule.v.move(*particule.a.xyz())
+            particule.p.move(*particule.v.xyz())
+        positions = list(particule.p.xyz() for particule in particules)
+        positions = set(item for item in positions if positions.count(item) > 1)
+        particules = list(item for item in particules if item.p.xyz() not in positions)
+    yield len(particules)

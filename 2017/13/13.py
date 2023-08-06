@@ -1,13 +1,15 @@
-def generator(input):
+from math import lcm
+
+def parser(input):
     return [[int(i) for i in item.split(': ')] for item in input.splitlines()]
 
-def part_1(input):
+def solver(record):
+    pairs = list((layer, 2 * (depth - 1)) for layer, depth in record)
     severity = 0
-    for layer, depth in input: 
-        if layer % (2 * (depth - 1)) == 0: severity += depth * layer
-    return severity
+    for layer, depth in pairs: 
+        if layer % depth == 0: severity += layer * (depth // 2 + 1)
+    yield severity
 
-def part_2(input):
     delay = 1
-    while(any([(delay+layer) % (2 * (depth - 1)) == 0  for layer, depth in input])): delay += 1
-    return delay
+    while(any((delay + layer) % depth == 0  for layer, depth in pairs)): delay += 1
+    yield delay

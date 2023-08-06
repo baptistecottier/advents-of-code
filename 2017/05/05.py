@@ -1,15 +1,17 @@
-def generator(input):
-    return [int(item) for item in input.splitlines()]
+from copy import deepcopy
+
+def parser(input_):
+    return [int(item) for item in input_.splitlines()]
+
+def solver(offsets):
+    yield steps_to_exit(deepcopy(offsets), lambda x: 1)
+    yield steps_to_exit(offsets, lambda x: 1 if x < 3 else -1)
     
-def part_1(input):
-    return solver(input, 0)
-
-def part_2(input):
-    return solver(input, 2)
-
-def solver(jumps, coeff):
-    i, steps = 0, 0
-    while 0 <= i < len(jumps):
-        jumps[i], i = jumps[i] + 1 - coeff * (jumps[i] > 2), i + jumps[i]
+def steps_to_exit(offsets, func):
+    steps   = 0
+    pos     = 0
+    
+    while 0 <= pos < len(offsets):
+        offsets[pos], pos = offsets[pos] + func(offsets[pos]), pos + offsets[pos]
         steps += 1
     return steps

@@ -1,11 +1,9 @@
-def generator(input): return input 
+def parser(input): 
+    return list(map(int,input))
 
-def part_1(input):
-    return solver(input, 1)
+def solver(captcha):
+    def sum_matches(delta):
+        return sum(a for (a, b) in zip(captcha, captcha[delta:] + captcha[:delta]) if a == b)
     
-def part_2(input):    
-    return solver(input, len(input) // 2)
-
-def solver(captcha, l):
-    return sum([int(captcha[i]) * (captcha[i] == captcha[(i+l) % len(captcha)]) for i in range(len(captcha))])
-
+    yield sum_matches(1)
+    yield sum_matches(len(captcha) // 2)

@@ -1,24 +1,24 @@
-from itertools import product
+from collections    import defaultdict
+from itertools      import product
 
-def generator(input): return int(input)
+def parser(input): return int(input)
 
-def part_1(input):
-    return int(((input - 1) ** 0.5 + 1) // 2) + (input + int(((input - 1) ** 0.5 + 1) // 2) - 1) % int(((input - 1) ** 0.5 + 1) // 2)
+def solver(square_position):
+    circle_index = int(((square_position - 1) ** 0.5 + 1) // 2) 
+    yield circle_index + (square_position - 1) % circle_index
 
-def part_2(input): 
-    memory=[[0 for _ in range(20)] for _ in range(20)]
-    x, y = 10, 10
-    next_directions={(1,0):(0,1), (0,1):(-1,0), (-1,0):(0,-1), (0,-1):(1,0)}
-    vx, vy = 0, -1
-    tx, ty = next_directions[(vx,vy)]
-    value = 1
-    memory[y][x] = value
-    while value <= input:
-        if memory[y + ty][x + tx] == 0:
-            x, y = x + tx, y + ty
-            vx, vy = tx, ty
-            tx, ty = next_directions[(tx, ty)]
-        else: x, y = x + vx, y + vy
-        value=sum(memory[dy][dx] for (dx,dy) in product([x-1, x, x+1], [y-1, y, y+1]))
-        memory[y][x]=value
-    return value
+    x, y    = 0, 0
+    memory  = defaultdict(int)   
+    dx, dy  = (0, -1)
+    value   = 1
+    turn    = {(1, 0): (0, 1), (0, 1): (-1, 0), (-1, 0): (0, -1), (0, -1): (1, 0)}
+
+    while value < square_position:
+        tx, ty = turn[(dx, dy)]
+        memory[(x, y)] = value
+        if not memory[(x + tx, y + ty)]:
+            dx, dy = tx, ty
+            tx, ty = turn[(dx, dy)]
+        x, y = x + dx, y + dy
+        value = sum(memory[(x + tx, y + ty)] for (tx, ty) in product({-1, 0, 1}, repeat = 2))
+    yield value

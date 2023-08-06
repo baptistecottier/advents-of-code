@@ -1,35 +1,38 @@
-def generator(input): 
-    return [line for line in input.splitlines()]
+import enum
+from aoctools.classes import Point
 
-def part_1(input):
-    return solver(input)[0]
+def parser(input): 
+    path = {}
+    for y, row in enumerate(input.splitlines()):
+        for x, c in enumerate(row):
+            if c != ' ': 
+                if y == 0: start = Point(x, y)
+                path[(x, y)] = c
+    return path, start
     
-def part_2(input): 
-    return solver(input)[1]
-            
-    
-def solver(input):
-    x, y = input[0].index('|'), 0
-    dx, dy = (0, 1)
-    letters = []
-    steps = 1
-    
+def solver(map):
+    map, pos = map
+    dx, dy  = 0, 1
+    letters = ""
+    steps   = 1
+
     while 1:
-        done = True
-        while input[y+dy][x+dx] != ' ':
-            if input[y][x] not in [' ', '|', '-']: letters.append(input[y][x])
-            x, y = x + dx, y + dy
+        turn = False
+        while (pos.x + dx, pos.y + dy) in map:
+            if map[pos.xy()] not in ' |-': letters += map[pos.xy()]
+            pos.move(dx, dy)
             steps += 1
 
-        for nx, ny in [item for item in [(1, 0), (-1, 0), (0, 1), (0, -1)] if item != (- dx, - dy)]:
-            if input[y + ny][x + nx] != ' ': 
+        for nx, ny in ((dy, dx), (dy, -dx) if dx else (-dy, dx)):
+            if (pos.x + nx, pos.y + ny) in map: 
                 dx, dy = nx, ny
-                x, y = x + dx, y + dy
+                pos.move(dx, dy)
                 steps += 1
-                done = False
+                turn = True
                 break
             
-        if done == True: 
-            if input[y][x] not in [' ', '|', '-']: letters.append(input[y][x])
-            return [''.join(letters), steps]
-        
+        if not turn: 
+            if map.get(pos.xy(), ' ') not in ' |-': letters += map[pos.xy()]
+            yield letters
+            yield steps
+            break        

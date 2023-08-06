@@ -1,11 +1,6 @@
-def generator(input):
-    return [passphrase.split(' ') for passphrase in input.splitlines()]
+def parser(data):
+    return [passphrase.split(' ') for passphrase in data.splitlines()]
 
-def part_1(input):
-    return solver(input, lambda x: x)
-
-def part_2(input):
-    return solver(input, sorted)
-
-def solver(input, func):
-    return sum([len(["".join(func(p)) for p in pp]) == len(set(["".join(func(p)) for p in pp])) for pp in input])
+def solver(passphrases):
+    yield sum(len(set(passphrase)) == len(passphrase) for passphrase in passphrases)
+    yield sum(len(set(''.join(sorted(p)) for p in passphrase)) == len(passphrase) for passphrase in passphrases)

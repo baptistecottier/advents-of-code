@@ -1,12 +1,9 @@
-import re
-from itertools import product
+from itertools          import permutations
+from aoctools.functions import extract_chunks
 
-def generator(input):
-    return [[int(item) for item in re.findall('[0-9]+',line)] for line in input.splitlines()]
+def parser(input_):
+    return extract_chunks(input_, 16)
 
-def part_1(input):
-    return sum([max(s) - min(s) for s in input])
-
-def part_2(input):
-    return sum([a // b for (a, b) in product(line, repeat = 2) if a % b == (a == b)][0] for line in input)
-            
+def solver(spreadsheet):
+    yield (1, sum(max(row) - min(row) for row in spreadsheet))
+    yield (2, sum(sum(a // b for a, b in permutations(row, 2) if a % b == 0) for row in spreadsheet))
