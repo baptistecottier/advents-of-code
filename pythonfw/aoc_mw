@@ -6,11 +6,11 @@ import sys
 year, day = sys.argv[1:]
 day = day.zfill(2)
 
-# Adding folder containing aoctools to sys.path
-sys.path.append("path_to_aoctools_folder/")
+# Adding folder containing pythonfw to sys.path
+sys.path.append("path_to_pythonfw_folder/")
 
 # Adding folder containing the python solver file to sys.path and importing it
-sys.path.append(f"path_to_aoctools_folder/{year}/{day}")
+sys.path.append(f"path_to_pythonfw_folder/{year}/{day}")
 module = __import__(day)
 
 # Loading input and preprocess it
