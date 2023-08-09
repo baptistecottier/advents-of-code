@@ -1,55 +1,57 @@
-from parse import parse
-import string 
+from string import ascii_uppercase
+from re     import findall
+from copy   import deepcopy
 
-def generator(input):
-    instructions = {}
-    for step in list(string.ascii_uppercase): instructions[step] = []
-    for line in input.splitlines():
-        a, b = parse("Step {} must be finished before step {} can begin.", line)
-        instructions[b].append(a)
+def preprocessing(input):
+    instructions = {c: set() for c in ascii_uppercase}
+    steps = findall(r'[A-Z]', input)
+    while steps:
+        instructions[steps.pop()].add(steps.pop())
+        steps.pop()
     return instructions
 
-def part_1(input):
-    for step in list(string.ascii_uppercase): 
-        if input[step] == [] : 
-            finished = [step]
-            del input[step]
-            break
+def solver(requirements):
+    yield part_1(deepcopy(requirements))
+    yield part_2(requirements)
+    
+def part_1(requiremenents):
+    started  = list(ascii_uppercase)
+    finished = list()
     
     while len(finished) != 26:
-        for step in [item for item in list(string.ascii_uppercase) if item not in finished]: 
-            if all([item in finished for item in input[step]]): 
+        for step in started: 
+            if requiremenents[step] <= set(finished): 
                 finished.append(step)
-                del input[step]
+                started.remove(step)
+                del requiremenents[step]
                 break
     return ''.join(finished)
         
-def part_2(input):
-    to_finish, ongoing, finished = [], [], []
-    workers = [['',0] for _ in range(5)]
-    second = -1
-    for step in list(string.ascii_uppercase): 
-        if all([item in finished for item in input[step]]): to_finish.append(step)
+def part_2(requiremenents):
+    started  = list()
+    finished = set()
+    waiting  = list(ascii_uppercase)
+    workers  = [[str(), 0] for _ in range(5)]
+    second   = 0
+    
+    for step in ascii_uppercase: 
+        if requiremenents[step] <= finished:
+            started.append(step)
         
     while len(finished) != 26:
-        for w in workers:
-            if w[1] == 0 and w[0] != '' : 
-                finished.append(w[0])
-                available = [item for item in list(string.ascii_uppercase) if item not in finished + to_finish + ongoing]
-                for step in available: 
-                    if all([item in finished for item in input[step]]): to_finish.append(step)
+        for worker_step, countdown in workers:
+            if countdown == 0 and worker_step: 
+                finished.add(worker_step)
+                for step in waiting: 
+                    if requiremenents[step] <= finished: 
+                        started.append(step)
                         
-        for i, w in enumerate(workers):    
-            if w[1] == 0:
-                w[0] = ''
-                if to_finish != [] : 
-                    x = to_finish.pop(0)
-                    ongoing.append(x)
+        for i, worker in enumerate(workers):    
+            if worker[1] <= 0:
+                if started: 
+                    x = started.pop(0)
+                    waiting.remove(x)
                     workers[i] = [x, ord(x) - 5]
-            w[1] = max(0, w[1]-1)
+            worker[1] -= 1
         second += 1
-    return second
-       
-                
-
-        
+    return second - 1

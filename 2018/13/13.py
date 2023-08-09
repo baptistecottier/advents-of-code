@@ -1,54 +1,64 @@
-def generator(input):
-    grid = [list(r) for r in input.splitlines()]
+from aoctools.classes import Particule
+
+class Cart(Particule):
+    def __init__(self, x, y, dx, dy) -> None:
+        super().__init__(x, y, 0, dx, dy, 0)
+        self.choice = 0
+        pass
+    
+    def turn_right(self):
+        match self.v.xy():
+            case (n, 0): 
+                self.v.x = 0
+                self.v.y = n
+            case (0, n): 
+                self.v.x = -n
+                self.v.y = 0
+                
+    def turn_left(self):
+        match self.v.xy():
+            case (n, 0): 
+                self.v.x = 0
+                self.v.y = -n
+            case (0, n): 
+                self.v.x = n
+                self.v.y = 0
+          
+      
+def preprocessing(input):
+    circuit = dict()
     carts = []
-    for r, l in enumerate(grid):
-        for c, p in enumerate(l):
-            if p in ['>', 'v', '<', '^']: carts.insert(0, ((c, r), ((p == '>') - (p == '<'), (p == 'v') - (p == '^')), 0))
-    return (grid, carts)
+    dx = {'>': 1, '<': -1}
+    dy = {'v': 1, '^': -1}
+    for y, row in enumerate(input.splitlines()):
+        for x, c in enumerate(row):
+            circuit[(x, y)] = c
+            if c in '><v^': 
+                carts.insert(0, Cart(x, y, dx.get(c, 0), dy.get(c, 0)))
+    return (circuit, carts)
 
-def part_1(input): 
-    crash = solver(input, len(input[1]) - 2)
-    return ','.join([str(item) for item in crash[1]])
-    
-def part_2(input): 
-    crash = solver(input, 1)
-    return ','.join([str(item) for item in crash[0][0][0]])
-        
-        
-def solver(input, trigger): 
-    grid, carts = input
-    s = 0
-    while len(carts) != trigger: 
-        ((x, y), (dx, dy), choice) = carts.pop()
-        x, y = x + dx, y + dy
-        if (x,y) in [item[0] for item in carts]: 
-            carts = [item for item in carts if item[0] != (x, y)]
+def solver(race): 
+    circuit, carts = race
+    tick = 0
+    first_crash = True
+    while len(carts) != 1: 
+        cart = carts.pop()
+        cart.move()
+        if cart.pxy() in (item.pxy() for item in carts): 
+            carts = list(item for item in carts if item.pxy() != cart.pxy())
+            if first_crash: yield f"{cart.p.x},{cart.p.y}"
+            first_crash = False
             continue
-        match (grid[y][x], abs(dx)):
-            case ('+', _): carts.insert(0,((x,y), turn((dx, dy), choice), (choice + 1) % 3 ))
-            case ('/', 1): carts.insert(0,((x,y), turn_left((dx, dy)), choice ))
-            case ('/', 0): carts.insert(0,((x,y), turn_right((dx, dy)), choice ))
-            case ('\\', 1): carts.insert(0,((x,y), turn_right((dx, dy)), choice ))
-            case ('\\', 0): carts.insert(0,((x,y), turn_left((dx, dy)), choice ))
-            case _ : carts.insert(0, ((x, y), (dx, dy), choice))
-        s += 1
-        if s % len(carts) == 0 : carts.sort(key = lambda x: (-x[0][0], -x[0][1]))
-    return (carts, (x, y))
-    
-def turn(dir, choice):
-    match choice: 
-        case 0: return turn_left(dir)
-        case 1: return dir
-        case 2: return turn_right(dir)
-    
-    
-def turn_right(dir):
-    match dir: 
-        case (n, 0): return (0, n)
-        case (0, n): return (-n, 0)
-
-
-def turn_left(dir):
-    match dir: 
-        case (n, 0): return (0, -n)
-        case (0, n): return (n, 0)
+        
+        match (circuit[cart.pxy()], abs(cart.vx())):
+            case ('+', _):  
+                if cart.choice == 0: cart.turn_left()
+                elif cart.choice == 2: cart.turn_right()
+                cart.choice = (cart.choice + 1) % 3
+            case ('\\', 0) | ('/', 1): cart.turn_left()
+            case ('\\', 1) | ('/', 0): cart.turn_right()
+        carts.insert(0, cart)
+                
+        if (tick:= tick + 1) % len(carts) == 0: 
+            carts.sort(reverse = True, key = lambda x : x.p)
+    yield f"{carts[0].px()},{carts[0].py()}"

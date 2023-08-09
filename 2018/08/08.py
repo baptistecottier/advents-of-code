@@ -1,18 +1,19 @@
-def generator(input): return [int(item) for item in input.split(' ')]
+def preprocessing(input): 
+    return [int(item) for item in input.split(' ')]
 
-def part_1(input): return solver(input)[0]
+def solver(tree):
+    tree_infos = read_tree(tree)
+    yield tree_infos[0]
+    yield tree_infos[1]
 
-def part_2(input): return solver(input)[1]
-
-
-def solver(data):
+def read_tree(data):
     children, metas = data[:2]
-    data = data[2:]
+    data   = data[2:]
     scores = []
     totals = 0
 
     for _ in range(children):
-        total, score, data = solver(data)
+        total, score, data = read_tree(data)
         totals += total
         scores.append(score)
 

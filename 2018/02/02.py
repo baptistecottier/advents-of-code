@@ -1,19 +1,19 @@
 from itertools import product
 
-def generator(input): 
+def preprocessing(input): 
     return input.splitlines()
 
-def part_1(input):
-    twice = 0
+def solver(boxids):
+    twice  = 0
     thrice = 0
-    for id in input: 
-        counts = [id.count(c) for c in id]
-        twice += 2 in counts
+    bound  = - 1
+    for ida in boxids: 
+        counts  = set(ida.count(c) for c in ida)
+        twice  += 2 in counts
         thrice += 3 in counts
-    return twice * thrice        
-        
-def part_2(input):
-    for ida, idb in product(input, input):
-        if sum([ida[i] != idb[i] for i in range(len(ida))]) == 1 : 
-            return ''.join([item for item in ida if item in idb])
-        
+        for idb in boxids[:bound]:
+            common = list(a for a, b in zip(ida, idb) if a == b)
+            if len(common) == 25:
+                yield (2, ''.join(common))
+                bound = 0
+    yield (1, twice * thrice)

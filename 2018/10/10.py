@@ -1,38 +1,23 @@
-from parse import parse
+from aoctools.classes   import Particule
+from aoctools.functions import extract_chunks, screen_reader
 
-def generator(input):
+def preprocessing(input):
     details = []
-    for light in input.splitlines():
-        x, y, vx, vy = parse("position=<{:d}, {:d}> velocity=<{:d}, {:d}>", light)[:4]
-        details.append(((x, y),(vx, vy)))
-    return details
+    particules = {Particule(px, py, 0, vx, vy, 0) for (px, py, vx, vy) in extract_chunks(input, 4)}
+    return particules
 
-def part_1(input): return solver(input)[1]
-
-def part_2(input): return solver(input)[0]
-
-def solver(input):
-    k = 0
-    while 1:
-        grid = [[' ' for _ in range(501)] for _ in range(501)]
-        for ((x,y),(vx, vy)) in input:
-            collision = 0
-            if 0 <= 250 + y + k * vy <= 500 and 0 <= 250 + x + k * vx <= 500:
-                if grid[250 + y + k * vy][250 + x + k * vx] == '#' :
-                    collision += 1
-                else: grid[250 + y + k * vy][250 + x + k * vx] = '#'
-            else: 
-                break
-        if collision > 0 :
-            for x in range(501):
-                if any(grid[y][x] == '#' for y in range(501)) : 
-                    left = x
-                    break            
-            for x in range(left, 501)[::-1]:
-                if any(grid[y][x] == '#' for y in range(501)) : 
-                    right = x+1
-                    break
-            return (k, '\n'.join([''.join(g[left:right]) for g in grid if '#' in g]))
-        k+=1
+def solver(particules):
+    seconds = 0
+    while True:
+        seconds += 1
+        for particule in particules:
+            particule.p.move(*particule.v.xy())
+        lst_y = {particule.p.y for particule in particules}
+        min_y = min(lst_y)
+        max_y = max(lst_y)
+        if max_y - min_y < 10: 
+            break
         
-        
+    positions = set(particule.p.xy() for particule in particules)
+    yield screen_reader(positions)
+    yield seconds
