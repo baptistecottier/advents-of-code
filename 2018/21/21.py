@@ -24,7 +24,6 @@ def solver(program):
             if m == 0:
                 yield reg[4]
             m = max(m, reg[4]) 
-            yield m
         match op:
             case 'addr': reg[c] = reg[a] + reg[b]
             case 'addi': reg[c] = reg[a] + b
