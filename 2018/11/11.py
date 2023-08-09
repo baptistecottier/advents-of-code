@@ -1,6 +1,6 @@
 from itertools import product
 
-parser = int
+preprocessing = int
 
 def solver(serial): 
     grid      = list(list(x * (x * y + serial) // 100 % 10 - 5 for x in range(11, 311)) for y in range(1, 301))
