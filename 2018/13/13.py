@@ -1,4 +1,4 @@
-from aoctools.classes import Particule
+from pythonfw.classes import Particule
 
 class Cart(Particule):
     def __init__(self, x, y, dx, dy) -> None:

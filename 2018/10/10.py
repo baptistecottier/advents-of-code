@@ -1,5 +1,5 @@
-from aoctools.classes   import Particule
-from aoctools.functions import extract_chunks, screen_reader
+from pythonfw.classes   import Particule
+from pythonfw.functions import extract_chunks, screen_reader
 
 def preprocessing(input):
     details = []
