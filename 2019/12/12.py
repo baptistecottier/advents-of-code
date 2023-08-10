@@ -2,7 +2,7 @@ from math                import lcm
 from pythonfw.classes    import Particule
 from pythonfw.functions  import extract_chunks, sign
 
-def parser(input: str) -> set[Particule]:
+def preprocessing(input: str) -> set[Particule]:
     moons: set[Particule] = {Particule(*moon) for moon in extract_chunks(input, 3)}
     return moons
         
