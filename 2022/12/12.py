@@ -1,42 +1,31 @@
-import collections ; 
+from collections        import defaultdict
+from pythonfw.functions import bfs
 
-def bfs(maze, start , end):
-    width , height = len(maze[0]) , len(maze)
-    queue = collections.deque([[start]])
-    seen = set([start])
-    while queue:
-        path = queue.popleft()
-        x, y = path[-1]
-        if (x , y) == end:
-            return len(path)-1
-        for x2, y2 in ((x+1,y), (x-1,y), (x,y+1), (x,y-1)):
-            if 0 <= x2 < width and 0 <= y2 < height and maze[y2][x2] - maze[y][x] < 2 and (x2, y2) not in seen:
-                queue.append(path + [(x2, y2)])
-                seen.add((x2, y2))
                 
-def generator(input) :
-    grid = []
+def climbable(pos, new, heightmap):   
+    return new in heightmap and (heightmap[new] - heightmap[pos]) < 2    
+    
+def preprocessing(input):
+    grid = defaultdict(int)
     starting_points = []
     for y , line in enumerate(input.splitlines()):
         grid_line =[]
-        for x, c in enumerate(line) :
-            match c : 
-                case 'a' : 
-                    grid_line.append(1)
+        for x, c in enumerate(line):
+            match c: 
+                case 'a': 
+                    grid[(x, y)] = 1
                     starting_points.append((x,y))
-                case 'S' : 
-                    grid_line.append(0)
+                case 'S': 
+                    grid[(x, y)] = 0
                     start = (x ,y)
-                case 'E' :
-                    grid_line.append(27)
+                case 'E':
+                    grid[(x, y)] = 27
                     end = (x,y)
-                case _ : grid_line.append(ord(c)-ord('a')+1)
-        grid.append(grid_line)
-    return [grid, start, end, starting_points]
+                case _: grid[(x, y)] = ord(c) - ord('a') + 1
+    return dict(grid), start, end, starting_points
+
+def solver(heightmap):
+    maze, start, end, starting_points = heightmap
     
-def part_1(input) :
-    return bfs(input[0] , input[1], input[2])
-    
-    
-def part_2(input) : 
-    return min([item for item in [bfs(input[0] ,start, input[2]) for start in input[3]] if item != None]) 
+    yield bfs(maze , start, end, predicate = climbable)
+    yield min(dist for dist in (bfs(maze, start, end, predicate = climbable) for start in starting_points) if dist != -1) 

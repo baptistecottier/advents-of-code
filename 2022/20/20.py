@@ -1,26 +1,20 @@
-def generator(input) :
+def preprocessing(input):
     return [int(item) for item in input.splitlines()]
 
-
-def part_1(input) : 
-    return solver(input, 1)
-
-
-def part_2(input) : 
-    return solver([811589153 * i for i in input], 10)
+def solver(file):
+    yield mix(file, 1)
+    yield mix([811589153 * i for i in file], 10)
     
     
-def solver(cipher_list, rep) :
-    l = len(cipher_list)
-    index_list = [i for i in range(l)]
+def mix(cipher_list, rep):
+    nb_cipher = len(cipher_list)
+    index_list = list(range(nb_cipher))
     
     for _ in range(rep):
-        for i in range(l):
-            c = cipher_list[i]
-            prev_ind = index_list.index(i)
-            index_list.remove(i)
-            index_list.insert((c + prev_ind) % (l-1) , i)
+        for index, cipher in enumerate(cipher_list):
+            prev_index = index_list.index(index)
+            index_list.remove(index)
+            index_list.insert((cipher + prev_index) % (nb_cipher - 1) , index)
         
-    z = index_list.index(cipher_list.index(0))
-    v = sum([cipher_list[index_list[(z + i) % l]] for i in [1000, 2000, 3000]])
-    return v
+    zero_index = index_list.index(cipher_list.index(0))
+    return sum([cipher_list[index_list[(zero_index + shift) % nb_cipher]] for shift in [1000, 2000, 3000]])

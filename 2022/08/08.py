@@ -1,29 +1,35 @@
-import itertools
+from itertools import product
 
-def generator(input) : 
+def preprocessing(input): 
     trees = []
-    grid = [[int(item) for item in list(line)] for line in input.splitlines()]
-    
-    for (x,y) in itertools.product(range(len(grid)), repeat = 2):
-        trees.append([grid[y][x], [grid[y][:x+1][::-1],grid[y][x:],[grid[dy][x] for dy in range(y+1)][::-1] , [grid[dy][x] for dy in range(y,len(grid))]]])
+    for y, row in enumerate(input.splitlines()):
+        heights = []
+        for x, height in enumerate(row):
+            heights.append(height)
+        trees.append(heights)
     return trees
+
+def solver(trees):
+    width      = len(trees[0])
+    depth      = len(trees)
+    visible    = set()
+    max_scenic = 0
     
-def part_1(input) : 
-    return sum(solver(input, False))
+    for x, y in product(range(1, depth - 1), range(1, width - 1)):
+        scenic = 1
+        height = trees[y][x]
+        for dx, dy in {(0, 1), (1, 0), (0, -1), (-1, 0)}:
+            nb_trees = 1
+            tx, ty = x + dx, y + dy
+            while trees[ty][tx] < height: 
+                if (tx:= tx + dx) in [-1, width] or (ty:= ty + dy) in [-1, depth]: 
+                    visible.add((x, y))
+                    break
+                nb_trees += 1
+            scenic *= nb_trees
+        if scenic > max_scenic: max_scenic = scenic
+                
+    yield 2 * (width + depth - 2) + len(visible)
+    yield max_scenic
+
             
-
-def part_2(input) : 
-    return max(solver(input, True))
-
-
-def solver(input, find_best_tree) : 
-    out = []
-    for [size, views] in input :
-        score = 1
-        if find_best_tree:
-            for view in views :
-                cnt = len(list(itertools.takewhile(lambda t : t < size , view[1:])))
-                score *= (cnt +( (cnt + 1) != len(view)))
-            out.append(score)
-        else : out.append(any([max(view) ==  size and view.count(size) <= 1  for view in views]) )
-    return out

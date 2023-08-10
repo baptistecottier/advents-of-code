@@ -1,11 +1,17 @@
-def generator(input) :
-    return [[ord(duel.split(' ')[0]) - 63 , ord(duel.split(' ')[1]) - 88] for duel in input.splitlines()]
+def preprocessing(input):
+    duels = {(p, q): 0 for p in range(3) for q in range(1, 4)}
+    for duel in input.splitlines():
+        adv, me = duel.split(' ')
+        adv = int(ord(adv)) - 65
+        me  = int(ord(me)) - 87
+        duels[(adv, me)] += 1
+    return duels 
 
-def part_1(input) :
-    return solver(input , real_rules = False)
-
-def part_2(input) :
-    return solver(input , real_rules = True)
-
-def solver(input, real_rules) :
-    return sum([1 + 3 * [(b + (1 + real_rules) * 2 * a) % 3 , b][real_rules] + [(b + (1 + real_rules) * 2 * a) % 3 , b][not real_rules] for [a, b] in input])
+def solver(duels):
+    total_score = 0
+    real_score  = 0
+    for (adv, me), rep in duels.items():
+        total_score += rep * (me + 3 * ((me - adv) % 3))
+        real_score  += rep * (3 * me - 2 + (me + 1 + adv) % 3)
+    yield total_score
+    yield real_score

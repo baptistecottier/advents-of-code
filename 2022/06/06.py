@@ -1,10 +1,10 @@
-def generator(input) : 
+def preprocessing(input): 
     return input
-    
-def part_2(input) :
-    return solver(input, 14)
-        
-def solver(input, size) : 
-    for i in range(len(input)-size) : 
-        if len(set(input[i:i+size]))==size : 
-            return i+size
+            
+def solver(buffer): 
+    size = 4
+    for i, _ in enumerate(buffer): 
+        if len(set(buffer[i:i + size])) == size: 
+            yield i + size
+            if size == 14: break 
+            else: size += 10

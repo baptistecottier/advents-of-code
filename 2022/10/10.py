@@ -1,19 +1,20 @@
+from pythonfw.functions import screen_reader
 
-def generator(input) : 
-    reg=[]
-    v = 1
-    for i in input.splitlines() : 
-        reg.append(v)
-        if "addx" in i : 
-            reg.append(v)
-            v += int(i.split(' ')[1])
-    return reg
-            
-            
-def part_1(input) : 
-    return sum([x * input[x-1] for x in [20, 60, 100, 140, 180, 220]])
+def preprocessing(input): 
+    instructions = []
+    for instruction in input.splitlines():
+        instructions.append(0)
+        if 'addx' in instruction: 
+            instructions.append(int(instruction.split(' ')[1]))
+    return instructions
 
-def part_2(input) :
-    dsp = [" ", "■"]
-    crt = [dsp[ i % 40 in [v-1 , v, v+1]]+((i % 40) == 39)*'\n' for i, v in enumerate(input)]
-    return "".join(crt)[:-1]
+def solver(instructions):
+    x = 1
+    strength = 0
+    display = set()
+    for i, shift in enumerate(instructions):
+        if (i - 19) % 40 == 0: strength += (i + 1) * x
+        if i % 40 in (x - 1, x, x + 1): display.add((i % 40, i // 40))
+        x += shift
+    yield strength
+    yield screen_reader(display)

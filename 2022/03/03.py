@@ -1,11 +1,18 @@
-def generator(input) :
+def preprocessing(input):
     return input.splitlines()
 
-def part_1(input) : 
-    return solver(input, 1)
+def solver(rucksacks):
+    priorites = {c: ord(c) - 96 for c in 'abcdefghijklmonpqrstuvwxyz'}
+    priorites.update({c: ord(c) - 38 for c in 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'})
+    items_priority  = 0
+    badges_priority = 0
 
-def part_2(input) : 
-    return solver(input, 3)
+    for ga, gb, gc in (rucksacks[n: n + 3] for n in range(0, len(rucksacks), 3)):
+        for sack in (ga, gb, gc):
+            item = set(sack[:len(sack) // 2]).intersection(set(sack[len(sack) // 2:])).pop()
+            items_priority += priorites[item]
+        badge = set(ga).intersection(set(gb)).intersection(set(gc)).pop()
+        badges_priority += priorites[badge]
 
-def solver(input, size) : 
-    return sum(ord([x for x in input[size * i : size * (i + 1)][0][:- (size % 3) * len(input[size * i : size * (i + 1)][0]) // 2:] if all([x in g[  size % 3 * len(g) //2 :] for g in input[size * i : size * (i + 1)][:size]])][0]) - 38 - [x for x in input[size * i : size * (i + 1)][0][: (size ** 2 % 7) * len(input[size * i : size * (i + 1)][0]) // 2:] if all([x in g[  size % 3 * len(g) //2 :] for g in input[size * i : size * (i + 1)][:size]])][0].islower() * 58 for i in range(len(input) // size))
+    yield items_priority
+    yield badges_priority
