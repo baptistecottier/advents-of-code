@@ -1,27 +1,28 @@
-from itertools import product
+from collections import defaultdict
 
-def generator(input):
-    return [[int(item) for item in line] for line in input.splitlines()]
+def preprocessing(input):
+    octopus = defaultdict(set)
+    for y, row in enumerate(input.splitlines()):
+        for x, n in enumerate(row):
+            octopus[int(n)].add((x, y))
+    return octopus
 
-def part_1(input): 
-    return compute_steps(input, 100)
-
-def part_2(input): 
-    return compute_steps(input, 1_000)
-        
-def compute_steps(octopus, rounds): 
+def solver(octopus: defaultdict[set]): 
+    step    = 0
     flashed = 0
-    for r in range(rounds):
-        flashed_pos = set()
-        for x, y in product(range(10), repeat=2): octopus[y][x] += 1 
-        while any(any(k > 9 for k in line) for line in octopus):
-            for x, y in product(range(10), repeat=2):
-                if octopus[y][x] > 9:
-                    flashed_pos.add((x,y))
-                    octopus[y][x] = 0
-                    for nx, ny in ((-1, 0), (-1, 1), (0, 1), (1, 1), (1, 0), (1, -1), (0, -1), (-1, -1)):
-                        if (x+nx, y + ny) not in flashed_pos and 0 <= x+nx < 10 and  0 <= y+ny < 10: 
-                            octopus[y + ny][x + nx] += 1
-        if len(flashed_pos) == 100: return r + 1
-        flashed += len(flashed_pos)
-    return flashed
+    while len(octopus[0]) != 100: # We assume they all flash simultaneously after the 100th step
+        if step == 100: yield flashed
+        octopus = defaultdict(set, {n + 1: pos for n, pos in octopus.items()})
+        while octopus[10]:
+            x, y = octopus[10].pop()
+            octopus[0].add((x, y))
+            for nx, ny in ((-1, 0), (-1, 1), (0, 1), (1, 1), (1, 0), (1, -1), (0, -1), (-1, -1)):
+                if (x + nx, y + ny) not in octopus[0]: 
+                    for energy in range(1, 10):
+                        if (x + nx, y + ny) in octopus[energy]:
+                            octopus[energy].remove((x + nx, y + ny))
+                            octopus[energy + 1].add((x + nx, y + ny))
+                            break
+        flashed += len(octopus[0])
+        step += 1
+    yield step

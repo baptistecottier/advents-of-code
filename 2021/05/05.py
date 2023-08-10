@@ -1,24 +1,28 @@
-from parse import parse
-from numpy import sign
+from numpy              import sign
+from collections        import defaultdict
+from pythonfw.functions import extract_chunks
 
-def generator(input): 
-    return [tuple(parse('{:d},{:d} -> {:d},{:d}', line)) for line in input.splitlines()]
+def preprocessing(input): 
+    return extract_chunks(input, 4)
 
-def part_1(input): 
-    return solver(input, False)
-
-def part_2(input): 
-    return solver(input, True)
-
-def solver(vents, diagonal):
-    visited, points = {}, {}
+def solver(vents):
+    visited  = defaultdict(int)
+    diagonal = defaultdict(int)
+    
     for (sx, sy, ex, ey) in vents:
-        if sx == ex: points = ((sx, y) for y in range(min(sy, ey), 1 + max(sy, ey)))
-        elif sy == ey: points = ((x, sy) for x in range(min(sx, ex), 1 + max(sx, ex)))
-        elif diagonal : 
+        if sx == ex: 
+            for pos in ((sx, y) for y in range(min(sy, ey), 1 + max(sy, ey))):
+                visited[pos] += 1
+        elif sy == ey: 
+            for pos in ((x, sy) for x in range(min(sx, ex), 1 + max(sx, ex))):
+                visited[pos] += 1
+        else: 
             dx, dy = sign(ex - sx), sign(ey - sy)
-            points = ((sx + k * dx, sy + k * dy) for k in range(abs(sx - ex) + 1))
-        for (x, y) in points:
-            if (x, y) in visited: visited[(x, y)] += 1
-            else : visited[(x, y)] = 1
-    return sum(item > 1 for item in visited.values())
+            for pos in ((sx + k * dx, sy + k * dy) for k in range(abs(sx - ex) + 1)):
+                diagonal[pos] += 1
+    
+    keys = set(visited.keys())
+    yield sum(visited.get(k) > 1 for k in keys)
+    
+    keys.update(diagonal.keys())
+    yield sum((visited.get(k, 0) + diagonal.get(k, 0)) > 1 for k in keys)

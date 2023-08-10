@@ -1,12 +1,10 @@
-def generator(input): return {n: input.count(str(n)) for n in range(9)}
+def preprocessing(input): 
+    return {n: input.count(str(n)) for n in range(9)}
 
-def part_1(input): return solver(input, 80)
-
-def part_2(input): return solver(input, 256)
-
-def solver(lanternfishes, days):
-    for _ in range(days):
-        lanternfishes[9] = lanternfishes[0]
+def solver(lanternfishes):
+    for day in range(256):
+        if day == 80: yield sum(lanternfishes.values())
+        lanternfishes[9]  = lanternfishes[0]
         lanternfishes[7] += lanternfishes[0]
-        lanternfishes = {x - 1: lanternfishes[x] for x in range(1, 10)}
-    return sum(lanternfishes.values())
+        lanternfishes     = {n: lanternfishes[n + 1] for n in range(9)}
+    yield sum(lanternfishes.values())

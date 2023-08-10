@@ -1,35 +1,39 @@
-def generator(input): 
-    inputs = []
-    outputs = []
+def preprocessing(input): 
+    segments = []
     for digit in input.splitlines():
-        i, o = digit.split(' | ', )
-        inputs.append([''.join(sorted(ii)) for ii in i.split(' ')])
-        outputs.append([''.join(sorted(oo)) for oo in o.split(' ')][::-1])
-    return inputs, outputs
+        signal, value = digit.split(' | ', )
+        signal = [''.join(sorted(sig)) for sig in signal.split(' ')]
+        value  = [''.join(sorted(val)) for val in value.split(' ')][::-1]
+        segments.append((signal, value))
+    return segments
 
-def part_1(input): 
-    return sum(sum(len(digit) in [2, 4, 3, 7] for digit in output) for output in input[1])
-
-def part_2(input): 
+def solver(segments): 
+    easy   = 0
     add_up = 0
-    for i, o in zip(*input):
+    
+    for signal, value in segments:
         digits = {}
-        for v in i:
-            match len(v):
-                case 2: digits[1] = v
-                case 3: digits[7] = v
-                case 4: digits[4] = v                    
-                case 7: digits[8] = v
-        for v in [item for item in i if item not in digits.values()]:
-            match len(v):
+        for sig in signal:
+            match len(sig):
+                case 2: digits[1] = sig
+                case 3: digits[7] = sig
+                case 4: digits[4] = sig                    
+                case 7: digits[8] = sig
+        for sig in (item for item in signal if item not in digits.values()):
+            match len(sig):
                 case 5: 
-                    if set(digits[1]) < set(v) : digits[3] = v
-                    elif set([item for item in digits[4] if item not in digits[1]]) < set(v): digits[5] = v
-                    else: digits[2] = v
+                    if   set(digits[1]) < set(sig): digits[3] = sig
+                    elif set([item for item in digits[4] if item not in digits[1]]) < set(sig): digits[5] = sig
+                    else: digits[2] = sig
                 case 6:
-                    if set(digits[4]) < set(v): digits[9] = v
-                    elif set(digits[1]) < set(v): digits[0] = v
-                    else: digits[6] = v
+                    if   set(digits[4]) < set(sig): digits[9] = sig
+                    elif set(digits[1]) < set(sig): digits[0] = sig
+                    else: digits[6] = sig
         digits = {digits[n]: n for n in digits.keys()}
-        add_up += sum(10 ** k * digits[o[k]] for k in range(4))
-    return add_up
+        for k, sig in enumerate(value):
+            d = digits[sig]
+            if d in {1, 7, 4, 8}: easy += 1
+            add_up += 10 ** k * d
+            
+    yield easy
+    yield add_up

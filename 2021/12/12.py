@@ -1,4 +1,7 @@
-def generator(input):
+from copy import deepcopy
+
+
+def preprocessing(input):
     paths = {}
     for path in input.splitlines():
         start, end = path.split('-')
@@ -9,6 +12,10 @@ def generator(input):
             if end in paths: paths[end].append(start)
             else: paths[end] = [start]
     return paths 
+
+def solver(input_): 
+    yield part_1(deepcopy(input_))
+    yield part_2(deepcopy(input_))
 
 def part_1(input): 
     return len(complete_paths(input, 'start', [], [], twice = False))

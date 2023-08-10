@@ -1,11 +1,11 @@
-def generator(input):
+def preprocessing(input):
     return [int(item) for item in input.splitlines()]
 
-def part_1(input):
-    return solver(input, 1)
-
-def part_2(input): 
-    return solver(input, 3)
-
-def solver(input, delta): 
-    return sum(input[i+delta] - input[i] > 0 for i in range(len(input) - delta))
+def solver(measurements): 
+    sum_one   = ((measurements[-1] - measurements[-2]) > 0) + ((measurements[-2] - measurements[-3]) > 0)
+    sum_three = 0
+    for i in range(len(measurements) - 3):
+        sum_one   += (measurements[i + 1] - measurements[i]) > 0
+        sum_three += (measurements[i + 3] - measurements[i]) > 0
+    yield sum_one
+    yield sum_three

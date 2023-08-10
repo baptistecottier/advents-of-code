@@ -1,21 +1,27 @@
-def generator(input): 
+def preprocessing(input): 
     return input.splitlines()
 
-def part_1(input):
-    values = {')': 3, ']':57, '}':1197, '>':25137}
-    lines = clean_lines(input, ('','','',''))
-    return sum(values[l[0]] for l in lines if l)
-        
-def part_2(input):
-    lines = [int(item[::-1], base = 5) for item in clean_lines(input, ('1','2','3','4')) if set(item) <= {'1','2','3','4'}]
-    return sorted(lines)[len(lines) // 2]
-
-
-def clean_lines(lines, pattern):
-    a, b, c, d = pattern
-    clean_lines = []
+def solver(lines):
+    close = {'(': ')', '[': ']', '{': '}' , '<': '>'}
+    score = {')': 3  , ']': 57 , '}': 1197, '>': 25137}
+    table = {')': 1  , ']': 2  , '}': 3   , '>': 4}
+    
+    to_close          = []
+    syntax_error      = 0
+    completion_scores = set()
+    
     for line in lines:
-        while any(item in line for item in ['()','[]','{}','<>']):
-            line = line.replace('()','').replace('[]','').replace('{}','').replace('<>','')
-        clean_lines.append(line.replace('(',a).replace('[',b).replace('{',c).replace('<',d))
-    return clean_lines
+        for char in line:
+            if char in close: to_close.append(close[char])
+            elif char != to_close.pop(): 
+                syntax_error += score[char]
+                to_close      = []
+                break
+        line_score = 0
+        while to_close:
+            line_score *= 5
+            line_score += table[to_close.pop()]
+        completion_scores.add(line_score)
+    
+    yield syntax_error
+    yield sorted(completion_scores)[len(completion_scores) // 2]

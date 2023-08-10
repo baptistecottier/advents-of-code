@@ -1,12 +1,18 @@
 from statistics import mean, median
 
-def generator(input): return [int(item) for item in input.split(',')]
+def preprocessing(input): 
+    return [int(item) for item in input.split(',')]
 
-def part_1(input): 
-    return solver(input, lambda x: int(median(x)), lambda x : x)
-
-def part_2(input):
-    return solver(input, lambda x: int(mean(x)), lambda x: x * (x + 1) // 2)
-
-def solver(crabs, f, g):
-    return sum(g(abs(crab - f(crabs))) for crab in crabs)
+def solver(crabs):
+    med_crabs  = int(median(crabs))
+    med_fuel   = 0
+    mean_crabs = int(mean(crabs))
+    mean_fuel  = 0
+    
+    for crab in crabs:
+        med_fuel  += abs(crab - med_crabs)
+        distance   = abs(crab - mean_crabs)
+        mean_fuel += distance * (distance + 1) // 2
+        
+    yield med_fuel
+    yield mean_fuel

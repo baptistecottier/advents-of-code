@@ -1,21 +1,23 @@
-from itertools import product 
-from math import prod
+from math        import prod
+from collections import defaultdict
 
-def generator(input):
-    return [[9 for _ in range(len(input.splitlines()[0])+2)]] + [[9] + [int(item) for item in line] + [9] for line in input.splitlines()] + [[9 for _ in range(len(input.splitlines()[0])+2)]]
+def preprocessing(input):
+    cave = defaultdict(lambda: 9)
+    for y, row in enumerate(input.splitlines(), 1):
+        for x, n in enumerate(row, 1):
+            cave[(x, y)] = int(n)
+    return cave
 
-def part_1(input): 
-    return len(low_points(input)) + sum(input[y][x] for x, y in low_points(input))
-
-def part_2(input):    
-    return prod(sorted(basin_size(input, pos, []) for pos in  low_points(input))[-3:])  
-
-def low_points(heightmap):
-    return {(x, y) for x, y in product(range(1, len(heightmap[0]) - 1), range(1, len(heightmap) - 1)) if heightmap[y][x] < min(heightmap[y + ty][x + tx] for tx, ty in [(-1,0),(0,-1),(1,0),(0,1)])}
+def solver(cave): 
+    neighbours = {(-1, 0), (0, 1), (1, 0), (0, -1)}
+    low_points = {(x, y) for x, y in list(cave) if all(cave[(x, y)] < cave[(x + dx, y + dy)] for dx, dy in neighbours)}
+    yield len(low_points) + sum(cave[pos] for pos in low_points)
+    yield prod(sorted(basin_size(cave, pos, set()) for pos in low_points)[-3:])  
+  
     
-def basin_size(heigtmap, pos, visited):
+def basin_size(cave, pos, visited):
     x, y = pos
-    if heigtmap[y][x] == 9 or (x, y) in visited: return 0
+    if cave[(x, y)] == 9 or (x, y) in visited: return 0
     else: 
-        visited.append(pos)
-        return 1 + sum(basin_size(heigtmap, (x + dx, y + dy), visited) for dx, dy in [(-1,0),(0,-1),(1,0),(0,1)])
+        visited.add(pos)
+        return 1 + sum(basin_size(cave, (x + dx, y + dy), visited) for dx, dy in {(-1, 0), (0, 1), (1, 0), (0, -1)})
