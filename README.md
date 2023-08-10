@@ -19,7 +19,7 @@ In some puzzles, the answer to the second part arises before the answer of the f
 
 Enter the code `1349697-f730f285` in your [Private Leaderboard Homepage](https://adventofcode.com/2022/leaderboard/private) to integrate my leaderboard.
 
-<center>
+<div align="center">
 
 |   |2015|2016|2017|2018|2019|2020|2021|2022|
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
@@ -49,9 +49,11 @@ Enter the code `1349697-f730f285` in your [Private Leaderboard Homepage](https:/
 | 24 |[★](https://github.com/baptistecottier/advents-of-code/tree/main/2015/24)|[★](https://github.com/baptistecottier/advents-of-code/tree/main/2016/24)|[★](https://github.com/baptistecottier/advents-of-code/tree/main/2017/24)|||[★](https://github.com/baptistecottier/advents-of-code/tree/main/2020/24)||
 | 25 |[★](https://github.com/baptistecottier/advents-of-code/tree/main/2015/25)|[★](https://github.com/baptistecottier/advents-of-code/tree/main/2016/25)|[★](https://github.com/baptistecottier/advents-of-code/tree/main/2017/25)|[★](https://github.com/baptistecottier/advents-of-code/tree/main/2018/25)||[☆](https://github.com/baptistecottier/advents-of-code/tree/main/2020/25)||[☆](https://github.com/baptistecottier/advents-of-code/tree/main/2022/25)
 
-</center>
+</div>
 
-**Legend** :  ☆ - Part 1 solved | ★ - Both parts solved |
+☆ - Part 1 solved
+
+★ - Both parts solved
 
 ----
 
