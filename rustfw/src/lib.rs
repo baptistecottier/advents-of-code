@@ -14,7 +14,7 @@ macro_rules! main {
             serde_json::{json, Value},
             std::cmp::Ordering,
             std::collections::{HashMap, HashSet, VecDeque},
-            std::iter::zip,
+            std::iter::{successors, zip},
             std::ops::{Range, RangeInclusive},
             std::str::FromStr,
             std::env,
