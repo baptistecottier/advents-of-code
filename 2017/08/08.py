@@ -1,11 +1,14 @@
 from parse import parse
 
+
 def preprocessing(input_): 
     return [list(parse('{:l} {:l} {:d} if {:l} {}', instruction)) for instruction in input_.splitlines()]
+
 
 def solver(instructions):
     max_reg   = 0
     variables = {v[0]: 0 for v in instructions}
+    
     for a, b, c, d, e in instructions:
         if eval(f"{variables[d]}{e}"): 
             variables[a] += c if (b == 'inc') else -c

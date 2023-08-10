@@ -1,6 +1,7 @@
 from parse       import parse
 from collections import defaultdict
 
+
 def preprocessing(input_):
     tree = {}
     for node in input_.splitlines():
@@ -8,6 +9,7 @@ def preprocessing(input_):
         children = children[5:].split(', ')
         tree[name] = {"weight": weight, "children": children if children != [''] else []}
     return tree
+
 
 def solver(tree): 
     list_children = sum((node["children"] for node in tree.values()), [])
@@ -29,6 +31,7 @@ def solver(tree):
                 (u_weight, u_name), (b_weight, _) = weights
                 yield tree[u_name.pop()]["weight"] + b_weight - u_weight
                 return
+
 
 def sum_weight(tree, child):
     if tree[child]["children"] == ['']: 

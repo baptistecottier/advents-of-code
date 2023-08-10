@@ -1,7 +1,10 @@
 from collections    import defaultdict
 from itertools      import product
 
-def preprocessing(input_): return int(input_)
+
+def preprocessing(input_): 
+    return int(input_)
+
 
 def solver(square_position):
     circle_index = int(((square_position - 1) ** 0.5 + 1) // 2) 
@@ -21,4 +24,5 @@ def solver(square_position):
             tx, ty = turn[(dx, dy)]
         x, y = x + dx, y + dy
         value = sum(memory[(x + tx, y + ty)] for (tx, ty) in product({-1, 0, 1}, repeat = 2))
+
     yield value
