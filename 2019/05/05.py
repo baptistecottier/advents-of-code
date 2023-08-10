@@ -1,11 +1,11 @@
-import ship_computer
-from copy import deepcopy
+from pythonfw.ship_computer import Program 
 
-def generator(input): 
-    return ship_computer.generator(input)
+def preprocessing(input: str) -> list[int]: 
+    return list(map(int, input.split(',')))
 
-def part_1(input):
-    return ship_computer.run(input, [1]).pop()
+def solver(integers: list[int]):
+    TEST = Program(integers)
+    while not (output := TEST.run(1)): continue
+    yield output
+    yield Program(integers).run(5)
 
-def part_2(input): 
-    return ship_computer.run(input, [5]).pop()

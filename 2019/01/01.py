@@ -1,16 +1,16 @@
-def generator(input):
-    return [int(item) for item in input.splitlines()]
-    
-def part_1(input):
-    return sum(compute_fuel(input))
+def preprocessing(input: str) -> list[int]:
+    return list(int(item) for item in input.splitlines())
 
-def part_2(input):
-    acc = 0 
-    while input:
-        input = compute_fuel(input)
-        acc += sum(input)
-    return acc
+def solver(modules: list[int]):
+    fuel: int = 0
+    modules   = compute_fuel(modules)
+    fuel      += sum(modules)
+    yield fuel
+    while modules:
+        modules = compute_fuel(modules)
+        fuel    += sum(modules)
+    yield fuel
 
 
-def compute_fuel(input):
-    return [item // 3 - 2 for item in input if item > 5]
+def compute_fuel(modules: list[int]) -> list[int]:
+    return [item // 3 - 2 for item in modules if item > 5]

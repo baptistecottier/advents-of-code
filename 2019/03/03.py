@@ -1,36 +1,31 @@
-def generator(input): 
-    return [[[dir_match(item[0]), int(item[1:])] for item in wire.split(',')] for wire in input.splitlines()]
+from pythonfw.classes import Point
+
+def preprocessing(input): 
+    return [[[item[0], int(item[1:])] for item in wire.split(',')] for wire in input.splitlines()]
+
+def solver(paths):
+    dir: dict = {'L': (-1, 0), 'U': (0, -1), 'R': (1, 0), 'D': (0, 1)}
     
-def part_1(input):
-    return min(solver(input), key = lambda x : x[0])[0]
+    pos: Point = Point()
+    step: int  = 0
+    path: dict = {pos.xy(): step}
+    for turn, steps in paths.pop(0):
+        dx, dy = dir[turn]
+        for _ in range(steps):
+            pos.move(dx, dy)
+            path[pos.xy()] = (step := step + 1)
 
-def part_2(input):
-    return min(solver(input), key = lambda x : x[1])[1]
-
-
-def dir_match(dir):
-    match dir :
-        case 'R': return (1, 0)
-        case 'L': return (-1, 0)
-        case 'U': return (0, 1)
-        case 'D': return (0, -1)
-        
-def solver(input):
-    wires, crossed = {}, set()
-    x, y, steps = 0, 0, 0
-    for [(dx, dy), n] in input[0]:
-        for i in range(1, n + 1): 
-            wires[(x + i * dx, y + i * dy)] = steps + i
-        x, y, steps = x + n * dx, y + n * dy, steps + n
-
-    x, y, steps = 0, 0, 0
-    for [(dx, dy), n] in input[1]:
-        for i in range(1, n + 1): 
-            xx, yy = x + i * dx, y + i * dy
-            if (xx, yy) in wires: 
-                manhattan = abs(xx) + abs(yy)
-                step =  steps + i + wires[(xx, yy)]
-                crossed.add((manhattan, step))
-        x, y, steps = x + n * dx, y + n * dy, steps + n
-
-    return crossed
+    pos  = Point()
+    step = 0
+    distances: set      = set()
+    combined_steps: set = set()
+    for turn, steps in paths.pop(0):
+        dx, dy = dir[turn]
+        for _ in range(steps):
+            step += 1
+            pos.move(dx, dy)
+            if pos.xy() in path: 
+                distances.add(pos.manhattan())
+                combined_steps.add(path[pos.xy()] + step)
+    yield min(distances)
+    yield min(combined_steps)

@@ -1,9 +1,8 @@
-import ship_computer
+from pythonfw.ship_computer import Program
 
-def generator(input): return ship_computer.generator(input)
+def preprocessing(input): 
+    return list(map(int, input.split(',')))
 
-def part_1(input): 
-    return ship_computer.run(input, [1]).pop()
-
-def part_2(input): 
-    return ship_computer.run(input, [2]).pop()
+def solver(intcodes): 
+    yield Program(intcodes).run(1)
+    yield Program(intcodes).run(2)

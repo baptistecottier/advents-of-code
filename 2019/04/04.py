@@ -1,13 +1,18 @@
-from itertools import pairwise
+from itertools   import pairwise
 from collections import Counter
-from operator import eq, ge
 
-def generator(input): return [int(item) for item in input.split('-')]
+def preprocessing(input: str) -> list[int]: 
+    return [int(item) for item in input.split('-')]
 
-def part_1(input): return solver(input, ge)
+def solver(bounds: list[int]):
+    cnt_eq: int = 0
+    cnt_ge: int = 0
+    
+    for pw in range(*bounds):
+        if not any([a > b for (a, b) in pairwise(str(pw))]):
+            values = [n for (_, n) in Counter(str(pw)).most_common() if n > 1]
+            if values: cnt_ge += 1
+            if 2 in values: cnt_eq += 1
 
-def part_2(input): return solver(input, eq)
-
-
-def solver(input, op):
-    return sum([not any([a > b for (a, b) in pairwise(str(pw))]) and any( op(n,2) for (_, n) in Counter(str(pw)).most_common()) for pw in range(input[0], input[1] + 1)])
+    yield cnt_ge
+    yield cnt_eq

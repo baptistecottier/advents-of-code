@@ -1,23 +1,19 @@
 
-import ship_computer
-from itertools import product
-from copy import deepcopy
+from pythonfw.ship_computer import Program
 
-def generator(input):
-    return ship_computer.generator(input)
+def preprocessing(input: str) -> list[int]:
+    return list(map(int, input.split(',')))
 
-def part_1(input):
-    solver(input, 12, 2)
-    return input.memory[0]
-
-def part_2(input):
-    for (a,b) in product(range(100), repeat = 2):
-        program = deepcopy(input)
-        solver(program, a, b) 
-        if program.memory[0] == 19_690_720 : return 100 * a + b
-
-def solver(program, a, b):
-    program.memory[1] = a
-    program.memory[2] = b
-    return ship_computer.run(program)
+def solver(integers: list[int]):
+    program: Program = Program(integers)
+    program.run()
+    delta = program.memory[0]
     
+    program = Program([integers[0], 1, *integers[2:]])
+    program.run()
+    modulo = program.memory[0] - delta
+
+    yield delta + 12 * modulo + 2
+    
+    target = 19_690_720 - delta
+    yield target // modulo * 100 + (target % modulo)
