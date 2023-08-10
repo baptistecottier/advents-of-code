@@ -39,7 +39,6 @@ def bfs(maze, start , end):
     seen = set(start)
     test = set()
     while queue:
-        # print(min(len(p) for p in queue))
         path = queue.popleft()
         x, y, delay, tool = path[-1]
         if delay > 0:
