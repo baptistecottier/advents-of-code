@@ -23,6 +23,7 @@ def solver(program):
         if reg[ip] ==  28:
             if m == 0:
                 yield reg[4]
+                break
             m = max(m, reg[4]) 
         match op:
             case 'addr': reg[c] = reg[a] + reg[b]
@@ -48,7 +49,6 @@ def solver(program):
             case 'eqri': reg[c] = int(reg[a] == b)
             case 'eqrr': reg[c] = int(reg[a] == reg[b])
         reg[ip] += 1
-    return True
    
 def sum_divisors(n):
     divisors = set()
