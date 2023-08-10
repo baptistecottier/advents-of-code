@@ -1,17 +1,11 @@
 from itertools import pairwise, product
-import re
+from re        import findall
+from pythonfw.functions import extract_chunks
 
-def generator(input_):
-    spacetime = set()
-    coordinates = [int(item) for item in re.findall(r'-?[0-9]+', input_)]
-    while coordinates:
-        spacetime.add((coordinates.pop(), coordinates.pop(), coordinates.pop(), coordinates.pop()))
-    return spacetime
+def preprocessing(input_):
+    return extract_chunks(input_, 4)
 
-def solver(input_):
-    yield part_1(input_)
-
-def part_1(spacetime):
+def solver(spacetime):
     constellations = list()
     constellation = [spacetime.pop()]
     while spacetime:
@@ -25,10 +19,8 @@ def part_1(spacetime):
             constellations.append(constellation)
             constellation = [spacetime.pop()]
 
-    return len(constellations) + 1
+    yield len(constellations) + 1
     
-            
-                
         
 def distance(a, b): 
     return sum(abs(x -  y) for x, y in zip(a, b))
