@@ -1,10 +1,10 @@
 from parse import parse
 
-def generator(input):
+def preprocessing(input_):
     detector = {}
     list_ingredients = {}
     
-    for food in input.splitlines():
+    for food in input_.splitlines():
         ingredients, allergens = list(parse("{} (contains {})", food))
         ingredients = ingredients.split(' ')
         allergens = allergens.split(', ')
@@ -19,14 +19,18 @@ def generator(input):
             else: 
                 list_ingredients[ingredient] = 1
     return detector, list_ingredients
+
+def solver(input_):
+    yield part_1(input_)
+    yield part_2(input_)
         
-def part_1(input): 
-    detector, list_ingredients = input
+def part_1(input_): 
+    detector, list_ingredients = input_
     safe = {ingredient for ingredient in list_ingredients if (all(ingredient not in allergen for allergen in detector.values()))}
     return sum(list_ingredients[ingredient] for ingredient in safe)
 
-def part_2(input): 
-    detector, _ = input
+def part_2(input_): 
+    detector, _ = input_
     while any(len(allergen) != 1 for allergen in detector.values()):
         for allergen in detector.values():
             if len(allergen) == 1:

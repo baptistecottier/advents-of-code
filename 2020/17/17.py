@@ -1,6 +1,6 @@
 from itertools import product
 
-def generator(input):
+def preprocessing(input):
     activated = set()
     size = len(input.splitlines()) // 2
     for y, line in enumerate(input.splitlines()):
@@ -8,12 +8,13 @@ def generator(input):
             if cube == '#': activated.add((x - size, y - size))
     return activated, size
 
-def part_1(input): return boot_up(({(x, y, 0) for (x, y) in input[0]}, input[1]), 3)
+def solver(cubes):
+    activated, size = cubes
+    yield boot_up(activated, size, 3)
+    yield boot_up(activated, size, 4)
 
-def part_2(input): return boot_up(({(x, y, 0, 0) for (x, y) in input[0]}, input[1]), 4)
-
-def boot_up(input, dimension):
-    activated, size = input
+def boot_up(activated, size, dimension):
+    activated = {(x, y) + (0,) * (dimension - 2) for (x, y) in activated}
     neighbours = [deltas for deltas in product(range(-1, 2), repeat = dimension) if not all(item == 0 for item in deltas)]
     for _ in range(6):
         size += 1

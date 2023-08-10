@@ -1,6 +1,6 @@
 from re import findall
 
-def generator(input):
+def preprocessing(input):
     all_bags = {}
     input = input.replace("bags","").replace("bag","").replace(".","")
     for rule in input.splitlines():
@@ -12,19 +12,17 @@ def generator(input):
         all_bags[color] = bags
     return all_bags
 
-def part_1(input): 
+def solver(rules): 
     candidates = ["shiny gold"]
     answer = set()
     while candidates:
         candidate = candidates.pop()
-        for color in input.keys():
-            if candidate in [c for n,c in input[color]]:
+        for color in rules.keys():
+            if candidate in (c for n,c in rules.get(color)):
                 candidates.append(color)
                 answer.add(color)
-    return len(answer)
-
-def part_2(input):
-    return count_bags("shiny gold", input) - 1
+    yield len(answer)
+    yield count_bags("shiny gold", rules) - 1
     
 def count_bags(color, bags):
     return 1 + sum([n * count_bags(c, bags) for n,c in bags[color]])

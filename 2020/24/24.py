@@ -1,5 +1,5 @@
-def generator(input): 
-    tiles =set()
+def preprocessing(input): 
+    tiles = set()
     for tile in input.splitlines():
         n = {}
         for value in ['se', 'sw', 'ne', 'nw', 'e', 'w']:
@@ -14,12 +14,12 @@ def generator(input):
     return tiles
     
 
-def part_1(input):
-    return len(input)
+def solver(input):
+    yield len(input)
     
-def part_2(input):
     neighbours = {(0.5, -1), (-0.5, -1), (0.5, 1), (-0.5, 1), (1, 0), (-1, 0)}
     tiles = input
+    
     for d in range(100):
         tested = set()
         updated_tiles = set()
@@ -33,4 +33,4 @@ def part_2(input):
                     tested.add((xx, yy))
                     if sum((xx + dx, yy + dy) in tiles  for dx, dy in neighbours) == 2: updated_tiles.add((xx, yy))
         tiles = updated_tiles
-    return len(tiles)
+    yield len(tiles)

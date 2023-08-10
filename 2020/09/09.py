@@ -1,21 +1,23 @@
-def generator(input):
+def preprocessing(input):
     return [int(item) for item in input.splitlines()]
 
-def part_1(input):
-    preamble_size = 25
-    preamble = input[:preamble_size]
-    i = preamble_size
-    while any([input[i] - p in preamble for p in preamble]):
-        i += 1
-        preamble = input[i - preamble_size:i]
-    return input[i]
+def solver(input):
+    index    = 25
+    target   = input[index]
+    preamble = input[:25]
+    
+    while any(target - p in preamble for p in preamble):
+        index    += 1
+        target   = input[index]
+        preamble = input[index - 25: index]
+    yield target
 
-
-def part_2(input): 
-    target = part_1(input)
-    for i in range(len(input)):
-        values_set = input[i:][::-1]
+    for index in range(len(input)):
+        vrange = input[index:][::-1]
         values = []
-        while sum(values) < target: values.append(values_set.pop())
-        if sum(values) == target : return min(values) + max(values)
+        while sum(values) < target: 
+            values.append(vrange.pop())
+        if sum(values) == target: 
+            yield min(values) + max(values)
+            break
             

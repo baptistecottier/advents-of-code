@@ -1,10 +1,22 @@
-from math import prod
+from typing import Generator
+from pythonfw.classes import Point
 
-def generator(input):
-    return [[c == '#' for c in line] for line in input.splitlines()]
+def preprocessing(input: str) -> tuple[set, int, int]:
+    trees = set()
+    for y, row in enumerate(input.splitlines()):
+        for x, c in enumerate(row):
+            if c == '#': trees.add((x, y))
+    return trees, x + 1, y
 
-def part_1(input): 
-    return sum([input[i][(3 * i) % len(input[0])] for i in range(len(input))])
-
-def part_2(input):
-    return prod([sum([input[(1 + d // 8) * i][((d % 8) * i) % len(input[0])] for i in range(len(input) // (1 + d // 8))]) for d in range(1,10, 2)])
+def solver(trees: tuple[set, int, int]) -> Generator[int, None, None]:
+    trees, mx, my = trees
+    total = 1
+    for dx, dy in ((1, 1), (3, 1), (5, 1), (7, 1), (1, 2)):
+        pos = Point()
+        cnt = 0
+        while pos.y <= my: 
+            if (pos.x % mx, pos.y) in trees: cnt += 1
+            pos.move(dx, dy)
+        if dx == 3: yield cnt
+        total *= cnt
+    yield total

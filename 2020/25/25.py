@@ -1,13 +1,12 @@
-def generator(input):
-    return [int(item) for item in input.splitlines()]
+def preprocessing(input):
+    return (int(item) for item in input.splitlines())
 
-def part_1(input):
-    p, q = input
-    k = 1
-    while True:
-        key = pow(7, k, 20201227)
-        if key == p: return pow(q, k, 20201227)
-        if key == q: return pow(p, k, 20201227)
+def solver(integers):
+    p, q  = integers
+    e = 0
+    n = 1
+    while n not in (p, q):
+        n = (n * 7) % 20201227
         k += 1
-
-def part_2(input): return "MERRY X-MAS"
+    if n == p: yield pow(q, e, 20201227)
+    if n == q: yield pow(p, e, 20201227)

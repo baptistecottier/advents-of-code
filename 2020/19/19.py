@@ -1,7 +1,7 @@
 from parse import parse
 from itertools import product 
 
-def generator(input): 
+def preprocessing(input): 
     patterns = {}
     rules = {}
     plain_rules, messages = (item.splitlines() for item in input.split('\n\n'))
@@ -19,13 +19,10 @@ def generator(input):
                     del rules[num]
     return patterns[0], patterns[8], patterns[11], messages
 
-def part_1(input): 
-    rule, _, _, messages = input
-    return len([message for message in messages if message in rule])
-
-def part_2(input): 
-    _, rule_eight, rule_eleven, messages = input
-    return sum(looping_rules(message, rule_eight, rule_eleven) for message in messages)
+def solver(input): 
+    rule, rule_eight, rule_eleven, messages = input
+    yield len([message for message in messages if message in rule])
+    yield sum(looping_rules(message, rule_eight, rule_eleven) for message in messages)
 
 def looping_rules(message, rule_eight, rule_eleven):
     t = len(next(iter(rule_eight)))

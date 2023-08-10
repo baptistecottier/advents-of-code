@@ -1,6 +1,6 @@
 from copy import deepcopy
 
-def generator(input):
+def preprocessing(input):
     rows = input.splitlines()
     l = len(rows)
     w = len(rows[0])
@@ -10,13 +10,20 @@ def generator(input):
             seats[r][c] = int(rows[r-1][c-1] == 'L')
     return seats
 
-def part_1(input):
+def solver(input):
     boat = input
     updated_boat = apply_rules(boat)
     while boat != updated_boat:
         boat = deepcopy(updated_boat)
         updated_boat = apply_rules(boat)
-    return sum(sum(seat == 2 for seat in row) for row in updated_boat)
+    yield sum(sum(seat == 2 for seat in row) for row in updated_boat)
+
+    boat = input
+    updated_boat = apply_rules(boat, False)
+    while boat != updated_boat:
+        boat = deepcopy(updated_boat)
+        updated_boat = apply_rules(boat, False)
+    yield sum(sum(seat == 2 for seat in row) for row in updated_boat)
 
 def apply_rules(boat, adjacent = True):
     updated_boat = deepcopy(boat)
@@ -40,11 +47,3 @@ def apply_rules(boat, adjacent = True):
                         updated_boat[r][c] = 1
 
     return updated_boat
-
-def part_2(input): 
-    boat = input
-    updated_boat = apply_rules(boat, False)
-    while boat != updated_boat:
-        boat = deepcopy(updated_boat)
-        updated_boat = apply_rules(boat, False)
-    return sum(sum(seat == 2 for seat in row) for row in updated_boat)

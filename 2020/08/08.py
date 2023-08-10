@@ -1,37 +1,38 @@
-def generator(input):
+def preprocessing(input: str) -> list[int, int]:
     instructions = []
-    for instruction in input.splitlines():
+    for instruction in input.splitlines():        
         ins, step = instruction.split(' ')
-        instructions.append([ins, int(step)])
+        match ins:
+            case 'nop': instructions.append((0, int(step)))
+            case 'acc': instructions.append((1, int(step)))
+            case 'jmp': instructions.append((2, int(step)))
     return instructions
 
-def part_1(input):
-    return is_looping(input)[1]
+def solver(program: list[int, int]):
+    yield - test_program(program)
+    
+    for modif in range(len(program)):
+        ins, value = program[modif]
+        if ins == 1: continue
+        program[modif] = (2 - ins, value)
+        if (acc := test_program(program)) > 0: 
+            yield acc
+            break
+        program[modif] = (ins, value)
 
-from copy import deepcopy
-def part_2(input): 
-    modified_index = 0
-    program = [['jmp', 0]]
-    while is_looping(program)[0]:
-        program = deepcopy(input)
-        while input[modified_index][0] == 'acc': modified_index += 1
-        program[modified_index][0] = ['nop', 'jmp'][input[modified_index][0] == 'nop']
-        modified_index += 1
-    return is_looping(program)[1]
         
-        
-def is_looping(program):
-    i = 0 
-    visited = []
-    acc = 0
-    while i in range(len(program)):
-        if i in visited: 
-            return (True, acc)
+def test_program(program: list[int, int]) -> int:
+    acc     = 0
+    index   = 0 
+    visited = set()
+    while index in range(len(program)):
+        if index in visited: 
+            return -acc
         else: 
-            visited.append(i)
-            ins, step = program[i]
+            visited.add(index)
+            ins, value = program[index]
             match ins:
-                case 'acc': acc += step
-                case 'jmp': i += step - 1
-            i += 1
-    return (False, acc)
+                case 1: acc   += value
+                case 2: index += value - 1
+            index += 1
+    return acc

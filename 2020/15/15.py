@@ -1,14 +1,11 @@
-def generator(input):
+def preprocessing(input):
     values = [int(item) for item in input.split(',')]
-    return ({spoken :[n] for (n, spoken) in enumerate(values)} , values[-1])
+    return ({spoken:[n] for (n, spoken) in enumerate(values)} , values[-1])
 
-def part_1(input): return solver(input, 2020)
-
-def part_2(input): return solver(input, 30_000_000)
-
-def solver(input, turns):
+def solver(input):
     spoken, last_spoken = input
-    for i in range(len(spoken),turns):
+    for i in range(len(spoken),30_000_000):
+        if i == 2_020: yield last_spoken
         if len(spoken[last_spoken]) == 1: 
             last_spoken = 0
         else: 
@@ -16,7 +13,7 @@ def solver(input, turns):
             last_spoken = n - p
         if last_spoken in spoken: 
             spoken[last_spoken] = [spoken[last_spoken][-1], i]
-        else : 
+        else: 
             spoken[last_spoken] = [i]
-    return last_spoken
+    yield last_spoken
 

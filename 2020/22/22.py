@@ -1,11 +1,18 @@
-def generator(input):
+from copy import deepcopy
+
+
+def preprocessing(input_):
     cards = {}
-    for n, plain_cards in enumerate(input.split('\n\n')):
+    for n, plain_cards in enumerate(input_.split('\n\n')):
         cards[n + 1] = [int(card) for card in plain_cards.splitlines()[1:]]
     return cards
 
-def part_1(input): 
-    cards = input
+def solver(input_):
+    yield part_1(deepcopy(input_))
+    yield part_2(input_)
+
+def part_1(input_): 
+    cards = input_
     while [] not in cards.values():
         a, cards[1] = cards[1][0], cards[1][1:]
         b, cards[2] = cards[2][0], cards[2][1:]
@@ -15,8 +22,8 @@ def part_1(input):
     else: winner = 1
     return sum((n + 1) * c for n, c in enumerate(cards[winner][::-1]))
 
-def part_2(input): 
-    cards = input
+def part_2(input_): 
+    cards = input_
     decks = []
     while [] not in cards.values():
         if list(cards.values()) in decks:
