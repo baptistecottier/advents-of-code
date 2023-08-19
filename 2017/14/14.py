@@ -1,7 +1,13 @@
 from pythonfw.y2017 import knot_hash
 
+
 def solver(salt):
-    maze = get_maze(salt)   
+    
+    maze = set()
+    for row in range(128):
+        hex_hash = int(knot_hash(f"{salt}-{row}",256), 16)
+        maze.update(set((row, i) for i in range(128) if hex_hash >> i & 1))
+    
     yield len(maze)
     
     regions = 0
@@ -15,12 +21,5 @@ def solver(salt):
                     region.append(candidate)
                     maze.remove(candidate)
         regions += 1
+        
     yield regions
-
-
-def get_maze(instructions):
-    maze = set()
-    for row in range(128):
-        hex_hash = int(knot_hash(f"{instructions}-{row}",256), 16)
-        maze.update(set((row, i) for i in range(128) if hex_hash >> i & 1))
-    return maze
