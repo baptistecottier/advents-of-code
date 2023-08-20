@@ -1,3 +1,4 @@
+from operator import gt
 from re           import findall
 from collections  import defaultdict, deque
 from math         import prod
@@ -112,5 +113,8 @@ def screen_reader(screen: set) -> str:
                 word += 'B'
     return word
 
-def sign(a: int) -> int: 
-        return (a > 0) - (0 > a)
+def sign(a, b = 0, f = gt) -> int: 
+        if f(b, a): return -1
+        if f(a, b): return 1
+        return 0
+        # return f(a, b) - f(b, a)
