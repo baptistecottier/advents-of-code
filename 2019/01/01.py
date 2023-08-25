@@ -1,14 +1,17 @@
 def preprocessing(input: str) -> list[int]:
     return list(int(item) for item in input.splitlines())
 
+
 def solver(modules: list[int]):
     fuel: int = 0
     modules   = compute_fuel(modules)
     fuel      += sum(modules)
     yield fuel
+
     while modules:
         modules = compute_fuel(modules)
         fuel    += sum(modules)
+        
     yield fuel
 
 

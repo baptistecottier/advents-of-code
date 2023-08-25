@@ -5,6 +5,7 @@ from pythonfw.ship_computer import Program
 def preprocessing(input_: str) -> list[int]: 
     return list(map(int, input_.split(',')))
 
+
 def solver(intcode):
     highest = 0
     for setting in permutations([0, 1, 2, 3, 4]):

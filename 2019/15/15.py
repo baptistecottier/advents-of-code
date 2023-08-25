@@ -1,12 +1,14 @@
-from collections import deque
-from pythonfw.ship_computer import Program
+from collections            import deque
 from pythonfw.classes       import Point
 from pythonfw.functions     import bfs
+from pythonfw.ship_computer import Program
 
-def preprocessing(input: str) -> list[int]:
+
+def preprocessing(input):
     return tuple(map(int, input.split(',')))
 
-def solver(intcode): 
+
+def solver(*intcode): 
     maze, (pos, distance) = intcode_bfs(intcode)
     yield distance
     yield max(bfs(maze, pos, pt) for pt in maze)

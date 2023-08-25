@@ -1,20 +1,21 @@
-def preprocessing(input: int):
-    return [int(c) for c in input]
+def preprocessing(input_: int):
+    return [int(c) for c in input_]
 
-def solver(input):
-    yield part_1(input)
-    yield part_2(input)
-    
-def part_1(input: str):
+
+def solver(signal):
+    yield naive_fft(signal)
+    yield smart_ftt(signal * 10_000)
+
+
+def naive_fft(signal):
     pattern = [0, 1, 0, -1]
-    signal = input
     for _ in range(100):
         signal = [abs(sum(s * pattern[(k + 1) // (i + 1) % 4] for k, s in enumerate(signal))) % 10 for i in range(len(signal))]
     return ''.join(str(n) for n in signal[:8])
-    
-def part_2(input): 
-    offset = int(''.join(str(n) for n in input[:7]))
-    signal = input * 10_000
+
+
+def smart_ftt(signal):
+    offset = int(''.join(str(n) for n in signal[:7]))
     for _ in range(100):
         partial_sum = 0
         for j in range(len(signal) - 1, offset - 1, -1):

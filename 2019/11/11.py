@@ -17,12 +17,14 @@ class Robot(Point):
 def preprocessing(input: str) -> list[int]: 
     return list(map(int, input.split(',')))
 
+
 def solver(intcode: list[int]) -> Generator:
     _, whited = paint(intcode, set())
     yield len(whited)
 
     white, _ = paint(intcode, {(0, 0)})
     yield screen_reader(white)
+
 
 def paint(intcode: list[int], white: set) -> tuple[set]:
     whited: set      = set()

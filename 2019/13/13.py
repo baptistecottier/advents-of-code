@@ -1,9 +1,11 @@
-from pythonfw.ship_computer  import Program
 from pythonfw.classes        import Point
 from pythonfw.functions      import sign
+from pythonfw.ship_computer  import Program
+
 
 def preprocessing(input_: str) -> list[int]:
     return list(map(int, input_.split(',')))
+
 
 def solver(intcode: list[int]):
     block: int      = 0    

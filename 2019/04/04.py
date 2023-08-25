@@ -1,8 +1,10 @@
-from itertools   import pairwise
 from collections import Counter
+from itertools   import pairwise
+
 
 def preprocessing(input: str) -> list[int]: 
     return [int(item) for item in input.split('-')]
+
 
 def solver(bounds: list[int]):
     cnt_eq: int = 0

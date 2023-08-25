@@ -8,7 +8,8 @@ def preprocessing(input: str) -> dict[str: str]:
         ctr, pnt = orbit.split(')')
         orbits[pnt] = ctr
     return orbits
-    
+
+
 def solver(orbits: dict[str: str]) -> Generator:
     paths: list[list[str]] = map_orbits(orbits)
     total_orbits : int     = 0
@@ -26,7 +27,8 @@ def solver(orbits: dict[str: str]) -> Generator:
                 total_orbits += path.index(planet)
                 break
     yield (1, total_orbits)
-   
+
+
 def map_orbits(orbits: dict[str: str]) -> list[list[str]]:
     paths: list[list[str]] = []
     for p in [ends for ends in orbits.keys() if ends not in orbits.values()]: 
