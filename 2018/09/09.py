@@ -5,8 +5,7 @@ def preprocessing(input):
     details = input.split(' ')
     return (int(details[0]), int(details[-2]))
 
-def solver(settings):
-    players, last_marble = settings
+def solver(players, last_marble):
     
     scores = defaultdict(int)
     circle = deque([0])

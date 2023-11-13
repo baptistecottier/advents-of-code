@@ -7,8 +7,7 @@ def preprocessing(input):
     max_x, max_y   = max(list_x), max(list_y)
     return coordinates, min_x, max_x, min_y, max_y
 
-def solver(data):
-    coordinates, min_x, max_x, min_y, max_y = data
+def solver(coordinates, min_x, max_x, min_y, max_y):
     areas   = {c: 0 for c in coordinates}
     corners = set()
     region_size = 0
