@@ -1,19 +1,20 @@
 aoc::main!() ; 
 
 fn preprocessing(input: &str) -> String {
-    input.to_string()
+    input
+    .to_string()
 }
 
-fn part_1(passwords :  String) -> String {
+fn part_1(passwords:  String) -> String {
     solver(passwords.clone())
 }
 
-fn part_2(passwords :  String) -> String {
+fn part_2(passwords:  String) -> String {
     solver(next_pw(solver(passwords.clone())))
 }
 
-fn solver(mut passwords :  String) -> String {
-    let mut new_pw : bool = false ;
+fn solver(mut passwords:  String) -> String {
+    let mut new_pw: bool = false ;
     while !new_pw {
         if  ! passwords.contains('o') && 
             ! passwords.contains('i') &&
@@ -31,17 +32,21 @@ fn solver(mut passwords :  String) -> String {
     passwords
 }
 
-fn next_pw(passwords :  String) -> String {
-    let mut letters = passwords.chars().collect_vec() ; 
-match letters[7] {
-    'i' | 'l' | 'o'  =>  letters[7] = (letters[7] as u8 + 2) as char ,
-    'z' => { letters[7]='a' ;
-            let mut c = 6 ;
-             while  letters[c] == 'z' {letters[c]='a';
-                                    c-=1;}
-            letters[c] = (letters[c] as u8 + 1) as char ;},
+fn next_pw(passwords:  String) -> String {
 
-    _ => letters[7] = (letters[7] as u8 + 1) as char 
-}
-letters.into_iter().collect()
+    let mut letters = passwords.chars().collect_vec() ; 
+    match letters[7] {
+        'i' | 'l' | 'o'  =>  letters[7] = (letters[7] as u8 + 2) as char ,
+        'z'              => { 
+            letters[7] = 'a' ;
+            let mut c  = 6 ;
+            while  letters[c] == 'z' {
+                letters[c] = 'a';
+                c -= 1;}
+            letters[c] = (letters[c] as u8 + 1) as char ;},
+        _               => letters[7] = (letters[7] as u8 + 1) as char}
+    
+    letters
+    .into_iter()
+    .collect()
 }

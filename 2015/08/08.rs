@@ -6,7 +6,7 @@ fn preprocessing(input: &str) -> Vec<&str> {
     .collect()
 }
 
-fn part_1(strings : Vec<&str>) -> usize {
+fn part_1(strings: Vec<&str>) -> usize {
     strings
     .iter()
     .fold(0, |acc, l| acc  + l.len())
@@ -17,7 +17,7 @@ fn part_1(strings : Vec<&str>) -> usize {
     .fold(0, |acc , l| acc + l.len() - 3 * l.matches("\\x").count() - 2)
 }
 
-fn part_2(strings : Vec<&str>) -> usize {
+fn part_2(strings: Vec<&str>) -> usize {
     strings
     .iter()
     .map(|l| l.replace("\\","aa").replace("\"","aa"))

@@ -13,7 +13,7 @@ fn preprocessing(input: &str) -> Vec<(i32, i32)> {
     .collect()
 }
 
-fn part_1(instructions : Vec<(i32, i32)>) -> usize {
+fn part_1(instructions: Vec<(i32, i32)>) -> usize {
     instructions
     .iter()
     .scan((0,0), |pos, i| {
@@ -25,7 +25,7 @@ fn part_1(instructions : Vec<(i32, i32)>) -> usize {
     +1
 }
 
-fn part_2(instructions : Vec<(i32, i32)>) -> usize {
+fn part_2(instructions: Vec<(i32, i32)>) -> usize {
     instructions
     .iter()
     .step_by(2)

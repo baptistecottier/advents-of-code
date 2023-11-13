@@ -13,7 +13,7 @@ fn preprocessing(input: &str) -> Vec<(u32, u32, u32)> {
     .collect()
 }
 
-fn part_1(gifts : Vec<(u32, u32, u32)>) -> u32 {
+fn part_1(gifts: Vec<(u32, u32, u32)>) -> u32 {
     gifts
     .iter()
     .fold( 0, |acc , (l, w, h)| 
@@ -22,7 +22,7 @@ fn part_1(gifts : Vec<(u32, u32, u32)>) -> u32 {
         + [l * w, l * h, w * h].iter().min().unwrap())
 }
 
-fn part_2(gifts : Vec<(u32, u32, u32)>)  -> u32{
+fn part_2(gifts: Vec<(u32, u32, u32)>)  -> u32{
     gifts
     .iter()
     .fold(0,  |acc, (l, w, h)| 

@@ -6,7 +6,7 @@ fn preprocessing(input: &str) -> Vec<&str> {
     .collect_vec()
 }
 
-fn part_1(strings : Vec<&str>) -> usize {
+fn part_1(strings: Vec<&str>) -> usize {
     strings
     .iter()
     .filter(|string|
@@ -16,7 +16,7 @@ fn part_1(strings : Vec<&str>) -> usize {
     .count()
 }
 
-fn part_2(strings : Vec<&str>) -> usize {
+fn part_2(strings: Vec<&str>) -> usize {
     strings
     .iter()
     .filter(|string|

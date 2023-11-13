@@ -9,18 +9,18 @@ fn preprocessing(input: &str) -> Vec<[i64 ; 5]> {
 }
 
 
-fn part_1(ingredients : Vec<[i64 ; 5]>) -> i64 {
+fn part_1(ingredients: Vec<[i64 ; 5]>) -> i64 {
     solver(ingredients, false)
 }
 
 
 
-fn part_2(ingredients : Vec<[i64 ; 5]>) -> i64 {
+fn part_2(ingredients: Vec<[i64 ; 5]>) -> i64 {
     solver(ingredients, true)
 }
 
 
-fn solver(ingredients : Vec<[i64 ; 5]>, check_calories : bool) -> i64 {
+fn solver(ingredients: Vec<[i64 ; 5]>, check_calories: bool) -> i64 {
     (0..100).map(|i| {
         let sprinkles = &ingredients[0].iter().map(|elem| i * elem).collect_vec();
         (0..100-i).map(|j| {

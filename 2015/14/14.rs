@@ -8,14 +8,14 @@ fn preprocessing(input: &str) -> Vec<(usize, usize, usize)> {
     .collect_vec()
 }
 
-fn part_1(reeinders_info : Vec<(usize, usize, usize)>) -> usize {
+fn part_1(reeinders_info: Vec<(usize, usize, usize)>) -> usize {
     *solver(reeinders_info.clone(), 2503)
     .iter()
     .max()
     .unwrap()
 }
 
-fn part_2(reeinders_info : Vec<(usize, usize, usize)>) -> usize {
+fn part_2(reeinders_info: Vec<(usize, usize, usize)>) -> usize {
     let mut bonus = [0 ; 9] ; 
     (1..2503)
     .for_each(|s| {
@@ -27,7 +27,7 @@ fn part_2(reeinders_info : Vec<(usize, usize, usize)>) -> usize {
     *bonus.iter().max().unwrap()
     }
 
-fn solver(reeinders_info : Vec<(usize, usize, usize)>, seconds : usize) -> Vec<usize> {
+fn solver(reeinders_info: Vec<(usize, usize, usize)>, seconds: usize) -> Vec<usize> {
     reeinders_info
     .iter()
     .map(|(speed, time, rest)| {

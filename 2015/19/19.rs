@@ -14,12 +14,12 @@ fn preprocessing(input: &str) -> (Vec<Vec<&str>>,&str) {
     )
 }
 
-fn part_1(data : (Vec<Vec<&str>>,&str)) -> usize {
+fn part_1(data: (Vec<Vec<&str>>,&str)) -> usize {
     apply_replacements(data.1.to_string(), data.0)
         .len()
     }
 
-fn part_2(data : (Vec<Vec<&str>>,&str)) -> usize {
+fn part_2(data: (Vec<Vec<&str>>,&str)) -> usize {
     data.1
     .chars()
     .tuple_windows::<(char, char)>()
@@ -31,7 +31,7 @@ fn part_2(data : (Vec<Vec<&str>>,&str)) -> usize {
     - 1
     }
 
-fn apply_replacements(data : String, replacements : Vec<Vec<&str>>) -> Vec<String> {
+fn apply_replacements(data: String, replacements: Vec<Vec<&str>>) -> Vec<String> {
     replacements
         .iter()
         .map(|pattern|  (data.match_indices(pattern[0]).collect_vec(),pattern[1]))

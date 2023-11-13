@@ -17,7 +17,7 @@ fn part_2(routes: Vec<u16>) -> u16 {
     solver(routes, -1)
     }
 
-fn solver(routes: Vec<u16>, polarity : i16) -> u16 {
+fn solver(routes: Vec<u16>, polarity: i16) -> u16 {
     let c = ((2 * routes.len()) as f64).sqrt() as usize + 1 ;
     (0..c)
     .permutations(c)

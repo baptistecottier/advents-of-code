@@ -4,15 +4,15 @@ fn preprocessing(input: &str) -> String {
     input.to_string()
 }
 
-fn part_1(digits : String) -> usize {
+fn part_1(digits: String) -> usize {
 solve(digits, 40)
     }
 
-fn part_2(digits : String) -> usize {
+fn part_2(digits: String) -> usize {
     solve(digits, 50)
 }
 
-fn solve(mut digits : String, loops : usize) -> usize {
+fn solve(mut digits: String, loops: usize) -> usize {
     let mut i = 0 ; 
     while i < loops {
         let new_input = 

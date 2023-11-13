@@ -32,21 +32,21 @@ fn preprocessing(input: &str) -> Vec<i16> {
         .collect_vec()
 }
 
-fn part_1(boss_stats : Vec<i16>) -> i16 {
+fn part_1(boss_stats: Vec<i16>) -> i16 {
     *solver(boss_stats, true)
         .iter()
         .min()
         .unwrap()
 }
 
-fn part_2(boss_stats : Vec<i16>) -> i16 {
+fn part_2(boss_stats: Vec<i16>) -> i16 {
     *solver(boss_stats, false)
         .iter()
         .max()
         .unwrap()
 }
 
-fn solver(boss_stats : Vec<i16> , winner : bool) -> Vec<i16> {
+fn solver(boss_stats: Vec<i16> , winner: bool) -> Vec<i16> {
     iproduct!(WEAPONS, ARMORS, RINGS, RINGS)
         .filter(|(_, _, r1, r2)| r1 != r2 || *r1 == (0,0,0))
         .filter(|(w,a,r1,r2)| {

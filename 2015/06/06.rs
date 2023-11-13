@@ -19,26 +19,28 @@ fn preprocessing(input: &str) -> Vec<(usize, usize, u32)> {
     .collect()
 }
 
-fn part_1(instructions : Vec<(usize, usize, u32)>) -> u32 {
-    let mut grid : Grid<u32> = Grid::new(1000, 1000); 
-
+fn part_1(instructions: Vec<(usize, usize, u32)>) -> u32 {
     instructions
     .iter()
-    .for_each(|&(x, y, a)| 
+    .fold(Grid::new(1000, 1000), |mut grid, &(x, y, a)| {
         match a {
             2 => grid[x][y] = 1 - grid[x][y],
-            _ => grid[x][y] = a as u32 });
-    grid.flatten().iter().sum()
+            _ => grid[x][y] = a as u32 };
+        grid})
+    .flatten()
+    .iter()
+    .sum()
 }
 
-fn part_2(instructions : Vec<(usize, usize, u32)>) -> u32 {
-    let mut grid : Grid<u32> = Grid::new(1000, 1000); 
-
+fn part_2(instructions: Vec<(usize, usize, u32)>) -> u32 {
     instructions
     .iter()
-    .for_each(|&(x, y, a)| 
+    .fold(Grid::<u32>::new(1000, 1000), |mut grid, &(x, y, a)| {
         match a {
             0 => grid[x][y] = grid[x][y].saturating_sub(1),
-            _ => grid[x][y] += a as u32 });
-    grid.flatten().iter().sum()
+            _ => grid[x][y] += a as u32 };
+        grid})
+    .flatten()
+    .iter()
+    .sum()
 }

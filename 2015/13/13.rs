@@ -21,7 +21,7 @@ fn part_2(changes: Vec<i16>) -> i16 {
     solve(changes,2)
     }
 
-fn solve(changes : Vec<i16>, part : usize) -> i16 {
+fn solve(changes: Vec<i16>, part: usize) -> i16 {
     let c = ((changes.len()) as f64).sqrt() as usize + part ;
     (0..c)
     .permutations(c)
