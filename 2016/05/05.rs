@@ -4,7 +4,7 @@ fn preprocessing(input: &str) -> &str {
     input
 }
 
-fn part_1(door_id : &str) -> String {
+fn part_1(door_id: &str) -> String {
     (0..)
     .map(|index| format!("{:x}", md5::compute(format!("{}{}", door_id, index))))
     .filter(|hash| &hash[..5] == "00000")
@@ -13,7 +13,7 @@ fn part_1(door_id : &str) -> String {
     .collect::<String>()
 }
 
-fn part_2(door_id : &str) -> String {
+fn part_2(door_id: &str) -> String {
     (0..)
     .map(|index| format!("{:x}", md5::compute(format!("{}{}", door_id, index))))
     .filter(|hash| &hash[..5] == "00000" && (b'0'..b'8').contains(&hash.as_bytes()[5]))

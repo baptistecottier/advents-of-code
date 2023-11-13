@@ -5,11 +5,11 @@ fn preprocessing(input: &str) -> &str {
     input
 }
 
-fn part_1(salt : &str) -> usize {
+fn part_1(salt: &str) -> usize {
     solver(salt, 0)
 }
 
-fn part_2(salt : &str) -> usize {
+fn part_2(salt: &str) -> usize {
     solver(salt, 2016)
 }
 

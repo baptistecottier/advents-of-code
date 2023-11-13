@@ -12,7 +12,7 @@ fn part_2(file: &str) -> usize {
     solver(file, part_2)
 }
 
-fn solver(file: &str, func : impl Fn(&str) -> usize) -> usize {
+fn solver(file: &str, func: impl Fn(&str) -> usize) -> usize {
     let d = &file.splitn(4, &['(','x',')']).collect_vec();
 
     match d.len() {

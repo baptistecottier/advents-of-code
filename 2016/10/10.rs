@@ -40,7 +40,7 @@ fn preprocessing(input: &str) -> Vec<(usize, usize, usize)> {
  }
 
 
- fn solver(instructions : Vec<(usize, usize, usize)>) -> (usize, usize) {
+ fn solver(instructions: Vec<(usize, usize, usize)>) -> (usize, usize) {
     let n_bots = 
         instructions
         .iter()

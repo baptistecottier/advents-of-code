@@ -27,7 +27,7 @@ fn part_2(maze: Vec<Vec<char>> ) -> usize {
 }
 
 
-fn bfs(maze : Vec<Vec<char>>, start : (usize, usize), end : (usize, usize)) -> usize {
+fn bfs(maze: Vec<Vec<char>>, start: (usize, usize), end: (usize, usize)) -> usize {
     let (h, w) = (maze.len(), maze.iter().next().unwrap().len()) ;
     let mut seen = HashSet::from([start]);
     let mut queue = [[start].to_vec()].to_vec();

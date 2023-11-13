@@ -27,7 +27,7 @@ fn solver(procedure: Vec<&str>, bathroom_keyboard: bool) -> Vec<(i32, i32)> {
     .map(|instr|{
         instr
         .chars()
-        .fold((1,1), |acc : (i32, i32), c| {
+        .fold((1,1), |acc: (i32, i32), c| {
             let bounds = 
                 match bathroom_keyboard { 
                     false => (0, 2, 2, 0),

@@ -8,7 +8,7 @@ fn preprocessing(input: &str) -> Vec<(String, u32, String)> {
     .collect_vec()        
 }
 
-fn part_1(rooms : Vec<(String, u32, String)>) -> u32 {
+fn part_1(rooms: Vec<(String, u32, String)>) -> u32 {
     rooms
     .iter()
     .map(|(name, id, cs)| 
@@ -26,7 +26,7 @@ fn part_1(rooms : Vec<(String, u32, String)>) -> u32 {
     .sum::<u32>()
 }
 
-fn part_2(rooms : Vec<(String, u32, String)>) -> u32 {
+fn part_2(rooms: Vec<(String, u32, String)>) -> u32 {
     rooms
     .iter()
     .find(|(name, id, _)|
