@@ -1,5 +1,6 @@
 aoc::main!();
 
+
 fn preprocessing(input: &str) -> Vec<usize> {
     input
     .lines()
@@ -11,9 +12,11 @@ fn preprocessing(input: &str) -> Vec<usize> {
     .collect_vec()
 }
 
+
 fn part_1(boarding_passes: Vec<usize>) -> usize {
     boarding_passes[boarding_passes.len() - 1]
 }
+
 
 fn part_2(boarding_passes: Vec<usize>) -> usize {
     *boarding_passes

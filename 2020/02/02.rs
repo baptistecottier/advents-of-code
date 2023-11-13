@@ -1,9 +1,10 @@
-aoc2020::main!();
+aoc::main!();
 
-fn generator(input: &str) -> Vec<(usize, usize, char, &str)> {
+fn preprocessing(input: &str) -> Vec<(usize, usize, char, &str)> {
     input
     .lines()
-    .map(|l| l
+    .map(|password| 
+        password
         .split(['-',' ',':'])
         .collect_tuple()
         .unwrap())
@@ -11,18 +12,20 @@ fn generator(input: &str) -> Vec<(usize, usize, char, &str)> {
     .collect_vec()
 }
 
-fn part_1(input: Vec<(usize, usize, char, &str)>) -> usize {
-    input
+
+fn part_1(passwords: Vec<(usize, usize, char, &str)>) -> usize {
+    passwords
     .iter()
-    .filter(|(a,b,c,d)| 
-        (a..=b)
-        .contains(&& d.chars().filter(|ch| ch == c)
+    .filter(|&(a,b,c,d)| 
+        (*a..=*b)
+        .contains(& d.chars().filter(|ch| ch == c)
         .count()))
     .count()
 }
 
-fn part_2(input: Vec<(usize, usize, char, &str)>) -> usize {
-    input
+
+fn part_2(passwords: Vec<(usize, usize, char, &str)>) -> usize {
+    passwords
     .iter()
     .filter(|&(a,b,c,d)| (d.chars().nth(a - 1).unwrap() == *c) ^ (d.chars().nth(b - 1).unwrap() == *c))
     .count()

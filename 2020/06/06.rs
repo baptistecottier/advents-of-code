@@ -1,32 +1,33 @@
-aoc2020::main!();
+aoc::main!();
 
-fn generator(input: &str) -> Vec<Vec<&str>> {
+fn preprocessing(input: &str) -> Vec<(usize, HashMap<char, usize>)> {
     input
     .split("\n\n")
-    .map(|group| group.split('\n').collect_vec())
+    .map(|group| 
+        (
+            group.lines().count()
+        ,
+            group.replace("\n", "").chars().counts()
+        ))
     .collect_vec()
 }
 
-fn part_1(input: Vec<Vec<&str>>) -> usize {
-    solver(input, 0)
-}
 
-fn part_2(input: Vec<Vec<&str>>) -> usize {
-    solver(input, 1)
-}
-
-fn solver(groups: Vec<Vec<&str>>, all: usize) -> usize {
-    groups
+fn part_1(answers: Vec<(usize, HashMap<char, usize>)>) -> usize {
+    answers
     .iter()
-    .map(|group|
-        group
-        .iter()
-        .join("")
-        .chars()
-        .counts()
-        .iter()
-        .filter(|(_,n)|
-            **n >= all * group.len())
+    .map(|(_, cnts)| cnts.len())
+    .sum()
+}
+
+
+fn part_2(answers: Vec<(usize, HashMap<char, usize>)>) -> usize {
+    answers
+    .iter()
+    .map(|(grp_size, cnts)| 
+        cnts
+        .values()
+        .filter(|&cnt| cnt == grp_size)
         .count())
     .sum()
 }
