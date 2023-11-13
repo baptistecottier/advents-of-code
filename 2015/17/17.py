@@ -5,7 +5,7 @@ def preprocessing(input_):
     return tuple(int(container) for container in input_.splitlines())
 
 
-def solver(containers):
+def solver(*containers):
     total = 0
     found = False
     

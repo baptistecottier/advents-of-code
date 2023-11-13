@@ -20,7 +20,7 @@ def preprocessing(input_):
     return hp, damage, armor
 
 
-def solver(boss_stats):
+def solver(*boss_stats):
     costs = test_all_fights(*boss_stats)
     yield min(costs[1])
     yield max(costs[0])

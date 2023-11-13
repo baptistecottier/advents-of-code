@@ -6,7 +6,7 @@ def preprocessing(input_):
     return hp, damage
 
 
-def solver(boss_data): 
+def solver(*boss_data): 
     player_turn([], 50, 500, *boss_data, 0, False, list_manas := set())
     yield min(list_manas)
 

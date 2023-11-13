@@ -9,10 +9,9 @@ def preprocessing(input_):
         replacements[start].append(end)
     return replacements, molecule
 
-def solver(data):
-    replacements, molecule = data
+def solver(replacements, molecule_):
     candidates = set()
-    
+    molecule = molecule_
     for mol in replacements.keys():
         pieces = molecule.split(mol)
         for replacement in replacements[mol]:
@@ -21,9 +20,7 @@ def solver(data):
                 
     yield len(candidates)
 
-
-    _, molecule = data
-    a = len([c for c in molecule if c.isupper()])
-    b = molecule.count('Rn') + molecule.count('Ar')
-    c = molecule.count('Y')
+    a = len([c for c in molecule_ if c.isupper()])
+    b = molecule_.count('Rn') + molecule_.count('Ar')
+    c = molecule_.count('Y')
     yield a - b - 2 * c - 1
