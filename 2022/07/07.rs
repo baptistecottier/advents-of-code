@@ -1,14 +1,14 @@
 aoc2022::main!() ;
 
-fn generator(input : &str) -> Vec<&str>{
+fn preprocessing(input: &str) -> Vec<&str>{
     input.lines().collect_vec()
 }
 
-fn part_1(input : Vec<&str>) -> u32{
+fn part_1(input: Vec<&str>) -> u32{
     solver(input, 100_000, false).iter().sum()
 }
 
-fn part_2(input : Vec<&str>) -> u32 {
+fn part_2(input: Vec<&str>) -> u32 {
     let to_free = input
         .iter()
         .filter(|cmd| ! (cmd.contains("$") || cmd.contains("dir")))
@@ -19,9 +19,9 @@ fn part_2(input : Vec<&str>) -> u32 {
 
 }
 
-fn solver (input :Vec<&str>, bound : u32, delete : bool) -> Vec<u32> {
-    let mut path : String = root();
-    let mut sizes : HashMap<String, u32> = HashMap::new();
+fn solver (input :Vec<&str>, bound: u32, delete: bool) -> Vec<u32> {
+    let mut path: String = root();
+    let mut sizes: HashMap<String, u32> = HashMap::new();
     input
         .iter()
         .for_each(| command | {
@@ -48,15 +48,15 @@ fn root() -> String {
     return "root/".to_string()
 }
 
-fn back(path : String) -> String {
+fn back(path: String) -> String {
     return [path.rsplitn(3 , '/').collect_vec().iter().nth_back(0).unwrap().to_string(),"/".to_string()].concat()
 }
 
-fn open(path : String, new_folder : &str) -> String {
+fn open(path: String, new_folder: &str) -> String {
     return [path.to_string(),new_folder.to_string(),"/".to_string()].concat()
 }
 
-fn update_sizes(path : String, mut sizes : HashMap<String, u32>, size : &str) -> HashMap<String, u32> {
+fn update_sizes(path: String, mut sizes: HashMap<String, u32>, size: &str) -> HashMap<String, u32> {
     let paths = path.split_terminator('/').collect_vec() ;
     let file_size = size.parse::<u32>().unwrap() ;
     paths

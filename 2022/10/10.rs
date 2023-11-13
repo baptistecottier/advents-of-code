@@ -1,6 +1,6 @@
 aoc2022::main!(); 
 
-fn generator(input : &str) -> Vec<i32> {
+fn preprocessing(input: &str) -> Vec<i32> {
     input
         .lines()
         .map(|l| if l == "noop" {(1, 0)} else {(2 , l.split(' ').collect_vec()[1].parse().unwrap())})
@@ -10,7 +10,7 @@ fn generator(input : &str) -> Vec<i32> {
     ).0
 }
 
-fn part_1(ops : Vec<i32>) -> i32 {
+fn part_1(ops: Vec<i32>) -> i32 {
     ops
         .iter()
         .enumerate()
@@ -18,7 +18,7 @@ fn part_1(ops : Vec<i32>) -> i32 {
         .fold(0, |acc, (n , v)| acc + (1 + n as i32) * v)
 }
 
-fn part_2(ops : Vec<i32>) -> String {
+fn part_2(ops: Vec<i32>) -> String {
     ops
         .iter()
         .enumerate()

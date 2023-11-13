@@ -1,6 +1,7 @@
+
 aoc2022::main!(); 
 
-fn generator(input : &str) -> (Vec<String> , Vec<(usize, usize, usize)>) {
+fn preprocessing(input: &str) -> (Vec<String> , Vec<(usize, usize, usize)>) {
     let (crates, rearrangements) = input.split("\n\n").collect_tuple().unwrap() ;   
     let h = crates.lines().count() - 1  ;
     let w = (crates.len()-h) / (4 * h);
@@ -28,15 +29,15 @@ fn generator(input : &str) -> (Vec<String> , Vec<(usize, usize, usize)>) {
         .collect_vec())
 }
 
-fn part_1(input : (Vec<String> , Vec<(usize, usize, usize)>)) -> String {
+fn part_1(input: (Vec<String> , Vec<(usize, usize, usize)>)) -> String {
     solver(input, |c| c.rev().collect::<String>())
 }
 
-fn part_2(input : (Vec<String> , Vec<(usize, usize, usize)>)) -> String {
+fn part_2(input: (Vec<String> , Vec<(usize, usize, usize)>)) -> String {
     solver(input, |c| c.collect::<String>())
 }
 
-fn solver<F>(input : (Vec<String> , Vec<(usize, usize, usize)>) , f : F) -> String 
+fn solver<F>(input: (Vec<String> , Vec<(usize, usize, usize)>) , f: F) -> String 
 where
     F: Fn(std::string::Drain) -> String,
 {
@@ -44,7 +45,7 @@ where
     input.1
         .iter()
         .for_each(|&(n,s,e)| { 
-            let crates : &str = &f(stacks[s].drain(..n));
+            let crates: &str = &f(stacks[s].drain(..n));
             stacks[e].insert_str(0 , crates) ;
             });
     stacks

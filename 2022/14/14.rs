@@ -1,6 +1,6 @@
 aoc2022::main!() ;
 
-fn generator(input : &str) -> ([[u8 ; 1000] ; 200] , usize) {
+fn preprocessing(input: &str) -> ([[u8 ; 1000] ; 200] , usize) {
     let mut cave = [[0 ; 1000] ; 200];
     let mut max_depth = 0 ;
     input
@@ -16,15 +16,15 @@ fn generator(input : &str) -> ([[u8 ; 1000] ; 200] , usize) {
     (cave, max_depth)
 }
 
-fn part_1(input :  ([[u8 ; 1000] ; 200] , usize)) -> usize {
+fn part_1(input:  ([[u8 ; 1000] ; 200] , usize)) -> usize {
     solver(input.0, input.1, false)
 }
 
-fn part_2(input :  ([[u8 ; 1000] ; 200] , usize)) -> usize {
+fn part_2(input:  ([[u8 ; 1000] ; 200] , usize)) -> usize {
     solver(input.0, input.1 , true)
 }
 
-fn solver(mut cave : [[u8 ; 1000] ; 200], max_depth : usize, floor : bool) -> usize {
+fn solver(mut cave: [[u8 ; 1000] ; 200], max_depth: usize, floor: bool) -> usize {
     let (mut x, mut y, mut sand) = (500, 0, 0);
 
     while cave[0][500] == 0 && y < max_depth + (2 * (floor as usize)) {

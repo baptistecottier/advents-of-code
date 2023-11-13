@@ -1,6 +1,6 @@
 aoc2022::main!(); 
 
-fn generator(input : &str) -> Vec<(u32 , Vec<Vec<u32>>)> {
+fn preprocessing(input: &str) -> Vec<(u32 , Vec<Vec<u32>>)> {
     let sl = input.lines().count() ; 
     let trees = input.chars().filter_map(|c| c.to_string().parse::<u32>().ok()).collect_vec() ; 
     
@@ -21,7 +21,7 @@ fn generator(input : &str) -> Vec<(u32 , Vec<Vec<u32>>)> {
         .collect_vec()
 }
 
-fn part_1(input : Vec<(u32 , Vec<Vec<u32>>)>  ) -> usize {
+fn part_1(input: Vec<(u32 , Vec<Vec<u32>>)>  ) -> usize {
     input
         .iter()
         .filter(|( size , views )| views.iter().any( |v| v.is_empty() || size > v.iter().max().unwrap()))

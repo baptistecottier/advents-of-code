@@ -1,6 +1,6 @@
 aoc2022::main!();
 
-fn generator(input : &str) -> Vec<(i32, i32)> {
+fn preprocessing(input: &str) -> Vec<(i32, i32)> {
     input
         .lines()
         .map(|l| l.split_whitespace().collect_vec())
@@ -20,15 +20,15 @@ fn generator(input : &str) -> Vec<(i32, i32)> {
        
 }
 
-fn part_1(path : Vec<(i32, i32)>) -> usize {
+fn part_1(path: Vec<(i32, i32)>) -> usize {
     solver(path, 2)
 }
 
-fn part_2(path : Vec<(i32, i32)>) -> usize {
+fn part_2(path: Vec<(i32, i32)>) -> usize {
     solver(path, 10)
 }
 
-fn solver(mut path : Vec<(i32 ,i32)>, knots : usize) -> usize {
+fn solver(mut path: Vec<(i32 ,i32)>, knots: usize) -> usize {
     (0 .. knots-1)
         .for_each(|_| {
             let mut tail_pos = (0 , 0) ; 

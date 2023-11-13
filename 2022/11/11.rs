@@ -1,6 +1,6 @@
 aoc2022::main!(); 
 
-fn generator(input : &str) -> (Vec<(u64, usize)>, Vec<[u64; 3]>, Vec<Vec<u64>>){
+fn preprocessing(input: &str) -> (Vec<(u64, usize)>, Vec<[u64; 3]>, Vec<Vec<u64>>){
     let mut starting_items = Vec::new();
     let mut ops = Vec::new();
     let mut pred = Vec::new();
@@ -19,16 +19,16 @@ fn generator(input : &str) -> (Vec<(u64, usize)>, Vec<[u64; 3]>, Vec<Vec<u64>>){
     (starting_items, ops, pred)
 }
 
-fn part_1(input : (Vec<(u64, usize)>, Vec<[u64; 3]>, Vec<Vec<u64>>)) -> u64 {
+fn part_1(input: (Vec<(u64, usize)>, Vec<[u64; 3]>, Vec<Vec<u64>>)) -> u64 {
     solver(input, 20, 3)
 }
 
-fn part_2(input : (Vec<(u64, usize)>, Vec<[u64; 3]>, Vec<Vec<u64>>)) -> u64 {
+fn part_2(input: (Vec<(u64, usize)>, Vec<[u64; 3]>, Vec<Vec<u64>>)) -> u64 {
     solver(input, 10_000, 1)
 
 }
 
-fn solver(input : (Vec<(u64, usize)>, Vec<[u64; 3]>, Vec<Vec<u64>>), rounds : usize, div : u64 ) -> u64 {
+fn solver(input: (Vec<(u64, usize)>, Vec<[u64; 3]>, Vec<Vec<u64>>), rounds: usize, div: u64 ) -> u64 {
     let (items, ops, preds) = input ;
     let modulo = preds.iter().map(|p| p[0]).product::<u64>();
     let mut inspected_items = vec![0 ; ops.len()];

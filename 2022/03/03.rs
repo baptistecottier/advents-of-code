@@ -1,18 +1,18 @@
 aoc2022::main!();
 
-fn generator(input : &str) -> Vec<&str> {
+fn preprocessing(input: &str) -> Vec<&str> {
     input.lines().collect()
 }
 
-fn part_1(input : Vec<&str>) -> usize {
+fn part_1(input: Vec<&str>) -> usize {
     solver(input, 1)
 }
 
-fn part_2(input : Vec<&str>) -> usize {
+fn part_2(input: Vec<&str>) -> usize {
     solver(input, 3)
 }
 
-fn solver(input : Vec<&str>, size :usize) -> usize {
+fn solver(input: Vec<&str>, size :usize) -> usize {
     input
     .chunks(size)
     .map(|l| 

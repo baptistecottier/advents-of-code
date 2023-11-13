@@ -1,6 +1,6 @@
 aoc2022::main!(); 
 
-fn generator(input : &str) ->  Vec<Vec<i16>> {
+fn preprocessing(input: &str) ->  Vec<Vec<i16>> {
     input
         .lines()
         .map(|l| l.chars().map(|c| match c {
@@ -16,17 +16,17 @@ fn part_1(input:  Vec<Vec<i16>>) -> usize {
 }
 
 
-fn part_2(input :  Vec<Vec<i16>>) -> usize {
+fn part_2(input:  Vec<Vec<i16>>) -> usize {
     solver(input, 1)
 }
 
-fn solver(input : Vec<Vec<i16>>, start : i16) -> usize {
+fn solver(input: Vec<Vec<i16>>, start: i16) -> usize {
     let (h, w) = (input.len(), input.iter().next().unwrap().len()) ;
-    let starting_positions : Vec<(usize, usize)> =
+    let starting_positions: Vec<(usize, usize)> =
         iproduct!((0..h), (0..w))
             .filter(|&(x,y)| input[x][y] == start)
             .collect_vec() ;
-    let end : (usize, usize) =  
+    let end: (usize, usize) =  
         iproduct!((0..h), (0..w))
             .find(|&(x,y)| input[x][y] == 27)
             .unwrap();
@@ -41,7 +41,7 @@ fn solver(input : Vec<Vec<i16>>, start : i16) -> usize {
         .to_owned()
 }
 
-fn bfs(maze : Vec<Vec<i16>>, start : (usize, usize), end : (usize, usize)) -> usize {
+fn bfs(maze: Vec<Vec<i16>>, start: (usize, usize), end: (usize, usize)) -> usize {
     let (h, w) = (maze.len(), maze.iter().next().unwrap().len()) ;
     let mut seen = HashSet::new();
     seen.insert(start) ; 
