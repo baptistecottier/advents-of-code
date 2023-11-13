@@ -1,6 +1,6 @@
 aoc2019::main!();
 
-fn generator(input: &str) -> Vec<u32> {
+fn preprocessing(input: &str) -> Vec<u32> {
     input
     .lines()
     .map(|n| n.parse().unwrap())

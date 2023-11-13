@@ -1,6 +1,6 @@
 aoc2019::main!(); 
 
-fn generator(input: &str) -> Vec<usize> {
+fn preprocessing(input: &str) -> Vec<usize> {
     input
     .split(',')
     .map(|n| n.parse().unwrap())
