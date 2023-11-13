@@ -1,33 +1,40 @@
-
 aoc::main!();
 
-fn preprocessing(input: &str) -> Vec<u8> {
-    input.as_bytes().to_owned()
+fn preprocessing(input_: &str) -> String {
+    input_.to_string()
 }
 
-fn part_1(input: Vec<u8>) -> usize {
-    reduce(input)
+
+fn part_1(polymer: String) -> usize {
+    react(polymer)
 }
 
-fn part_2(input: Vec<u8>) -> usize {
-    input
-        .iter()
-        .map(|&c| c - (c >= b'a') as u8 * 32)
-        .collect::<HashSet<_>>()
-        .into_iter()
-        .map(|l| reduce(input.iter().copied().filter(|&c| c != l && c != l + 32)))
-        .min()
-        .unwrap()
+
+fn part_2(polymer: String) -> usize {
+    zip('a'..='z', 'A'..='Z')
+    .map(|(l, r)| polymer.clone().replace(r, "").replace(l, ""))
+    .map(|poly| react(poly))
+    .min()
+    .unwrap()
 }
 
-fn reduce(input: impl IntoIterator<Item = u8>) -> usize {
-    let mut queue = Vec::new();
-    for c in input {
-        if queue.last().map(|&l| abs_diff(l, c) == 32).unwrap_or(false) {
-            queue.pop();
-        } else {
-            queue.push(c);
-        }
-    }
-    queue.len()
+
+fn react(polymer: String) -> usize {
+    successors(Some(polymer.clone()), |polymer_|
+        Some(
+            zip('a'..='z', 'A'..='Z')
+            .map(|(a, b)| 
+                (
+                    [a.to_string(), b.to_string()].concat()
+                ,
+                    [b.to_string(), a.to_string()].concat()
+                    ))
+        .fold(polymer_.to_string(), |poly: String, (l, r)|
+            poly.replace(&r, "").replace(&l, ""))))
+    .tuple_windows()
+    .take_while(|(p1, p2)| p1 != p2)
+    .last()
+    .unwrap()
+    .1
+    .len()
 }
