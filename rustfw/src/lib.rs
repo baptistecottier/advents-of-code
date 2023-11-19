@@ -10,6 +10,7 @@ macro_rules! main {
             grid::Grid,
             itertools::{chain, iproduct, repeat_n, FoldWhile, Itertools},
             mod_exp::mod_exp,
+            num::pow,
             regex::Regex,
             serde_json::{json, Value},
             std::cmp::Ordering,
@@ -34,7 +35,7 @@ macro_rules! main {
     };
 }
 
-pub fn rev_slice(input : &[u32]) -> Vec<u32> {
+pub fn rev_slice(input: &[u32]) -> Vec<u32> {
     let mut a = input.to_vec() ;
     a.reverse() ; 
     a

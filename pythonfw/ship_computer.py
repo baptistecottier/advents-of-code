@@ -1,5 +1,5 @@
 from collections import defaultdict
-from copy import deepcopy
+from copy        import deepcopy
 
 class Program(defaultdict):
     def __init__(self, intcode, phase = None):
@@ -25,7 +25,8 @@ class Program(defaultdict):
             self.ptr += 1
         return indexes
         
-    def run(self, signal = None):
+    def run(self, *signal):
+        signal = list(signal)
         while True:
             op = self.memory[self.ptr]
             self.ptr += 1
@@ -43,7 +44,7 @@ class Program(defaultdict):
                     if self.phase != None:
                         self.memory[i_out] = self.phase
                         self.phase = None
-                    else: self.memory[i_out] = signal
+                    else: self.memory[i_out] = signal.pop(0)
                     
                 case 4:
                     i_out, = self.extract_indexes(op, 1)
