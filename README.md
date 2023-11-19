@@ -1,6 +1,7 @@
 # Advents of code
 
-Here are my solutions for the [Advent of Code](https://adventofcode.com) challenges 🎄⭐🎅🏻.
+Here are my solutions for the [Advent of Code](https://adventofcode.com) challenges 🎄⭐🎅🏻.  
+Enter the code `1349697-f730f285` in your [Private Leaderboard Homepage](https://adventofcode.com/2022/leaderboard/private) if you wish to integrate my leaderboard.
 
 &nbsp;
 
@@ -65,5 +66,3 @@ In some puzzles, the answer to the second part arises before the answer of the f
 
 ### Acknowledgments
 Thanks [Scotow](https://github.com/scotow) for the initial framework and precious coding advices.
-
-Enter the code `1349697-f730f285` in your [Private Leaderboard Homepage](https://adventofcode.com/2022/leaderboard/private) if you wish to integrate my leaderboard.
