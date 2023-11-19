@@ -1,5 +1,5 @@
-from typing import Generator
 from pythonfw.classes import Point
+
 
 def preprocessing(input: str) -> tuple[set, int, int]:
     trees = set()
@@ -8,7 +8,8 @@ def preprocessing(input: str) -> tuple[set, int, int]:
             if c == '#': trees.add((x, y))
     return trees, x + 1, y
 
-def solver(trees: tuple[set, int, int]) -> Generator[int, None, None]:
+
+def solver(trees: tuple[set, int, int]):
     trees, mx, my = trees
     total = 1
     for dx, dy in ((1, 1), (3, 1), (5, 1), (7, 1), (1, 2)):

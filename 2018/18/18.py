@@ -14,8 +14,7 @@ def preprocessing(input_):
                 
     return grounds, trees, lumberyards
 
-def solver(landscape):
-    grounds, trees, lumberyards = landscape
+def solver(grounds, trees, lumberyards):
     seen_grounds     = [grounds] 
     seen_trees       = [trees]
     seen_lumberyards = [lumberyards]

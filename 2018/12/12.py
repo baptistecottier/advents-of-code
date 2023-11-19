@@ -7,8 +7,7 @@ def preprocessing(input):
         combinations[prev] = post
     return state, combinations
 
-def solver(plants):
-    state, spread = plants
+def solver(state, spread):
     previous_sum  = sum_pots(previous:= generate(state,    spread), 1)
     current_sum   = sum_pots(current:=  generate(previous, spread), 2)
     next_sum      = sum_pots(next:=     generate(current,  spread), n:= 3)

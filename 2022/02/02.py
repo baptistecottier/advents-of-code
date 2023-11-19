@@ -1,11 +1,12 @@
-def preprocessing(input):
+def preprocessing(input_):
     duels = {(p, q): 0 for p in range(3) for q in range(1, 4)}
-    for duel in input.splitlines():
+    for duel in input_.splitlines():
         adv, me = duel.split(' ')
         adv = int(ord(adv)) - 65
         me  = int(ord(me)) - 87
         duels[(adv, me)] += 1
     return duels 
+
 
 def solver(duels):
     total_score = 0

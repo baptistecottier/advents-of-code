@@ -11,8 +11,7 @@ def preprocessing(input_):
     return ip, instructions
 
 
-def solver(program):
-    ip, instructions = program
+def solver(ip, instructions):
     m       = 0
     visited = set()
     reg     = [0, 0, 0, 0, 0, 0]

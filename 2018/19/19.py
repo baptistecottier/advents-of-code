@@ -10,7 +10,7 @@ def preprocessing(input_):
         instructions.append((details[0], a, b, c))
     return ip, instructions
 
-def solver(instructions):
+def solver(*instructions):
     yield run(*instructions, 0)
     yield run(*instructions, 1)
 
@@ -31,7 +31,7 @@ def run(ip, instructions, reg_zero):
             case 'eqrr': reg[c] = int(reg[a] == reg[b])
             case 'setr': reg[c] = reg[a]
             case 'seti': reg[c] = a
-            case _ : print(op)
+            case _ : continue
         cycle += 1
         reg[ip] += 1
         if reg[ip] + 1 > len(instructions): return reg[0]

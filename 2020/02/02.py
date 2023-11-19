@@ -1,11 +1,12 @@
 from hashlib import new
-from typing import Generator
-from parse import parse
+from parse   import parse
 
-def preprocessing(input: str) -> Generator[tuple[int, int, str, str], None, None]: 
+
+def preprocessing(input: str): 
     return (parse("{:d}-{:d} {}: {}", pw) for pw in input.splitlines())
 
-def solver(passwords: Generator[tuple[int, int, str, str], None, None]):
+
+def solver(passwords):
     old_rule: int = 0
     new_rule: int = 0
     for a, b, w, pw in passwords:

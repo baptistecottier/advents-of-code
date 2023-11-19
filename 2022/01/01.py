@@ -1,7 +1,9 @@
-def preprocessing(input):
-    return {(int(calories) for calories in reeinder.splitlines()) for reeinder in input.split("\n\n")}
+def preprocessing(input_):
+    calories = {(int(calories) for calories in reeinder.splitlines()) for reeinder in input_.split("\n\n")}
+    return calories
 
-def solver(input): 
-    calories = sorted(sum(reeinder) for reeinder in input)
+
+def solver(calories): 
+    calories = sorted(sum(reeinder) for reeinder in calories)
     yield calories[-1]
     yield sum(calories[-3:])

@@ -3,8 +3,7 @@ from math import inf
 def preprocessing(input_): 
     return list(int(n) for n in input_), int(input_)
 
-def solver(recipes):
-    pattern, length = recipes
+def solver(pattern, length):
     trigger = length + 10
     elves   = (0, 1)
     recipes = [3, 7]

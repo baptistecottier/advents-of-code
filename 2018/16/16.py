@@ -7,8 +7,7 @@ def preprocessing(input_):
     tests   = extract_chunks(tests, 4)   
     return samples, tests
 
-def solver(input_): 
-    samples, tests = input_
+def solver(samples, tests): 
     good_samples   = 0
     matches        = {s: {c: 0 for c in range(16)} for s in range(16)}
     

@@ -17,17 +17,15 @@ def preprocessing(input_):
     erosion[ty][tx] = 0
     return erosion, tx, ty
 
-def solver(input_):
-    yield part_1(input_)
-    yield part_2(input_)
+def solver(erosion, tx, ty):
+    yield part_1(erosion, tx, ty)
+    yield part_2(erosion, tx, ty)
 
-def part_1(input_):
-    erosion, tx, ty = input_
+def part_1(erosion, tx, ty):
     return sum(sum(y[:tx + 1]) for y in erosion[:ty + 1])
 
 
-def part_2(input_): 
-    erosion, tx, ty = input_
+def part_2(erosion, tx, ty): 
     path = bfs(erosion, (0, 0), (tx, ty))
     return len(path)
 
@@ -49,7 +47,6 @@ def bfs(maze, start , end):
         if (x , y) == end:
             if tool == 2:
                 if delay == 0:
-                    print(path)
                     return len(path)
                 else: 
                     queue.append(path + [(x, y, delay - 1, 2)])

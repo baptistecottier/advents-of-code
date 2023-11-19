@@ -37,8 +37,7 @@ def preprocessing(input):
                 carts.insert(0, Cart(x, y, dx.get(c, 0), dy.get(c, 0)))
     return (circuit, carts)
 
-def solver(race): 
-    circuit, carts = race
+def solver(circuit, carts): 
     tick = 0
     first_crash = True
     while len(carts) != 1: 

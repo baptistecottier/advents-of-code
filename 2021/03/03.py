@@ -1,9 +1,8 @@
 def preprocessing(input): 
     diagnostic = input.splitlines()
-    return (len(diagnostic[0]),  set(int(item, base = 2) for item in diagnostic))
+    return len(diagnostic[0]),  set(int(item, base = 2) for item in diagnostic)
 
-def solver(diagnostic):
-    bit_size, report = diagnostic
+def solver(bit_size, report):
     
     gamma_rate = sum(2 ** k * most_common_bit(report, k) for k in range(bit_size))
     yield (2 ** bit_size - 1 - gamma_rate) * gamma_rate
