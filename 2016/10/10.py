@@ -18,9 +18,7 @@ def preprocessing(data):
     return bots, gifts
     
 
-def solver(data):
-    bots, gifts = data
-    
+def solver(bots, gifts):
     while (to_distribute := [bot for bot in list(bots.items()) if len(bot[1]) == 2]):
         for bot, microchips in to_distribute:
             microchips.sort()
