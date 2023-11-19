@@ -34,7 +34,7 @@ class Point():
         return self.xy() < other.xy()
 
 class Particule():
-    def __init__(self, px, py, pz, vx = 0, vy = 0, vz = 0, ax = 0, ay = 0, az = 0) -> None:
+    def __init__(self, px, py, pz = 0, vx = 0, vy = 0, vz = 0, ax = 0, ay = 0, az = 0) -> None:
         self.p = Point(px, py, pz)
         self.v = Point(vx, vy, vz)
         self.a = Point(ax, ay, az)
