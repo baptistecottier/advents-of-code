@@ -1,13 +1,17 @@
-import itertools
-from math import prod
-def preprocessing(input):
+from itertools import product
+from math      import prod
+
+
+def preprocessing(input_):
     return [int(expense) for expense in input.splitlines()]
 
-def solver(input):
-    yield find_entries(input, 2)
-    yield find_entries(input, 3)
+
+def solver(expenses):
+    yield find_entries(expenses, 2)
+    yield find_entries(expenses, 3)
         
-def find_entries(input, n):
-    for c in itertools.product(input, repeat = n):
+
+def find_entries(expenses, n):
+    for c in product(expenses, repeat = n):
         if sum(c) == 2020: 
             return prod(c)

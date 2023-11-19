@@ -1,5 +1,6 @@
 import string
 
+
 def preprocessing(input): 
     details = []
     for passport in input.split('\n\n'):
@@ -11,6 +12,7 @@ def preprocessing(input):
         details.append(infos)
     return details
 
+
 def solver(passports): 
     candidates = 0
     valids = 0
@@ -20,7 +22,8 @@ def solver(passports):
             if are_fields_valids(passport): valids += 1
     yield candidates
     yield valids
-        
+
+
 def are_fields_valids(passport):
     return      1920 <= int(passport['byr']) <= 2002 \
             and 2010 <= int(passport['iyr']) <= 2020 \
@@ -30,6 +33,7 @@ def are_fields_valids(passport):
             and (passport['hcl'][0] == '#' and all(c in string.hexdigits for c in passport['hcl'][1:])) \
             and passport['ecl'] in ['amb', 'blu', 'brn', 'gry', 'grn', 'hzl', 'oth'] \
             and len(passport['pid']) == 9
+
 
 def is_passport_valid(passport):
     return len(passport.keys()) == 8 or (len(passport.keys()) == 7 and 'cid' not in passport.keys())

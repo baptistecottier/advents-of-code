@@ -19,13 +19,16 @@ def preprocessing(input):
         pred.append(tuple(int(line.split(' ')[-1]) for line in details[2:]))
     return starting_items, funcs, pred
 
-def solver(notes):
-    yield monkey_business(*notes, 20, 3)
-    yield monkey_business(*notes, 10_000, 1)
+
+def solver(items, funcs, tests):
+    yield monkey_business(items, funcs, tests, 20, 3)
+    yield monkey_business(items, funcs, tests, 10_000, 1)
+    
     
 def monkey_business(items, funcs, tests, rounds, div):
     modulo          = prod([mod for mod, _, _ in tests])
     inspected_items = [0  for _ in funcs]
+
     for old, new_monkey in items: 
         for _ in range(rounds):
             old_monkey = 0

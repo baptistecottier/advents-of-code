@@ -1,5 +1,6 @@
 from itertools import product
 
+
 def preprocessing(input): 
     trees = []
     for y, row in enumerate(input.splitlines()):
@@ -8,6 +9,7 @@ def preprocessing(input):
             heights.append(height)
         trees.append(heights)
     return trees
+
 
 def solver(trees):
     width      = len(trees[0])
@@ -20,7 +22,7 @@ def solver(trees):
         height = trees[y][x]
         for dx, dy in {(0, 1), (1, 0), (0, -1), (-1, 0)}:
             nb_trees = 1
-            tx, ty = x + dx, y + dy
+            tx, ty   = x + dx, y + dy
             while trees[ty][tx] < height: 
                 if (tx:= tx + dx) in [-1, width] or (ty:= ty + dy) in [-1, depth]: 
                     visible.add((x, y))

@@ -1,6 +1,3 @@
-from copy import deepcopy
-
-
 def preprocessing(input):
     paths = {}
     for path in input.splitlines():
@@ -13,22 +10,21 @@ def preprocessing(input):
             else: paths[end] = [start]
     return paths 
 
-def solver(input_): 
-    yield part_1(deepcopy(input_))
-    yield part_2(deepcopy(input_))
 
-def part_1(input): 
-    return len(complete_paths(input, 'start', [], [], twice = False))
+def solver(caves): 
+    once, twice = get_all_paths(caves).values()
+    yield once
+    yield once + twice
 
-def part_2(input): 
-    return len(complete_paths(input, 'start', [], [], twice = True))
 
-def complete_paths(caves, pos,  path, list_paths, twice):
-    if pos == 'end': return list_paths.append(path)
+def get_all_paths(caves, pos = 'start',  path = [], paths_count = {True: 0, False: 0}, twice = True):
+    if pos == 'end': 
+        paths_count[twice] += 1
+        return
     for dst in caves[pos]: 
         if dst.isupper(): 
-            complete_paths(caves, dst, path + [dst], list_paths, twice)
+            get_all_paths(caves, dst, path + [dst], paths_count, twice)
         elif dst.islower() and path.count(dst) <= twice :
-            complete_paths(caves, dst, path + [dst], list_paths, path.count(dst) < twice)
+            get_all_paths(caves, dst, path + [dst], paths_count, path.count(dst) < twice)
         else: continue
-    return list_paths
+    return paths_count

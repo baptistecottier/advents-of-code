@@ -1,7 +1,9 @@
 from pythonfw.functions import extract_chunks
 
+
 def preprocessing(input_):
     return extract_chunks(input_, 4, neg = False)
+
 
 def solver(pairs):
     contained = 0

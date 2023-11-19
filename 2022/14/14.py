@@ -1,5 +1,6 @@
 from re import findall
 
+
 def preprocessing(input): 
     paths = []
     max_depth = 0
@@ -29,8 +30,8 @@ def solver(rocks):
         elif (x + 1, y + 1) not in rocks : (x , y) = (x + 1, y + 1)
         else :
             rocks.add((x, y))
-            (x, y)       = (500, 0)
-            sand         += 1
+            (x, y) = (500, 0)
+            sand   += 1
         if endless and y > max_depth - 2: 
             yield sand
             endless = False

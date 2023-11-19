@@ -1,12 +1,13 @@
-def preprocessing(input: str) -> list[int, int]:
+def preprocessing(input_: str) -> list[int, int]:
     instructions = []
-    for instruction in input.splitlines():        
+    for instruction in input_.splitlines():        
         ins, step = instruction.split(' ')
         match ins:
             case 'nop': instructions.append((0, int(step)))
             case 'acc': instructions.append((1, int(step)))
             case 'jmp': instructions.append((2, int(step)))
     return instructions
+
 
 def solver(program: list[int, int]):
     yield - test_program(program)

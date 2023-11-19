@@ -1,5 +1,6 @@
 from pythonfw.functions import sign
 
+
 def preprocessing(input): 
     data = []
     
@@ -11,8 +12,7 @@ def preprocessing(input):
     return data, left, right
 
 
-def solver(input_):
-    monkeys, left, right = input_
+def solver(monkeys, left, right):
     yield int(root_yell(monkeys, None, left, right))
 
     min_bound, max_bound = 0, 1_000_000_000_000_000

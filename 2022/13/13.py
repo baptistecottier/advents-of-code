@@ -1,16 +1,20 @@
-import functools
+from functools          import cmp_to_key
+from pythonfw.functions import sign
+
 
 def preprocessing(input): 
     list_input = [eval(l) for l in input.replace('\n\n', '\n').splitlines()]
     return list_input
-        
-def solver(input): 
-    orders = [((i + 1) * is_pair_sorted(input[2 * i] , input[2 * i + 1])) for i in range(len(input)//2)]
+
+
+def solver(packets): 
+    orders = [((i + 1) * is_pair_sorted(packets[2 * i] , packets[2 * i + 1])) for i in range(len(packets)//2)]
     yield sum(orders)
     
-    sorted_list = sorted(input+[[2] , [6]] , key = functools.cmp_to_key(make_comparator(is_pair_sorted)))
-    yield (sorted_list.index([2]) + 1) * (sorted_list.index([6]) + 1)
-               
+    packets = sorted(packets + [[2] , [6]], key = cmp_to_key(lambda x, y: sign(x, y, is_pair_sorted)), reverse = True)
+    yield (packets.index([2]) + 1) * (packets.index([6]) + 1)
+
+
 def is_pair_sorted(a, b):
     if type(a)==list and type(b)==list:
         if a == []: return True
@@ -20,10 +24,3 @@ def is_pair_sorted(a, b):
     elif type(a)==list and type(b)==int : return is_pair_sorted(a, [b])
     elif type(a)==int  and type(b)==list: return is_pair_sorted([a], b)
     else: return a < b
-
-def make_comparator(my_cmp):
-    def compare(x, y):
-        if my_cmp(x, y): return -1
-        elif my_cmp(y, x): return 1
-        else: return 0
-    return compare

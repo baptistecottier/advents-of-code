@@ -7,6 +7,7 @@ def preprocessing(input: str):
         boarding_passes.append(8 * row + column)
     return sorted(boarding_passes)
 
+
 def solver(boarding_passes):
     yield boarding_passes[-1]
     seat = boarding_passes[0]

@@ -1,6 +1,7 @@
 def preprocessing(input):
     return [int(item) for item in input.splitlines()]
 
+
 def solver(file):
     yield mix(file, 1)
     yield mix([811589153 * i for i in file], 10)

@@ -1,5 +1,6 @@
 from re import findall
 
+
 def preprocessing(input):
     all_bags = {}
     input = input.replace("bags","").replace("bag","").replace(".","")
@@ -12,6 +13,7 @@ def preprocessing(input):
         all_bags[color] = bags
     return all_bags
 
+
 def solver(rules): 
     candidates = ["shiny gold"]
     answer = set()
@@ -23,6 +25,7 @@ def solver(rules):
                 answer.add(color)
     yield len(answer)
     yield count_bags("shiny gold", rules) - 1
-    
+
+
 def count_bags(color, bags):
     return 1 + sum([n * count_bags(c, bags) for n,c in bags[color]])

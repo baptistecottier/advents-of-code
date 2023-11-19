@@ -1,29 +1,30 @@
-import re
+from pythonfw.functions import extract_chunks
 
 def preprocessing(input):
-    lines = input.split('\n\n')
-    draw  = [int(number) for number in lines[0].split(',')]
-    grids = [[int(number) for number in re.findall(r'\d+', grid)] for grid in lines[1:]]
-    grids = [[set(grid[5 * i: 5 * i + 5]) for i in range(5)] + [set(grid[i:: 5]) for i in range(5)] for grid in grids]
-    return draw, grids 
+    draw, numbers = input.split('\n\n', 1)
+    draw   = [int(number) for number in draw.split(',')]
+    boards = extract_chunks(numbers, 25)
+    return draw, boards
 
-def solver(game):
-    yield first_win(game)
-    yield last_lose(game)
+def solver(draw, boards):
+    yield first_win(draw.copy(), boards.copy())
+    yield last_lose(draw, boards)
     
-    
-def first_win(game): 
-    draws, grids = game
-    i = 5
-    while i:= i+1:
-        draw = set(draws[:i])
-        for grid in grids: 
-            if any(g < draw for g in grid): 
-                return draws[i - 1] * sum(sum(g for g in gg if g not in draw) for gg in grid[:5])
 
-def last_lose(game):
-    draw, grids  = game
+def row_and_columns(board): 
+    return [set(board[5 * i: 5 * i + 5]) for i in range(5)] + [set(board[i:: 5]) for i in range(5)]
+
+def first_win(draw, boards):
+    drew = set(draw[:5]) 
+    while True:
+        ball = draw.pop(0)
+        drew.add(ball)
+        for board in boards:
+            if any(line < drew for line in row_and_columns(board)): 
+                return ball * (sum(n for n in board if n not in drew))
+
+def last_lose(draw, boards):
     while ball:= draw.pop():
-        for grid in grids: 
-            if all(not g < set(draw) for g in grid): 
-                return ball * (sum(sum(g for g in gg if g not in draw) for gg in grid[:5]) - ball)
+        for board in boards: 
+            if all(not line < set(draw) for line in row_and_columns(board)):
+                return ball * (sum(n for n in board if n not in draw) - ball)
