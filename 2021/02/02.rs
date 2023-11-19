@@ -1,6 +1,6 @@
-aoc2021::main!();
+aoc::main!();
 
-fn generator(input: &str) -> Vec<(i32, i32)> {
+fn preprocessing(input: &str) -> Vec<(i32, i32)> {
     input
     .lines()
     .map(|command| command
@@ -15,12 +15,12 @@ fn generator(input: &str) -> Vec<(i32, i32)> {
     .collect_vec()   
 }
 
-fn part_1(input: Vec<(i32, i32)>) -> i32 {
-    solver(input, false)
+fn part_1(commands: Vec<(i32, i32)>) -> i32 {
+    solver(commands, false)
 }
 
-fn part_2(input: Vec<(i32, i32)>) -> i32 {
-    solver(input, true)
+fn part_2(commands: Vec<(i32, i32)>) -> i32 {
+    solver(commands, true)
 }
 
 fn solver(commands: Vec<(i32, i32)>, track_aim: bool) -> i32 {

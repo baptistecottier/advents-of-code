@@ -1,18 +1,18 @@
-aoc2021::main!(); 
+aoc::main!(); 
 
-fn generator(input: &str) -> Vec<u16> {
+fn preprocessing(input: &str) -> Vec<u16> {
     input
     .lines()
     .map(|measurement| measurement.parse().unwrap())
     .collect_vec()
 }
 
-fn part_1(input: Vec<u16>) -> usize {
-    solver(input, 1)
+fn part_1(measurements: Vec<u16>) -> usize {
+    solver(measurements, 1)
 }
 
-fn part_2(input: Vec<u16>) -> usize {
-    solver(input, 3)
+fn part_2(measurements: Vec<u16>) -> usize {
+    solver(measurements, 3)
 }
 
 fn solver(measurements: Vec<u16>, delta: usize) -> usize {

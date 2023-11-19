@@ -33,7 +33,6 @@ fn solver(mut passwords:  String) -> String {
 }
 
 fn next_pw(passwords:  String) -> String {
-
     let mut letters = passwords.chars().collect_vec() ; 
     match letters[7] {
         'i' | 'l' | 'o'  =>  letters[7] = (letters[7] as u8 + 2) as char ,
