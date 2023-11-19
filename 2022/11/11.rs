@@ -1,4 +1,4 @@
-aoc2022::main!(); 
+aoc::main!(); 
 
 fn preprocessing(input: &str) -> (Vec<(u64, usize)>, Vec<[u64; 3]>, Vec<Vec<u64>>){
     let mut starting_items = Vec::new();

@@ -1,4 +1,4 @@
-aoc2022::main!(); 
+aoc::main!(); 
 
 fn preprocessing(input: &str) -> Vec<i32> {
     input
@@ -7,7 +7,8 @@ fn preprocessing(input: &str) -> Vec<i32> {
         .fold((Vec::new() ,1) , |(c , v) , (n, inc)| {
             ([c , repeat_n(v, n).collect_vec()].concat() , v + inc)
         }
-    ).0
+    )
+    .0
 }
 
 fn part_1(ops: Vec<i32>) -> i32 {
@@ -19,13 +20,12 @@ fn part_1(ops: Vec<i32>) -> i32 {
 }
 
 fn part_2(ops: Vec<i32>) -> String {
-    ops
+    screen_reader(
+        ops
         .iter()
         .enumerate()
-        .map(|(n ,&v)| [v-1 , v, v+1].contains(&((n as i32) % 40)))
-        .map(|b| if b {'■'} else{' '})
-        .chunks(40)
-        .into_iter()
-        .map(|c| c.collect::<String>())
-        .join("\n")
+        .map(|(n ,&v)| ((n % 40, n / 40), [v-1 , v, v+1].contains(&((n as i32) % 40))))
+        .filter(|(_, pred)| *pred)
+        .map(|(coord, _)| coord)
+        .collect())
 }

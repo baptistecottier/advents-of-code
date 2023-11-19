@@ -1,4 +1,4 @@
-aoc2022::main!(); 
+aoc::main!(); 
 
 fn preprocessing(input: &str) -> Vec<(u32 , Vec<Vec<u32>>)> {
     let sl = input.lines().count() ; 

@@ -1,4 +1,4 @@
-aoc2022::main!(); 
+aoc::main!(); 
 
 fn preprocessing(input: &str) ->  Vec<Vec<i16>> {
     input

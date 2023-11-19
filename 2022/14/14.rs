@@ -1,4 +1,4 @@
-aoc2022::main!() ;
+aoc::main!() ;
 
 fn preprocessing(input: &str) -> ([[u8 ; 1000] ; 200] , usize) {
     let mut cave = [[0 ; 1000] ; 200];

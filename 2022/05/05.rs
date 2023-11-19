@@ -1,5 +1,5 @@
 
-aoc2022::main!(); 
+aoc::main!(); 
 
 fn preprocessing(input: &str) -> (Vec<String> , Vec<(usize, usize, usize)>) {
     let (crates, rearrangements) = input.split("\n\n").collect_tuple().unwrap() ;   
