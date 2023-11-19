@@ -7,14 +7,13 @@ def preprocessing(input_):
             if c == '#': infected.append((x, y))
     return infected, size
 
-def solver(input_): 
-    yield burst(input_, 1)
-    yield burst(input_, 2)
+def solver(infected, size): 
+    yield burst(infected, size, 1)
+    yield burst(infected, size, 2)
 
 
-def burst(input_, bursts):
+def burst(infected, size, bursts):
     half_grid_size = 400
-    infected, size = input_
     grid = [[0 for _ in range(2 * half_grid_size)] for _ in range(2 * half_grid_size)]
     for x, y in infected: grid[half_grid_size - (size // 2) + y][half_grid_size - (size // 2) + x] = bursts
     cx, cy = half_grid_size, half_grid_size

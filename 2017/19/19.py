@@ -10,8 +10,7 @@ def preprocessing(input_):
                 path[(x, y)] = c
     return path, start
     
-def solver(map):
-    map, pos = map
+def solver(map, pos):
     dx, dy  = 0, 1
     letters = ""
     steps   = 1

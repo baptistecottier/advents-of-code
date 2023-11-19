@@ -7,10 +7,9 @@ def preprocessing(input_):
     for state in infos[1:]:
         a, b, c, d, e, f, g = parse("In state {}:\n  If the current value is 0:\n    - Write the value {:d}.\n    - Move one slot to the {}.\n    - Continue with state {}.\n  If the current value is 1:\n    - Write the value {:d}.\n    - Move one slot to the {}.\n    - Continue with state {}.", state)
         details.append([[b,c == 'left',ord(d) - 65],[e, f == 'left', ord(g) - 65]])
-    return (ord(starting_state) - 65, trigger, details)
+    return ord(starting_state) - 65, trigger, details
 
-def solver(input_): 
-    state, trigger, details = input_
+def solver(state, trigger, details): 
     tape = [0 for _ in range(trigger)]
     pos = 0
     for i in range(trigger):
