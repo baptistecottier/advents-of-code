@@ -1,7 +1,7 @@
 target
 .DS_Store
 **.pyc
-*/.vscode/settings.json
+**/.vscode/settings.json
 **.sol
 
 
@@ -24,6 +24,7 @@ target
 2019/25/*
 
 
+2021/03/03.rs
 2021/16/**
 2021/18/**
 2021/19/**
@@ -40,4 +41,3 @@ target
 2022/22/**
 2022/23/**
 2022/24/**
-
