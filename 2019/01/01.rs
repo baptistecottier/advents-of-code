@@ -1,4 +1,4 @@
-aoc2019::main!();
+aoc::main!();
 
 fn preprocessing(input: &str) -> Vec<u32> {
     input
