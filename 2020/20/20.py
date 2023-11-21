@@ -1,5 +1,5 @@
 from itertools import product
-
+from math      import prod
 def preprocessing(input):
     tiles = {}
     for tile in [item.splitlines() for item in input.split('\n\n')]:
@@ -7,8 +7,7 @@ def preprocessing(input):
         tiles[id] = {(x, y) for x, y in product(range(len(tile[1])),range(len(tile) - 1)) if tile[y + 1][x] == '#'}
     return tiles
       
-from math import prod 
-        
+              
 def solver(input): 
     sides = {}
     for id, tile in input.items():

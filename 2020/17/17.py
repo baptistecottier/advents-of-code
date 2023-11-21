@@ -8,8 +8,7 @@ def preprocessing(input):
             if cube == '#': activated.add((x - size, y - size))
     return activated, size
 
-def solver(cubes):
-    activated, size = cubes
+def solver(activated, size):
     yield boot_up(activated, size, 3)
     yield boot_up(activated, size, 4)
 

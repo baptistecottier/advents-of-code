@@ -7,9 +7,9 @@ def preprocessing(input_):
         cards[n + 1] = [int(card) for card in plain_cards.splitlines()[1:]]
     return cards
 
-def solver(input_):
-    yield part_1(deepcopy(input_))
-    yield part_2(input_)
+def solver(cards):
+    yield part_1(deepcopy(cards))
+    yield part_2(cards)
 
 def part_1(input_): 
     cards = input_

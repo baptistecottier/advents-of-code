@@ -2,7 +2,7 @@ from itertools import product
 from math      import prod
 
 
-def preprocessing(input_):
+def preprocessing(input):
     return [int(expense) for expense in input.splitlines()]
 
 

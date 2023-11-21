@@ -1,7 +1,7 @@
 from pythonfw.classes import Point
 
 
-def preprocessing(input: str) -> tuple[set, int, int]:
+def preprocessing(input):
     trees = set()
     for y, row in enumerate(input.splitlines()):
         for x, c in enumerate(row):
@@ -9,8 +9,7 @@ def preprocessing(input: str) -> tuple[set, int, int]:
     return trees, x + 1, y
 
 
-def solver(trees: tuple[set, int, int]):
-    trees, mx, my = trees
+def solver(trees, mx, my):
     total = 1
     for dx, dy in ((1, 1), (3, 1), (5, 1), (7, 1), (1, 2)):
         pos = Point()

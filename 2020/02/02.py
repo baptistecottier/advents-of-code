@@ -3,7 +3,7 @@ from parse   import parse
 
 
 def preprocessing(input: str): 
-    return (parse("{:d}-{:d} {}: {}", pw) for pw in input.splitlines())
+    return [parse("{:d}-{:d} {}: {}", pw) for pw in input.splitlines()]
 
 
 def solver(passwords):

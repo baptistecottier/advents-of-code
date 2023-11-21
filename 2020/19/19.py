@@ -19,8 +19,7 @@ def preprocessing(input):
                     del rules[num]
     return patterns[0], patterns[8], patterns[11], messages
 
-def solver(input): 
-    rule, rule_eight, rule_eleven, messages = input
+def solver(rule, rule_eight, rule_eleven, messages):
     yield len([message for message in messages if message in rule])
     yield sum(looping_rules(message, rule_eight, rule_eleven) for message in messages)
 

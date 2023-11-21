@@ -12,8 +12,7 @@ def preprocessing(input):
     nearby = [[int(item) for item in n.split(',')] for n in p_nearby.splitlines()[1:]]
     return rules, ticket, nearby
         
-def solver(input): 
-    rules, ticket , nearby = input
+def solver(rules, ticket , nearby):
     counter, nearby = invalid_detector(rules, nearby)
     yield counter 
     

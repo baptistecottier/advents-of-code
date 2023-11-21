@@ -20,17 +20,15 @@ def preprocessing(input_):
                 list_ingredients[ingredient] = 1
     return detector, list_ingredients
 
-def solver(input_):
-    yield part_1(input_)
-    yield part_2(input_)
+def solver(detector, list_ingredients):
+    yield part_1(detector, list_ingredients)
+    yield part_2(detector)
         
-def part_1(input_): 
-    detector, list_ingredients = input_
+def part_1(detector, list_ingredients):
     safe = {ingredient for ingredient in list_ingredients if (all(ingredient not in allergen for allergen in detector.values()))}
     return sum(list_ingredients[ingredient] for ingredient in safe)
 
-def part_2(input_): 
-    detector, _ = input_
+def part_2(detector): 
     while any(len(allergen) != 1 for allergen in detector.values()):
         for allergen in detector.values():
             if len(allergen) == 1:

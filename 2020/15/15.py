@@ -2,8 +2,7 @@ def preprocessing(input):
     values = [int(item) for item in input.split(',')]
     return ({spoken:[n] for (n, spoken) in enumerate(values)} , values[-1])
 
-def solver(input):
-    spoken, last_spoken = input
+def solver(spoken, last_spoken):
     for i in range(len(spoken),30_000_000):
         if i == 2_020: yield last_spoken
         if len(spoken[last_spoken]) == 1: 

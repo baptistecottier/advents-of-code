@@ -6,11 +6,10 @@ def preprocessing(input):
     bus       = (int(item) for item in details[1].replace('x','0').split(','))
     return timestamp, bus
 
-def solver(input):
+def solver(timestamp, bus):
     pairs = set()
     times = dict()
-    timestamp, bus = input
-    for (n, id) in enumerate(input[1]):
+    for (n, id) in enumerate(bus):
         if id != 0:
             times[-timestamp % id] = id * (-timestamp % id)
             pairs.add((-n, id))

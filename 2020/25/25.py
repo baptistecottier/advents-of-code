@@ -7,6 +7,6 @@ def solver(integers):
     n = 1
     while n not in (p, q):
         n = (n * 7) % 20201227
-        k += 1
+        e += 1
     if n == p: yield pow(q, e, 20201227)
     if n == q: yield pow(p, e, 20201227)

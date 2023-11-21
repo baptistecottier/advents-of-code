@@ -1,7 +1,6 @@
 def preprocessing(input):
     return [expr.replace(' ', '') for expr in input.splitlines()]
 
-from itertools import product
 
 def solver(expressions):
     yield sum(parse(expr) for expr in expressions)
