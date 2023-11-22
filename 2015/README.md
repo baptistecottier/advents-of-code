@@ -1,5 +1,5 @@
-`                         |    `  
-`                        \|/  `  
+`                         |                           `  
+`                        \|/                          `  
 [`                       --*--                       25`](https://github.com/baptistecottier/advents-of-code/tree/main/2015/25)  
 [`                        >o<                        24`](https://github.com/baptistecottier/advents-of-code/tree/main/2015/24)  
 [`                       >>*<<                       23`](https://github.com/baptistecottier/advents-of-code/tree/main/2015/23)  
@@ -25,6 +25,6 @@
 [`   >>@<<<<<<o>*<<*>>O<*<<<@>@>>O>@<<<*>>@<O>>O<<    3`](https://github.com/baptistecottier/advents-of-code/tree/main/2015/03)  
 [`  >>*>>>*>>>O<<O<<<O<<O>@>>*>>O>>>O>O>@<@<@>>O<<<   2`](https://github.com/baptistecottier/advents-of-code/tree/main/2015/02)  
 [` >O<<O>>*>>O<<O<<O>>@<<<*<<@>*>>>@>>>*>>>O<<@<<@<<  1`](https://github.com/baptistecottier/advents-of-code/tree/main/2015/01)  
-`                       |   |`  
-`                       |   |`    
-`            _  _ __ ___|___|__ _ __ _  _`
+`                       |   |                         `  
+`                       |   |                         `    
+`            _  _ __ ___|___|__ _ __ _  _             `
