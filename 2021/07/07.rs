@@ -4,13 +4,15 @@ fn preprocessing(input: &str) -> Vec<usize> {
     input
     .split(',')
     .map(|n| n.parse().unwrap())
+    .sorted()
     .collect()
 }
+
 
 fn part_1(crabs: Vec<usize>) -> usize {
     crabs
     .iter()
-    .map(|crab| med(crabs.clone()).abs_diff(*crab))
+    .map(|crab| crabs[crabs.len() / 2].abs_diff(*crab))
     .sum()
 }
 
@@ -22,14 +24,6 @@ fn part_2(crabs: Vec<usize>) -> usize {
     .sum()
 }
 
-
-fn med(numbers: Vec<usize>) -> usize {
-    *numbers
-    .iter()
-    .sorted()
-    .nth(numbers.len() / 2)
-    .unwrap()
-}
 
 fn mean(numbers: Vec<usize>) -> usize {
     numbers
