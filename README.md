@@ -6,7 +6,9 @@ Some puzzles are solved in Python, some are solved in Rust.
 
 ### 💡 __Solutions table__
 
-The puzzle is described in every folder (📁) as a `README.md` file.
+The puzzle is described in every folder (📁) as a `README.md` file. (WiP)  
+\* means only the first part of the puzzle is solved.
+
 <div align="center">
 
 |   |2015|2016|2017|2018|2019|2020|2021|2022|2023|
@@ -39,7 +41,6 @@ The puzzle is described in every folder (📁) as a `README.md` file.
 </div>
 &nbsp;
 
-*: Only the first part of the puzzle is solved
 
 &nbsp;
 
