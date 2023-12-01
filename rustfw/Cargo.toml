@@ -23,1124 +23,1124 @@ aho-corasick = "1.1.2"
 
 [[bin]]
 name = "2015-01"
-path = "../2015/01/01.rs"
+path = "../events/2015/01/01.rs"
 
 
 [[bin]]
 name = "2015-02"
-path = "../2015/02/02.rs"
+path = "../events/2015/02/02.rs"
 
 
 [[bin]]
 name = "2015-03"
-path = "../2015/03/03.rs"
+path = "../events/2015/03/03.rs"
 
 
 [[bin]]
 name = "2015-04"
-path = "../2015/04/04.rs"
+path = "../events/2015/04/04.rs"
 
 
 [[bin]]
 name = "2015-05"
-path = "../2015/05/05.rs"
+path = "../events/2015/05/05.rs"
 
 
 [[bin]]
 name = "2015-06"
-path = "../2015/06/06.rs"
+path = "../events/2015/06/06.rs"
 
 
 [[bin]]
 name = "2015-07"
-path = "../2015/07/07.rs"
+path = "../events/2015/07/07.rs"
 
 
 [[bin]]
 name = "2015-08"
-path = "../2015/08/08.rs"
+path = "../events/2015/08/08.rs"
 
 
 [[bin]]
 name = "2015-09"
-path = "../2015/09/09.rs"
+path = "../events/2015/09/09.rs"
 
 
 [[bin]]
 name = "2015-10"
-path = "../2015/10/10.rs"
+path = "../events/2015/10/10.rs"
 
 
 [[bin]]
 name = "2015-11"
-path = "../2015/11/11.rs"
+path = "../events/2015/11/11.rs"
 
 
 [[bin]]
 name = "2015-12"
-path = "../2015/12/12.rs"
+path = "../events/2015/12/12.rs"
 
 
 [[bin]]
 name = "2015-13"
-path = "../2015/13/13.rs"
+path = "../events/2015/13/13.rs"
 
 
 [[bin]]
 name = "2015-14"
-path = "../2015/14/14.rs"
+path = "../events/2015/14/14.rs"
 
 
 [[bin]]
 name = "2015-15"
-path = "../2015/15/15.rs"
+path = "../events/2015/15/15.rs"
 
 
 [[bin]]
 name = "2015-16"
-path = "../2015/16/16.rs"
+path = "../events/2015/16/16.rs"
 
 
 [[bin]]
 name = "2015-17"
-path = "../2015/17/17.rs"
+path = "../events/2015/17/17.rs"
 
 
 [[bin]]
 name = "2015-18"
-path = "../2015/18/18.rs"
+path = "../events/2015/18/18.rs"
 
 
 [[bin]]
 name = "2015-19"
-path = "../2015/19/19.rs"
+path = "../events/2015/19/19.rs"
 
 
 [[bin]]
 name = "2015-20"
-path = "../2015/20/20.rs"
+path = "../events/2015/20/20.rs"
 
 
 [[bin]]
 name = "2015-21"
-path = "../2015/21/21.rs"
+path = "../events/2015/21/21.rs"
 
 
 [[bin]]
 name = "2015-22"
-path = "../2015/22/22.rs"
+path = "../events/2015/22/22.rs"
 
 
 [[bin]]
 name = "2015-23"
-path = "../2015/23/23.rs"
+path = "../events/2015/23/23.rs"
 
 
 [[bin]]
 name = "2015-24"
-path = "../2015/24/24.rs"
+path = "../events/2015/24/24.rs"
 
 
 [[bin]]
 name = "2015-25"
-path = "../2015/25/25.rs"
+path = "../events/2015/25/25.rs"
 
 
 [[bin]]
 name = "2016-01"
-path = "../2016/01/01.rs"
+path = "../events/2016/01/01.rs"
 
 
 [[bin]]
 name = "2016-02"
-path = "../2016/02/02.rs"
+path = "../events/2016/02/02.rs"
 
 
 [[bin]]
 name = "2016-03"
-path = "../2016/03/03.rs"
+path = "../events/2016/03/03.rs"
 
 
 [[bin]]
 name = "2016-04"
-path = "../2016/04/04.rs"
+path = "../events/2016/04/04.rs"
 
 
 [[bin]]
 name = "2016-05"
-path = "../2016/05/05.rs"
+path = "../events/2016/05/05.rs"
 
 
 [[bin]]
 name = "2016-06"
-path = "../2016/06/06.rs"
+path = "../events/2016/06/06.rs"
 
 
 [[bin]]
 name = "2016-07"
-path = "../2016/07/07.rs"
+path = "../events/2016/07/07.rs"
 
 
 [[bin]]
 name = "2016-08"
-path = "../2016/08/08.rs"
+path = "../events/2016/08/08.rs"
 
 
 [[bin]]
 name = "2016-09"
-path = "../2016/09/09.rs"
+path = "../events/2016/09/09.rs"
 
 
 [[bin]]
 name = "2016-10"
-path = "../2016/10/10.rs"
+path = "../events/2016/10/10.rs"
 
 
 [[bin]]
 name = "2016-11"
-path = "../2016/11/11.rs"
+path = "../events/2016/11/11.rs"
 
 
 [[bin]]
 name = "2016-12"
-path = "../2016/12/12.rs"
+path = "../events/2016/12/12.rs"
 
 
 [[bin]]
 name = "2016-13"
-path = "../2016/13/13.rs"
+path = "../events/2016/13/13.rs"
 
 
 [[bin]]
 name = "2016-14"
-path = "../2016/14/14.rs"
+path = "../events/2016/14/14.rs"
 
 
 [[bin]]
 name = "2016-15"
-path = "../2016/15/15.rs"
+path = "../events/2016/15/15.rs"
 
 
 [[bin]]
 name = "2016-16"
-path = "../2016/16/16.rs"
+path = "../events/2016/16/16.rs"
 
 
 [[bin]]
 name = "2016-17"
-path = "../2016/17/17.rs"
+path = "../events/2016/17/17.rs"
 
 
 [[bin]]
 name = "2016-18"
-path = "../2016/18/18.rs"
+path = "../events/2016/18/18.rs"
 
 
 [[bin]]
 name = "2016-19"
-path = "../2016/19/19.rs"
+path = "../events/2016/19/19.rs"
 
 
 [[bin]]
 name = "2016-20"
-path = "../2016/20/20.rs"
+path = "../events/2016/20/20.rs"
 
 
 [[bin]]
 name = "2016-21"
-path = "../2016/21/21.rs"
+path = "../events/2016/21/21.rs"
 
 
 [[bin]]
 name = "2016-22"
-path = "../2016/22/22.rs"
+path = "../events/2016/22/22.rs"
 
 
 [[bin]]
 name = "2016-23"
-path = "../2016/23/23.rs"
+path = "../events/2016/23/23.rs"
 
 
 [[bin]]
 name = "2016-24"
-path = "../2016/24/24.rs"
+path = "../events/2016/24/24.rs"
 
 
 [[bin]]
 name = "2016-25"
-path = "../2016/25/25.rs"
+path = "../events/2016/25/25.rs"
 
 
 [[bin]]
 name = "2017-01"
-path = "../2017/01/01.rs"
+path = "../events/2017/01/01.rs"
 
 
 [[bin]]
 name = "2017-02"
-path = "../2017/02/02.rs"
+path = "../events/2017/02/02.rs"
 
 
 [[bin]]
 name = "2017-03"
-path = "../2017/03/03.rs"
+path = "../events/2017/03/03.rs"
 
 
 [[bin]]
 name = "2017-04"
-path = "../2017/04/04.rs"
+path = "../events/2017/04/04.rs"
 
 
 [[bin]]
 name = "2017-05"
-path = "../2017/05/05.rs"
+path = "../events/2017/05/05.rs"
 
 
 [[bin]]
 name = "2017-06"
-path = "../2017/06/06.rs"
+path = "../events/2017/06/06.rs"
 
 
 [[bin]]
 name = "2017-07"
-path = "../2017/07/07.rs"
+path = "../events/2017/07/07.rs"
 
 
 [[bin]]
 name = "2017-08"
-path = "../2017/08/08.rs"
+path = "../events/2017/08/08.rs"
 
 
 [[bin]]
 name = "2017-09"
-path = "../2017/09/09.rs"
+path = "../events/2017/09/09.rs"
 
 
 [[bin]]
 name = "2017-10"
-path = "../2017/10/10.rs"
+path = "../events/2017/10/10.rs"
 
 
 [[bin]]
 name = "2017-11"
-path = "../2017/11/11.rs"
+path = "../events/2017/11/11.rs"
 
 
 [[bin]]
 name = "2017-12"
-path = "../2017/12/12.rs"
+path = "../events/2017/12/12.rs"
 
 
 [[bin]]
 name = "2017-13"
-path = "../2017/13/13.rs"
+path = "../events/2017/13/13.rs"
 
 
 [[bin]]
 name = "2017-14"
-path = "../2017/14/14.rs"
+path = "../events/2017/14/14.rs"
 
 
 [[bin]]
 name = "2017-15"
-path = "../2017/15/15.rs"
+path = "../events/2017/15/15.rs"
 
 
 [[bin]]
 name = "2017-16"
-path = "../2017/16/16.rs"
+path = "../events/2017/16/16.rs"
 
 
 [[bin]]
 name = "2017-17"
-path = "../2017/17/17.rs"
+path = "../events/2017/17/17.rs"
 
 
 [[bin]]
 name = "2017-18"
-path = "../2017/18/18.rs"
+path = "../events/2017/18/18.rs"
 
 
 [[bin]]
 name = "2017-19"
-path = "../2017/19/19.rs"
+path = "../events/2017/19/19.rs"
 
 
 [[bin]]
 name = "2017-20"
-path = "../2017/20/20.rs"
+path = "../events/2017/20/20.rs"
 
 
 [[bin]]
 name = "2017-21"
-path = "../2017/21/21.rs"
+path = "../events/2017/21/21.rs"
 
 
 [[bin]]
 name = "2017-22"
-path = "../2017/22/22.rs"
+path = "../events/2017/22/22.rs"
 
 
 [[bin]]
 name = "2017-23"
-path = "../2017/23/23.rs"
+path = "../events/2017/23/23.rs"
 
 
 [[bin]]
 name = "2017-24"
-path = "../2017/24/24.rs"
+path = "../events/2017/24/24.rs"
 
 
 [[bin]]
 name = "2017-25"
-path = "../2017/25/25.rs"
+path = "../events/2017/25/25.rs"
 
 
 [[bin]]
 name = "2018-01"
-path = "../2018/01/01.rs"
+path = "../events/2018/01/01.rs"
 
 
 [[bin]]
 name = "2018-02"
-path = "../2018/02/02.rs"
+path = "../events/2018/02/02.rs"
 
 
 [[bin]]
 name = "2018-03"
-path = "../2018/03/03.rs"
+path = "../events/2018/03/03.rs"
 
 
 [[bin]]
 name = "2018-04"
-path = "../2018/04/04.rs"
+path = "../events/2018/04/04.rs"
 
 
 [[bin]]
 name = "2018-05"
-path = "../2018/05/05.rs"
+path = "../events/2018/05/05.rs"
 
 
 [[bin]]
 name = "2018-06"
-path = "../2018/06/06.rs"
+path = "../events/2018/06/06.rs"
 
 
 [[bin]]
 name = "2018-07"
-path = "../2018/07/07.rs"
+path = "../events/2018/07/07.rs"
 
 
 [[bin]]
 name = "2018-08"
-path = "../2018/08/08.rs"
+path = "../events/2018/08/08.rs"
 
 
 [[bin]]
 name = "2018-09"
-path = "../2018/09/09.rs"
+path = "../events/2018/09/09.rs"
 
 
 [[bin]]
 name = "2018-10"
-path = "../2018/10/10.rs"
+path = "../events/2018/10/10.rs"
 
 
 [[bin]]
 name = "2018-11"
-path = "../2018/11/11.rs"
+path = "../events/2018/11/11.rs"
 
 
 [[bin]]
 name = "2018-12"
-path = "../2018/12/12.rs"
+path = "../events/2018/12/12.rs"
 
 
 [[bin]]
 name = "2018-13"
-path = "../2018/13/13.rs"
+path = "../events/2018/13/13.rs"
 
 
 [[bin]]
 name = "2018-14"
-path = "../2018/14/14.rs"
+path = "../events/2018/14/14.rs"
 
 
 [[bin]]
 name = "2018-15"
-path = "../2018/15/15.rs"
+path = "../events/2018/15/15.rs"
 
 
 [[bin]]
 name = "2018-16"
-path = "../2018/16/16.rs"
+path = "../events/2018/16/16.rs"
 
 
 [[bin]]
 name = "2018-17"
-path = "../2018/17/17.rs"
+path = "../events/2018/17/17.rs"
 
 
 [[bin]]
 name = "2018-18"
-path = "../2018/18/18.rs"
+path = "../events/2018/18/18.rs"
 
 
 [[bin]]
 name = "2018-19"
-path = "../2018/19/19.rs"
+path = "../events/2018/19/19.rs"
 
 
 [[bin]]
 name = "2018-20"
-path = "../2018/20/20.rs"
+path = "../events/2018/20/20.rs"
 
 
 [[bin]]
 name = "2018-21"
-path = "../2018/21/21.rs"
+path = "../events/2018/21/21.rs"
 
 
 [[bin]]
 name = "2018-22"
-path = "../2018/22/22.rs"
+path = "../events/2018/22/22.rs"
 
 
 [[bin]]
 name = "2018-23"
-path = "../2018/23/23.rs"
+path = "../events/2018/23/23.rs"
 
 
 [[bin]]
 name = "2018-24"
-path = "../2018/24/24.rs"
+path = "../events/2018/24/24.rs"
 
 
 [[bin]]
 name = "2018-25"
-path = "../2018/25/25.rs"
+path = "../events/2018/25/25.rs"
 
 
 [[bin]]
 name = "2019-01"
-path = "../2019/01/01.rs"
+path = "../events/2019/01/01.rs"
 
 
 [[bin]]
 name = "2019-02"
-path = "../2019/02/02.rs"
+path = "../events/2019/02/02.rs"
 
 
 [[bin]]
 name = "2019-03"
-path = "../2019/03/03.rs"
+path = "../events/2019/03/03.rs"
 
 
 [[bin]]
 name = "2019-04"
-path = "../2019/04/04.rs"
+path = "../events/2019/04/04.rs"
 
 
 [[bin]]
 name = "2019-05"
-path = "../2019/05/05.rs"
+path = "../events/2019/05/05.rs"
 
 
 [[bin]]
 name = "2019-06"
-path = "../2019/06/06.rs"
+path = "../events/2019/06/06.rs"
 
 
 [[bin]]
 name = "2019-07"
-path = "../2019/07/07.rs"
+path = "../events/2019/07/07.rs"
 
 
 [[bin]]
 name = "2019-08"
-path = "../2019/08/08.rs"
+path = "../events/2019/08/08.rs"
 
 
 [[bin]]
 name = "2019-09"
-path = "../2019/09/09.rs"
+path = "../events/2019/09/09.rs"
 
 
 [[bin]]
 name = "2019-10"
-path = "../2019/10/10.rs"
+path = "../events/2019/10/10.rs"
 
 
 [[bin]]
 name = "2019-11"
-path = "../2019/11/11.rs"
+path = "../events/2019/11/11.rs"
 
 
 [[bin]]
 name = "2019-12"
-path = "../2019/12/12.rs"
+path = "../events/2019/12/12.rs"
 
 
 [[bin]]
 name = "2019-13"
-path = "../2019/13/13.rs"
+path = "../events/2019/13/13.rs"
 
 
 [[bin]]
 name = "2019-14"
-path = "../2019/14/14.rs"
+path = "../events/2019/14/14.rs"
 
 
 [[bin]]
 name = "2019-15"
-path = "../2019/15/15.rs"
+path = "../events/2019/15/15.rs"
 
 
 [[bin]]
 name = "2019-16"
-path = "../2019/16/16.rs"
+path = "../events/2019/16/16.rs"
 
 
 [[bin]]
 name = "2019-17"
-path = "../2019/17/17.rs"
+path = "../events/2019/17/17.rs"
 
 
 [[bin]]
 name = "2019-18"
-path = "../2019/18/18.rs"
+path = "../events/2019/18/18.rs"
 
 
 [[bin]]
 name = "2019-19"
-path = "../2019/19/19.rs"
+path = "../events/2019/19/19.rs"
 
 
 [[bin]]
 name = "2019-20"
-path = "../2019/20/20.rs"
+path = "../events/2019/20/20.rs"
 
 
 [[bin]]
 name = "2019-21"
-path = "../2019/21/21.rs"
+path = "../events/2019/21/21.rs"
 
 
 [[bin]]
 name = "2019-22"
-path = "../2019/22/22.rs"
+path = "../events/2019/22/22.rs"
 
 
 [[bin]]
 name = "2019-23"
-path = "../2019/23/23.rs"
+path = "../events/2019/23/23.rs"
 
 
 [[bin]]
 name = "2019-24"
-path = "../2019/24/24.rs"
+path = "../events/2019/24/24.rs"
 
 
 [[bin]]
 name = "2019-25"
-path = "../2019/25/25.rs"
+path = "../events/2019/25/25.rs"
 
 
 [[bin]]
 name = "2020-01"
-path = "../2020/01/01.rs"
+path = "../events/2020/01/01.rs"
 
 
 [[bin]]
 name = "2020-02"
-path = "../2020/02/02.rs"
+path = "../events/2020/02/02.rs"
 
 
 [[bin]]
 name = "2020-03"
-path = "../2020/03/03.rs"
+path = "../events/2020/03/03.rs"
 
 
 [[bin]]
 name = "2020-04"
-path = "../2020/04/04.rs"
+path = "../events/2020/04/04.rs"
 
 
 [[bin]]
 name = "2020-05"
-path = "../2020/05/05.rs"
+path = "../events/2020/05/05.rs"
 
 
 [[bin]]
 name = "2020-06"
-path = "../2020/06/06.rs"
+path = "../events/2020/06/06.rs"
 
 
 [[bin]]
 name = "2020-07"
-path = "../2020/07/07.rs"
+path = "../events/2020/07/07.rs"
 
 
 [[bin]]
 name = "2020-08"
-path = "../2020/08/08.rs"
+path = "../events/2020/08/08.rs"
 
 
 [[bin]]
 name = "2020-09"
-path = "../2020/09/09.rs"
+path = "../events/2020/09/09.rs"
 
 
 [[bin]]
 name = "2020-10"
-path = "../2020/10/10.rs"
+path = "../events/2020/10/10.rs"
 
 
 [[bin]]
 name = "2020-11"
-path = "../2020/11/11.rs"
+path = "../events/2020/11/11.rs"
 
 
 [[bin]]
 name = "2020-12"
-path = "../2020/12/12.rs"
+path = "../events/2020/12/12.rs"
 
 
 [[bin]]
 name = "2020-13"
-path = "../2020/13/13.rs"
+path = "../events/2020/13/13.rs"
 
 
 [[bin]]
 name = "2020-14"
-path = "../2020/14/14.rs"
+path = "../events/2020/14/14.rs"
 
 
 [[bin]]
 name = "2020-15"
-path = "../2020/15/15.rs"
+path = "../events/2020/15/15.rs"
 
 
 [[bin]]
 name = "2020-16"
-path = "../2020/16/16.rs"
+path = "../events/2020/16/16.rs"
 
 
 [[bin]]
 name = "2020-17"
-path = "../2020/17/17.rs"
+path = "../events/2020/17/17.rs"
 
 
 [[bin]]
 name = "2020-18"
-path = "../2020/18/18.rs"
+path = "../events/2020/18/18.rs"
 
 
 [[bin]]
 name = "2020-19"
-path = "../2020/19/19.rs"
+path = "../events/2020/19/19.rs"
 
 
 [[bin]]
 name = "2020-20"
-path = "../2020/20/20.rs"
+path = "../events/2020/20/20.rs"
 
 
 [[bin]]
 name = "2020-21"
-path = "../2020/21/21.rs"
+path = "../events/2020/21/21.rs"
 
 
 [[bin]]
 name = "2020-22"
-path = "../2020/22/22.rs"
+path = "../events/2020/22/22.rs"
 
 
 [[bin]]
 name = "2020-23"
-path = "../2020/23/23.rs"
+path = "../events/2020/23/23.rs"
 
 
 [[bin]]
 name = "2020-24"
-path = "../2020/24/24.rs"
+path = "../events/2020/24/24.rs"
 
 
 [[bin]]
 name = "2020-25"
-path = "../2020/25/25.rs"
+path = "../events/2020/25/25.rs"
 
 
 [[bin]]
 name = "2021-01"
-path = "../2021/01/01.rs"
+path = "../events/2021/01/01.rs"
 
 
 [[bin]]
 name = "2021-02"
-path = "../2021/02/02.rs"
+path = "../events/2021/02/02.rs"
 
 
 [[bin]]
 name = "2021-03"
-path = "../2021/03/03.rs"
+path = "../events/2021/03/03.rs"
 
 
 [[bin]]
 name = "2021-04"
-path = "../2021/04/04.rs"
+path = "../events/2021/04/04.rs"
 
 
 [[bin]]
 name = "2021-05"
-path = "../2021/05/05.rs"
+path = "../events/2021/05/05.rs"
 
 
 [[bin]]
 name = "2021-06"
-path = "../2021/06/06.rs"
+path = "../events/2021/06/06.rs"
 
 
 [[bin]]
 name = "2021-07"
-path = "../2021/07/07.rs"
+path = "../events/2021/07/07.rs"
 
 
 [[bin]]
 name = "2021-08"
-path = "../2021/08/08.rs"
+path = "../events/2021/08/08.rs"
 
 
 [[bin]]
 name = "2021-09"
-path = "../2021/09/09.rs"
+path = "../events/2021/09/09.rs"
 
 
 [[bin]]
 name = "2021-10"
-path = "../2021/10/10.rs"
+path = "../events/2021/10/10.rs"
 
 
 [[bin]]
 name = "2021-11"
-path = "../2021/11/11.rs"
+path = "../events/2021/11/11.rs"
 
 
 [[bin]]
 name = "2021-12"
-path = "../2021/12/12.rs"
+path = "../events/2021/12/12.rs"
 
 
 [[bin]]
 name = "2021-13"
-path = "../2021/13/13.rs"
+path = "../events/2021/13/13.rs"
 
 
 [[bin]]
 name = "2021-14"
-path = "../2021/14/14.rs"
+path = "../events/2021/14/14.rs"
 
 
 [[bin]]
 name = "2021-15"
-path = "../2021/15/15.rs"
+path = "../events/2021/15/15.rs"
 
 
 [[bin]]
 name = "2021-16"
-path = "../2021/16/16.rs"
+path = "../events/2021/16/16.rs"
 
 
 [[bin]]
 name = "2021-17"
-path = "../2021/17/17.rs"
+path = "../events/2021/17/17.rs"
 
 
 [[bin]]
 name = "2021-18"
-path = "../2021/18/18.rs"
+path = "../events/2021/18/18.rs"
 
 
 [[bin]]
 name = "2021-19"
-path = "../2021/19/19.rs"
+path = "../events/2021/19/19.rs"
 
 
 [[bin]]
 name = "2021-20"
-path = "../2021/20/20.rs"
+path = "../events/2021/20/20.rs"
 
 
 [[bin]]
 name = "2021-21"
-path = "../2021/21/21.rs"
+path = "../events/2021/21/21.rs"
 
 
 [[bin]]
 name = "2021-22"
-path = "../2021/22/22.rs"
+path = "../events/2021/22/22.rs"
 
 
 [[bin]]
 name = "2021-23"
-path = "../2021/23/23.rs"
+path = "../events/2021/23/23.rs"
 
 
 [[bin]]
 name = "2021-24"
-path = "../2021/24/24.rs"
+path = "../events/2021/24/24.rs"
 
 
 [[bin]]
 name = "2021-25"
-path = "../2021/25/25.rs"
+path = "../events/2021/25/25.rs"
 
 
 [[bin]]
 name = "2022-01"
-path = "../2022/01/01.rs"
+path = "../events/2022/01/01.rs"
 
 
 [[bin]]
 name = "2022-02"
-path = "../2022/02/02.rs"
+path = "../events/2022/02/02.rs"
 
 
 [[bin]]
 name = "2022-03"
-path = "../2022/03/03.rs"
+path = "../events/2022/03/03.rs"
 
 
 [[bin]]
 name = "2022-04"
-path = "../2022/04/04.rs"
+path = "../events/2022/04/04.rs"
 
 
 [[bin]]
 name = "2022-05"
-path = "../2022/05/05.rs"
+path = "../events/2022/05/05.rs"
 
 
 [[bin]]
 name = "2022-06"
-path = "../2022/06/06.rs"
+path = "../events/2022/06/06.rs"
 
 
 [[bin]]
 name = "2022-07"
-path = "../2022/07/07.rs"
+path = "../events/2022/07/07.rs"
 
 
 [[bin]]
 name = "2022-08"
-path = "../2022/08/08.rs"
+path = "../events/2022/08/08.rs"
 
 
 [[bin]]
 name = "2022-09"
-path = "../2022/09/09.rs"
+path = "../events/2022/09/09.rs"
 
 
 [[bin]]
 name = "2022-10"
-path = "../2022/10/10.rs"
+path = "../events/2022/10/10.rs"
 
 
 [[bin]]
 name = "2022-11"
-path = "../2022/11/11.rs"
+path = "../events/2022/11/11.rs"
 
 
 [[bin]]
 name = "2022-12"
-path = "../2022/12/12.rs"
+path = "../events/2022/12/12.rs"
 
 
 [[bin]]
 name = "2022-13"
-path = "../2022/13/13.rs"
+path = "../events/2022/13/13.rs"
 
 
 [[bin]]
 name = "2022-14"
-path = "../2022/14/14.rs"
+path = "../events/2022/14/14.rs"
 
 
 [[bin]]
 name = "2022-15"
-path = "../2022/15/15.rs"
+path = "../events/2022/15/15.rs"
 
 
 [[bin]]
 name = "2022-16"
-path = "../2022/16/16.rs"
+path = "../events/2022/16/16.rs"
 
 
 [[bin]]
 name = "2022-17"
-path = "../2022/17/17.rs"
+path = "../events/2022/17/17.rs"
 
 
 [[bin]]
 name = "2022-18"
-path = "../2022/18/18.rs"
+path = "../events/2022/18/18.rs"
 
 
 [[bin]]
 name = "2022-19"
-path = "../2022/19/19.rs"
+path = "../events/2022/19/19.rs"
 
 
 [[bin]]
 name = "2022-20"
-path = "../2022/20/20.rs"
+path = "../events/2022/20/20.rs"
 
 
 [[bin]]
 name = "2022-21"
-path = "../2022/21/21.rs"
+path = "../events/2022/21/21.rs"
 
 
 [[bin]]
 name = "2022-22"
-path = "../2022/22/22.rs"
+path = "../events/2022/22/22.rs"
 
 
 [[bin]]
 name = "2022-23"
-path = "../2022/23/23.rs"
+path = "../events/2022/23/23.rs"
 
 
 [[bin]]
 name = "2022-24"
-path = "../2022/24/24.rs"
+path = "../events/2022/24/24.rs"
 
 
 [[bin]]
 name = "2022-25"
-path = "../2022/25/25.rs"
+path = "../events/2022/25/25.rs"
 
 
 [[bin]]
 name = "2023-01"
-path = "../2023/01/01.rs"
+path = "../events/2023/01/01.rs"
 
 
 [[bin]]
 name = "2023-02"
-path = "../2023/02/02.rs"
+path = "../events/2023/02/02.rs"
 
 
 [[bin]]
 name = "2023-03"
-path = "../2023/03/03.rs"
+path = "../events/2023/03/03.rs"
 
 
 [[bin]]
 name = "2023-04"
-path = "../2023/04/04.rs"
+path = "../events/2023/04/04.rs"
 
 
 [[bin]]
 name = "2023-05"
-path = "../2023/05/05.rs"
+path = "../events/2023/05/05.rs"
 
 
 [[bin]]
 name = "2023-06"
-path = "../2023/06/06.rs"
+path = "../events/2023/06/06.rs"
 
 
 [[bin]]
 name = "2023-07"
-path = "../2023/07/07.rs"
+path = "../events/2023/07/07.rs"
 
 
 [[bin]]
 name = "2023-08"
-path = "../2023/08/08.rs"
+path = "../events/2023/08/08.rs"
 
 
 [[bin]]
 name = "2023-09"
-path = "../2023/09/09.rs"
+path = "../events/2023/09/09.rs"
 
 
 [[bin]]
 name = "2023-10"
-path = "../2023/10/10.rs"
+path = "../events/2023/10/10.rs"
 
 
 [[bin]]
 name = "2023-11"
-path = "../2023/11/11.rs"
+path = "../events/2023/11/11.rs"
 
 
 [[bin]]
 name = "2023-12"
-path = "../2023/12/12.rs"
+path = "../events/2023/12/12.rs"
 
 
 [[bin]]
 name = "2023-13"
-path = "../2023/13/13.rs"
+path = "../events/2023/13/13.rs"
 
 
 [[bin]]
 name = "2023-14"
-path = "../2023/14/14.rs"
+path = "../events/2023/14/14.rs"
 
 
 [[bin]]
 name = "2023-15"
-path = "../2023/15/15.rs"
+path = "../events/2023/15/15.rs"
 
 
 [[bin]]
 name = "2023-16"
-path = "../2023/16/16.rs"
+path = "../events/2023/16/16.rs"
 
 
 [[bin]]
 name = "2023-17"
-path = "../2023/17/17.rs"
+path = "../events/2023/17/17.rs"
 
 
 [[bin]]
 name = "2023-18"
-path = "../2023/18/18.rs"
+path = "../events/2023/18/18.rs"
 
 
 [[bin]]
 name = "2023-19"
-path = "../2023/19/19.rs"
+path = "../events/2023/19/19.rs"
 
 
 [[bin]]
 name = "2023-20"
-path = "../2023/20/20.rs"
+path = "../events/2023/20/20.rs"
 
 
 [[bin]]
 name = "2023-21"
-path = "../2023/21/21.rs"
+path = "../events/2023/21/21.rs"
 
 
 [[bin]]
 name = "2023-22"
-path = "../2023/22/22.rs"
+path = "../events/2023/22/22.rs"
 
 
 [[bin]]
 name = "2023-23"
-path = "../2023/23/23.rs"
+path = "../events/2023/23/23.rs"
 
 
 [[bin]]
 name = "2023-24"
-path = "../2023/24/24.rs"
+path = "../events/2023/24/24.rs"
 
 
 [[bin]]
 name = "2023-25"
-path = "../2023/25/25.rs"
+path = "../events/2023/25/25.rs"
