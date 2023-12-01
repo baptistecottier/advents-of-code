@@ -12,6 +12,7 @@ macro_rules! main {
             mod_exp::mod_exp,
             num::pow,
             regex::Regex,
+            aho_corasick::{AhoCorasick, PatternID},
             serde_json::{json, Value},
             std::cmp::Ordering,
             std::collections::{HashMap, HashSet, VecDeque},
