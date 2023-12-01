@@ -1,36 +1,25 @@
+import ahocorasick
 
-import re
 def preprocessing(input):
+    automaton = ahocorasick.Automaton()
+    patterns = [ "_", "1"  , "2"  , "3"    , "4"   , "5"   , "6"  , "7"    , "8"   , "9",
+                 "_", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"]
+    for idx, key in enumerate(patterns):
+        automaton.add_word(key, (idx, key))
+    automaton.make_automaton()
+
     document = list()
     for line in input.splitlines():
-        matches = re.finditer(r'(?=([0-9]|one|two|three|four|five|six|seven|eight|nine))', line)
-        numbers = [match.group(1) for match in matches]
-        document.append(numbers)
+        document.append([n for _, (n, _) in automaton.iter(line)])
     return document
 
 def solver(document):
-    allowed = {str(n): n for n in range(1, 10)}
-    yield calibrate(document.copy(), allowed)
-    
-    allowed.update({
-        "one":   1,
-        "two":   2,
-        "three": 3,
-        "four":  4,
-        "five":  5, 
-        "six":   6,
-        "seven": 7,
-        "eight": 8, 
-        "nine":  9
-    })
-    yield calibrate(document, allowed)
-
-def calibrate(document, allowed):
-    calibration_values = 0
+    no_spell = 0
+    spell    = 0
     for digits in document:
-        l = 0
-        r = len(digits) - 1
-        while (a:= digits[l]) not in allowed.keys(): l += 1
-        while (b:= digits[r]) not in allowed.keys(): r -= 1
-        calibration_values += allowed[a] * 10 + allowed[b]
-    return calibration_values
+        spell    += 10 * (digits[0] % 10) + (digits[-1] % 10)
+        digits    = [n for n in digits if n < 10]
+        no_spell += 10 * (digits[0]) + digits[-1]
+
+    yield no_spell
+    yield spell
