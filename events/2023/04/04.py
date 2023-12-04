@@ -12,9 +12,8 @@ def solver(scores):
     points = 0
     scratch = {n: 1 for n in range(len(scores))}
     for game, score in enumerate(scores):
-        if score > 0: 
-            for gg in range(game + 1, game + score + 1):
-                scratch[gg] += scratch[game]
-            points += pow(2, score - 1)
+        points += (1 << score) >> 1
+        for gg in range(game + 1, game + score + 1):
+            scratch[gg] += scratch[game]
     yield points
     yield sum(scratch.values())
