@@ -10,10 +10,10 @@ def preprocessing(input):
 
 def solver(scores):
     points = 0
-    scratch = {n: 1 for n in range(len(scores))}
+    scratch = [1 for _ in range(len(scores))]
     for game, score in enumerate(scores):
         points += (1 << score) >> 1
         for gg in range(game + 1, game + score + 1):
             scratch[gg] += scratch[game]
     yield points
-    yield sum(scratch.values())
+    yield sum(scratch)

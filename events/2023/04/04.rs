@@ -5,12 +5,12 @@ fn preprocessing(input: &str) -> Vec<usize> {
     .lines()
     .map(|game| 
         game
-        .split(&['|', ':'])
+        .split(&[':', '|'])
         .skip(1)
         .map(|numbers| 
             numbers
             .split_whitespace()
-            .map(|numbers| numbers.parse::<u8>().unwrap())
+            .map(|number| number.parse::<u8>().unwrap())
             .collect::<HashSet<u8>>())
         .collect_tuple().unwrap())
     .map(|(draw, card)| draw.intersection(&card).count())
@@ -26,7 +26,6 @@ fn part_1(input: Vec<usize>) -> usize {
 
 fn part_2(input: Vec<usize>) -> usize {
     input
-    .clone()
     .iter()
     .enumerate()
     .fold(vec![1; input.len()], |mut scratch, (game, score)| {
