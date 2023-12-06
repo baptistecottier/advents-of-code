@@ -14,9 +14,9 @@ def preprocessing(input):
 
     return zip(time, distance)
 
-def solver(input):
+def solver(races):
     total = 1
-    for time, distance in input:
+    for time, distance in races:
         l, h = sorted((int(n) for n in np.roots([1, - time, distance])))
         total *= (h - l)
     yield total // (h - l)
