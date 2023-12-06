@@ -6,9 +6,11 @@ macro_rules! main {
     () => {
         #[allow(unused_import)]
         use {
+            roots::Roots,
+            roots::find_roots_quadratic,
             aoc::screen_reader,
             grid::Grid,
-            itertools::{chain, iproduct, repeat_n, FoldWhile, Itertools},
+            itertools::{chain, iproduct, repeat_n, multizip, FoldWhile, Itertools},
             mod_exp::mod_exp,
             num::pow,
             regex::Regex,
