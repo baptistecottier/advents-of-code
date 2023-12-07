@@ -18,13 +18,7 @@ def winnings(bets, joker = '∅'):
 
         hand_strength = sorted(Counter(jcards).values(), reverse=True)
         hand_strength += [0 for _ in range(5 - len(hand_strength))]        
-
-        i = 0
-        while jokers > 0:
-            if hand_strength[i] < 5:
-                hand_strength[i] += 1
-                jokers -= 1
-            else : i += 1
+        hand_strength[0] = min(5, hand_strength[0] + jokers)
 
         cards_strength = [card_strength[card] for card in cards]
         hand_sort.append((hand_strength, cards_strength, bet))
