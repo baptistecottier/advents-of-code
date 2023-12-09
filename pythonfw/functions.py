@@ -1,7 +1,7 @@
 from operator import gt
 from re           import findall
 from collections  import defaultdict, deque
-from math         import prod
+from math         import lcm, prod
 
 import _md5
 
@@ -23,10 +23,9 @@ def bfs(maze, start, end, max_length = 1_000, predicate = None):
                 queue.append(path + [(x2, y2)])
                 seen.add((x2, y2))
     return -1
-                
 def chinese_remainder(equations, get_modulo = False):
     sum     = 0
-    product = prod(modulo for _, modulo in equations)
+    product = lcm(*(modulo for _, modulo in equations))
     for remainder, modulo in equations:
         sub_product = product // modulo
         sum        += remainder * pow(sub_product, -1, modulo) * sub_product
