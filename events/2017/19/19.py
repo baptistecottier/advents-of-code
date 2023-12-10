@@ -1,4 +1,3 @@
-import enum
 from pythonfw.classes import Point
 
 def preprocessing(input_): 
