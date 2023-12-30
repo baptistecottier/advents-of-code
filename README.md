@@ -24,7 +24,7 @@ Year             | Score |
 
 Year             | Score 
 :---:            | :---:
-[2019](https://github.com/baptistecottier/advents-of-code/tree/main#2023-) | 33
+[2019](https://github.com/baptistecottier/advents-of-code/tree/main#2019-) | 33
 [2018](https://github.com/baptistecottier/advents-of-code/tree/main#2018-) | 42
 [2017](https://github.com/baptistecottier/advents-of-code/tree/main#2017-) | 50
 [2016](https://github.com/baptistecottier/advents-of-code/tree/main#2016-) | 50
