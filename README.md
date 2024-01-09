@@ -39,7 +39,7 @@ Enter the code `1349697-f730f285` in your [Private Leaderboard Homepage](https:/
 
 
 
-## 2023 [🔝](https://github.com/baptistecottier/advents-of-code/tree/main#-advents-of-code)
+## 2023 [🔝](#-advents-of-code)
 | Day  | Title                                                                                                              | Python                                                                                   | Rust 
 | :--: | :----------------------------------------------------------------------------------------------------------------- | :--------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------:
 |  01  | [Trebuchet?!                       ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2023/01)  | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2023/01/01.py) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2023/01/01.rs)
