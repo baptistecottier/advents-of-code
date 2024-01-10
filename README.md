@@ -69,7 +69,7 @@ Enter the code `1349697-f730f285` in your [Private Leaderboard Homepage](https:/
 |  25  | [Snowverload                       ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2023/25)  |                                                                                           | 
 
 
-## 2022 [🔝](https://github.com/baptistecottier/advents-of-code/tree/main#-advents-of-code)
+## 2022 [🔝](#-advents-of-code)
 | Day  | Title                                                                                                     | Python                                                                                   | Rust 
 | :--: | :-------------------------------------------------------------------------------------------------------- | :--------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------:
 |  01  | [Calorie Counting          ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2022/01) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2022/01/01.py) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2022/01/01.rs)
@@ -99,7 +99,7 @@ Enter the code `1349697-f730f285` in your [Private Leaderboard Homepage](https:/
 |  25  | [Full of Hot Air           ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2022/25) | [⭐  ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2022/25/25.py) |
 
 
-## 2021 [🔝](https://github.com/baptistecottier/advents-of-code/tree/main#-advents-of-code)
+## 2021 [🔝](#-advents-of-code)
 | Day  | Title                                                                                                     | Python                                                                                   | Rust 
 | :--: | :-------------------------------------------------------------------------------------------------------- | :--------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------:
 |  01  | [Sonar Sweep               ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2021/01) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2021/01/01.py) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2021/01/01.rs)
@@ -129,7 +129,7 @@ Enter the code `1349697-f730f285` in your [Private Leaderboard Homepage](https:/
 |  25  | [Sea Cucumber              ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2021/25)  
 
 
-## 2020 [🔝](https://github.com/baptistecottier/advents-of-code/tree/main#-advents-of-code)
+## 2020 [🔝](#-advents-of-code)
 | Day  | Title                                                                                                     | Python                                                                                   | Rust 
 | :--: | :-------------------------------------------------------------------------------------------------------- | :--------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------:
 |  01  | [Report Repair             ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2020/01) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2020/01/01.py) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2020/01/01.rs)
@@ -159,7 +159,7 @@ Enter the code `1349697-f730f285` in your [Private Leaderboard Homepage](https:/
 |  25  | [Combo Breaker             ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2020/25) | [ ⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2020/25/25.py) 
 
 
-## 2019 [🔝](https://github.com/baptistecottier/advents-of-code/tree/main#-advents-of-code)
+## 2019 [🔝](#-advents-of-code)
 | Day  | Title                                                                                                             | Python                                                                                   | Rust 
 | :--: | :---------------------------------------------------------------------------------------------------------------- | :--------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------:
 |  01  | [The Tyranny of the Rocket Equation](https://github.com/baptistecottier/advents-of-code/tree/main/events/2019/01) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2019/01/01.py) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2019/01/01.rs)
@@ -189,7 +189,7 @@ Enter the code `1349697-f730f285` in your [Private Leaderboard Homepage](https:/
 |  25  | [Cryostasis                        ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2019/25)  
 
 
-## 2018 [🔝](https://github.com/baptistecottier/advents-of-code/tree/main#-advents-of-code)
+## 2018 [🔝](#-advents-of-code)
 | Day  | Title                                                                                                                 | Python                                                                                   | Rust 
 | :--: | :-------------------------------------------------------------------------------------------------------------------- | :--------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------:
 |  01  | [Chronal Calibration                   ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2018/01) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2018/01/01.py) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2018/01/01.rs)
@@ -219,7 +219,7 @@ Enter the code `1349697-f730f285` in your [Private Leaderboard Homepage](https:/
 |  25  | [Four-Dimensional Adventure            ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2018/25) | [⭐  ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2018/25/25.py) |  
 
 
-## 2017 [🔝](https://github.com/baptistecottier/advents-of-code/tree/main#-advents-of-code)
+## 2017 [🔝](#-advents-of-code)
 | Day  | Title                                                                                                                     | Python                                                                                   | Rust 
 | :--: | :------------------------------------------------------------------------------------------------------------------------ | :--------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------:
 |  01  | [Inverse Captcha                           ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2017/01) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2017/01/01.py) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2017/01/01.rs)
@@ -249,7 +249,7 @@ Enter the code `1349697-f730f285` in your [Private Leaderboard Homepage](https:/
 |  25  | [The Halting Problem                       ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2017/25) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2017/25/25.py) |  
 
 
-## 2016 [🔝](https://github.com/baptistecottier/advents-of-code/tree/main#-advents-of-code)
+## 2016 [🔝](#-advents-of-code)
 | Day  | Title                                                                                                                 | Python                                                                                   | Rust 
 | :--: | :-------------------------------------------------------------------------------------------------------------------- | :--------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------:
 |  01  | [No Time for a Taxicab                 ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2016/01) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2016/01/01.py) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2016/01/01.rs)
@@ -279,7 +279,7 @@ Enter the code `1349697-f730f285` in your [Private Leaderboard Homepage](https:/
 |  25  | [Clock Signal                          ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2016/25) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2016/25/25.py) | 
 
 
-## 2015 [🔝](https://github.com/baptistecottier/advents-of-code/tree/main#-advents-of-code)
+## 2015 [🔝](#-advents-of-code)
 | Day  | Title                                                                                                                 | Python                                                                                   | Rust 
 | :--: | :-------------------------------------------------------------------------------------------------------------------- | :--------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------:
 |  01  | [Not Quite Lisp                        ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2015/01) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2015/01/01.py) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2015/01/01.rs)
