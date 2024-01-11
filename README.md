@@ -16,19 +16,19 @@ Thanks [Scotow](https://github.com/scotow) for the initial framework and preciou
 Year             | Score | 
 :---:            | :---:|
 [2023](#2023-) | 27
-[2022](https://github.com/baptistecottier/advents-of-code/tree/main#2022-) | 37
-[2021](https://github.com/baptistecottier/advents-of-code/tree/main#2021-) | 43
-[2020](https://github.com/baptistecottier/advents-of-code/tree/main#2020-) | 48
+[2022](#2022-) | 37
+[2021](#2021-) | 43
+[2020](#2020-) | 48
 </td>
 <td>
 
 Year             | Score 
 :---:            | :---:
-[2019](https://github.com/baptistecottier/advents-of-code/tree/main#2019-) | 33
-[2018](https://github.com/baptistecottier/advents-of-code/tree/main#2018-) | 42
-[2017](https://github.com/baptistecottier/advents-of-code/tree/main#2017-) | 50
-[2016](https://github.com/baptistecottier/advents-of-code/tree/main#2016-) | 50
-[2015](https://github.com/baptistecottier/advents-of-code/tree/main#2015-) | 50
+[2019](#2019-) | 33
+[2018](#2018-) | 42
+[2017](#2017-) | 50
+[2016](#2016-) | 50
+[2015](#2015-) | 50
 </td>
 </tr> 
 
