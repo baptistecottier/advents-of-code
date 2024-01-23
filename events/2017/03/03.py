@@ -19,10 +19,7 @@ def solver(square_position):
     while value < square_position:
         tx, ty = turn[(dx, dy)]
         memory[(x, y)] = value
-        if not memory[(x + tx, y + ty)]:
-            dx, dy = tx, ty
-            tx, ty = turn[(dx, dy)]
+        if not memory[(x + tx, y + ty)]: dx, dy = tx, ty
         x, y = x + dx, y + dy
         value = sum(memory[(x + tx, y + ty)] for (tx, ty) in product({-1, 0, 1}, repeat = 2))
-
     yield value
