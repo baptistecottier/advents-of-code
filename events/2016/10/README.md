@@ -9,15 +9,13 @@ Inspecting one of the microchips, it seems like they each contain a single numbe
 Some of the instructions specify that a specific-valued microchip should be given to a specific bot; the rest of the instructions indicate what a given bot should do with its **lower-value** or **higher-value** chip.
 
 For example, consider the following instructions:
-
-<code><pre>
-value 5 goes to bot 2
+<pre><code>value 5 goes to bot 2
 bot 2 gives low to bot 1 and high to bot 0
 value 3 goes to bot 1
 bot 1 gives low to output 1 and high to bot 0
 bot 0 gives low to output 2 and high to output 0
 value 2 goes to bot 2
-</pre></code>
+</code></pre>
 
 - Initially, bot `1` starts with a value-`3` chip, and bot `2` starts with a value-`2` chip and a value-`5` chip.
 - Because bot `2` has two microchips, it gives its lower one (`2`) to bot `1` and its higher one (`5`) to bot `0`.
