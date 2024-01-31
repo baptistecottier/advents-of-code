@@ -7,7 +7,7 @@ fn preprocessing(input: &str) -> Vec<(i32,i32)> {
     input
     .split(", ")
     .map(move |info| {
-        let turn = info.clone().chars().nth(0).unwrap() ;
+        let turn = info.chars().nth(0).unwrap() ;
         let l = info[1..].parse::<i32>().unwrap() ;
         match turn {
             'R' => dir = turn_right(dir),
