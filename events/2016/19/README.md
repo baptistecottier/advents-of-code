@@ -2,7 +2,7 @@
 
 The Elves contact you over a highly secure emergency channel. Back at the North Pole, the Elves are busy misunderstanding [White Elephant parties](https://en.wikipedia.org/wiki/White_elephant_gift_exchange).
 
-Each Elf brings a present. They all sit in a circle, numbered starting with position 1. Then, starting with the first Elf, they take turns stealing all the presents from the Elf to their left. An Elf with no presents is removed from the circle and does not take turns.
+Each Elf brings a present. They all sit in a circle, numbered starting with position `1`. Then, starting with the first Elf, they take turns stealing all the presents from the Elf to their left. An Elf with no presents is removed from the circle and does not take turns.
 
 For example, with five Elves (numbered `1` to `5`):
 <pre><code>  1
@@ -46,7 +46,7 @@ For example, with five Elves (again numbered `1` to `5`):
   <pre><code> -          2  
       2  -->
    4          4
-   </code></pre>
+  </code></pre>
 - Finally, Elf `2` steals from Elf `4`:
   <pre><code> 2
       -->  2  
