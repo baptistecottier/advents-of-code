@@ -4,10 +4,10 @@ This is one of the top floors of the nicest tower in EBHQ. The Easter Bunny's pr
 
 The safe has a digital screen and keypad for code entry. A sticky note attached to the safe has a password hint on it: "eggs". The painting is of a large rabbit coloring some eggs. You see `7`.
 
-When you go to type the code, though, nothing appears on the display; instead, the keypad comes apart in your hands, apparently having been smashed. Behind it is some kind of socket - one that matches a connector in your [prototype computer](https://adventofcode.com/2016/day/11)! You pull apart the smashed keypad and extract the logic circuit, plug it into your computer, and plug your computer into the safe.
+When you go to type the code, though, nothing appears on the display; instead, the keypad comes apart in your hands, apparently having been smashed. Behind it is some kind of socket - one that matches a connector in your [prototype computer](https://github.com/baptistecottier/advents-of-code/tree/main/events/2016/11)! You pull apart the smashed keypad and extract the logic circuit, plug it into your computer, and plug your computer into the safe.
 
-Now, you just need to figure out what output the keypad would have sent to the safe. You extract the [assembunny code](https://adventofcode.com/2016/day/12) from the logic chip (your puzzle input).
-The code looks like it uses **almost** the same architecture and instruction set that the [monorail computer](https://adventofcode.com/2016/day/12) used! You should be able to **use the same assembunny interpreter** for this as you did there, but with one new instruction:
+Now, you just need to figure out what output the keypad would have sent to the safe. You extract the [assembunny code](https://github.com/baptistecottier/advents-of-code/tree/main/events/2016/12) from the logic chip (your puzzle input).
+The code looks like it uses **almost** the same architecture and instruction set that the [monorail computer](https://github.com/baptistecottier/advents-of-code/tree/main/events/2016/12) used! You should be able to **use the same assembunny interpreter** for this as you did there, but with one new instruction:
 
 `tgl x` **toggles** the instruction `x` away (pointing at instructions like jnz does: positive means forward; negative means backward):
 
