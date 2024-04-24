@@ -1,3 +1,9 @@
+from dataclasses import dataclass
+
+@dataclass
+class Direction:
+    dx: int
+    dy: int
 
 class Register(dict):
     def __init__(self, *args):
