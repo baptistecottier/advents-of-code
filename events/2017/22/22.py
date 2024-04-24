@@ -1,6 +1,6 @@
-def preprocessing(input_): 
+def preprocessing(puzzle_input): 
     infected = []
-    grid = input_.splitlines()
+    grid = puzzle_input.splitlines()
     size = len(grid)
     for y, line in enumerate(grid[::-1]):
         for x, c in enumerate(line):

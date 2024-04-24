@@ -1,7 +1,7 @@
 from parse import parse
 
-def preprocessing(input_):
-    infos = input_.split('\n\n')
+def preprocessing(puzzle_input):
+    infos = puzzle_input.split('\n\n')
     starting_state, trigger = parse("Begin in state {}.\nPerform a diagnostic checksum after {:d} steps.", infos[0])
     details = []
     for state in infos[1:]:

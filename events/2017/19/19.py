@@ -1,8 +1,8 @@
 from pythonfw.classes import Point
 
-def preprocessing(input_): 
+def preprocessing(puzzle_input): 
     path = {}
-    for y, row in enumerate(input_.splitlines()):
+    for y, row in enumerate(puzzle_input.splitlines()):
         for x, c in enumerate(row):
             if c != ' ': 
                 if y == 0: start = Point(x, y)

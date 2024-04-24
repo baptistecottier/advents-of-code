@@ -1,8 +1,8 @@
 from copy               import deepcopy
 from pythonfw.functions import extract_chunks
 
-def preprocessing(input_): 
-    return extract_chunks(input_, 2)
+def preprocessing(puzzle_input): 
+    return extract_chunks(puzzle_input, 2)
 
  
 def solver(connections): 

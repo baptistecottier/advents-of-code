@@ -1,18 +1,18 @@
 from pythonfw.classes import Register
 
-def preprocessing(input_):
-    return [line.split(' ') for line in input_.splitlines()]
+def preprocessing(puzzle_input):
+    return [line.split(' ') for line in puzzle_input.splitlines()]
 
-def solver(input_): 
-    yield (1, part_1(input_))
-    yield (2, part_2(input_))
+def solver(puzzle_input): 
+    yield (1, part_1(puzzle_input))
+    yield (2, part_2(puzzle_input))
     
-def part_1(input_):
+def part_1(puzzle_input):
     reg = Register({'a': 0,'b': 0,'f': 0,'i': 0,'p': 0})
-    d = input_[0]
+    d = puzzle_input[0]
     i = 0
-    while input_[i][0] != 'rcv':
-        d = input_[i]
+    while puzzle_input[i][0] != 'rcv':
+        d = puzzle_input[i]
         match d[0]:
             case 'snd': sound_frequency = reg.get(d[1])
             case 'set': reg[d[1]] = reg.get(d[2])
@@ -26,7 +26,7 @@ def part_1(input_):
         i += 1
     return sound_frequency
 
-def part_2(input_):
+def part_2(puzzle_input):
     reg = [Register({'a': 0,'b': 0,'f': 0,'i': 0,'p': 0}), 
            Register({'a': 0,'b': 0,'f': 0,'i': 0,'p': 1})]
     queue =[[], []]
@@ -34,7 +34,7 @@ def part_2(input_):
     i = [0,0]
     cnt = 0 
     while 1:
-        d = input_[i[p]]
+        d = puzzle_input[i[p]]
         match d[0]:
             case 'snd': 
                 cnt += p

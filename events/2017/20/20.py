@@ -1,8 +1,8 @@
 from pythonfw.classes import Particule
 from pythonfw.functions import extract_chunks
 
-def preprocessing(input_): 
-    return [Particule(*particule) for particule in extract_chunks(input_, 9)]
+def preprocessing(puzzle_input): 
+    return [Particule(*particule) for particule in extract_chunks(puzzle_input, 9)]
 
 def solver(particules):
     yield min(range(len(particules)), key = lambda i: particules[i])
