@@ -1,10 +1,10 @@
 from parse import parse
 from itertools import product 
 
-def preprocessing(input): 
+def preprocessing(puzzle_input): 
     patterns = {}
     rules = {}
-    plain_rules, messages = (item.splitlines() for item in input.split('\n\n'))
+    plain_rules, messages = (item.splitlines() for item in puzzle_input.split('\n\n'))
     for rule in plain_rules:
         num, cond = list(parse("{:d}: {}", rule))
         if cond in ['"a"', '"b"']: patterns[num] = {cond[1]}

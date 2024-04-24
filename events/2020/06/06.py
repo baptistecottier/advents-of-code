@@ -2,8 +2,8 @@ from collections import Counter
 from typing      import Generator 
 
 
-def preprocessing(input: str) -> Generator[list[str], None, None]:
-    return (group.splitlines() for group in input.split('\n\n'))
+def preprocessing(puzzle_input: str) -> Generator[list[str], None, None]:
+    return (group.splitlines() for group in puzzle_input.split('\n\n'))
 
 
 def solver(groups: Generator[list[str], None, None]) -> Generator[int, None, None]:

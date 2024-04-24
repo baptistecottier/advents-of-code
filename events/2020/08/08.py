@@ -1,6 +1,6 @@
-def preprocessing(input_: str) -> list[int, int]:
+def preprocessing(puzzle_input: str) -> list[int, int]:
     instructions = []
-    for instruction in input_.splitlines():        
+    for instruction in puzzle_input.splitlines():        
         ins, step = instruction.split(' ')
         match ins:
             case 'nop': instructions.append((0, int(step)))

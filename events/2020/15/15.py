@@ -1,5 +1,5 @@
-def preprocessing(input):
-    values = [int(item) for item in input.split(',')]
+def preprocessing(puzzle_input):
+    values = [int(item) for item in puzzle_input.split(',')]
     return ({spoken:[n] for (n, spoken) in enumerate(values)} , values[-1])
 
 def solver(spoken, last_spoken):

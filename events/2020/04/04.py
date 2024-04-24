@@ -1,9 +1,9 @@
 import string
 
 
-def preprocessing(input): 
+def preprocessing(puzzle_input): 
     details = []
-    for passport in input.split('\n\n'):
+    for passport in puzzle_input.split('\n\n'):
         passport = passport.replace('\n', ' ')
         infos = {}
         for info in passport.split(' '):

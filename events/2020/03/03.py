@@ -1,9 +1,9 @@
 from pythonfw.classes import Point
 
 
-def preprocessing(input):
+def preprocessing(puzzle_input):
     trees = set()
-    for y, row in enumerate(input.splitlines()):
+    for y, row in enumerate(puzzle_input.splitlines()):
         for x, c in enumerate(row):
             if c == '#': trees.add((x, y))
     return trees, x + 1, y

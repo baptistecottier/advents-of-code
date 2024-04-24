@@ -1,6 +1,6 @@
-def preprocessing(input): 
+def preprocessing(puzzle_input): 
     tiles = set()
-    for tile in input.splitlines():
+    for tile in puzzle_input.splitlines():
         n = {}
         for value in ['se', 'sw', 'ne', 'nw', 'e', 'w']:
             n[value] = tile.count(value)
@@ -14,11 +14,11 @@ def preprocessing(input):
     return tiles
     
 
-def solver(input):
-    yield len(input)
+def solver(puzzle_input):
+    yield len(puzzle_input)
     
     neighbours = {(0.5, -1), (-0.5, -1), (0.5, 1), (-0.5, 1), (1, 0), (-1, 0)}
-    tiles = input
+    tiles = puzzle_input
     
     for d in range(100):
         tested = set()

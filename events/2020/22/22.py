@@ -1,9 +1,9 @@
 from copy import deepcopy
 
 
-def preprocessing(input_):
+def preprocessing(puzzle_input):
     cards = {}
-    for n, plain_cards in enumerate(input_.split('\n\n')):
+    for n, plain_cards in enumerate(puzzle_input.split('\n\n')):
         cards[n + 1] = [int(card) for card in plain_cards.splitlines()[1:]]
     return cards
 
@@ -11,8 +11,8 @@ def solver(cards):
     yield part_1(deepcopy(cards))
     yield part_2(cards)
 
-def part_1(input_): 
-    cards = input_
+def part_1(puzzle_input): 
+    cards = puzzle_input
     while [] not in cards.values():
         a, cards[1] = cards[1][0], cards[1][1:]
         b, cards[2] = cards[2][0], cards[2][1:]
@@ -22,8 +22,8 @@ def part_1(input_):
     else: winner = 1
     return sum((n + 1) * c for n, c in enumerate(cards[winner][::-1]))
 
-def part_2(input_): 
-    cards = input_
+def part_2(puzzle_input): 
+    cards = puzzle_input
     decks = []
     while [] not in cards.values():
         if list(cards.values()) in decks:

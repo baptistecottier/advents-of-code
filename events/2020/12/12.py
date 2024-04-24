@@ -1,7 +1,7 @@
 from pythonfw.classes import Point
 
-def preprocessing(input):
-    return list(map(lambda x: (x[0], int(x[1:])), input.splitlines()))
+def preprocessing(puzzle_input):
+    return list(map(lambda x: (x[0], int(x[1:])), puzzle_input.splitlines()))
 
 def solver(instructions):
     yield navigate(instructions, False, 1, 0)

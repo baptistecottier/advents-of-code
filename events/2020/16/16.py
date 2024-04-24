@@ -2,8 +2,8 @@ from parse     import parse
 from itertools import chain
 from math      import prod 
 
-def preprocessing(input):
-    p_rules, p_ticket, p_nearby = input.split('\n\n')
+def preprocessing(puzzle_input):
+    p_rules, p_ticket, p_nearby = puzzle_input.split('\n\n')
     rules = []
     for rule in p_rules.splitlines():
         _, a, b, c, d = list(parse("{}: {:d}-{:d} or {:d}-{:d}", rule))

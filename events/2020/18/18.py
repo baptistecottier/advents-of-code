@@ -1,5 +1,5 @@
-def preprocessing(input):
-    return [expr.replace(' ', '') for expr in input.splitlines()]
+def preprocessing(puzzle_input):
+    return [expr.replace(' ', '') for expr in puzzle_input.splitlines()]
 
 
 def solver(expressions):

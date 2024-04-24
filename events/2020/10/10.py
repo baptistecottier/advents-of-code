@@ -1,5 +1,5 @@
-def preprocessing(input):
-    joltages = sorted(int(item) for item in sorted(input.splitlines()))
+def preprocessing(puzzle_input):
+    joltages = sorted(int(item) for item in sorted(puzzle_input.splitlines()))
     return [0] + joltages + [joltages[-1] + 3]
 
 def solver(joltages):

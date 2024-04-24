@@ -1,7 +1,7 @@
 from copy import deepcopy
 
-def preprocessing(input):
-    rows = input.splitlines()
+def preprocessing(puzzle_input):
+    rows = puzzle_input.splitlines()
     l = len(rows)
     w = len(rows[0])
     seats = [[0 for _ in range (w + 2)] for _ in range(l + 2)]
@@ -10,15 +10,15 @@ def preprocessing(input):
             seats[r][c] = int(rows[r-1][c-1] == 'L')
     return seats
 
-def solver(input):
-    boat = input
+def solver(puzzle_input):
+    boat = puzzle_input
     updated_boat = apply_rules(boat)
     while boat != updated_boat:
         boat = deepcopy(updated_boat)
         updated_boat = apply_rules(boat)
     yield sum(sum(seat == 2 for seat in row) for row in updated_boat)
 
-    boat = input
+    boat = puzzle_input
     updated_boat = apply_rules(boat, False)
     while boat != updated_boat:
         boat = deepcopy(updated_boat)

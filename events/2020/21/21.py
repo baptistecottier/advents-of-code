@@ -1,10 +1,10 @@
 from parse import parse
 
-def preprocessing(input_):
+def preprocessing(puzzle_input):
     detector = {}
     list_ingredients = {}
     
-    for food in input_.splitlines():
+    for food in puzzle_input.splitlines():
         ingredients, allergens = list(parse("{} (contains {})", food))
         ingredients = ingredients.split(' ')
         allergens = allergens.split(', ')

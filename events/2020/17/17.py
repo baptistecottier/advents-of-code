@@ -1,9 +1,9 @@
 from itertools import product
 
-def preprocessing(input):
+def preprocessing(puzzle_input):
     activated = set()
-    size = len(input.splitlines()) // 2
-    for y, line in enumerate(input.splitlines()):
+    size = len(puzzle_input.splitlines()) // 2
+    for y, line in enumerate(puzzle_input.splitlines()):
         for x, cube in enumerate(line):
             if cube == '#': activated.add((x - size, y - size))
     return activated, size

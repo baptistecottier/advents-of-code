@@ -1,9 +1,9 @@
 from itertools import combinations
 from re        import findall
 
-def preprocessing(input):
+def preprocessing(puzzle_input):
     details = []
-    for data in input.split('mask = ')[1:]:
+    for data in puzzle_input.split('mask = ')[1:]:
         data       = data.splitlines()
         not_masked = [i for i in range(36) if data[0][::-1][i] == 'X']
         mask       = int(data[0].replace('X','0'), base = 2)
@@ -11,9 +11,9 @@ def preprocessing(input):
         details.append([mask, not_masked, mem])
     return details
 
-def solver(input): 
+def solver(puzzle_input): 
     memory = {1: dict(), 2: dict()}
-    for mask, not_masked, mem in input:
+    for mask, not_masked, mem in puzzle_input:
         for adr, val in mem:
             memory[1][adr] = mask + sum([(val >> n & 1) * (2 ** n) for n in not_masked])
             result = mask | adr

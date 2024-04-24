@@ -1,10 +1,10 @@
 from re import findall
 
 
-def preprocessing(input):
+def preprocessing(puzzle_input):
     all_bags = {}
-    input = input.replace("bags","").replace("bag","").replace(".","")
-    for rule in input.splitlines():
+    puzzle_input = puzzle_input.replace("bags","").replace("bag","").replace(".","")
+    for rule in puzzle_input.splitlines():
         color, bags = rule.split("  contain ")[:2]
         if 'no other' in rule: bags = []
         else:

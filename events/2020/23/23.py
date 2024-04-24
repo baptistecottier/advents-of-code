@@ -1,5 +1,5 @@
-def preprocessing(input_): 
-    return [int(item) -1 for item in input_]
+def preprocessing(puzzle_input): 
+    return [int(item) -1 for item in puzzle_input]
 
 def move(cups, steps):
     next    = dict(zip(cups, cups[1:] + [cups[0]]))

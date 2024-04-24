@@ -1,7 +1,7 @@
 from pythonfw.functions import chinese_remainder
 
-def preprocessing(input): 
-    details   = input.splitlines()
+def preprocessing(puzzle_input): 
+    details   = puzzle_input.splitlines()
     timestamp = int(details[0])
     bus       = (int(item) for item in details[1].replace('x','0').split(','))
     return timestamp, bus

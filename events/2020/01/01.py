@@ -2,8 +2,8 @@ from itertools import product
 from math      import prod
 
 
-def preprocessing(input):
-    return [int(expense) for expense in input.splitlines()]
+def preprocessing(puzzle_input):
+    return [int(expense) for expense in puzzle_input.splitlines()]
 
 
 def solver(expenses):

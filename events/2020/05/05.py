@@ -1,6 +1,6 @@
-def preprocessing(input: str):
+def preprocessing(puzzle_input: str):
     boarding_passes: list = []
-    for boarding_pass in input.splitlines():
+    for boarding_pass in puzzle_input.splitlines():
         boarding_pass = boarding_pass.replace('B', '1').replace('F', '0').replace('R', '1').replace('L', '0')
         row = int(boarding_pass[:7], 2)
         column = int(boarding_pass[7:], 2)
