@@ -25,12 +25,12 @@ class Cart(Particule):
                 self.v.y = 0
           
       
-def preprocessing(input):
+def preprocessing(puzzle_input):
     circuit = dict()
     carts = []
     dx = {'>': 1, '<': -1}
     dy = {'v': 1, '^': -1}
-    for y, row in enumerate(input.splitlines()):
+    for y, row in enumerate(puzzle_input.splitlines()):
         for x, c in enumerate(row):
             circuit[(x, y)] = c
             if c in '><v^': 

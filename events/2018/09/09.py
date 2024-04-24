@@ -1,8 +1,8 @@
 from codecs import latin_1_decode
 from collections import defaultdict, deque
 
-def preprocessing(input):
-    details = input.split(' ')
+def preprocessing(puzzle_input):
+    details = puzzle_input.split(' ')
     return (int(details[0]), int(details[-2]))
 
 def solver(players, last_marble):

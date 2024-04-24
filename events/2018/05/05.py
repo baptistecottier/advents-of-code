@@ -1,7 +1,7 @@
 import string 
 
-def preprocessing(input_):
-    return input_
+def preprocessing(puzzle_input):
+    return puzzle_input
 
 def solver(polymer_):
     units            = list(zip(string.ascii_lowercase, string.ascii_uppercase))

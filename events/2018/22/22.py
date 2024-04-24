@@ -1,7 +1,7 @@
 import collections
 
-def preprocessing(input_):
-    depth, target = input_.splitlines()
+def preprocessing(puzzle_input):
+    depth, target = puzzle_input.splitlines()
     depth  = int(depth.rsplit(' ')[1])
     tx, ty = tuple(int(n) for n in  (target.split(': ')[1]).split(','))
     line = [0]

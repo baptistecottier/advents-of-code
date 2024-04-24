@@ -1,8 +1,8 @@
 from copy               import deepcopy
 from pythonfw.functions import extract_chunks
 
-def preprocessing(input_):
-    samples, tests = input_.split('\n\n\n\n')
+def preprocessing(puzzle_input):
+    samples, tests = puzzle_input.split('\n\n\n\n')
     samples = [[sample[:4], sample[4:8], sample[8:]] for sample in extract_chunks(samples, 12)]
     tests   = extract_chunks(tests, 4)   
     return samples, tests

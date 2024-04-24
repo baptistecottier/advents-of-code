@@ -2,10 +2,10 @@ from re                 import findall
 from pythonfw.functions import extract_chunks
 from pythonfw.classes   import Point
 
-def preprocessing(input_: str):
+def preprocessing(puzzle_input: str):
     clay = set()
-    numbers = extract_chunks(input_, 3)
-    for cl, (a, b, c) in zip(input_.splitlines(), numbers):
+    numbers = extract_chunks(puzzle_input, 3)
+    for cl, (a, b, c) in zip(puzzle_input.splitlines(), numbers):
         if cl.startswith('x'):
             clay.update({(a, y) for y in range(b, c + 1)})
         else: 

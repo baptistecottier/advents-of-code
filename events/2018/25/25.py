@@ -2,8 +2,8 @@ from itertools import pairwise, product
 from re        import findall
 from pythonfw.functions import extract_chunks
 
-def preprocessing(input_):
-    return extract_chunks(input_, 4)
+def preprocessing(puzzle_input):
+    return extract_chunks(puzzle_input, 4)
 
 def solver(spacetime):
     constellations = list()

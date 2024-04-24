@@ -1,7 +1,7 @@
 from math import inf
 
-def preprocessing(input_): 
-    return list(int(n) for n in input_), int(input_)
+def preprocessing(puzzle_input): 
+    return list(int(n) for n in puzzle_input), int(puzzle_input)
 
 def solver(pattern, length):
     trigger = length + 10

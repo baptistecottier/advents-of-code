@@ -1,9 +1,9 @@
 from pythonfw.classes   import Particule
 from pythonfw.functions import extract_chunks, screen_reader
 
-def preprocessing(input):
+def preprocessing(puzzle_input):
     details = []
-    particules = {Particule(px, py, 0, vx, vy, 0) for (px, py, vx, vy) in extract_chunks(input, 4)}
+    particules = {Particule(px, py, 0, vx, vy, 0) for (px, py, vx, vy) in extract_chunks(puzzle_input, 4)}
     return particules
 
 def solver(particules):

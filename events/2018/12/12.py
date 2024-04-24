@@ -1,5 +1,5 @@
-def preprocessing(input):
-    state, comb = input.split('\n\n')
+def preprocessing(puzzle_input):
+    state, comb = puzzle_input.split('\n\n')
     state = state.split(': ')[1]
     combinations = {}
     for c in comb.splitlines():

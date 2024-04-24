@@ -1,9 +1,9 @@
 from parse     import parse
 from itertools import pairwise, product
 
-def preprocessing(input):
+def preprocessing(puzzle_input):
     records = []
-    for line in sorted(input.splitlines()):
+    for line in sorted(puzzle_input.splitlines()):
         records.append(parse("[{:d}-{:d}-{:d} {:d}:{:d}]{}", line)[:6])
     return records
     

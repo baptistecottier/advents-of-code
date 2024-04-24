@@ -1,7 +1,7 @@
 from itertools import product
 
-def preprocessing(input): 
-    return input.splitlines()
+def preprocessing(puzzle_input): 
+    return puzzle_input.splitlines()
 
 def solver(boxids):
     twice  = 0

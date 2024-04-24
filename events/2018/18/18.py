@@ -1,11 +1,11 @@
 from math import lcm
 
-def preprocessing(input_): 
+def preprocessing(puzzle_input): 
     grounds     = set()
     trees       = set()
     lumberyards = set()
     
-    for y, l in enumerate(input_.splitlines()):
+    for y, l in enumerate(puzzle_input.splitlines()):
         for x, c in enumerate(l):
             match c: 
                 case '.': grounds.add((x, y))

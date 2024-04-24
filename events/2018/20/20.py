@@ -1,9 +1,9 @@
 import networkx
 
-def preprocessing(input_):
+def preprocessing(puzzle_input):
     maze = networkx.Graph()
 
-    paths = input_[1:-1]
+    paths = puzzle_input[1:-1]
     
     pos     = {0} 
     branch  = []

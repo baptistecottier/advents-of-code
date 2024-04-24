@@ -9,11 +9,11 @@ class Unit():
         self.damage = 3
         pass
 
-def preprocessing(input_): 
+def preprocessing(puzzle_input): 
     cave = set()
     elves = dict()
     gobelins = dict()
-    for y, row in enumerate(input_.splitlines()):
+    for y, row in enumerate(puzzle_input.splitlines()):
         for x, c in enumerate(row):
             match c:
                 case '#': cave.add((x, y))

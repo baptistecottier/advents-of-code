@@ -1,16 +1,16 @@
 from re import findall
 from z3 import If, Optimize, Ints, Int
 
-def preprocessing(input_):
+def preprocessing(puzzle_input):
     nanobots = set()
-    numbers = list(map(int, findall(r'-?[0-9]+', input_)))
+    numbers = list(map(int, findall(r'-?[0-9]+', puzzle_input)))
     while numbers:
         nanobots.add(((numbers.pop(0), numbers.pop(0), numbers.pop(0)), numbers.pop(0)))
     return nanobots
 
-def solver(input_):
-    yield part_1(input_)
-    yield part_2(input_)
+def solver(puzzle_input):
+    yield part_1(puzzle_input)
+    yield part_2(puzzle_input)
     
 def part_1(nanobots):
     in_range = 0

@@ -1,8 +1,8 @@
 from math import sqrt
 
-def preprocessing(input_):
+def preprocessing(puzzle_input):
     instructions = list()
-    lines        = input_.splitlines()
+    lines        = puzzle_input.splitlines()
     ip           = int(lines.pop(0)[-1])
     for line in lines:
         details = line.split()

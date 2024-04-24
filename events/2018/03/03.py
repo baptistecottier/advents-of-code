@@ -2,8 +2,8 @@ from collections        import defaultdict
 from itertools          import product
 from pythonfw.functions import extract_chunks
 
-def preprocessing(input):
-    claims = extract_chunks(input, 5)
+def preprocessing(puzzle_input):
+    claims = extract_chunks(puzzle_input, 5)
     return claims
 
 def solver(claims):

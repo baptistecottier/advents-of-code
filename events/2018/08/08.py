@@ -1,5 +1,5 @@
-def preprocessing(input): 
-    return [int(item) for item in input.split(' ')]
+def preprocessing(puzzle_input): 
+    return [int(item) for item in puzzle_input.split(' ')]
 
 def solver(tree):
     tree_infos = read_tree(tree)

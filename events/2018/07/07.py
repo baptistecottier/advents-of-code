@@ -2,9 +2,9 @@ from string import ascii_uppercase
 from re     import findall
 from copy   import deepcopy
 
-def preprocessing(input):
+def preprocessing(puzzle_input):
     instructions = {c: set() for c in ascii_uppercase}
-    steps = findall(r'[A-Z]', input)
+    steps = findall(r'[A-Z]', puzzle_input)
     while steps:
         instructions[steps.pop()].add(steps.pop())
         steps.pop()
