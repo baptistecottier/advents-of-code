@@ -1,15 +1,24 @@
-def preprocessing(input_): 
-    directions = list(1 if direction == '(' else -1 for direction in input_)
+from pythonfw.classes import Direction
+
+def preprocessing(puzzle_input): 
+    directions = list()
+    for direction in puzzle_input:
+        if direction == '(' : 
+            directions.append(Direction(0, 1))
+        else :
+            directions.append(Direction(0, -1))
     return directions
 
-
 def solver(directions):
-    floor    = 0
-    basement = False    
-    
-    for i, dir in enumerate(directions, 1):
-        floor += dir
-        if not basement and floor < 0: 
-            yield (2, i)
-            basement = True
+    floor = 0
+    steps = 0
+
+    while floor >=0:
+        steps += 1
+        direc = directions.pop()
+        floor += direc.dy
+    yield (2, steps)
+    while directions:
+        direc = directions.pop()
+        floor += direc.dy
     yield (1, floor)
