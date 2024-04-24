@@ -1,8 +1,8 @@
 from pythonfw.functions import screen_reader
 
 
-def preprocessing(input): 
-    dots, folds = input.split('\n\n')
+def preprocessing(puzzle_input): 
+    dots, folds = puzzle_input.split('\n\n')
     dots  = {eval(dot) for dot in dots.splitlines()}
     folds = [(fold[11], int(fold[13:])) for fold in folds.splitlines()]
     return dots, folds

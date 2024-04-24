@@ -1,7 +1,7 @@
 from pythonfw.functions import extract_chunks
 
-def preprocessing(input):
-    draw, numbers = input.split('\n\n', 1)
+def preprocessing(puzzle_input):
+    draw, numbers = puzzle_input.split('\n\n', 1)
     draw   = [int(number) for number in draw.split(',')]
     boards = extract_chunks(numbers, 25)
     return draw, boards

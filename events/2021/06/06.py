@@ -1,5 +1,5 @@
-def preprocessing(input): 
-    return {n: input.count(str(n)) for n in range(9)}
+def preprocessing(puzzle_input): 
+    return {n: puzzle_input.count(str(n)) for n in range(9)}
 
 def solver(lanternfishes):
     for day in range(256):

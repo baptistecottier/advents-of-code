@@ -1,5 +1,5 @@
-def preprocessing(input): 
-    template, insertions = input.split('\n\n')
+def preprocessing(puzzle_input): 
+    template, insertions = puzzle_input.split('\n\n')
     insertions = {start: end for start, end in [insertion.split(' -> ') for insertion in insertions.splitlines()]}
     return {pair: template.count(pair) for pair in insertions.keys()}, template[-1], insertions
 

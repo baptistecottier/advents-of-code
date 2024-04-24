@@ -1,7 +1,7 @@
 
 
-def preprocessing(input_): 
-    return "".join('{0:04b}'.format(int(n, 16)) for n in input_)
+def preprocessing(puzzle_input): 
+    return "".join('{0:04b}'.format(int(n, 16)) for n in puzzle_input)
 
 
 def solver(transmission):

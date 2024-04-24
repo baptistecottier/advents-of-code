@@ -1,9 +1,9 @@
 from math        import prod
 from collections import defaultdict
 
-def preprocessing(input):
+def preprocessing(puzzle_input):
     cave = defaultdict(lambda: 9)
-    for y, row in enumerate(input.splitlines(), 1):
+    for y, row in enumerate(puzzle_input.splitlines(), 1):
         for x, n in enumerate(row, 1):
             cave[(x, y)] = int(n)
     return cave

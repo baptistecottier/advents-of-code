@@ -1,6 +1,6 @@
-def preprocessing(input):
+def preprocessing(puzzle_input):
     paths = {}
-    for path in input.splitlines():
+    for path in puzzle_input.splitlines():
         start, end = path.split('-')
         if end != 'start':
             if start in paths: paths[start].append(end)

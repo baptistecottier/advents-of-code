@@ -1,5 +1,5 @@
-def preprocessing(input): 
-    diagnostic = input.splitlines()
+def preprocessing(puzzle_input): 
+    diagnostic = puzzle_input.splitlines()
     return len(diagnostic[0]),  set(int(item, base = 2) for item in diagnostic)
 
 def solver(bit_size, report):

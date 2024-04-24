@@ -54,7 +54,7 @@ def match(main, other):
                     )
 
 
-with open("Day19/input_") as f:
+with open("Day19/puzzle_input") as f:
     inp2 = f.read().strip().split("\n\n")
     scanners = []
     for lines in inp2:

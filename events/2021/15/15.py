@@ -2,9 +2,9 @@ from itertools          import product
 from pythonfw.functions import dijkstra
 
 
-def preprocessing(input):
+def preprocessing(puzzle_input):
     risk_map = {}
-    for y, row in enumerate(input.splitlines()):
+    for y, row in enumerate(puzzle_input.splitlines()):
         for x, risk in enumerate(row):
             risk_map[(x, y)] = int(risk)
     return (risk_map, x, y)

@@ -1,10 +1,10 @@
 from collections import defaultdict
 
 
-def preprocessing(input):
+def preprocessing(puzzle_input):
     octopus = defaultdict(set)
     
-    for y, row in enumerate(input.splitlines()):
+    for y, row in enumerate(puzzle_input.splitlines()):
         for x, n in enumerate(row):
             octopus[int(n)].add((x, y))
     return octopus

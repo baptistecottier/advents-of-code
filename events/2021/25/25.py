@@ -1,7 +1,7 @@
-def preprocessing(input_):
+def preprocessing(puzzle_input):
     west  = set()
     south = set()
-    for y, row in enumerate(input_.splitlines()):
+    for y, row in enumerate(puzzle_input.splitlines()):
         for x, c in enumerate(row):
             match c:
                 case '>': west.add((x, y))

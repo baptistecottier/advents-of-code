@@ -4,10 +4,10 @@ def print_image(image):
         print(line.replace('0','.').replace('1','#'))
     print('\n')
 
-with open("Day20/input_") as f:
-    IEA , input_image = f.read().replace('#','1').replace('.','0').split('\n\n')
+with open("Day20/puzzle_input") as f:
+    IEA , inputimage = f.read().replace('#','1').replace('.','0').split('\n\n')
 IEA=IEA.replace('\n','')
-input_image=input_image.split('\n')
+inputimage=inputimage.split('\n')
 
 def upsize_image(image):
     image=['000'+''.join(line)+'000' for line in image]
@@ -21,17 +21,17 @@ def set_zeros(image):
     return output
 
 for i in range(2):
-    input_image=upsize_image(input_image)
-    output_image=set_zeros(input_image)
+    inputimage=upsize_image(inputimage)
+    output_image=set_zeros(inputimage)
     
-    for x in range(len(input_image)):
-        for y in range(len(input_image[0])):
-            value=''.join([''.join(input_image[k+1][y:y+3]) for k in [x-1, x, x+1]])
+    for x in range(len(inputimage)):
+        for y in range(len(inputimage[0])):
+            value=''.join([''.join(inputimage[k+1][y:y+3]) for k in [x-1, x, x+1]])
             output_image[x+1][y+1]=IEA[int(value,2)]
-    input_image=output_image.copy()
-    print_image(input_image)
+    inputimage=output_image.copy()
+    print_image(inputimage)
 total=0
-for line in input_image[3:-16]:
+for line in inputimage[3:-16]:
     total+=sum(list(map(int,line[3:-16])))
 print(total)
 

@@ -1,9 +1,9 @@
 from copy import deepcopy
 from pythonfw.classes import Register
 
-def preprocessing(input_):
+def preprocessing(puzzle_input):
     instructions = []
-    blocks = input_.split('inp w\n')
+    blocks = puzzle_input.split('inp w\n')
     for block in blocks:
         block_instr = []
         block = block.splitlines()

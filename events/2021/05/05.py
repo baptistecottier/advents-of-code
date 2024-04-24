@@ -2,8 +2,8 @@ from collections        import defaultdict
 from pythonfw.functions import extract_chunks, sign
 
 
-def preprocessing(input): 
-    return extract_chunks(input, 4)
+def preprocessing(puzzle_input): 
+    return extract_chunks(puzzle_input, 4)
 
 
 def solver(vents):

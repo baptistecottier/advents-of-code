@@ -4,8 +4,8 @@ from re                 import findall
 from itertools          import product
 
 
-def preprocessing(input_):
-     target = (int(n) for n in findall(r'[-]?[0-9]+', input_))
+def preprocessing(puzzle_input):
+     target = (int(n) for n in findall(r'[-]?[0-9]+', puzzle_input))
      return target
 
  

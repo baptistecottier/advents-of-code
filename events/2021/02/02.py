@@ -1,6 +1,6 @@
-def preprocessing(input):
+def preprocessing(puzzle_input):
     commands = []
-    for command in input.splitlines():
+    for command in puzzle_input.splitlines():
         dir, steps = command.split(' ')
         match dir:
             case 'forward': commands.append((int(steps), 0          ))

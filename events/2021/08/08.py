@@ -1,6 +1,6 @@
-def preprocessing(input): 
+def preprocessing(puzzle_input): 
     segments = []
-    for digit in input.splitlines():
+    for digit in puzzle_input.splitlines():
         signal, value = digit.split(' | ', )
         signal = [''.join(sorted(sig)) for sig in signal.split(' ')]
         value  = [''.join(sorted(val)) for val in value.split(' ')][::-1]

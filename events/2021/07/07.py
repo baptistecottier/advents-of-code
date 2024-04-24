@@ -1,7 +1,7 @@
 from statistics import mean, median
 
-def preprocessing(input): 
-    return [int(item) for item in input.split(',')]
+def preprocessing(puzzle_input): 
+    return [int(item) for item in puzzle_input.split(',')]
 
 def solver(crabs):
     med_crabs  = int(median(crabs))
