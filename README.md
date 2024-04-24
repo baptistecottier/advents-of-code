@@ -13,22 +13,22 @@ Thanks [Scotow](https://github.com/scotow) for the initial framework and preciou
 <tr VALIGN = TOP>
 <td>
 
-Year             | Score | 
-:---:            | :---:|
-[2023](#2023-) | 27
-[2022](#2022-) | 37
-[2021](#2021-) | 43
-[2020](#2020-) | 48
+Year           | Python | Rust |
+:---:          | :---:  | :--: |
+[2023](#2023-) | 27     | 12
+[2022](#2022-) | 37     | 26
+[2021](#2021-) | 43     | 10 
+[2020](#2020-) | 48     | 16
 </td>
 <td>
 
-Year             | Score 
-:---:            | :---:
-[2019](#2019-) | 33
-[2018](#2018-) | 42
-[2017](#2017-) | 50
-[2016](#2016-) | 50
-[2015](#2015-) | 50
+Year           | Python | Rust |
+:---:          | :----: | :--: |
+[2019](#2019-) | 33     | 10
+[2018](#2018-) | 42     | 13
+[2017](#2017-) | 50     | 24
+[2016](#2016-) | 50     | 38
+[2015](#2015-) | 50     | 45
 </td>
 </tr> 
 
@@ -53,7 +53,7 @@ Enter the code `1349697-f730f285` in your [Private Leaderboard Homepage](https:/
 |  09  | [Mirage Maintenance                ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2023/09)  | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2023/09/09.py) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2023/09/09.rs)
 |  10  | [Pipe Maze                         ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2023/10)  | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2023/10/10.py) |                                                                                        | 
 |  11  | [Cosmic Expansion                  ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2023/11)  | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2023/11/11.py)                                                                                          | 
-|  12  | [Hot Springs                       ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2023/12)  |                                                                                           | 
+|  12  | [Hot Springs                       ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2023/12)  | [⭐  ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2023/12/12.py) | 
 |  13  | [Point of Incidence                ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2023/13)  |                                                                                           | 
 |  14  | [Parabolic Reflector Dish          ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2023/14)  | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2023/14/14.py)                                                                                           | 
 |  15  | [Lens Library                      ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2023/15)  | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2023/15/15.py) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2023/15/15.rs)
