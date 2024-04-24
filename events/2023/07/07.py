@@ -1,7 +1,7 @@
 from collections import Counter
 
-def preprocessing(input): 
-    bets = [(cards, int(bet)) for cards, bet in (hand.split() for hand in input.splitlines())]
+def preprocessing(puzzle_input): 
+    bets = [(cards, int(bet)) for cards, bet in (hand.split() for hand in puzzle_input.splitlines())]
     return bets
 
 def solver(bets): 

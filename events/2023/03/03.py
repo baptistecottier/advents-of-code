@@ -2,10 +2,10 @@ from itertools      import product
 from collections    import defaultdict
 from re             import finditer
 
-def preprocessing(input): 
+def preprocessing(puzzle_input): 
     numbers = set()
     symbols = defaultdict(list)
-    for y, line in enumerate(input.splitlines()):
+    for y, line in enumerate(puzzle_input.splitlines()):
         for match in finditer(r'[0-9]+', line):
             numbers.add((match.span(), y, int(match.group())))
         for x, c in enumerate(line):

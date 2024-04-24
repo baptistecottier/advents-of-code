@@ -1,7 +1,7 @@
 from pythonfw.functions import extract_chunks
 
-def preprocessing(input):
-    data = input.split('\n\n')
+def preprocessing(puzzle_input):
+    data = puzzle_input.split('\n\n')
     seeds = [int(n) for n in data[0].split(' ')[1:]]
     maps = [extract_chunks(mp, 3, func= lambda c : tuple(c)) for mp in data[1:]]
     return seeds, maps

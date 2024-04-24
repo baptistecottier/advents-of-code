@@ -1,6 +1,6 @@
 import ahocorasick
 
-def preprocessing(input):
+def preprocessing(puzzle_input):
     automaton = ahocorasick.Automaton()
     patterns = [ "_", "1"  , "2"  , "3"    , "4"   , "5"   , "6"  , "7"    , "8"   , "9",
                  "_", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"]
@@ -9,7 +9,7 @@ def preprocessing(input):
     automaton.make_automaton()
 
     document = list()
-    for line in input.splitlines():
+    for line in puzzle_input.splitlines():
         document.append([n for _, (n, _) in automaton.iter(line)])
     return document
 

@@ -1,8 +1,8 @@
 import re
 
-def preprocessing(input):
+def preprocessing(puzzle_input):
     game = list()
-    for line in input.splitlines():
+    for line in puzzle_input.splitlines():
         draws = [(int(n), "bgr".index(c)) for n, c in re.findall(r'([0-9]+)\s+(b|g|r)', line)]
         game.append(draws)
     return game

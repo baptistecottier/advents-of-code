@@ -1,8 +1,8 @@
 from itertools import pairwise
 
-def preprocessing(input): 
+def preprocessing(puzzle_input): 
     stories = []
-    for line in input.splitlines():
+    for line in puzzle_input.splitlines():
         stories.append([int(x) for x in line.split()])
     return stories 
 

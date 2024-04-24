@@ -1,14 +1,14 @@
 from collections  import defaultdict, deque
 
 
-def preprocessing(input): 
+def preprocessing(puzzle_input): 
     loop = defaultdict(lambda: '.')
-    w = input.index('\n') + 1
-    h = input.count('\n') + 1
-    start = input.index('S')
+    w = puzzle_input.index('\n') + 1
+    h = puzzle_input.count('\n') + 1
+    start = puzzle_input.index('S')
     sx, sy = (start % w, start // w)
     
-    for y, line in enumerate(input.splitlines()):
+    for y, line in enumerate(puzzle_input.splitlines()):
         for x, shape in enumerate(line):
             loop[(x, y)] = shape
     x, y = sx, sy
@@ -100,7 +100,7 @@ def solver(lp, loop):
                 if inside: to_check.add((tx, ty))
 
     zlp = {(2 * x, 2 * y) for (x, y) in lp}
-    for (x, y) in zlp.copy(): #Le groupe de S dépend de l'input, todo
+    for (x, y) in zlp.copy(): #Le groupe de S dépend de l'puzzle_input, todo
         if loop[(x // 2, y // 2)] in '-LSF' and loop[(x // 2 + 1 , y // 2)] in '-J7': zlp.add((x + 1, y))
         if loop[(x // 2, y // 2)] in '|F7' and loop[(x // 2, y // 2 + 1)] in '|LSJ': zlp.add((x, y + 1))
 

@@ -1,10 +1,10 @@
 from collections import defaultdict
 
-def preprocessing(input):
+def preprocessing(puzzle_input):
     rnd = set()
     sqr = set()
-    hgt = input.count('\n') + 1
-    for y, line in enumerate(input.splitlines()):
+    hgt = puzzle_input.count('\n') + 1
+    for y, line in enumerate(puzzle_input.splitlines()):
         for x, c in enumerate(line):
             match c:
                 case 'O': rnd.add((x, hgt - y))

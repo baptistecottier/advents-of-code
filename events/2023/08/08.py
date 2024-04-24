@@ -1,8 +1,8 @@
 from parse import parse
 from math import lcm
 
-def preprocessing(input):
-    directions, insts = input.split('\n\n')
+def preprocessing(puzzle_input):
+    directions, insts = puzzle_input.split('\n\n')
     turn = {'R': {}, 'L': {}}
     for inst in insts.splitlines():
         (pos, left, right) = parse("{} = ({}, {})", inst)

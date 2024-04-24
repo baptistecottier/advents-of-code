@@ -1,6 +1,6 @@
-def preprocessing(input):
+def preprocessing(puzzle_input):
     scores = []
-    for game in input.splitlines():
+    for game in puzzle_input.splitlines():
         draw, card = game.split(' | ')
         draw = [int(n) for n in draw.split()[2:]]
         card = [int(n) for n in card.split()]

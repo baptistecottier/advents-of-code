@@ -1,8 +1,8 @@
 from itertools import product
 
-def preprocessing(input):
+def preprocessing(puzzle_input):
     galaxies = list()
-    for y, line in enumerate(input.splitlines()):
+    for y, line in enumerate(puzzle_input.splitlines()):
         for x, c in enumerate(line):
             if c == '#' : galaxies.append((x, y))
     return galaxies

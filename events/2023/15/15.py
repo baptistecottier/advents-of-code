@@ -4,8 +4,8 @@ def hash(s):
         h = 17 * (h + ord(c)) % 256
     return h
 
-def preprocessing(input): 
-    return input.split(',')
+def preprocessing(puzzle_input): 
+    return puzzle_input.split(',')
 
 def solver(lens):
     sum_hash = 0

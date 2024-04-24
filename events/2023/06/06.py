@@ -1,8 +1,8 @@
 from re     import findall
 from numpy  import prod, roots
 
-def preprocessing(input):
-    time, distance = input.splitlines()
+def preprocessing(puzzle_input):
+    time, distance = puzzle_input.splitlines()
 
     time = findall(r'[0-9]+', time)
     time.append(''.join(t for t in time))
