@@ -1,7 +1,7 @@
-def preprocessing(input): 
+def preprocessing(puzzle_input): 
     sizes = {}
     path  = ["root"]
-    for command in input.splitlines():
+    for command in puzzle_input.splitlines():
         details = command.split(' ')
         match details: 
             case ["$", "cd", "/"] : path = ["root"]

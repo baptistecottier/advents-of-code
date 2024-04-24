@@ -3,8 +3,8 @@ from parse              import parse
 from pythonfw.functions import extract_chunks
 
 
-def preprocessing(input): 
-    sensors = extract_chunks(input, 4)
+def preprocessing(puzzle_input): 
+    sensors = extract_chunks(puzzle_input, 4)
     sensors = {(xs, ys, abs(xb - xs) + abs(yb - ys)) for xs, ys, xb, yb in sensors}
     return sensors
 

@@ -1,10 +1,10 @@
 from pythonfw.functions import sign
 
 
-def preprocessing(input): 
+def preprocessing(puzzle_input): 
     data = []
     
-    for line in input.replace(':','').splitlines():
+    for line in puzzle_input.replace(':','').splitlines():
         details = line.split(' ')
         data.append(details)
         if details[0] == 'root': left, right = details[1], details[3]

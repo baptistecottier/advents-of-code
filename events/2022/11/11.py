@@ -1,7 +1,7 @@
 from math import prod
 
-def preprocessing(input):
-    monkeys        = input.split('\n\n')
+def preprocessing(puzzle_input):
+    monkeys        = puzzle_input.split('\n\n')
     starting_items = []
     funcs          = []
     pred           = []

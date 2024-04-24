@@ -1,6 +1,6 @@
-def preprocessing(input_):
+def preprocessing(puzzle_input):
     duels = {(p, q): 0 for p in range(3) for q in range(1, 4)}
-    for duel in input_.splitlines():
+    for duel in puzzle_input.splitlines():
         adv, me = duel.split(' ')
         adv = int(ord(adv)) - 65
         me  = int(ord(me)) - 87

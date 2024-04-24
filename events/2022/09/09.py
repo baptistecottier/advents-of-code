@@ -1,12 +1,12 @@
 from pythonfw.functions import sign
 
 
-def preprocessing(input):
+def preprocessing(puzzle_input):
     x, y = 0, 0
     path = [[x,y]]
     orientation = {'D': (0, -1), 'L': (-1, 0),  'R': (1, 0), 'U': (0, 1)}
 
-    for dir, step in [ins.split(' ') for ins in input.splitlines()]:
+    for dir, step in [ins.split(' ') for ins in puzzle_input.splitlines()]:
         step = int(step)
         (dx , dy) = orientation[dir]
         path.extend((x + i * dx , y + i * dy) for i in range(1, step + 1))

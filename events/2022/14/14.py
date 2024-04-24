@@ -1,11 +1,11 @@
 from re import findall
 
 
-def preprocessing(input): 
+def preprocessing(puzzle_input): 
     paths = []
     max_depth = 0
     rocks = set()
-    for path in input.splitlines():
+    for path in puzzle_input.splitlines():
         numbers = list(map(int, findall(r'[0-9]+',path)))
         xa, ya = numbers.pop(0), numbers.pop(0)
         while numbers:

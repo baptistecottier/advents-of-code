@@ -1,8 +1,8 @@
 import re
 
-def preprocessing(input_):
+def preprocessing(puzzle_input):
     data = []
-    bm, path = input_.split('\n\n')
+    bm, path = puzzle_input.split('\n\n')
     for row in bm.splitlines():
         min_x = row.count(' ')
         max_x = len(row) - 1
@@ -17,9 +17,9 @@ def preprocessing(input_):
             
         
 
-def part_2(input_): 
+def part_2(puzzle_input): 
     dx, dy = 1, 0
-    data, steps, turns = input_
+    data, steps, turns = puzzle_input
     for step in steps: 
         infos = data[y]
         modulo = infos[1] - infos[0]
@@ -33,4 +33,4 @@ def part_2(input_):
     
     return 2
 
-def part_1(input_): return input_
+def part_1(puzzle_input): return puzzle_input

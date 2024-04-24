@@ -1,9 +1,9 @@
 from itertools import product
 
 
-def preprocessing(input): 
+def preprocessing(puzzle_input): 
     trees = []
-    for y, row in enumerate(input.splitlines()):
+    for y, row in enumerate(puzzle_input.splitlines()):
         heights = []
         for x, height in enumerate(row):
             heights.append(height)

@@ -1,5 +1,5 @@
-def preprocessing(input_):
-    calories = {(int(calories) for calories in reeinder.splitlines()) for reeinder in input_.split("\n\n")}
+def preprocessing(puzzle_input):
+    calories = {(int(calories) for calories in reeinder.splitlines()) for reeinder in puzzle_input.split("\n\n")}
     return calories
 
 

@@ -1,5 +1,5 @@
-def preprocessing(input_):
-    return input_.splitlines()
+def preprocessing(puzzle_input):
+    return puzzle_input.splitlines()
 
 def encode(snafu):
     n = 0

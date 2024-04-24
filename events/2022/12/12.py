@@ -2,11 +2,11 @@ from collections        import defaultdict
 from pythonfw.functions import bfs
 
 
-def preprocessing(input):
+def preprocessing(puzzle_input):
     grid = defaultdict(int)
     starting_points = []
 
-    for y , line in enumerate(input.splitlines()):
+    for y , line in enumerate(puzzle_input.splitlines()):
         grid_line =[]
         for x, c in enumerate(line):
             match c: 

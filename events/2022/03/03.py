@@ -1,5 +1,5 @@
-def preprocessing(input):
-    return input.splitlines()
+def preprocessing(puzzle_input):
+    return puzzle_input.splitlines()
 
 def solver(rucksacks):
     priorites = {c: ord(c) - 96 for c in 'abcdefghijklmonpqrstuvwxyz'}

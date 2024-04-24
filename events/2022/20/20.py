@@ -1,5 +1,5 @@
-def preprocessing(input):
-    return [int(item) for item in input.splitlines()]
+def preprocessing(puzzle_input):
+    return [int(item) for item in puzzle_input.splitlines()]
 
 
 def solver(file):

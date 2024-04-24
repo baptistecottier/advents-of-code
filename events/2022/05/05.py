@@ -1,8 +1,8 @@
 from pythonfw.functions import extract_chunks
 
 
-def preprocessing(input_): 
-    cargo, moves = input_.split('\n\n')
+def preprocessing(puzzle_input): 
+    cargo, moves = puzzle_input.split('\n\n')
     moves  = extract_chunks(moves, 3)
     floors = cargo.splitlines()[::-1]
     width  = len(floors[0].replace(' ', ''))

@@ -1,9 +1,9 @@
 from pythonfw.functions import screen_reader
 
 
-def preprocessing(input): 
+def preprocessing(puzzle_input): 
     instructions = []
-    for instruction in input.splitlines():
+    for instruction in puzzle_input.splitlines():
         instructions.append(0)
         if 'addx' in instruction: 
             instructions.append(int(instruction.split(' ')[1]))

@@ -2,8 +2,8 @@ from functools          import cmp_to_key
 from pythonfw.functions import sign
 
 
-def preprocessing(input): 
-    list_input = [eval(l) for l in input.replace('\n\n', '\n').splitlines()]
+def preprocessing(puzzle_input): 
+    list_input = [eval(l) for l in puzzle_input.replace('\n\n', '\n').splitlines()]
     return list_input
 
 

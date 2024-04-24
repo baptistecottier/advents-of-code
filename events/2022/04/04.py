@@ -1,8 +1,8 @@
 from pythonfw.functions import extract_chunks
 
 
-def preprocessing(input_):
-    return extract_chunks(input_, 4, neg = False)
+def preprocessing(puzzle_input):
+    return extract_chunks(puzzle_input, 4, neg = False)
 
 
 def solver(pairs):
