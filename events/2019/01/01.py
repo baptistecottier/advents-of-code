@@ -1,5 +1,5 @@
-def preprocessing(input: str) -> list[int]:
-    return list(int(item) for item in input.splitlines())
+def preprocessing(puzzle_input: str) -> list[int]:
+    return list(int(item) for item in puzzle_input.splitlines())
 
 
 def solver(modules: list[int]):

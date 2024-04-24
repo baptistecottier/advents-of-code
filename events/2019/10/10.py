@@ -1,19 +1,19 @@
 from collections import defaultdict
 from math import atan, degrees
 
-def preprocessing(input):
+def preprocessing(puzzle_input):
     belt = set()
-    for y, line in enumerate(input.splitlines()):
+    for y, line in enumerate(puzzle_input.splitlines()):
         for x, asteroid in enumerate(line):
             if asteroid == '#': belt.add((x, y))
     return belt
     
-def solver(input):
+def solver(puzzle_input):
     asteroids = {}
-    for (x, y) in input:
+    for (x, y) in puzzle_input:
         angles = defaultdict(list)
         
-        for (xx, yy) in input:
+        for (xx, yy) in puzzle_input:
             dx, dy = xx - x, yy - y
             div = (dx ** 2 + dy ** 2) ** (0.5)
             if dx + div != 0: angle = round(degrees(2 * atan(dy/(dx + div))), 5)

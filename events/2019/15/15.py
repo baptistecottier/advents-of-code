@@ -4,8 +4,8 @@ from pythonfw.functions     import bfs
 from pythonfw.ship_computer import Program
 
 
-def preprocessing(input):
-    return tuple(map(int, input.split(',')))
+def preprocessing(puzzle_input):
+    return tuple(map(int, puzzle_input.split(',')))
 
 
 def solver(*intcode): 

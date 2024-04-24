@@ -2,9 +2,9 @@ from itertools import product
 from typing    import Generator
 
 
-def preprocessing(input: str) -> dict[str: str]:
+def preprocessing(puzzle_input: str) -> dict[str: str]:
     orbits: dict[str: str] = {}
-    for orbit in input.splitlines():
+    for orbit in puzzle_input.splitlines():
         ctr, pnt = orbit.split(')')
         orbits[pnt] = ctr
     return orbits

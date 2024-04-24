@@ -2,8 +2,8 @@ from itertools              import permutations
 from pythonfw.ship_computer import Program
 
 
-def preprocessing(input_: str) -> list[int]: 
-    return list(map(int, input_.split(',')))
+def preprocessing(puzzle_input: str) -> list[int]: 
+    return list(map(int, puzzle_input.split(',')))
 
 
 def solver(intcode):

@@ -3,8 +3,8 @@ from pythonfw.functions      import sign
 from pythonfw.ship_computer  import Program
 
 
-def preprocessing(input_: str) -> list[int]:
-    return list(map(int, input_.split(',')))
+def preprocessing(puzzle_input: str) -> list[int]:
+    return list(map(int, puzzle_input.split(',')))
 
 
 def solver(intcode: list[int]):
@@ -21,8 +21,8 @@ def solver(intcode: list[int]):
     arcade: Program = Program([2] + intcode[1:])
     
     while not arcade.halt:
-        input_ = sign(ball - paddle)
-        x, _, id  = (arcade.run(input_) for _ in range(3))
+        puzzle_input = sign(ball - paddle)
+        x, _, id  = (arcade.run(puzzle_input) for _ in range(3))
         match (x, id):
             case (-1, _): score  = id
             case (_, 3):  paddle = x

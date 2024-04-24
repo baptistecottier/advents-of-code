@@ -14,8 +14,8 @@ class Robot(Point):
         self.move(self.dx, self.dy)
 
         
-def preprocessing(input: str) -> list[int]: 
-    return list(map(int, input.split(',')))
+def preprocessing(puzzle_input: str) -> list[int]: 
+    return list(map(int, puzzle_input.split(',')))
 
 
 def solver(intcode: list[int]) -> Generator:

@@ -1,9 +1,9 @@
 from itertools          import product
 from pythonfw.functions import screen_reader
 
-def preprocessing(input):
-    layers = {l: {'0': set(), '1': set(), '2': set()} for l in range(len(input) // 150) }
-    for n, c in enumerate(input): layers[n // 150][c].add((n % 25, (n // 25) % 6))
+def preprocessing(puzzle_input):
+    layers = {l: {'0': set(), '1': set(), '2': set()} for l in range(len(puzzle_input) // 150) }
+    for n, c in enumerate(puzzle_input): layers[n // 150][c].add((n % 25, (n // 25) % 6))
     return layers
 
 def solver(layers):

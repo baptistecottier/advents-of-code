@@ -1,5 +1,5 @@
-def preprocessing(input_: int):
-    return [int(c) for c in input_]
+def preprocessing(puzzle_input: int):
+    return [int(c) for c in puzzle_input]
 
 
 def solver(signal):

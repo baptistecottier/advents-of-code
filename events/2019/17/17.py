@@ -2,8 +2,8 @@ from pythonfw.classes import Particule
 from pythonfw.ship_computer import Program
 
 
-def preprocessing(input: str) -> list[int]:
-    return tuple(map(int, input.split(',')))
+def preprocessing(puzzle_input: str) -> list[int]:
+    return tuple(map(int, puzzle_input.split(',')))
 
 
 def solver(*intcode):

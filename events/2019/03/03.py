@@ -1,7 +1,7 @@
 from pythonfw.classes import Point
 
-def preprocessing(input): 
-    return [[[item[0], int(item[1:])] for item in wire.split(',')] for wire in input.splitlines()]
+def preprocessing(puzzle_input): 
+    return [[[item[0], int(item[1:])] for item in wire.split(',')] for wire in puzzle_input.splitlines()]
 
 
 def solver(paths):

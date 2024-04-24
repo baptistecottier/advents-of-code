@@ -2,8 +2,8 @@ from math                import lcm
 from pythonfw.classes    import Particule
 from pythonfw.functions  import extract_chunks, sign
 
-def preprocessing(input: str) -> set[Particule]:
-    moons: set[Particule] = {Particule(*moon) for moon in extract_chunks(input, 3)}
+def preprocessing(puzzle_input: str) -> set[Particule]:
+    moons: set[Particule] = {Particule(*moon) for moon in extract_chunks(puzzle_input, 3)}
     return moons
         
 def solver(moons: set[Particule]):

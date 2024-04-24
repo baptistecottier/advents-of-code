@@ -2,8 +2,8 @@ from collections import Counter
 from itertools   import pairwise
 
 
-def preprocessing(input: str) -> list[int]: 
-    return [int(item) for item in input.split('-')]
+def preprocessing(puzzle_input: str) -> list[int]: 
+    return [int(item) for item in puzzle_input.split('-')]
 
 
 def solver(bounds: list[int]):

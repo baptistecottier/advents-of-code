@@ -2,8 +2,8 @@ from itertools              import product
 from pythonfw.ship_computer import Program
 
 
-def preprocessing(input_):
-    return list(map(int, input_.split(',')))
+def preprocessing(puzzle_input):
+    return list(map(int, puzzle_input.split(',')))
 
 
 def solver(intcode):
