@@ -306,7 +306,6 @@ Enter the code `1349697-f730f285` in your [Private Leaderboard Homepage](https:/
 |  22  | [Wizard Simulator 20XX                 ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2015/22) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2015/22/22.py) | 
 |  23  | [Opening the Turing Lock               ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2015/23) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2015/23/23.py) | 
 |  24  | [It Hangs in the Balance               ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2015/24) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2015/24/24.py) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2015/24/24.rs)
-|  25  | [Let It Snow                           ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2015/25) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2015/25/25.py) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2015/25/25.rs)
-
+|  25  | [Let It Snow                           ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2015/25) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2015/25/25.py) | [⭐  ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2015/25/25.rs)
 
 
