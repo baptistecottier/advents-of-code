@@ -9,26 +9,49 @@ def preprocessing(puzzle_input):
             shuffle.append(("rev", 0))
     return shuffle
 
-def deal(deck):
-    return deck[::-1]
+def deal(nb_cards, pos):
+    return nb_cards - pos - 1
 
-def cut(deck, n):
-    a, b = deck[:n], deck[n:]
-    return b + a
+def cut(nb_cards, n, pos):
+    return (pos - n) % nb_cards
 
-def inc(deck, n):
-    l = len(deck)
-    deck2 = [0 for _ in range(l)]
-    for k in range(l):
-        deck2[(k * n) % l] = deck.pop(0)
-    return deck2
+def rev_cut(nb_cards, n, pos):
+    return (pos + n) % nb_cards
 
+def inc(nb_cards, n, pos):
+    return (pos * n) % nb_cards
+
+def rev_inc(nb_cards, n, pos):
+    return (pos * pow(n, -1, nb_cards)) % nb_cards
 
 def solver(shuffle):
-    deck = [x for x in range(10007)]
+    yield proceed(shuffle, 10_007, 2019)
+    yield rev_proceed(shuffle, 119315717514047, 2020, 101741582076661)
+
+
+def proceed(shuffle, nb_cards, pos):
     for f, n in shuffle:
         match f:
-            case "cut": deck = cut(deck, n)
-            case "inc": deck = inc(deck, n)
-            case "rev": deck = deal(deck)
-    yield deck.index(2019)
+            case "cut": pos = cut(nb_cards, n, pos)
+            case "inc": pos = inc(nb_cards, n, pos)
+            case "rev": pos = deal(nb_cards, pos)
+    return pos
+
+def rev_proceed(shuffle, nb_cards, index, rep = 1):
+    def rev_once(pos):
+        for f, n in shuffle[::-1]:
+            match f:
+                case "cut": pos = rev_cut(nb_cards, n, pos)
+                case "inc": pos = rev_inc(nb_cards, n, pos)
+                case "rev": pos = deal(nb_cards, pos)
+        return pos
+    
+    y = rev_once(0)
+    z = rev_once(y)
+
+    a = ((z - y) * pow(y, -1, nb_cards)) % nb_cards
+
+    p = pow(a, rep, nb_cards)
+    q = pow(a - 1, -1, nb_cards) * y * (p - 1)
+
+    return (p * index + q) % nb_cards
