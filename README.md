@@ -1,7 +1,7 @@
 # 🎁 Advents of code
 
 Here are my solutions for the [Advent of Code](https://adventofcode.com) challenges 🎄⭐🎅🏻.
-Some puzzles are solved in Python, some are solved in Rust.
+Some puzzles are solved in Python 🐍, some are solved in Rust 🦀.
 
 Thanks [Scotow](https://github.com/scotow) for the initial framework and precious coding advices.
 
@@ -11,93 +11,111 @@ Thanks [Scotow](https://github.com/scotow) for the initial framework and preciou
 <tr VALIGN = TOP>
 <td>
 
-Year           | Python | Rust |
+Year           |   🐍   |   🦀  |
 :---:          | :---:  | :--: |
-2024           | 0      | 0
-[2023](#2023-) | 27     | 12
-[2022](#2022-) | 37     | 26
-[2021](#2021-) | 43     | 10 
-[2020](#2020-) | 48     | 16
+[2024](#2024)  | 0      | 0
+[2023](#2023) | 27     | 12
+[2022](#2022) | 37     | 26
+[2021](#2021) | 43     | 10 
+[2020](#2020) | 48     | 16
 </td>
 <td>
 
-Year           | Python | Rust |
+Year           |   🐍   |   🦀  |
 :---:          | :----: | :--: |
-[2019](#2019-) | 35     | 10
-[2018](#2018-) | 42     | 13
-[2017](#2017-) | 50     | 24
-[2016](#2016-) | 50     | 38
-[2015](#2015-) | 50     | 45
+[2019](#2019) | 35     | 10
+[2018](#2018) | 42     | 13
+[2017](#2017) | 50     | 24
+[2016](#2016) | 50     | 38
+[2015](#2015) | 50     | 45
 </td>
 </tr> 
 
 </table>
 
 Enter the code `1349697-f730f285` in your [Private Leaderboard Homepage](https://adventofcode.com/2022/leaderboard/private) if you wish to integrate my leaderboard.
+ ## ⭐ Yearly detailed scores
+<details>
+    <summary> 
+    <a id="2024"><h2>2024 👶🏻</h2></a>
+    </summary>
 
-## 2023 [🔝](#-advents-of-code)
-| Day  | Title                                                                                                              | Python                                                                                   | Rust 
+
+| Day  | <div style="width:290px">Title</div>                                                                      | Python                                                                                   | Rust 
 | :--: | :----------------------------------------------------------------------------------------------------------------- | :--------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------:
-|  01  | [Trebuchet?!                       ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2023/01)  | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2023/01/01.py) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2023/01/01.rs)
-|  02  | [Cube Conundrum                    ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2023/02)  | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2023/02/02.py) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2023/02/02.rs)
-|  03  | [Gear Ratios                       ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2023/03)  | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2023/03/03.py) | 
-|  04  | [Scratchcards                      ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2023/04)  | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2023/04/04.py) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2023/04/04.rs)
-|  05  | [If You Give A Seed A Fertilizer   ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2023/05)  | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2023/05/05.py) |  
-|  06  | [Wait For It                       ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2023/06)  | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2023/06/06.py) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2023/06/06.rs)
-|  07  | [Camel Cards                       ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2023/07)  | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2023/07/07.py) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2023/07/07.rs)
-|  08  | [Haunted Wasteland                 ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2023/08)  | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2023/08/08.py) | 
-|  09  | [Mirage Maintenance                ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2023/09)  | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2023/09/09.py) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2023/09/09.rs)
-|  10  | [Pipe Maze                         ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2023/10)  | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2023/10/10.py) |                                                                                        | 
-|  11  | [Cosmic Expansion                  ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2023/11)  | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2023/11/11.py)                                                                                          | 
-|  12  | [Hot Springs                       ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2023/12)  | [⭐  ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2023/12/12.py) | 
-|  13  | Point of Incidence                
-|  14  | [Parabolic Reflector Dish          ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2023/14)  | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2023/14/14.py)                                                                                           | 
-|  15  | [Lens Library                      ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2023/15)  | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2023/15/15.py) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2023/15/15.rs)
-|  16  | The Floor Will Be Lava            
+|  01  |
+|  02  |
+|  03  |
+|  04  |
+|  05  | 
+|  06  |
+|  07  |
+|  08  |
+|  09  |
+|  10  |
+|  11  |
+|  12  |
+|  13  |
+|  14  |
+|  15  |
+|  16  |
+|  17  |
+|  18  |
+|  19  |
+|  20  |
+|  21  |
+|  22  |
+|  23  |
+|  24  |
+|  25  |
+</details>
+
+<details>
+    <summary> 
+    <a id="2023"><h2>2023 🔥 </h2></a>
+    </summary>
+
+
+| Day  | <div style="width:290px">Title</div>                                                                      | Python                                                                                   | Rust 
+| :--: | :----------------------------------------------------------------------------------------------------------------- | :--------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------:
+|  01  | [Trebuchet?!                          ](events/2023/01/README.md#day-1-trebuchet)                      | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2023/01/01.py) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2023/01/01.rs)
+|  02  | [Cube Conundrum                       ](events/2023/02/README.md#day-2-cube-conundrum)                 | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2023/02/02.py) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2023/02/02.rs)
+|  03  | [Gear Ratios                          ](events/2023/03/README.md#day-3-gear-ratios)                    | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2023/03/03.py) | 
+|  04  | [Scratchcards                         ](events/2023/04/README.md#day-4-scratchcards)                   | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2023/04/04.py) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2023/04/04.rs)
+|  05  | [If You Give A Seed A Fertilizer&emsp;](events/2023/05/README.md#day-5-if-you-give-a-seed-a-fertilizer)| [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2023/05/05.py) |  
+|  06  | [Wait For It                          ](events/2023/06/README.md#day-6-wait-for-it)                    | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2023/06/06.py) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2023/06/06.rs)
+|  07  | [Camel Cards                          ](events/2023/07/README.md#day-7-camel-cards)                    | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2023/07/07.py) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2023/07/07.rs)
+|  08  | [Haunted Wasteland                    ](events/2023/08/README.md#day-8-haunted-wasteland)              | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2023/08/08.py) | 
+|  09  | [Mirage Maintenance                   ](events/2023/09/README.md#day-9-mirage-maintenance)             | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2023/09/09.py) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2023/09/09.rs)
+|  10  | [Pipe Maze                            ](events/2023/10/README.md#day-10-pipe-maze)                     | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2023/10/10.py) |                                                                                        | 
+|  11  | [Cosmic Expansion                     ](events/2023/11/README.md#day-11-cosmic-expansion)              | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2023/11/11.py) |                                                                                         | 
+|  12  | [Hot Springs                          ](events/2023/12/README.md#day-12-hot-springs)                   | [⭐  ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2023/12/12.py) | 
+|  13  | [Point of Incidence                   ](events/2023/13/README.md#day-13-point-of-incidence)            | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2023/13/13.py) |
+|  14  | [Parabolic Reflector Dish             ](events/2023/14/README.md#day-14-parabolic-reflector-dish)      | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2023/14/14.py)                                                                                           | 
+|  15  | [Lens Library                         ](events/2023/15/README.md#day-15-lens-library)                  | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2023/15/15.py) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2023/15/15.rs)
+|  16  | [The Floor Will Be Lava               ](events/2023/16/README.md#day-16-the-floor-will-be-lava)        | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2023/16/16.py)
 |  17  | Clumsy Crucible                   
-|  18  | Lavaduct Lagoon                   
-|  19  | Aplenty                           
+|  18  | [Lavaduct Lagoon                      ](events/2023/18/README.md#day-18-lavaduct-lagoon)               | [⭐  ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2023/18/18.py)                   
+|  19  | [Aplenty                              ](events/2023/19/README.md#day-19-aplenty)                       | [⭐  ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2023/19/19.py)                   
 |  20  | Pulse Propagation                 
 |  21  | Step Counter                      
 |  22  | Sand Slabs                        
 |  23  | A Long Walk                       
-|  24  | Never Tell Me The Odds            
+|  24  | [Never Tell Me The Odds               ](events/2023/24/README.md#day-24-never-tell-me-the-odds)        | [⭐  ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2023/24/24.py)
 |  25  | Snowverload                       
+</details>
 
-| Day | Title                                                                                                          |                                         Python                                         |                                          Rust                                          |
-| :-: | :------------------------------------------------------------------------------------------------------------- | :------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------: |
-| 01 | [Trebuchet?!                       ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2023/01) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2023/01/01.py) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2023/01/01.rs) |
-| 02 | [Cube Conundrum                    ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2023/02) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2023/02/02.py) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2023/02/02.rs) |
-| 03 | [Gear Ratios                       ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2023/03) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2023/03/03.py) |                                                                                        |
-| 04 | [Scratchcards                      ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2023/04) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2023/04/04.py) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2023/04/04.rs) |
-| 05 | [If You Give A Seed A Fertilizer   ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2023/05) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2023/05/05.py) |                                                                                        |
-| 06 | [Wait For It                       ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2023/06) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2023/06/06.py) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2023/06/06.rs) |
-| 07 | [Camel Cards                       ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2023/07) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2023/07/07.py) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2023/07/07.rs) |
-| 08 | [Haunted Wasteland                 ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2023/08) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2023/08/08.py) |                                                                                        |
-| 09 | [Mirage Maintenance                ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2023/09) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2023/09/09.py) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2023/09/09.rs) |
-| 10 | [Pipe Maze                         ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2023/10) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2023/10/10.py) |                                                                                        |
-| 11 | [Cosmic Expansion                  ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2023/11) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2023/11/11.py) |                                                                                        |
-| 12 | [Hot Springs                       ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2023/12) | [⭐  ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2023/12/12.py) |                                                                                        |
-| 13 | [Point of Incidence                ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2023/13) |                                                                                        |                                                                                        |
-| 14 | [Parabolic Reflector Dish          ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2023/14) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2023/14/14.py) |                                                                                        |
-| 15 | [Lens Library                      ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2023/15) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2023/15/15.py) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2023/15/15.rs) |
-| 16 | [The Floor Will Be Lava            ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2023/16) |                                                                                        |                                                                                        |
-| 17 | [Clumsy Crucible                   ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2023/17) |                                                                                        |                                                                                        |
-| 18 | [Lavaduct Lagoon                   ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2023/18) |                                                                                        |                                                                                        |
-| 19 | [Aplenty                           ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2023/19) |                                                                                        |                                                                                        |
-| 20 | [Pulse Propagation                 ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2023/20) |                                                                                        |                                                                                        |
-| 21 | [Step Counter                      ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2023/21) |                                                                                        |                                                                                        |
-| 22 | [Sand Slabs                        ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2023/22) |                                                                                        |                                                                                        |
-| 23 | [A Long Walk                       ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2023/23) |                                                                                        |                                                                                        |
-| 24 | [Never Tell Me The Odds            ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2023/24) |                                                                                        |                                                                                        |
-| 25 | [Snowverload                       ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2023/25) |                                                                                        |                                                                                        |
 
-## 2022 [🔝](#-advents-of-code)
-| Day  | Title                                                                                                     | Python                                                                                   | Rust 
+<details>
+    <summary> 
+    <a id="2022"><h2>2022 🪵 </h2></a>
+    </summary>
+
+| Day  | <div style="width:290px">Title</div>                                                                      | Python                                                                                   | Rust 
 | :--: | :-------------------------------------------------------------------------------------------------------- | :--------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------:
 |  01  | [Calorie Counting          ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2022/01) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2022/01/01.py) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2022/01/01.rs)
 |  02  | [Rock Paper Scissors       ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2022/02) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2022/02/02.py) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2022/02/02.rs)
-|  03  | [Rucksack Reorganization   ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2022/03) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2022/03/03.py) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2022/03/03.rs)
+|  03  | [Rucksack Reorganization&emsp;&emsp;&emsp;](https://github.com/baptistecottier/advents-of-code/tree/main/events/2022/03) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2022/03/03.py) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2022/03/03.rs)
 |  04  | [Camp Cleanup              ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2022/04) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2022/04/04.py) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2022/04/04.rs)
 |  05  | [Supply Stacks             ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2022/05) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2022/05/05.py) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2022/05/05.rs)
 |  06  | [Tuning Trouble            ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2022/06) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2022/06/06.py) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2022/06/06.rs)
@@ -120,37 +138,14 @@ Enter the code `1349697-f730f285` in your [Private Leaderboard Homepage](https:/
 |  23  | Unstable Diffusion        
 |  24  | Blizzard Basin            
 |  25  | [Full of Hot Air           ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2022/25) | [⭐  ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2022/25/25.py) |
+</details>
 
-| Day | Title                                                                                                  |                                         Python                                         |                                          Rust                                          |
-| :-: | :----------------------------------------------------------------------------------------------------- | :------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------: |
-| 01 | [Calorie Counting          ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2022/01) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2022/01/01.py) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2022/01/01.rs) |
-| 02 | [Rock Paper Scissors       ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2022/02) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2022/02/02.py) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2022/02/02.rs) |
-| 03 | [Rucksack Reorganization   ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2022/03) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2022/03/03.py) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2022/03/03.rs) |
-| 04 | [Camp Cleanup              ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2022/04) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2022/04/04.py) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2022/04/04.rs) |
-| 05 | [Supply Stacks             ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2022/05) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2022/05/05.py) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2022/05/05.rs) |
-| 06 | [Tuning Trouble            ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2022/06) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2022/06/06.py) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2022/06/06.rs) |
-| 07 | [No Space Left On Device   ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2022/07) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2022/07/07.py) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2022/07/07.rs) |
-| 08 | [Treetop Tree House        ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2022/08) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2022/08/08.py) |                                                                                        |
-| 09 | [Rope Bridge               ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2022/09) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2022/09/09.py) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2022/09/09.rs) |
-| 10 | [Cathode-Ray Tube          ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2022/10) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2022/10/10.py) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2022/10/10.rs) |
-| 11 | [Monkey in the Middle      ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2022/11) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2022/11/11.py) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2022/11/11.rs) |
-| 12 | [Hill Climbing Algorithm   ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2022/12) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2022/12/12.py) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2022/12/12.rs) |
-| 13 | [Distress Signal           ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2022/13) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2022/13/13.py) |                                                                                        |
-| 14 | [Regolith Reservoir        ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2022/14) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2022/14/14.py) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2022/14/14.rs) |
-| 15 | [Beacon Exclusion Zone     ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2022/15) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2022/15/15.py) |                                                                                        |
-| 16 | [Proboscidea Volcanium     ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2022/16) |                                                                                        |                                                                                        |
-| 17 | [Pyroclastic Flow          ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2022/17) |                                                                                        |                                                                                        |
-| 18 | [Boiling Boulders          ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2022/18) | [⭐  ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2022/18/18.py) |                                                                                        |
-| 19 | [Not Enough Minerals       ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2022/19) |                                                                                        |                                                                                        |
-| 20 | [Grove Positioning System  ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2022/20) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2022/20/20.py) |                                                                                        |
-| 21 | [Monkey Math               ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2022/21) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2022/21/21.py) |                                                                                        |
-| 22 | [Monkey Map                ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2022/22) |                                                                                        |                                                                                        |
-| 23 | [Unstable Diffusion        ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2022/23) |                                                                                        |                                                                                        |
-| 24 | [Blizzard Basin            ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2022/24) |                                                                                        |                                                                                        |
-| 25 | [Full of Hot Air           ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2022/25) | [⭐  ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2022/25/25.py) |                                                                                        |
+<details>
+    <summary> 
+    <a id="2021"><h2>2021 🪸</h2></a>
+    </summary>
 
-## 2021 [🔝](#-advents-of-code)
-| Day  | Title                                                                                                     | Python                                                                                   | Rust 
+| Day  | <div style="width:290px">Title</div>                                                                      | Python                                                                                   | Rust 
 | :--: | :-------------------------------------------------------------------------------------------------------- | :--------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------:
 |  01  | [Sonar Sweep               ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2021/01) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2021/01/01.py) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2021/01/01.rs)
 |  02  | [Dive!                     ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2021/02) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2021/02/02.py) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2021/02/02.rs)
@@ -177,39 +172,15 @@ Enter the code `1349697-f730f285` in your [Private Leaderboard Homepage](https:/
 |  23  | Amphipod                  
 |  24  | Arithmetic Logic Unit     
 |  25  | Sea Cucumber              
+</details>
 
-| Day | Title                                                                                                  |                                         Python                                         |                                          Rust                                          |
-| :-: | :----------------------------------------------------------------------------------------------------- | :------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------: |
-| 01 | [Sonar Sweep               ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2021/01) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2021/01/01.py) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2021/01/01.rs) |
-| 02 | [Dive!                     ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2021/02) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2021/02/02.py) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2021/02/02.rs) |
-| 03 | [Binary Diagnostic         ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2021/03) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2021/03/03.py) |                                                                                        |
-| 04 | [Giant Squid               ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2021/04) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2021/04/04.py) |                                                                                        |
-| 05 | [Hydrothermal Venture      ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2021/05) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2021/05/05.py) |                                                                                        |
-| 06 | [Lanternfish               ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2021/06) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2021/06/06.py) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2021/06/06.rs) |
-| 07 | [The Treachery of Whales   ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2021/07) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2021/07/07.py) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2021/07/07.rs) |
-| 08 | [Seven Segment Search      ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2021/08) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2021/08/08.py) |                                                                                        |
-| 09 | [Smoke Basin               ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2021/09) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2021/09/09.py) |                                                                                        |
-| 10 | [Syntax Scoring            ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2021/10) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2021/10/10.py) |                                                                                        |
-| 11 | [Dumbo Octopus             ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2021/11) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2021/11/11.py) |                                                                                        |
-| 12 | [Passage Pathing           ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2021/12) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2021/12/12.py) |                                                                                        |
-| 13 | [Transparent Origami       ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2021/13) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2021/13/13.py) |                                                                                        |
-| 14 | [Extended Polymerization   ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2021/14) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2021/14/14.py) |                                                                                        |
-| 15 | [Chiton                    ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2021/15) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2021/15/15.py) |                                                                                        |
-| 16 | [Packet Decoder            ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2021/16) |                                                                                        |                                                                                        |
-| 17 | [Trick Shot                ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2021/17) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2021/17/17.py) |                                                                                        |
-| 18 | [Snailfish                 ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2021/18) |                                                                                        |                                                                                        |
-| 19 | [Beacon Scanner            ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2021/19) |                                                                                        |                                                                                        |
-| 20 | [Trench Map                ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2021/20) |                                                                                        |                                                                                        |
-| 21 | [Dirac Dice                ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2021/21) |                                                                                        |                                                                                        |
-| 22 | [Reactor Reboot            ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2021/22) |                                                                                        |                                                                                        |
-| 23 | [Amphipod                  ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2021/23) |                                                                                        |                                                                                        |
-| 24 | [Arithmetic Logic Unit     ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2021/24) |                                                                                        |                                                                                        |
-| 25 | [Sea Cucumber              ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2021/25) |                                                                                        |                                                                                        |
+<details>
+    <summary> 
+    <a id="2020"><h2> 2020 🏖️</h2></a>
+    </summary>
 
-## 2020 [🔝](#-advents-of-code)
-
-| Day | Title                                                                                                  |                                         Python                                         |                                          Rust                                          |
-| :-: | :----------------------------------------------------------------------------------------------------- | :------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------: |
+| Day | <div style="width:290px">Title</div>                                                                    |                                         Python                                         |                                          Rust                                          |
+|:-:| :----------------------------------------------------------------------------------------------------- | :------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------: |
 | 01 | [Report Repair             ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2020/01) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2020/01/01.py) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2020/01/01.rs) |
 | 02 | [Password Philosophy       ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2020/02) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2020/02/02.py) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2020/02/02.rs) |
 | 03 | [Toboggan Trajectory       ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2020/03) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2020/03/03.py) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2020/03/03.rs) |
@@ -235,9 +206,14 @@ Enter the code `1349697-f730f285` in your [Private Leaderboard Homepage](https:/
 | 23 | [Crab Cups                 ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2020/23) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2020/23/23.py) |                                                                                        |
 | 24 | [Lobby Layout              ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2020/24) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2020/24/24.py) |                                                                                        |
 | 25 | [Combo Breaker             ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2020/25) | [ ⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2020/25/25.py) |                                                                                        |
+</details>
 
-## 2019 [🔝](#-advents-of-code)
-| Day  | Title                                                                                                             | Python                                                                                   | Rust 
+<details>
+    <summary> 
+    <a id="2019"><h2> 2019 🪐</h2></a>
+    </summary>
+
+| Day  | <div style="width:290px">Title</div>                                                                      | Python                                                                                   | Rust 
 | :--: | :---------------------------------------------------------------------------------------------------------------- | :--------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------:
 |  01  | [The Tyranny of the Rocket Equation](https://github.com/baptistecottier/advents-of-code/tree/main/events/2019/01) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2019/01/01.py) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2019/01/01.rs)
 |  02  | [1202 Program Alarm                ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2019/02) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2019/02/02.py) 
@@ -264,37 +240,14 @@ Enter the code `1349697-f730f285` in your [Private Leaderboard Homepage](https:/
 |  23  | Category Six                      
 |  24  | Planet of Discord                 
 |  25  | Cryostasis                        
+</details>
 
-| Day | Title                                                                                                          |                                         Python                                         |                                          Rust                                          |
-| :-: | :------------------------------------------------------------------------------------------------------------- | :------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------: |
-| 01 | [The Tyranny of the Rocket Equation](https://github.com/baptistecottier/advents-of-code/tree/main/events/2019/01) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2019/01/01.py) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2019/01/01.rs) |
-| 02 | [1202 Program Alarm                ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2019/02) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2019/02/02.py) |                                                                                        |
-| 03 | [Crossed Wires                     ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2019/03) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2019/03/03.py) |                                                                                        |
-| 04 | [Secure Container                  ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2019/04) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2019/04/04.py) |                                                                                        |
-| 05 | [Sunny with a Chance of Asteroids  ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2019/05) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2019/05/05.py) |                                                                                        |
-| 06 | [Universal Orbit Map               ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2019/06) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2019/06/06.py) |                                                                                        |
-| 07 | [Amplification Circuit             ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2019/07) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2019/07/07.py) |                                                                                        |
-| 08 | [Space Image Format                ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2019/08) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2019/08/08.py) |                                                                                        |
-| 09 | [Sensor Boost                      ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2019/09) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2019/09/09.py) |                                                                                        |
-| 10 | [Monitoring Station                ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2019/10) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2019/10/10.py) |                                                                                        |
-| 11 | [Space Police                      ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2019/11) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2019/11/11.py) |                                                                                        |
-| 12 | [The N-Body Problem                ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2019/12) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2019/12/12.py) |                                                                                        |
-| 13 | [Care Package                      ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2019/13) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2019/13/13.py) |                                                                                        |
-| 14 | [Space Stoichiometry               ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2019/14) |                                                                                        |                                                                                        |
-| 15 | [Oxygen System                     ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2019/15) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2019/15/15.py) |                                                                                        |
-| 16 | [Flawed Frequency Transmission     ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2019/16) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2019/16/16.py) |                                                                                        |
-| 17 | [Set and Forget                    ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2019/17) | [⭐  ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2019/17/17.py) |                                                                                        |
-| 18 | [Many-Worlds Interpretation        ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2019/18) |                                                                                        |                                                                                        |
-| 19 | [Tractor Beam                      ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2019/19) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2019/19/19.py) |                                                                                        |
-| 20 | [Donut Maze                        ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2019/20) |                                                                                        |                                                                                        |
-| 21 | [Springdroid Adventure             ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2019/21) |                                                                                        |                                                                                        |
-| 22 | [Slam Shuffle                      ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2019/22) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2019/22/22.py) |                                                                                        |
-| 23 | [Category Six                      ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2019/23) |                                                                                        |                                                                                        |
-| 24 | [Planet of Discord                 ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2019/24) |                                                                                        |                                                                                        |
-| 25 | [Cryostasis                        ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2019/25) |                                                                                        |                                                                                        |
+<details>
+    <summary> 
+    <a id="2018"><h2> 2018 🕰️</h2></a>
+    </summary>
 
-## 2018 [🔝](#-advents-of-code)
-| Day  | Title                                                                                                                 | Python                                                                                   | Rust 
+| Day  | <div style="width:290px">Title</div>                                                                      | Python                                                                                   | Rust 
 | :--: | :-------------------------------------------------------------------------------------------------------------------- | :--------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------:
 |  01  | [Chronal Calibration                   ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2018/01) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2018/01/01.py) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2018/01/01.rs)
 |  02  | [Inventory Management System           ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2018/02) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2018/02/02.py) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2018/02/02.rs)
@@ -321,38 +274,14 @@ Enter the code `1349697-f730f285` in your [Private Leaderboard Homepage](https:/
 |  23  | [Experimental Emergency Teleportation  ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2018/23) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2018/23/23.py) |  
 |  24  | Immune System Simulator 20XX                                                                                          |                                                                                          |  
 |  25  | [Four-Dimensional Adventure            ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2018/25) | [⭐  ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2018/25/25.py) |  
+</details>
 
-| Day | Title                                                                                                              |                                         Python                                         |                                          Rust                                          |
-| :-: | :----------------------------------------------------------------------------------------------------------------- | :------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------: |
-| 01 | [Chronal Calibration                   ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2018/01) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2018/01/01.py) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2018/01/01.rs) |
-| 02 | [Inventory Management System           ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2018/02) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2018/02/02.py) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2018/02/02.rs) |
-| 03 | [No Matter How You Slice It            ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2018/03) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2018/03/03.py) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2018/03/03.rs) |
-| 04 | [Repose Record                         ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2018/04) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2018/04/04.py) |                                                                                        |
-| 05 | [Alchemical Reduction                  ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2018/05) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2018/05/05.py) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2018/05/05.rs) |
-| 06 | [Chronal Coordinates                   ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2018/06) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2018/06/06.py) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2018/06/06.rs) |
-| 07 | [The Sum of Its Parts                  ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2018/07) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2018/07/07.py) |                                                                                        |
-| 08 | [Memory Maneuver                       ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2018/08) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2018/08/08.py) |                                                                                        |
-| 09 | [Marble Mania                          ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2018/09) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2018/09/09.py) |                                                                                        |
-| 10 | [The Stars Align                       ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2018/10) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2018/10/10.py) |                                                                                        |
-| 11 | [Chronal Charge                        ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2018/11) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2018/11/11.py) |                                                                                        |
-| 12 | [Subterranean Sustainability           ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2018/12) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2018/12/12.py) |                                                                                        |
-| 13 | [Mine Cart Madness                     ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2018/13) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2018/13/13.py) |                                                                                        |
-| 14 | [Chocolate Charts                      ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2018/14) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2018/14/14.py) |                                                                                        |
-| 15 | [Beverage Bandits                      ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2018/15) |                                                                                        |                                                                                        |
-| 16 | [Chronal Classification                ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2018/16) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2018/16/16.py) |                                                                                        |
-| 17 | [Reservoir Research                    ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2018/17) |                                                                                        |                                                                                        |
-| 18 | [Settlers of The North Pole            ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2018/18) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2018/18/18.py) |                                                                                        |
-| 19 | [Go With The Flow                      ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2018/19) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2018/19/19.py) |                                                                                        |
-| 20 | [A Regular Map                         ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2018/20) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2018/20/20.py) |                                                                                        |
-| 21 | [Chronal Conversion                    ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2018/21) | [⭐  ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2018/21/21.py) |                                                                                        |
-| 22 | [Mode Maze                             ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2018/22) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2018/22/22.py) |                                                                                        |
-| 23 | [Experimental Emergency Teleportation  ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2018/23) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2018/23/23.py) |                                                                                        |
-| 24 | [Immune System Simulator 20XX          ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2018/24) |                                                                                        |                                                                                        |
-| 25 | [Four-Dimensional Adventure            ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2018/25) | [⭐  ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2018/25/25.py) |                                                                                        |
+<details>
+    <summary> 
+    <a id="2017"><h2> 2017 🖨️</h2></a>
+    </summary>
 
-## 2017 [🔝](#-advents-of-code)
-
-| Day | Title                                                                                                                  |                                         Python                                         |                                          Rust                                          |
+| Day  | <div style="width:290px">Title</div>                                                                      |                                         Python                                         |                                          Rust                                          |
 | :-: | :--------------------------------------------------------------------------------------------------------------------- | :------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------: |
 | 01 | [Inverse Captcha                           ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2017/01) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2017/01/01.py) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2017/01/01.rs) |
 | 02 | [Corruption Checksum                       ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2017/02) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2017/02/02.py) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2017/02/02.rs) |
@@ -380,9 +309,14 @@ Enter the code `1349697-f730f285` in your [Private Leaderboard Homepage](https:/
 | 24 | [Electromagnetic Moat                      ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2017/24) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2017/24/24.py) |                                                                                        |
 | 25 | [The Halting Problem                       ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2017/25) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2017/25/25.py) |                                                                                        |
 
-## 2016 [🔝](#-advents-of-code)
+</details>
 
-| Day | Title                                                                                                                  |                                         Python                                         |                                          Rust                                          |
+<details>
+    <summary> 
+    <a id="2016"><h2>2016 🏙️</h2></a>
+    </summary>
+    
+| Day  | <div style="width:280px">Title</div>                                                                      |                                         Python                                         |                                          Rust                                          |
 | :-: | :--------------------------------------------------------------------------------------------------------------------- | :------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------: |
 | 01 | [No Time for a Taxicab                 ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2016/01)     | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2016/01/01.py) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2016/01/01.rs) |
 | 02 | [Bathroom Security                     ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2016/02)     | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2016/02/02.py) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2016/02/02.rs) |
@@ -395,7 +329,7 @@ Enter the code `1349697-f730f285` in your [Private Leaderboard Homepage](https:/
 | 09 | [Explosives in Cyberspace              ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2016/09)     | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2016/09/09.py) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2016/09/09.rs) |
 | 10 | [Balance Bots                          ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2016/10)     | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2016/10/10.py) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2016/10/10.rs) |
 | 11 | [Radioisotope Thermoelectric Generators](https://github.com/baptistecottier/advents-of-code/tree/main/events/2016/11)     | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2016/11/11.py) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2016/11/11.rs) |
-| 12 | [Leonardo&#39;s Monorail                   ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2016/12) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2016/12/12.py) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2016/12/12.rs) |
+| 12 | [Leonardo&#39;s Monorail               ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2016/12) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2016/12/12.py) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2016/12/12.rs) |
 | 13 | [A Maze of Twisty Little Cubicles      ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2016/13)     | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2016/13/13.py) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2016/13/13.rs) |
 | 14 | [One-Time Pad                          ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2016/14)     | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2016/14/14.py) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2016/14/14.rs) |
 | 15 | [Timing is Everything                  ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2016/15)     | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2016/15/15.py) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2016/15/15.rs) |
@@ -409,16 +343,20 @@ Enter the code `1349697-f730f285` in your [Private Leaderboard Homepage](https:/
 | 23 | [Safe Cracking                         ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2016/23)     | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2016/23/23.py) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2016/23/23.rs) |
 | 24 | [Air Duct Spelunking                   ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2016/24)     | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2016/24/24.py) |                                                                                        |
 | 25 | [Clock Signal                          ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2016/25)     | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2016/25/25.py) |                                                                                        |
+</details>
 
-## 2015 [🔝](#-advents-of-code)
+<details>
+    <summary> 
+    <a id="2015"><h2>2015 🎄</h2></a>
+    </summary>
 
-| Day | Title                                                                                                                  |                                         Python                                         |                                          Rust                                          |
+| Day  | <div style="width:290px">Title</div>                                                                      |                                         Python                                         |                                          Rust                                          |
 | :-: | :--------------------------------------------------------------------------------------------------------------------- | :------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------: |
 | 01 | [Not Quite Lisp                        ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2015/01)     | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2015/01/01.py) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2015/01/01.rs) |
 | 02 | [I Was Told There Would Be No Math     ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2015/02)     | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2015/02/02.py) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2015/02/02.rs) |
 | 03 | [Perfectly Spherical Houses in a Vacuum](https://github.com/baptistecottier/advents-of-code/tree/main/events/2015/03)     | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2015/03/03.py) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2015/03/03.rs) |
 | 04 | [The Ideal Stocking Stuffer            ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2015/04)     | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2015/04/04.py) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2015/04/04.rs) |
-| 05 | [Doesn&#39;t He Have Intern-Elves For This?](https://github.com/baptistecottier/advents-of-code/tree/main/events/2015/05) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2015/05/05.py) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2015/05/05.rs) |
+| 05 | [Doesn't He Have Intern-Elves For This?](https://github.com/baptistecottier/advents-of-code/tree/main/events/2015/05) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2015/05/05.py) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2015/05/05.rs) |
 | 06 | [Probably a Fire Hazard                ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2015/06)     | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2015/06/06.py) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2015/06/06.rs) |
 | 07 | [Some Assembly Required                ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2015/07)     | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2015/07/07.py) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2015/07/07.rs) |
 | 08 | [Matchsticks                           ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2015/08)     | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2015/08/08.py) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2015/08/08.rs) |
@@ -439,3 +377,4 @@ Enter the code `1349697-f730f285` in your [Private Leaderboard Homepage](https:/
 | 23 | [Opening the Turing Lock               ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2015/23)     | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2015/23/23.py) |                                                                                        |
 | 24 | [It Hangs in the Balance               ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2015/24)     | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2015/24/24.py) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2015/24/24.rs) |
 | 25 | [Let It Snow                           ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2015/25)     | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2015/25/25.py) | [⭐  ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2015/25/25.rs) |
+</details>
