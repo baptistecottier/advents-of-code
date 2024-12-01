@@ -12,7 +12,7 @@ macro_rules! main {
             itertools::{chain, iproduct, multizip, repeat_n, FoldWhile, Itertools},
             md5::compute,
             mod_exp::mod_exp,
-            num::pow,
+            num::{Integer, pow},
             regex::Regex,
             roots::find_roots_quadratic,
             roots::Roots,
@@ -56,7 +56,7 @@ pub fn screen_reader(pixels: HashSet<(usize, usize)>) -> String {
             )
         })
         .sorted()
-        .group_by(|(x, _)| x / 5)
+        .chunk_by(|(x, _)| x / 5)
         .into_iter()
         .map(|(k, v)| {
             (
