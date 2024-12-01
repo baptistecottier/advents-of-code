@@ -76,6 +76,7 @@ def screen_reader(screen: set) -> str:
     mx = min(lx)
     my = min(ly)
     h = max(ly) - min(ly) + 1
+    if h not in {6, 10}: return None
     W = {6: 5, 10: 8}
     w = W[h]
     screen = {(x - mx, y - my) for (x, y) in screen}

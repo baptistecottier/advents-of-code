@@ -10,11 +10,11 @@ class Register(dict):
         if len(args) == 1:
             super().__init__(*args)
         else: 
-            super().__init__(zip('abcdefgh'[:len(args)], args))
+            super().__init__(zip('abcdefghixy', args + (11 - len(args)) * (0,)))
     def get(self, item):
-        if item in self:
+        try :
             return self.__getitem__(item)
-        else:
+        except:
             return int(item)
         
 class Point():
