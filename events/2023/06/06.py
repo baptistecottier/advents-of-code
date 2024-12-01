@@ -15,7 +15,10 @@ def preprocessing(puzzle_input):
     ways = []
     for time, distance in zip(time, distance):
         l, h = sorted((int(n) for n in roots([1, - time, distance])))
+        print(l, h)
         ways.append(h - l)
+        
+    print(ways)
     return ways
 
 

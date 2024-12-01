@@ -23,3 +23,4 @@ def solver(puzzle_input):
                     memory[2][result + sum([(2 ** n) for n in list(bits)])] = val
     yield sum(memory[1].values())
     yield sum(memory[2].values())
+    

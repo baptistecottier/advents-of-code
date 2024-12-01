@@ -14,4 +14,4 @@ def solver(timestamp, bus):
             times[-timestamp % id] = id * (-timestamp % id)
             pairs.add((-n, id))
     yield times[min(times.keys())]
-    yield (2, chinese_remainder(pairs))
+    yield chinese_remainder(pairs)

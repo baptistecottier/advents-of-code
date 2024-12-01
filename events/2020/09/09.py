@@ -1,15 +1,15 @@
 def preprocessing(puzzle_input):
     return [int(item) for item in puzzle_input.splitlines()]
 
-def solver(puzzle_input):
-    index    = 25
+def solver(puzzle_input, preamble_size = 25):
+    index    = preamble_size
     target   = puzzle_input[index]
-    preamble = puzzle_input[:25]
+    preamble = puzzle_input[:preamble_size]
     
     while any(target - p in preamble for p in preamble):
         index    += 1
         target   = puzzle_input[index]
-        preamble = puzzle_input[index - 25: index]
+        preamble = puzzle_input[index - preamble_size: index]
     yield target
 
     for index in range(len(puzzle_input)):

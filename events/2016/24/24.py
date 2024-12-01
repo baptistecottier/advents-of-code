@@ -11,17 +11,17 @@ def preprocessing(input_):
             if c != '#':
                 grid.add((x, y))
                 if c.isdigit(): coordinates[int(c)] = ((x, y))
-                
-    for src in range(8):
-        for dst in range(src + 1, 8):
+    n_coord = len(coordinates)
+    for src in range(n_coord):
+        for dst in range(src + 1, n_coord):
             distance = bfs(grid, coordinates[src], coordinates[dst])
             distances[(src, dst)] = distance
             distances[(dst, src)] = distance
-    return distances
+    return distances, n_coord
 
-def solver(distances):
+def solver(distances, n_coord):
     paths = set()
-    for path in permutations(range(1, 8)):
+    for path in permutations(range(1, n_coord)):
         trip_length = distances[(0, path[0])] + sum(distances[(src, dst)] for src, dst in pairwise(list(path)))
         back_length = distances[(path[-1] , 0)]
         paths.add((trip_length, back_length))

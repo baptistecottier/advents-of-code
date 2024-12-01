@@ -21,9 +21,9 @@ def rotate(puzzle_input, n):
         puzzle_input =''.join([puzzle_input[perm[size][i]] for i in range(len(puzzle_input))])
     return puzzle_input
 
-def solver(puzzle_input):
+def solver(puzzle_input, iterations = 18):
     grid = '.#...####'
-    for m in range(18):
+    for m in range(iterations):
         size = int(len(grid) ** 0.5)
         if size % 2 == 0: divisor = 2 
         else: divisor = 3

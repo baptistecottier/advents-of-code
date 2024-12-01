@@ -18,6 +18,7 @@ def solver(caves):
 
 
 def get_all_paths(caves, pos = 'start',  path = [], paths_count = {True: 0, False: 0}, twice = True):
+    print(caves[pos])
     if pos == 'end': 
         paths_count[twice] += 1
         return

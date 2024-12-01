@@ -7,7 +7,7 @@ def preprocessing(puzzle_input):
             if c == '#' : galaxies.append((x, y))
     return galaxies
 
-def solver(galaxies):
+def solver(galaxies, expansion_factor = 1_000_000):
     [xx, yy] = [set(item) for item in list(zip(*galaxies))]
     total = 0
     to_add = 0
@@ -20,7 +20,7 @@ def solver(galaxies):
             to_add += sum(v not in yy for v in range(min(b, d), max(b, d) + 1))
         
     yield total + to_add
-    yield total + 999_999 * to_add
+    yield total + (expansion_factor - 1) * to_add
 
 
 

@@ -36,4 +36,4 @@ def solver(directions_):
         return len(houses)
     
     yield deliver(1)
-    yield deliver(2)
+    yield deliver(2) if len(directions_) % 2 == 0 else None

@@ -2,8 +2,8 @@
 def preprocessing(input_): 
     return list(int(item) for item in input_)
 
-def solver(initial_state): 
-    yield checksum(initial_state, 272)
+def solver(initial_state, disk_length = 272): 
+    yield checksum(initial_state, disk_length)
     yield checksum(initial_state, 35_651_584)
 
 def checksum(state, disk_length):

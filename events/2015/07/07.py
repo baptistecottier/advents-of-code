@@ -19,18 +19,20 @@ def preprocessing(input_):
                 case 'RSHIFT': f = rshift
                 case 'LSHIFT': f = lshift
             circuit.append((out_, f, w1, w2))
-    circuit.sort(key = lambda c: (len(c[0]) , c[0]))
+    return circuit
     
-    return circuit[1:] + [circuit[0]]
 
 
-def solver(circuit):
-    
+def solver(circuit, wire = None):
+    if not wire:
+        circuit.sort(key = lambda c: (len(c[0]) , c[0]))
+        circuit = circuit[1:] + [circuit[0]]
+        
     def run(circuit):
         wires = Register()
         for out_, f, *args in circuit:
             wires[out_] = f(*(wires.get(a) for a in args))
-        return wires['a']
+        return wires['a'] % pow(2,16)
         
     signal = run(circuit)
     yield signal

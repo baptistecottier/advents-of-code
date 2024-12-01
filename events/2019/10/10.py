@@ -14,6 +14,7 @@ def solver(puzzle_input):
         angles = defaultdict(list)
         
         for (xx, yy) in puzzle_input:
+            if (xx, yy) == (x, y): continue
             dx, dy = xx - x, yy - y
             div = (dx ** 2 + dy ** 2) ** (0.5)
             if dx + div != 0: angle = round(degrees(2 * atan(dy/(dx + div))), 5)
@@ -24,6 +25,9 @@ def solver(puzzle_input):
             (bx, by), asteroids = (x, y), angles
     yield len(asteroids)
     
-    distances = {(cx, cy): abs(cx - bx)+abs(cy - by) for cx, cy in sorted(asteroids.items())[199][1]}
-    (x, y) = min(distances.keys(), key = lambda c: distances[c])
-    yield 100 * x + y
+    try:
+        distances = {(cx, cy): abs(cx - bx)+abs(cy - by) for cx, cy in sorted(asteroids.items())[199][1]}
+        (x, y) = min(distances.keys(), key = lambda c: distances[c])
+        yield 100 * x + y
+    except:
+        yield None

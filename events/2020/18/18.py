@@ -4,14 +4,12 @@ def preprocessing(puzzle_input):
 
 def solver(expressions):
     yield sum(parse(expr) for expr in expressions)
-    yield sum(eval("("+expr.replace('*',')*(') + ')+(' + "0)") for expr in expressions)
-
-import re 
+    yield sum(eval("(" + expr.replace('*',')*(') + ')+(0)') for expr in expressions)
 
 def evaluate(s):
-    pos = oper = -1
+    pos = -1
 
-    for i, c in enumerate(s):
+    for i, _ in enumerate(s):
         if i == len(s):
             return evaluate(s)
         if s.count('*') + s.count('+') <= 1:
@@ -20,11 +18,9 @@ def evaluate(s):
             pos = i
             while s[i] not in '*+':
                 i += 1
-            oper = i
         else:
-            while str(s[i]).isnumeric():
-                if (i:= i + 1) == len(s):
-                    break
+            while i <len(s) and str(s[i]).isnumeric():
+                i += 1
             s = s.replace(str(s[pos:i]), str(evaluate(s[pos:i])), 1)            
 
 def parse(s):

@@ -1,5 +1,5 @@
-from pythonfw.functions import md5
 
+from pythonfw.functions import md5
 
 def solver(target):
     for trigger in ['00000', '000000']:

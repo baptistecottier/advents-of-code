@@ -12,8 +12,8 @@ def preprocessing(input_):
             case "rotate", _:     sequence.append((2, int(data[-3]), int(data[-1])))
     return sequence
    
-def solver(sequence): 
-    w, h = 50, 6
+def solver(sequence, im = '50x6'): 
+    w, h = (int(item) for item in im.split('x'))
     screen = set()
     for op, a, b in sequence: 
         match op: 
@@ -24,4 +24,5 @@ def solver(sequence):
             case 2: 
                 screen = {(x, y if x != a else (y + b) % h) for (x, y) in screen}
     yield len(screen)
-    yield screen_reader(screen)
+    if h in [6, 10]: 
+        yield screen_reader(screen)

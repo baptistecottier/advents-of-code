@@ -18,11 +18,12 @@ def preprocessing(data):
     return bots, gifts
     
 
-def solver(bots, gifts):
+def solver(bots, gifts, chips = 'value-17, value-61'):
+    chips = [int(item) for item in chips.replace("value-","").split(',')]
     while (to_distribute := [bot for bot in list(bots.items()) if len(bot[1]) == 2]):
         for bot, microchips in to_distribute:
             microchips.sort()
-            if microchips == [17, 61]: 
+            if set(microchips) == set(chips): 
                 yield bot
             low, high = gifts[bot]
             bots[high].append(microchips.pop())

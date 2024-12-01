@@ -8,8 +8,7 @@ def preprocessing(puzzle_input):
                 case 'v': south.add((x, y))
     return west, south, x + 1, y + 1
 
-def solver(cucumbers):
-    west, south, w, h = cucumbers
+def solver(west, south, w, h):
     steps = 0
     while steps := steps + 1:
         old_west  = west

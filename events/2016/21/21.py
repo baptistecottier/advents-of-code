@@ -3,10 +3,10 @@ from itertools import permutations
 def preprocessing(data) : 
     return data.splitlines()
 
-def solver(operations): 
-    yield scramble('abcdefgh', operations)
+def solver(operations, start = "abcdefgh"): 
+    yield scramble(list(start), operations)
 
-    for word in permutations('abcdefgh'):
+    for word in permutations(start):
         if scramble(word, operations) == 'fbgdceah' : 
             yield ''.join(word)
             break
@@ -15,6 +15,7 @@ def solver(operations):
 def scramble(pw, instructions):
     for inst in instructions : 
         command , details = inst.split(' ', 1)
+        pw = list(pw)
         match command :
             case 'swap': 
                 _, x, _, _, y = details.split(' ')

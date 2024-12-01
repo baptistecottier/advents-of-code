@@ -5,13 +5,13 @@ def preprocessing(input_):
         blacklist.add((inf, sup))
     return blacklist
 
-def solver(intervales):  
+def solver(intervales, max = 4_294_967_295):  
     counter_ip = 0
     allowed_ip =next_allowed_ip(0, intervales)
     yield allowed_ip
-    while allowed_ip < 4_294_967_295: 
+    while allowed_ip <= max: 
         intervales  = list((inf , sup) for (inf , sup) in intervales if sup > allowed_ip)
-        min_ip      = min(intervales, key = lambda item: item[0])[0] 
+        min_ip      = min(intervales, key = lambda item: item[0], default=[max+1])[0] 
         counter_ip += min_ip - allowed_ip 
         allowed_ip  = next_allowed_ip(min_ip, intervales)
     yield counter_ip

@@ -8,7 +8,7 @@ def solver(salt):
 
 def get_OTP_key(salt, recursions): 
     hashes = {}
-    index, keys = 0, []
+    index, keys = 0, set()
     bound = 50_000
     while index < bound: 
         if index in hashes:
@@ -28,8 +28,9 @@ def get_OTP_key(salt, recursions):
                         hashes[candidate] = candidate_hash
                     triplets = search(r'(\w)?\1\1', candidate_hash)
                     if triplets and triplets.group() == target: 
-                        keys.append(candidate)
+                        keys.add(candidate)
                         if len(keys) == 64: bound = index + 1000
+                
         index += 1
     return sorted(set(keys))
 

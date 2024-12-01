@@ -1,10 +1,9 @@
-from itertools          import permutations
-from pythonfw.functions import extract_chunks
-
+from itertools  import permutations
+from re         import split
 
 def preprocessing(input_):
-    return extract_chunks(input_, 16)
-
+    lines = [[int(n) for n in split(r'\s', line)] for line in input_.splitlines()]
+    return lines
 
 def solver(spreadsheet):
     checksum = 0

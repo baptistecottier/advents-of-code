@@ -6,14 +6,14 @@ def preprocessing(puzzle_input: str) -> set[Particule]:
     moons: set[Particule] = {Particule(*moon) for moon in extract_chunks(puzzle_input, 3)}
     return moons
         
-def solver(moons: set[Particule]):
+def solver(moons: set[Particule], ta = 1_000):
     coord: list   = ['x', 'y', 'z']
     visited: dict = {c: {(tuple(getattr(m.p, c), 0) for m in moons)} for c in coord}
     cycles: dict  = dict()
     step: int     = 0
-    
-    while len(cycles) < 3 or step <= 1_000:
-        if step == 1_000: 
+    print(visited.items())
+    while len(cycles) < 3 or step <= ta:
+        if step == ta: 
             yield sum(moon.p.manhattan() * moon.v.manhattan() for moon in moons)
             for c in cycles.keys(): coord.remove(c)
             
@@ -24,13 +24,14 @@ def solver(moons: set[Particule]):
                 
             values = tuple((getattr(m.p, c), getattr(m.v, c)) for m in moons)
             if values in visited[c] and c not in cycles: 
+                print(values)
                 cycles[c] = step
                 coord.remove(c)
             else: 
                 visited[c].add(values)
             
         step += 1
-    
+    print(cycles)
     yield lcm(*cycles.values())
 
 def gravity(moons: list[Particule], attr: str) -> tuple[int]:

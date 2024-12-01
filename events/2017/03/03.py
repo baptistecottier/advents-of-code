@@ -8,7 +8,10 @@ def preprocessing(input_):
 
 def solver(square_position):
     circle_index = int(((square_position - 1) ** 0.5 + 1) // 2) 
-    yield circle_index + (square_position - 1) % circle_index
+    if circle_index != 0:
+        yield circle_index + (square_position - 1) % circle_index
+    else :
+        yield circle_index + (square_position - 1)
 
     x, y    = 0, 0
     memory  = defaultdict(int)   

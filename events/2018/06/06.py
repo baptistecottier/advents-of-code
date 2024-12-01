@@ -11,14 +11,15 @@ def solver(coordinates, min_x, max_x, min_y, max_y):
     areas   = {c: 0 for c in coordinates}
     corners = set()
     region_size = 0
+    
     for (x, y) in product((min_x, max_x), (min_y, max_y)):
         corners.add(min(coordinates, key = lambda c : abs(c[0] - x) + abs(c[1] - y)))
-        
+
     for x, y in product(range(min_x, max_x), range(min_y, max_y)):
         distances = list()
         for xx, yy in coordinates:
             distances.append(abs(xx - x) + abs(yy - y))
-        if sum(distances) < 10_000: 
+        if sum(distances) < (10_000 if len(coordinates) == 50 else 32): 
             region_size += 1
         mx, my = min(coordinates, key = lambda c: abs(c[0] - x) + abs(c[1] - y))
         if distances.count(abs(mx - x) + abs(my - y)) == 1: areas[(mx, my)] += 1

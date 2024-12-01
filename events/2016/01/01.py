@@ -28,3 +28,4 @@ def solver(path):
                     twice = True
                 else: visited.add(pos.xy())
     yield (1, pos.manhattan())
+    if not twice: yield (2, None)

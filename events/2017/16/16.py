@@ -1,25 +1,34 @@
 def preprocessing(input_):
     dances = []
-    
+    n_programs = 0
     for move in input_.split(','):
         match move[0]:
-            case 's': dance = (0,int(move[1:]))
-            case 'x': dance = (1, sorted([int(item) for item in move[1:].split('/')]))
-            case 'p': dance = (2, sorted(move[1:].split('/')))
+            case 's': 
+                value = int(move[1:])
+                dance = (0, value)
+                n_programs = max(n_programs, value)
+            case 'x': 
+                values = sorted([int(item) for item in move[1:].split('/')])
+                dance = (1, values)
+                n_programs = max(n_programs, values[-1])
+            case 'p': 
+                dance = (2, sorted(move[1:].split('/')))
         dances.append(dance)
-    return dances
+    return dances, n_programs + 1
 
-def solver(dance): 
+def solver(dance, n_programs): 
     orders = list()
-    orders.append(order_program(dance, 'abcdefghijklmnop'))
+    orders.append(order_program(dance, 'abcdefghijklmnopqrstuvwxyz'[:n_programs]))
     yield orders[0]
     
-    cycle = 1
-    while orders[-1] != 'abcdefghijklmnop': 
-        orders.append(order_program(dance, orders[-1]))
-        cycle += 1
-
-    yield orders[1_000_000_000 % cycle - 1]
+    if n_programs == 16 :
+        cycle = 1
+        while orders[-1] != 'abcdefghijklmnopqrstuvwxyz'[:n_programs]: 
+            orders.append(order_program(dance, orders[-1]))
+            cycle += 1
+        yield orders[1_000_000_000 % cycle - 1]
+    else:
+        yield order_program(dance, orders[-1])
 
 
 def order_program(input_, programs): 

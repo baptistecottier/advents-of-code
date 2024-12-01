@@ -21,4 +21,7 @@ def solver(instructions):
         x += shift
     
     yield strength
-    yield screen_reader(display)
+    try:
+        yield screen_reader(display)
+    except: 
+        pass

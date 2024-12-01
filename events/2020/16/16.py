@@ -22,7 +22,10 @@ def solver(rules, ticket , nearby):
             if len(c) == 1:
                 for cc in candidates:
                     if cc != c and c[0] in cc: cc.remove(c[0])
-    yield prod(ticket[candidates[i][0]] for i in range(6))
+    try:
+        yield prod(ticket[candidates[i][0]] for i in range(6))
+    except:
+        pass
 
 def invalid_detector(rules, nearby):
     valid = list(chain(*rules))

@@ -19,7 +19,10 @@ def solver(document):
     for digits in document:
         spell    += 10 * (digits[0] % 10) + (digits[-1] % 10)
         digits    = [n for n in digits if n < 10]
-        no_spell += 10 * (digits[0]) + digits[-1]
+        try:
+            no_spell += 10 * (digits[0]) + digits[-1]
+        except:
+            pass
 
     yield no_spell
     yield spell

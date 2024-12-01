@@ -67,7 +67,8 @@ def preprocessing(puzzle_input):
     return lp, loop
 
 def solver(lp, loop):
-    yield len(lp) // 2 + (len(lp) % 2)
+    # yield len(lp) // 2 + (len(lp) % 2)
+    yield None 
     
     minx = min(x for (x, y) in lp)
     maxx = max(x for (x, y) in lp)

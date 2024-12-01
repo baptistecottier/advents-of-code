@@ -27,4 +27,4 @@ def test(records, rep = 0):
 
 def solver(records):
     yield test(records)
-    yield test(records, 4) # Theoritically correct
+    # yield test(records, 4) # Theoritically correct

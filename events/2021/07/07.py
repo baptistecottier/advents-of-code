@@ -6,7 +6,7 @@ def preprocessing(puzzle_input):
 def solver(crabs):
     med_crabs  = int(median(crabs))
     med_fuel   = 0
-    mean_crabs = int(mean(crabs))
+    mean_crabs = round(mean(crabs))
     mean_fuel  = 0
     
     for crab in crabs:

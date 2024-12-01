@@ -1,28 +1,36 @@
 from re                 import findall
 from pythonfw.functions import extract_chunks
 from pythonfw.classes   import Point
+from parse import parse
+from collections import deque
 
-def preprocessing(puzzle_input: str):
+def preprocessing(puzzle_input):
     clay = set()
-    numbers = extract_chunks(puzzle_input, 3)
-    for cl, (a, b, c) in zip(puzzle_input.splitlines(), numbers):
-        if cl.startswith('x'):
-            clay.update({(a, y) for y in range(b, c + 1)})
-        else: 
-            clay.update({(x, a) for x in range(b, c + 1)})
+    for line in puzzle_input.splitlines():
+        axis, a, _, b, c = list(parse("{}={:d}, {}={:d}..{:d}", line))
+        for m in range(b, c + 1):
+            clay.add((a, m) if axis == 'x' else (m, a))
     return clay
 
-def solver(clay):
-    water = Point(500, 0)
-    start = len(clay)
-    max_y = max(y for _, y in clay)
-    yield 1
-    while water.y < max_y:
-        if (water.x, water.y + 1) in clay:
-            lx = water.x - 1
-            rx = water.x + 1
-            while (lx, water.y) not in clay: lx -= 1
-            while (rx, water.y) not in clay: ly += 1
-            clay.update({(x, water.y) for x in range(lx + 1, rx)})
-            water.move(0, -1)
-        else: water.move(0, 1)
+def solver(clay: set):
+
+    max_y = min(y for _, y in clay)
+    min_x = min(x for x, _ in clay)
+    max_x = max(x for x, _ in clay)
+    clay.intersection_update({(tx, max_y + 1) for tx in range(min_x - 1, max_x + 1)})
+
+    start = (500, 0)
+    queue = deque([[start]])
+    seen = set([start])
+
+    while queue: 
+        path = queue.popleft()
+        x, y = path[-1]
+        if y > max_y: continue
+        if (x, y + 1) not in clay: 
+            while (x, y + 1) not in clay: y += 1
+            queue.append(path + [(x, y + 1)])
+        else:
+            if (x - 1, y) not in clay:
+
+

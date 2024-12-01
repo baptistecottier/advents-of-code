@@ -17,11 +17,14 @@ def preprocessing(puzzle_input):
                         for combination in product(*[patterns[n] for n in pattern]):
                             patterns[num].add(''.join(list(combination)))
                     del rules[num]
-    return patterns[0], patterns[8], patterns[11], messages
+    return patterns, messages
 
-def solver(rule, rule_eight, rule_eleven, messages):
-    yield len([message for message in messages if message in rule])
-    yield sum(looping_rules(message, rule_eight, rule_eleven) for message in messages)
+def solver(patterns, messages):
+    yield len([message for message in messages if message in patterns[0]])
+    try: 
+        yield sum(looping_rules(message, patterns[8], patterns[11]) for message in messages)
+    except:
+        pass
 
 def looping_rules(message, rule_eight, rule_eleven):
     t = len(next(iter(rule_eight)))
