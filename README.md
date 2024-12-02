@@ -7,7 +7,31 @@ Thanks [Scotow](https://github.com/scotow) for the initial framework and preciou
 
 ## 🎄 Summary
 
-<table><tbody><tr><td><figure class="table"><table><thead><tr><th>Year</th><th>🐍</th><th>🦀</th></tr></thead><tbody><tr><td><a href="#2024">2024</a></td><td>2</td><td>2</td></tr><tr><td><a href="#2023">2023</a></td><td>27</td><td>12</td></tr><tr><td><a href="#2022">2022</a></td><td>37</td><td>26</td></tr><tr><td><a href="#2021">2021</a></td><td>34</td><td>8</td></tr><tr><td><a href="#2020">2020</a></td><td>48</td><td>16</td></tr></tbody></table></figure></td><td><figure class="table"><table><thead><tr><th>Year</th><th>🐍</th><th>🦀</th></tr></thead><tbody><tr><td><a href="#2019">2019</a></td><td>35</td><td>10</td></tr><tr><td><a href="#2018">2018</a></td><td>42</td><td>13</td></tr><tr><td><a href="#2017">2017</a></td><td>50</td><td>24</td></tr><tr><td><a href="#2016">2016</a></td><td>50</td><td>38</td></tr><tr><td><a href="#2015">2015</a></td><td>50</td><td>45</td></tr></tbody></table></figure></td></tr></tbody></table>
+<table>
+<tr VALIGN = TOP>
+<td>
+
+Year           |   🐍   |   🦀  |
+:---:          | :---:  | :--: |
+[2024](#2024)  | 4      | 4
+[2023](#2023) | 27     | 12
+[2022](#2022) | 37     | 26
+[2021](#2021) | 34     | 8 
+[2020](#2020) | 48     | 16
+</td>
+<td>
+
+Year           |   🐍   |   🦀  |
+:---:          | :----: | :--: |
+[2019](#2019) | 35     | 10
+[2018](#2018) | 42     | 13
+[2017](#2017) | 50     | 24
+[2016](#2016) | 50     | 38
+[2015](#2015) | 50     | 45
+</td>
+</tr> 
+
+</table>
 
 
 Enter the code `1349697-f730f285` in your [Private Leaderboard Homepage](https://adventofcode.com/2024/leaderboard/private) if you wish to integrate my leaderboard.
@@ -19,10 +43,10 @@ Enter the code `1349697-f730f285` in your [Private Leaderboard Homepage](https:/
     <a id="2024"><h2>2024 👶🏻</h2></a>
     </summary>
 
-| Day | Title | Python | Rust |
-| :-: | :---- | :----: | :--: |
-| 01 | [Historian Hysteria](events/2024/01/01.md#day-1-historian-hysteria) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2024/01/01.py) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2024/01/01.rs) |
-| 02 |       |        |      |
+| Day | Title                                                               | Python                                                                                    | Rust |
+| :-: | :-------------------------------------------------------------------| :---------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------:|
+| 01 | [Historian Hysteria  ](events/2024/01/01.md#day-1-historian-hysteria)| [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2024/01/01.py) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2024/01/01.rs) |
+| 02 | [Red-Nosed Reports   ](events/2024/02/02.md#day-2-red-nosed-reports) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2024/02/02.py) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2024/02/02.rs) |
 | 03 |       |        |      |
 | 04 |       |        |      |
 | 05 |       |        |      |
