@@ -12,8 +12,8 @@ def solver(program):
     Then remove all don't()...do() enclosure and remove the last disabled instructions following a don't()
     """
     yield scan_mul(program)
-    program = re.sub(r"don't\(\)(.*?)do\(\)", "", program) # Removing all don't()...do() enclosures
-    program = program.split("don't()", 1)[0] # Removing enabled instruction at the end
+    program = re.sub(r"don't\(\)(.*?)do\(\)", "", program)
+    program = program.split("don't()", 1)[0]
     yield scan_mul(program)
     
 def scan_mul(program):
