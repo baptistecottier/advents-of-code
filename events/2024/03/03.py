@@ -1,11 +1,5 @@
 import re
 
-def preprocessing(puzzle_input):
-    """
-    Take the initial input and remove carriage return as they stop regex expressions
-    """
-    return puzzle_input.replace("\n", "")
-
 def solver(program):
     """
     For the first part, scan the program for uncorrupted mul operations. 
