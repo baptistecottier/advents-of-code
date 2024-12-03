@@ -1,7 +1,7 @@
 import re
 
 def preprocessing(puzzle_input):
-    """_summary_
+    """
     Take the initial input and remove carriage return as they stop regex expressions
     """
     return puzzle_input.replace("\n", "")
