@@ -13,7 +13,7 @@ Thanks [Scotow](https://github.com/scotow) for the initial framework and preciou
 
 Year           |   🐍   |   🦀  |
 :---:          | :---:  | :--: |
-[2024](#2024)  | 4      | 4
+[2024](#2024)  | 6      | 4
 [2023](#2023) | 27     | 12
 [2022](#2022) | 37     | 26
 [2021](#2021) | 34     | 8 
@@ -47,7 +47,7 @@ Enter the code `1349697-f730f285` in your [Private Leaderboard Homepage](https:/
 | :-: | :-------------------------------------------------------------------| :---------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------:|
 | 01 | [Historian Hysteria  ](events/2024/01/01.md#day-1-historian-hysteria)| [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2024/01/01.py) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2024/01/01.rs) |
 | 02 | [Red-Nosed Reports   ](events/2024/02/02.md#day-2-red-nosed-reports) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2024/02/02.py) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2024/02/02.rs) |
-| 03 |       |        |      |
+| 03 | [Mull It Over        ](events/2024/03/03.md#day-3-mull-it-over)      | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2024/03/03.py) | 
 | 04 |       |        |      |
 | 05 |       |        |      |
 | 06 |       |        |      |
