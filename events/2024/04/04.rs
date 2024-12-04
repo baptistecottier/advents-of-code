@@ -1,22 +1,21 @@
 aoc::main!();
 
-
 //     Preprocessing consists in going through the puzzle input 
 //     and stock position of the letters 'X', 'M', 'A' and 'S'.
 fn preprocessing(puzzle_input: &str) ->  HashMap<char,HashSet<(isize, isize)>> {
-    let mut letters = HashMap::from([
-                       ('X', HashSet::new()), ('M', HashSet::new()),
-                       ('A', HashSet::new()), ('S', HashSet::new())]);
     puzzle_input
     .lines()
     .enumerate()
-    .for_each(|(y, line)| {
-        line.char_indices().for_each(|(x, c)| {
-            let letter = letters.get_mut(&c).unwrap();
-            letter.insert((x as isize, y as isize));
-        });
-    });
-    letters
+    .map(|(y, line)| 
+        line
+        .char_indices()
+        .map(|(x, c)| (c, (x as isize, y as isize)))
+        .collect_vec())
+    .flatten()
+    .into_group_map()
+    .into_iter()
+    .map(|(letter, coords)| (letter, HashSet::from_iter(coords)))
+    .collect::<HashMap<char,HashSet<(isize, isize)>>>()
 }
 
 
