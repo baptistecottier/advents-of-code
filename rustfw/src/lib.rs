@@ -13,6 +13,7 @@ macro_rules! main {
             md5::compute,
             mod_exp::mod_exp,
             num::{Integer, pow},
+            rand::random,
             regex::Regex,
             roots::find_roots_quadratic,
             roots::Roots,

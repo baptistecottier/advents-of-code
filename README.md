@@ -11,9 +11,9 @@ Thanks [Scotow](https://github.com/scotow) for the initial framework and preciou
 <tr VALIGN = TOP>
 <td>
 
-Year           |   🐍   |   🦀  |
-:---:          | :---:  | :--: |
-[2024](#2024)  | 8      | 8
+Year          |   🐍   |   🦀  |
+:---:         | :---:  | :--: |
+[2024](#2024) | 10     | 10
 [2023](#2023) | 27     | 12
 [2022](#2022) | 37     | 26
 [2021](#2021) | 34     | 8 
@@ -49,7 +49,7 @@ Enter the code `1349697-f730f285` in your [Private Leaderboard Homepage](https:/
 | 02 | [Red-Nosed Reports   ](events/2024/02/02.md#day-2-red-nosed-reports) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2024/02/02.py) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2024/02/02.rs) |
 | 03 | [Mull It Over        ](events/2024/03/03.md#day-3-mull-it-over)      | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2024/03/03.py) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2024/03/03.rs) |
 | 04 | [Ceres Search        ](events/2024/04/04.md#day-4-ceres-search)      | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2024/04/04.py) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2024/04/04.rs) |
-| 05 |       |        |      |
+| 05 | [Print Queue         ](events/2024/05/05.md#day-5-print-queue)       | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2024/05/05.py) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2024/05/05.rs) |
 | 06 |       |        |      |
 | 07 |       |        |      |
 | 08 |       |        |      |
