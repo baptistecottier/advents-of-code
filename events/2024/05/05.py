@@ -40,7 +40,6 @@ def solver(rules, updates):
                 ordered = False
                 break
         if ordered:
-            if to_order: print(update)
             middle_page_sum[to_order] += update[len(update) // 2]
             
     for n in middle_page_sum: yield n
