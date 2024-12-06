@@ -13,7 +13,7 @@ Thanks [Scotow](https://github.com/scotow) for the initial framework and preciou
 
 Year          |   🐍   |   🦀  |
 :---:         | :---:  | :--: |
-[2024](#2024) | 10     | 10
+[2024](#2024) | 12     | 10
 [2023](#2023) | 27     | 12
 [2022](#2022) | 37     | 26
 [2021](#2021) | 34     | 8 
@@ -34,13 +34,11 @@ Year           |   🐍   |   🦀  |
 </table>
 
 
-Enter the code `1349697-f730f285` in your [Private Leaderboard Homepage](https://adventofcode.com/2024/leaderboard/private) if you wish to integrate my leaderboard.
-
 ## ⭐ Yearly detailed scores
 
 <details>
     <summary> 
-    <a id="2024"><h2>2024 👶🏻</h2></a>
+    <a id="2024"><h2>2024 👨🏻‍🏫</h2></a>
     </summary>
 
 | Day | Title                                                               | Python                                                                                    | Rust |
@@ -50,26 +48,26 @@ Enter the code `1349697-f730f285` in your [Private Leaderboard Homepage](https:/
 | 03 | [Mull It Over        ](events/2024/03/03.md#day-3-mull-it-over)      | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2024/03/03.py) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2024/03/03.rs) |
 | 04 | [Ceres Search        ](events/2024/04/04.md#day-4-ceres-search)      | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2024/04/04.py) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2024/04/04.rs) |
 | 05 | [Print Queue         ](events/2024/05/05.md#day-5-print-queue)       | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2024/05/05.py) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2024/05/05.rs) |
-| 06 |       |        |      |
-| 07 |       |        |      |
-| 08 |       |        |      |
-| 09 |       |        |      |
-| 10 |       |        |      |
-| 11 |       |        |      |
-| 12 |       |        |      |
-| 13 |       |        |      |
-| 14 |       |        |      |
-| 15 |       |        |      |
-| 16 |       |        |      |
-| 17 |       |        |      |
-| 18 |       |        |      |
-| 19 |       |        |      |
-| 20 |       |        |      |
-| 21 |       |        |      |
-| 22 |       |        |      |
-| 23 |       |        |      |
-| 24 |       |        |      |
-| 25 |       |        |      |
+| 06 | [Guard Gallivant     ](events/2024/06/06.md#day-6-guard-gallivant)   | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2024/06/06.py) |
+| 07 | &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;🔒
+| 08 | &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;🔒
+| 09 | &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;🔒
+| 10 | &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;🔒
+| 11 | &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;🔒
+| 12 | &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;🔒
+| 13 | &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;🔒
+| 14 | &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;🔒
+| 15 | &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;🔒
+| 16 | &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;🔒
+| 17 | &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;🔒
+| 18 | &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;🔒
+| 19 | &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;🔒
+| 20 | &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;🔒
+| 21 | &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;🔒
+| 22 | &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;🔒
+| 23 | &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;🔒
+| 24 | &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;🔒
+| 25 | &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;🔒
 
 </details>
 
