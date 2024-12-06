@@ -49,25 +49,25 @@ Year           |   🐍   |   🦀  |
 | 04 | [Ceres Search        ](events/2024/04/04.md#day-4-ceres-search)      | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2024/04/04.py) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2024/04/04.rs) |
 | 05 | [Print Queue         ](events/2024/05/05.md#day-5-print-queue)       | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2024/05/05.py) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2024/05/05.rs) |
 | 06 | [Guard Gallivant     ](events/2024/06/06.md#day-6-guard-gallivant)   | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2024/06/06.py) |
-| 07 | &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;🔒
-| 08 | &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;🔒
-| 09 | &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;🔒
-| 10 | &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;🔒
-| 11 | &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;🔒
-| 12 | &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;🔒
-| 13 | &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;🔒
-| 14 | &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;🔒
-| 15 | &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;🔒
-| 16 | &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;🔒
-| 17 | &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;🔒
-| 18 | &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;🔒
-| 19 | &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;🔒
-| 20 | &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;🔒
-| 21 | &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;🔒
-| 22 | &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;🔒
-| 23 | &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;🔒
-| 24 | &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;🔒
-| 25 | &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;🔒
+| 07 | &emsp;&emsp;&emsp;&emsp;🔒
+| 08 | &emsp;&emsp;&emsp;&emsp;🔒
+| 09 | &emsp;&emsp;&emsp;&emsp;🔒
+| 10 | &emsp;&emsp;&emsp;&emsp;🔒
+| 11 | &emsp;&emsp;&emsp;&emsp;🔒
+| 12 | &emsp;&emsp;&emsp;&emsp;🔒
+| 13 | &emsp;&emsp;&emsp;&emsp;🔒
+| 14 | &emsp;&emsp;&emsp;&emsp;🔒
+| 15 | &emsp;&emsp;&emsp;&emsp;🔒
+| 16 | &emsp;&emsp;&emsp;&emsp;🔒
+| 17 | &emsp;&emsp;&emsp;&emsp;🔒
+| 18 | &emsp;&emsp;&emsp;&emsp;🔒
+| 19 | &emsp;&emsp;&emsp;&emsp;🔒
+| 20 | &emsp;&emsp;&emsp;&emsp;🔒
+| 21 | &emsp;&emsp;&emsp;&emsp;🔒
+| 22 | &emsp;&emsp;&emsp;&emsp;🔒
+| 23 | &emsp;&emsp;&emsp;&emsp;🔒
+| 24 | &emsp;&emsp;&emsp;&emsp;🔒
+| 25 | &emsp;&emsp;&emsp;&emsp;🔒
 
 </details>
 
