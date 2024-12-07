@@ -13,7 +13,7 @@ Thanks [Scotow](https://github.com/scotow) for the initial framework and preciou
 
 Year          |   🐍   |   🦀  |
 :---:         | :---:  | :--: |
-[2024](#2024) | 12     | 10
+[2024](#2024) | 14     | 10
 [2023](#2023) | 27     | 12
 [2022](#2022) | 37     | 26
 [2021](#2021) | 34     | 8 
@@ -49,7 +49,7 @@ Year           |   🐍   |   🦀  |
 | 04 | [Ceres Search        ](events/2024/04/04.md#day-4-ceres-search)      | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2024/04/04.py) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2024/04/04.rs) |
 | 05 | [Print Queue         ](events/2024/05/05.md#day-5-print-queue)       | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2024/05/05.py) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2024/05/05.rs) |
 | 06 | [Guard Gallivant     ](events/2024/06/06.md#day-6-guard-gallivant)   | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2024/06/06.py) |
-| 07 | &emsp;&emsp;&emsp;&emsp;🔒
+| 07 | [Bride Repair        ](events/2024/07/07.md#day-7-bridge-repair)     | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2024/07/07.py) |
 | 08 | &emsp;&emsp;&emsp;&emsp;🔒
 | 09 | &emsp;&emsp;&emsp;&emsp;🔒
 | 10 | &emsp;&emsp;&emsp;&emsp;🔒
