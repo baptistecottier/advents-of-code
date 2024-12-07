@@ -48,8 +48,8 @@ Consider the following example : 136 : 81 40 15
         121      3240       As all numbers are positive and operations increase
        /   \                the result, we cut the branch with the value 3240 
 (15)  +     *               but we keep going for the left branch and compute 
-    /        \              the result for all operations. Here we can see than
-  136        1815           using two additions leads to the test value.
+    /        \              the result for all operations. Using two additions
+  136        1815           leads to the expected test value.
 """
 def get_calibration_result(equations, *available_operations):
     calibration_result = 0
