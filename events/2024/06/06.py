@@ -1,5 +1,5 @@
 """
-Preprocessing consists in retrieving all obstacles and the guard position
+Preprocessing consists in retrieving all obstacles location and the guard position.
 """
 def preprocessing(puzzle_input):
     obstacles = set()
@@ -13,37 +13,51 @@ def preprocessing(puzzle_input):
 
 
 """
-Solver simply compute in a first time the length of the patrol before the guard gets
-out of map. Then for each spot the guard visits, we simulate the new patrol if an
-obstacle where placed there, and count how many of them results in a loop
+Solver computes the length of the path made by the guard. For each step, a
+simulation of the patrol with an osbtacle in place of the next step is run,
+to determine if this obstruction leads the guard to loop, or not. The final
+length of the visited place is the answer to part 1, while the number of
+obstacle leading to a looping patrol answers part 2.
 """
-def solver(guard, obstacles: set, x, y):
-    honest_patrol = patrol(guard, obstacles, x, y)
-    yield len(honest_patrol)
-    
-    n_good_obstacles = 0
-    for obstacle in honest_patrol:
-        new_obstacles = obstacles.copy()
-        new_obstacles.add(obstacle)
-        if patrol(guard, new_obstacles, x, y) == set():
-            n_good_obstacles +=1
-    yield n_good_obstacles
-
-
-"""
-Patrol simulate the path made by the guard during its patrol. While an obstacle is met,
-the guard keeps turning 90 degrees to the right. When the guard is out of the map, the
-path is returned. If the guard loops, an empty path is returned
-"""    
-def patrol(guard, obstacles, x, y):
+def solver(guard, obstacles, width, heigh):
+    obstructions = set()
     gx, gy = guard
     dx, dy = (0, -1)
     visited = set()
-    while 0 <= gx <= x and 0 <= gy <= y:
+    while 0 <= gx <= width and 0 <= gy <= heigh:
+        while (gx + dx, gy + dy) in obstacles:
+            dx, dy = (dy if dx else - dy, dx)
+        obstacle = (gx + dx, gy + dy)
+        # As an optimization we may make the guard starts at the actual 
+        # position, except if the next point has already been met before
+        if obstacle in visited:
+            start = (guard, ((0, -1)))
+        else:
+            start = ((gx, gy), (dx, dy))
+        if is_patrol_looping(start, obstacles.union([obstacle]), width, heigh):
+            obstructions.add(obstacle)
+        visited.add(((gx, gy)))
+        gx, gy = obstacle
+    yield len(visited)
+    yield len(obstructions)
+
+
+"""
+is_patrol_looping determines if a patrol loops given a set of obstacles. Either
+a guard ends his patrol outside of the map, either he ends it looping. Hence, 
+if a place is visited twice with the same orientation (dx, dy), we deduce the
+guard loops.
+"""    
+def is_patrol_looping(start, obstacles, width, heigh):
+    (gx, gy), (dx, dy) = start
+    visited = set()
+    while 0 <= gx <= width and 0 <= gy <= heigh:
         if ((dx, dy), (gx, gy)) in visited: 
-                return set()
+                return True
         visited.add(((dx, dy), (gx, gy)))
         while (gx + dx, gy + dy) in obstacles:
             dx, dy = (dy if dx else - dy, dx)
         gx, gy = gx + dx, gy + dy
-    return set(pt for (_, pt) in visited)
+    return False
+        
+
