@@ -13,7 +13,7 @@ Thanks [Scotow](https://github.com/scotow) for the initial framework and preciou
 
 Year          |   🐍   |   🦀  |
 :---:         | :---:  | :--: |
-[2024](#2024) | 18     | 12
+[2024](#2024) | 20     | 12
 [2023](#2023) | 27     | 12
 [2022](#2022) | 37     | 26
 [2021](#2021) | 34     | 8 
@@ -52,7 +52,7 @@ Year           |   🐍   |   🦀  |
 | 07 | [Bridge Repair           ](events/2024/07/07.md#day-7-bridge-repair)         | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2024/07/07.py) |
 | 08 | [Resonant Collinearity   ](events/2024/08/08.md#day-8-resonant-collinearity) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2024/08/08.py) |[⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2024/08/08.rs) |
 | 09 | [Disk Fragmenter         ](events/2024/09/09.md#day-9-disk-fragmenter)       | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2024/09/09.py) |
-| 10 | &emsp;&emsp;&emsp;&emsp;🔒
+| 10 | [Hoof It                 ](events/2024/10/10.md#day-10-hoof-it)              | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2024/10/10.py) |
 | 11 | &emsp;&emsp;&emsp;&emsp;🔒
 | 12 | &emsp;&emsp;&emsp;&emsp;🔒
 | 13 | &emsp;&emsp;&emsp;&emsp;🔒
