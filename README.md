@@ -13,7 +13,7 @@ Thanks [Scotow](https://github.com/scotow) for the initial framework and preciou
 
 Year          |   🐍   |   🦀  |
 :---:         | :---:  | :--: |
-[2024](#2024) | 20     | 12
+[2024](#2024) | 22     | 14
 [2023](#2023) | 27     | 12
 [2022](#2022) | 37     | 26
 [2021](#2021) | 34     | 8 
@@ -50,10 +50,10 @@ Year           |   🐍   |   🦀  |
 | 05 | [Print Queue             ](events/2024/05/05.md#day-5-print-queue)           | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2024/05/05.py) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2024/05/05.rs) |
 | 06 | [Guard Gallivant         ](events/2024/06/06.md#day-6-guard-gallivant)       | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2024/06/06.py) |
 | 07 | [Bridge Repair           ](events/2024/07/07.md#day-7-bridge-repair)         | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2024/07/07.py) |
-| 08 | [Resonant Collinearity   ](events/2024/08/08.md#day-8-resonant-collinearity) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2024/08/08.py) |[⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2024/08/08.rs) |
+| 08 | [Resonant Collinearity   ](events/2024/08/08.md#day-8-resonant-collinearity) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2024/08/08.py) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2024/08/08.rs) |
 | 09 | [Disk Fragmenter         ](events/2024/09/09.md#day-9-disk-fragmenter)       | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2024/09/09.py) |
 | 10 | [Hoof It                 ](events/2024/10/10.md#day-10-hoof-it)              | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2024/10/10.py) |
-| 11 | &emsp;&emsp;&emsp;&emsp;🔒
+| 11 | [Plution Pebbles         ](events/2024/11/11.md#day-11-plutonian-pebbles)    | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2024/11/11.py) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2024/11/11.rs) |
 | 12 | &emsp;&emsp;&emsp;&emsp;🔒
 | 13 | &emsp;&emsp;&emsp;&emsp;🔒
 | 14 | &emsp;&emsp;&emsp;&emsp;🔒
