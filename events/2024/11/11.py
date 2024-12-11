@@ -1,15 +1,21 @@
 from collections import defaultdict
 from math        import log10
 
+
 def preprocessing(puzzle_input):
     stones = defaultdict(int)
     for stone in puzzle_input.split():
         stones[int(stone)] += 1
-    return stones
+    return blink(stones, 25)
+
 
 def solver(stones):
-    for i in range(75):
-        if i == 25: yield sum(stones.values())
+    yield sum(stones.values())
+    yield sum(blink(stones, 50).values())
+
+
+def blink(stones, times = 1):
+    for _ in range(times):
         new_stones = defaultdict(int)
         for stone, n in stones.items():
             if stone == 0:
@@ -20,4 +26,4 @@ def solver(stones):
             else:
                 new_stones[2024 * stone] += n
         stones = new_stones
-    yield sum(stones.values())
+    return new_stones
