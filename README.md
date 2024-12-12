@@ -13,7 +13,7 @@ Thanks [Scotow](https://github.com/scotow) for the initial framework and preciou
 
 Year          |   🐍   |   🦀  |
 :---:         | :---:  | :--: |
-[2024](#2024) | 22     | 14
+[2024](#2024) | 24     | 14
 [2023](#2023) | 27     | 12
 [2022](#2022) | 37     | 26
 [2021](#2021) | 34     | 8 
@@ -54,7 +54,7 @@ Year           |   🐍   |   🦀  |
 | 09 | [Disk Fragmenter         ](events/2024/09/09.md#day-9-disk-fragmenter)       | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2024/09/09.py) |
 | 10 | [Hoof It                 ](events/2024/10/10.md#day-10-hoof-it)              | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2024/10/10.py) |
 | 11 | [Plution Pebbles         ](events/2024/11/11.md#day-11-plutonian-pebbles)    | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2024/11/11.py) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2024/11/11.rs) |
-| 12 | &emsp;&emsp;&emsp;&emsp;🔒
+| 12 | [Garden Groups           ](events/2024/12/12.md#day-12-garden-groups)        | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2024/12/12.py) |
 | 13 | &emsp;&emsp;&emsp;&emsp;🔒
 | 14 | &emsp;&emsp;&emsp;&emsp;🔒
 | 15 | &emsp;&emsp;&emsp;&emsp;🔒
