@@ -19,7 +19,7 @@ fn part_1(machines: Vec<[f64; 6]>) -> u64 {
     }
 
 fn part_2(machines: Vec<[f64; 6]>) -> u64 {
-    get_minimum_cost(machines.clone(), 10_000_000_000_000.)
+    get_minimum_cost(machines, 10_000_000_000_000.)
     }
 
 fn get_minimum_cost(machines: Vec<[f64; 6]>, delta: f64) -> u64 {
