@@ -1,5 +1,3 @@
-from sympy import var, Eq
-from sympy.solvers import solve
 from pythonfw.functions import extract_chunks
 
 def preprocessing(puzzle_input):
@@ -27,9 +25,12 @@ def minimize_cost(machines, delta = 0):
     """
     tokens = 0
     for xa, ya, xb, yb, xt, yt in machines:
-        u = (yb * (xt + delta) - xb * (yt + delta))/(xa * yb - xb * ya)
-        if  not u % 1:
-            v = ((xt + delta) - xa * u) / xb
-            if not v % 1:
-                tokens += 3 * u + v
+        try:
+            u = (yb * (xt + delta) - xb * (yt + delta))/(xa * yb - xb * ya)
+            if  not u % 1:
+                v = ((xt + delta) - xa * u) / xb
+                if not v % 1:
+                    tokens += 3 * u + v
+        except:
+            continue
     return int(tokens)
