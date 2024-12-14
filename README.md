@@ -13,7 +13,7 @@ Thanks [Scotow](https://github.com/scotow) for the initial framework and preciou
 
 Year          |   🐍   |   🦀  |
 :---:         | :---:  | :--: |
-[2024](#2024) | 26     | 16
+[2024](#2024) | 28     | 16
 [2023](#2023) | 27     | 12
 [2022](#2022) | 37     | 26
 [2021](#2021) | 34     | 8 
@@ -56,7 +56,7 @@ Year           |   🐍   |   🦀  |
 | 11 | [Plutonian Pebbles       ](events/2024/11/11.md#day-11-plutonian-pebbles)    | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2024/11/11.py) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2024/11/11.rs) |
 | 12 | [Garden Groups           ](events/2024/12/12.md#day-12-garden-groups)        | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2024/12/12.py) |
 | 13 | [Claw Contrapion         ](events/2024/13/13.md#day-13-claw-contraption)     | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2024/13/13.py) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2024/13/13.rs) |
-| 14 | &emsp;&emsp;&emsp;&emsp;🔒
+| 14 | [Restroom Redoubt        ](events/2024/14/14.md#day-14-restroom-redoubt)     | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2024/14/14.py) |
 | 15 | &emsp;&emsp;&emsp;&emsp;🔒
 | 16 | &emsp;&emsp;&emsp;&emsp;🔒
 | 17 | &emsp;&emsp;&emsp;&emsp;🔒
