@@ -6,7 +6,6 @@ Some puzzles are solved in Python 🐍, some are solved in Rust 🦀.
 Thanks [Scotow](https://github.com/scotow) for the initial framework and precious coding advices.
 
 ## 🎄 Summary
-
 <table>
 <tr VALIGN = TOP>
 <td>
