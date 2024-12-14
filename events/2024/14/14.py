@@ -4,7 +4,7 @@ from math               import prod
 
 def preprocessing(puzzle_input): 
     """
-    Capture all numbers and return chunk of 4 numbers corrsponding to 
+    Capture all numbers and return chunk of 4 numbers respectively corrsponding to 
     px, py, vx and vy
     """
     return extract_chunks(puzzle_input, 4)
@@ -13,11 +13,12 @@ def preprocessing(puzzle_input):
 def solver(robots, w = 101, h = 103):
     """
     Until less than 100 seconds have elapsed and the christmas tree have been found
-    once, we simulate the movements of the robots. A double agent elve told us the
-    tree need a space which is more than 30 tiles wide and tall to be displayed.
+    once, we simulate the movements of the robots. A double agent elf told us the
+    tree need a space which is more than 31 tiles wide and 33 tiles tall to be 
+    displayed.
     """
     seconds = 1
-    found = (w < 30 or h < 30)
+    found = (w < 31 or h < 33)
     while seconds <= 100 or not found:
         new_robots = list()
         columns = {y: 0 for y in range(h)}
@@ -29,8 +30,8 @@ def solver(robots, w = 101, h = 103):
             rows[px]    += 1
             columns[py] += 1
         if not found:
-            if max(rows.values())    > 30 and \
-               max(columns.values()) > 30:
+            if max(rows.values())    > 31 and \
+               max(columns.values()) > 33:
                 yield seconds
                 found = True
         robots = new_robots
