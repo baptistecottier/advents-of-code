@@ -3,7 +3,8 @@ from collections import defaultdict
 def preprocessing(puzzle_input):
     """From the puzzle input, first group garden plots by their plot name and the 
     associated location, then for each garden plot name, extract regions. Returned
-    value is a list of all regions contained in the map of garden plots.
+    value is a list of all regions contained in the map of garden plots without 
+    their name as they are useless for the rest of the resolution.
     """
     garden_plots = defaultdict(set)
     for y, line in enumerate(puzzle_input.splitlines()):
@@ -24,7 +25,7 @@ def solver(regions):
     initial_price = 0
     discount_price = 0
     for region in regions:
-        area, length, sides = get_region_dimensions(region)
+        area, length, sides = get_region_morphology(region)
         initial_price += area * length
         discount_price += area * sides   
     yield initial_price
@@ -32,8 +33,8 @@ def solver(regions):
 
 
 def extract_regions(locations):
-    """Given a list of locations, this function extracts regions. For this purpose,
-    we take a point in the locations, and look for all its neighbours (up, right, 
+    """Given a list of locations, this function extracts regions. We start by 
+    taking a point in the locations then look for all its neighbours (up, right, 
     down, left). If a neighbour also is in the locations, we add it both to the
     region and the neighbours. For each neighbour met we look for their neighbours 
     and so on while no more neighbours remain, meaning the region is closed.
@@ -54,36 +55,34 @@ def extract_regions(locations):
     return regions
 
 
-def get_region_dimensions(region):
-    """Given a region, this function returns its area, the length of its parameter, 
-    and the number of corners. 
-    To find its perimeter length, for each point, we check if its neighbours also 
-    are in the region or not. If not, perimeter length is incremented by one for 
-    each neighbour not in the region. Then, based on the corners patterns below, we 
-    can compute the numbers of corners.
+def get_region_morphology(region):
+    """Given a region, this function returns area, length of the parameter, 
+    and the number of corners. To find the perimeter length, for each point, we 
+    check if its neighbours are in the region or not. If not, perimeter length is 
+    incremented by one for each neighbour found to be not in the region. Then, based
+    on the corners patterns below, we can compute the numbers of corners.
     
     Legend: 
         # - location in the region
         . - location not in the region
-        ? - location that can be both
-        
-    a)  ?.?     ???     ???     ?.?             b)  ?#.     ???     ???     .#?
-        ?#.     ?#.     .#?     .#?                 ?##     ?##     ##?     ##?
-        ???     ?.?     ?.?     ???                 ???     ?#.     .#?     ???
+        ? - location that can be either in or out the region
+
+    (dx, dy) ||     (1, 0)     |     (0, 1)     |     (-1, 0)    |     (0, -1)
+    ------------------------------------------------------------------------------
+    Group    ||  Outer  Inner  |  Outer  Inner  |  Outer  Inner  |  Outer  Inner  
+    ------------------------------------------------------------------------------
+             ||   ?.?    ?##   |   ???    ???   |   ???    ???   |   ?.?    .#?
+    Pattern  ||   ?#.    ?#.   |   ?#.    ?#.   |   .#?    ##?   |   .#?    ##?
+             ||   ???    ???   |   ?.?    ?##   |   ?.?    .#?   |   ???    ???
     """
     corners = 0
-    length = 0
+    length  = 0
     for (x, y) in sorted(region):
         for dx, dy in ((1, 0), (-1, 0), (0, 1), (0, -1)):
-            if (x + dx, y + dy) not in region: length += 1
-
-        for dx, dy in ((1, 1), (-1, 1), (1, -1), (-1, -1)):
-            # Patterns a)
-            if (x + dx, y) not in region and \
-               (x, y + dy) not in region: corners += 1               
-            # Patterns b)
-            if (x + dx, y) in region and \
-               (x, y + dy) in region and \
-               (x + dx, y + dy) not in region : corners += 1
-               
+            if (x + dx, y + dy) not in region: 
+                length += 1
+                if (x + dy, y - dx) not in region :         # Outer corner
+                    corners += 1
+                elif (x + dx + dy, y - dx + dy) in region:  # Inner corner
+                    corners += 1  
     return len(region), length, corners
