@@ -67,18 +67,18 @@ def get_region_morphology(region):
         . - location not in the region
         ? - location that can be either in or out the region
 
-    (dx, dy) ||     (1, 0)     |     (0, 1)     |     (-1, 0)    |     (0, -1)
+    (dx, dy) ||     (1, 0)     |     (0, 1)     |    (-1, 0)     |    (0, -1)
     ------------------------------------------------------------------------------
     Group    ||  Outer  Inner  |  Outer  Inner  |  Outer  Inner  |  Outer  Inner  
     ------------------------------------------------------------------------------
-             ||   ?.?    ?##   |   ???    ???   |   ???    ???   |   ?.?    .#?
-    Pattern  ||   ?#.    ?#.   |   ?#.    ?#.   |   .#?    ##?   |   .#?    ##?
-             ||   ???    ???   |   ?.?    ?##   |   ?.?    .#?   |   ???    ???
+             ||   ?.?    ?##   |   ???    ???   |   ???    ???   |   ?.?    #.?
+    Pattern  ||   ?#.    ?#.   |   ?#.    ?##   |   .#?    .#?   |   .#?    ##?
+             ||   ???    ???   |   ?.?    ?.#   |   ?.?    ##?   |   ???    ???
     """
     corners = 0
     length  = 0
     for (x, y) in sorted(region):
-        for dx, dy in ((1, 0), (-1, 0), (0, 1), (0, -1)):
+        for dx, dy in ((1, 0), (0, 1), (-1, 0), (0, -1)):
             if (x + dx, y + dy) not in region: 
                 length += 1
                 if (x + dy, y - dx) not in region :         # Outer corner
