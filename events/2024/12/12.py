@@ -77,7 +77,7 @@ def get_region_morphology(region):
     """
     corners = 0
     length  = 0
-    for (x, y) in sorted(region):
+    for (x, y) in region:
         for dx, dy in ((1, 0), (0, 1), (-1, 0), (0, -1)):
             if (x + dx, y + dy) not in region: 
                 length += 1
