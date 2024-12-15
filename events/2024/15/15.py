@@ -1,47 +1,11 @@
-from collections import deque
-
 def preprocessing(puzzle_input):
     """
     During preprocessing, puzzle input is split such that we have the warehouse map
-    and the moves the robot will do. For each move we associate the arrow with the
-    corresponding directions (dx, dy).
+    and the moves the robot will do. We then extract walls, boxes and the rebot from
+    the warehouse. For each move we associate the arrow with the corresponding 
+    directions (dx, dy).
     """
     warehouse, raw_moves = puzzle_input.split('\n\n')
-    directions = {'^': (0, -1), '>': (1, 0), 'v': (0, 1), '<': (-1, 0)}
-    moves = [directions[c] for c in raw_moves.replace("\n","")]
-    return warehouse, moves
-
-
-def solver(raw_warehouse, moves):
-    """
-    Not a lot to say here. For each part we generate the appropriate data, then
-    simulate the moves and return the sum of the coordinates of the boxes.
-    """
-    walls, boxes, robot = warehouse_to_data(raw_warehouse)
-    boxes = move_small_boxes(moves, robot, walls, boxes)
-    yield sum([100 * y + x for (x, y) in boxes])
-    
-    walls, boxes, robot = warehouse_to_data(raw_warehouse, extra_width = True)
-    boxes = move_big_boxes(moves, robot, walls, boxes)
-    yield sum([100 * y + x for (x, y) in boxes])
-    
-    
-def warehouse_to_data(warehouse, extra_width = False):
-    """
-    This function first apply the width extension if instructed so by doubling walls
-    thickness and adding an empty space after each other element in the warehouse.
-    NOTE: Replacing 'O' with 'O.' is enough as we will only look for left parts of 
-    boxes in the resolution of the puzzle.
-    
-    Then the function transforms the warehouse to two sets and a pair (x, y) 
-    corresponding to the position of the robot. A first set contains all the pieces
-    of wall coordinates and the second one contains all the boxes.
-    """
-    if extra_width:
-        warehouse = warehouse.replace('#' ,"##") \
-                             .replace('.' ,"..") \
-                             .replace('O' ,"O.") \
-                             .replace('@' ,"@.")
     walls = set()
     boxes = set()
     for y, line in enumerate(warehouse.splitlines()):
@@ -49,12 +13,31 @@ def warehouse_to_data(warehouse, extra_width = False):
             match c:
                 case '#': walls.add((x, y))
                 case 'O': boxes.add((x, y))
-                case '@': robot = (x, y)
+                case '@': rx, ry = (x, y)
                 case _ : pass
-    return walls, boxes, robot
+
+    directions = {'^': (0, -1), '>': (1, 0), 'v': (0, 1), '<': (-1, 0)}
+    moves = [directions[c] for c in raw_moves.replace("\n","")]
+    return moves, walls, boxes, rx, ry
+
+
+def solver(moves, walls, boxes, rx, ry):
+    """
+    Not a lot to say here. For each part we generate the appropriate data, then
+    simulate the moves and return the sum of the coordinates of the boxes.
+    """
+    moved_small_boxes = move_small_boxes(moves, rx, ry, walls.copy(), boxes.copy())
+    yield sum([100 * y + x for (x, y) in moved_small_boxes])
+    
+    moved_big_boxes = move_big_boxes(
+        moves,
+        (2 * rx, ry),
+        {(2 * x, y) for (x, y) in walls}.union({(2 * x + 1, y) for (x, y) in walls}),
+        {(2 * x, y) for (x, y) in boxes})
+    yield sum([100 * y + x for (x, y) in moved_big_boxes])
     
     
-def move_small_boxes(moves, robot, walls, boxes):
+def move_small_boxes(moves, rx, ry, walls, boxes):
     """
     Simulation of the moves made by the robot in warehouse with small boxes. For
     each move direction we check if the move leads to a wall or a box. If a box 
@@ -71,23 +54,18 @@ def move_small_boxes(moves, robot, walls, boxes):
                     A wall is met, we come back to initial position
                     and reinsert the box coordinate to the set
     """
-    x, y = robot
     for dx, dy in moves:
+        x, y = rx, ry
         if (x + dx, y + dy) in walls: 
-            pass
-        elif (x + dx, y + dy) not in boxes:
-            x, y = (x + dx, y + dy)
+            continue
+        elif (x + dx, y + dy) not in boxes: 
+            rx, ry = rx + dx, ry + dy
         else:
-            boxes.remove((x + dx, y + dy))
-            i = 2
-            while (x + i * dx, y + i * dy) in boxes:
-                i += 1
-            if (x + i * dx, y + i * dy) in walls:
-                i = 1
-            boxes.add((x + i * dx, y + i * dy))
-            # If the box is more than one step away (i > 1), the robot can move.
-            x += (i > 1) * dx
-            y += (i > 1) * dy
+            while (x:= x + dx, y := y + dy) in boxes:
+                pass
+            if (x, y) not in walls: 
+                boxes.remove((rx := rx + dx, ry:= ry + dy))
+                boxes.add((x, y))
     return boxes
 
 
@@ -102,15 +80,15 @@ def move_big_boxes(moves, robot, walls, boxes):
     for dx, dy in moves:
         delta = -2 if dx == -1 else dx
         if (x + dx, y + dy) in walls:
-            pass
+            continue
         elif dy == 0 and (x + delta, y + dy) not in boxes:
             x += dx
         elif dy != 0 and (x - 1, y + dy) not in boxes and (x, y + dy) not in boxes:
             y += dy
-        else :
-            match (dx, dy):
-                case (_ , 0): boxes, x, y = move_horizontally(x, y, dx, boxes, walls)
-                case (0 , _): boxes, x, y = move_vertically(x, y, dy, boxes, walls)
+        elif dx: 
+            boxes, x, y = move_horizontally(x, y, dx, boxes, walls)
+        else:
+            boxes, x, y = move_vertically(x, y, dy, boxes, walls)
     return boxes
 
 
@@ -125,9 +103,7 @@ def move_horizontally(x, y, dx, boxes, walls):
     i = 3 + delta
     while (x + dx * i, y) in boxes:
         i += 2
-    if (x + dx * i + delta, y) in walls:
-        pass
-    else:
+    if (x + dx * i + delta, y) not in walls:
         for k in range(x + dx - delta, x + (i - delta) * dx, 2 * dx):
             boxes.remove((k, y))
             boxes.add((k + dx, y))
@@ -135,7 +111,7 @@ def move_horizontally(x, y, dx, boxes, walls):
     return boxes, x, y
 
 
-def move_vertically(x, y, dy, boxes, walls):
+def move_vertically(x, y, dy, boxes: set, walls):
     """
     In the case of a vertical move, a single box can push several boxes. Hence, we
     need to check not only the position aligned with the box but also on the sides:
@@ -152,26 +128,18 @@ def move_vertically(x, y, dy, boxes, walls):
     updated (potentially unchanged) set of boxes and robot position.
     """
     delta = (x - 1, y + dy) in boxes
-    span = deque([(x - delta, y + dy)])
-    to_move = deque([(x - delta, y + dy)])
+    span = set([(x - delta, y + dy)])
+    to_move = set([(x - delta, y + dy)])
 
     while span:
-        tx, ty = span.popleft()
-        for kx in (0, 1):
-            if (tx + kx, ty + dy) in walls:
+        tx, ty = span.pop()
+        for kx in (-1, 0, 1):
+            if kx != -1 and (tx + kx, ty + dy) in walls:
                 return boxes, x, y
             if (tx + kx, ty + dy) in boxes:
-                to_move.appendleft((tx + kx, ty + dy))
-                span.append((tx + kx, ty + dy))
-        if (tx - 1, ty + dy) in boxes:
-                to_move.appendleft((tx - 1, ty + dy))
-                span.append((tx - 1, ty + dy))
-
-    for tx, ty in to_move:
-        try:
-            boxes.remove((tx, ty))
-            boxes.add((tx, ty + dy))
-        except:
-            pass
-    y += dy
-    return boxes, x, y
+                to_move.add((tx + kx, ty + dy))
+                span.add((tx + kx, ty + dy))
+                
+    boxes.difference_update(to_move)
+    boxes.update({(tx, ty + dy) for (tx, ty) in to_move})
+    return boxes, x, y + dy
