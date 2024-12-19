@@ -39,7 +39,7 @@ def solver(patterns, designs):
     |     |__ rw|rr ❌
     |     |__ rwr|r ❌
     |__ br|wrr: ✅ rb is an existing pattern, we continue.
-    |      |__ Using dynamic programming, we know the pattern is doable in one way.🏆
+    |      |__ Using dynamic programming, we know the design is doable in one way.🏆
     |__ brw|rr: ❌ brw does not exist, we stop that way here.
 
     """
