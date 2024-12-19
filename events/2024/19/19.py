@@ -11,6 +11,7 @@ def preprocessing(puzzle_input):
     designs = designs.splitlines()
     return patterns, designs
 
+
 def solver(patterns, designs):
     """
     To denombrate the different ways to make each design we first look the expected 
@@ -34,7 +35,7 @@ def solver(patterns, designs):
     |     |     |__ w|rr ❌
     |     |     |__ wr|r ✅
     |     |     |      |__ r| r is in patterns and no stripe remains. 🏆 
-    |     |     |__ wrr    ❌
+    |     |     |__ wrr ❌
     |     |__ rw|rr ❌
     |     |__ rwr|r ❌
     |__ br|wrr: ✅ rb is an existing pattern, we continue.
@@ -51,7 +52,6 @@ def solver(patterns, designs):
         return ways
 
     max_length = max(map(len, patterns))
-
     ways = list()
     for design in designs:
         desing_ways = count_design_ways(design)
