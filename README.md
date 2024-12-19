@@ -12,7 +12,7 @@ Thanks [Scotow](https://github.com/scotow) for the initial framework and preciou
 
 Year          |   🐍   |   🦀  |
 :---:         | :---:  | :--: |
-[2024](#2024) | 36     | 18
+[2024](#2024) | 38     | 18
 [2023](#2023) | 27     | 12
 [2022](#2022) | 37     | 26
 [2021](#2021) | 34     | 8 
@@ -60,7 +60,7 @@ Year           |   🐍   |   🦀  |
 | 16 | [Reindeer Maze           ](events/2024/16/16.md#day-16-reindeer-maze)            | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2024/16/16.py) |
 | 17 | [Chronospatial Computer  ](events/2024/17/17.md#day-17-chronospatial-computer)   | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2024/17/17.py) |
 | 18 | [RAM Run                 ](events/2024/18/18.md#day-18-ram-run)                  | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2024/18/18.py) |
-| 19 | &emsp;&emsp;&emsp;&emsp;🔒
+| 19 | [Linen Layout            ](events/2024/19/19.md#day-19-linen-layout)             | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2024/19/19.py) |
 | 20 | &emsp;&emsp;&emsp;&emsp;🔒
 | 21 | &emsp;&emsp;&emsp;&emsp;🔒
 | 22 | &emsp;&emsp;&emsp;&emsp;🔒
