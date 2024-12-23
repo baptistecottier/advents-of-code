@@ -12,7 +12,7 @@ Thanks [Scotow](https://github.com/scotow) for the initial framework and preciou
 
 Year          |   🐍   |   🦀  |
 :---:         | :---:  | :--: |
-[2024](#2024) | 44     | 18
+[2024](#2024) | 46     | 18
 [2023](#2023) | 27     | 12
 [2022](#2022) | 37     | 26
 [2021](#2021) | 34     | 8 
@@ -64,7 +64,7 @@ Year           |   🐍   |   🦀  |
 | 20 | [Race Condition          ](events/2024/20/20.md#day-20-race-condition)           | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2024/20/20.py) |
 | 21 | [Keypad Conudrum         ](events/2024/21/21.md#day-21-keypad-conundrum)         | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2024/21/21.py) |
 | 22 | [Monkey Market           ](events/2024/22/22.md#day-22-monkey-market)            | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2024/22/22.py) |
-| 23 | &emsp;&emsp;&emsp;&emsp;🔒
+| 23 | [LAN Party               ](events/2024/23/23.md#day-23-lan-party)                | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2024/23/23.py) |
 | 24 | &emsp;&emsp;&emsp;&emsp;🔒
 | 25 | &emsp;&emsp;&emsp;&emsp;🔒
 
