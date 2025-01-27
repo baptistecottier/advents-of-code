@@ -23,7 +23,7 @@ Year          |   🐍   |   🦀  |
 Year           |   🐍   |   🦀  |
 :---:          | :----: | :--: |
 [2019](#2019) | 35     | 10
-[2018](#2018) | 42     | 13
+[2018](#2018) | 44     | 13
 [2017](#2017) | 50     | 24
 [2016](#2016) | 50     | 38
 [2015](#2015) | 50     | 45
@@ -266,7 +266,7 @@ Year           |   🐍   |   🦀  |
 | 12 | [Subterranean Sustainability           ](events/2018/12/12.md#day-12-subterranean-sustainability)          | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2018/12/12.py) |                                                                                        |
 | 13 | [Mine Cart Madness                     ](events/2018/13/13.md#day-13-mine-cart-madness)                    | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2018/13/13.py) |                                                                                        |
 | 14 | [Chocolate Charts                      ](events/2018/14/14.md#day-14-chocolate-charts)                     | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2018/14/14.py) |                                                                                        |
-| 15 | Beverage Bandits                                                                                        |                                                                                        |                                                                                        |
+| 15 | [Beverage Bandits                      ](events/2018/15/15.md#day-15-beverage-bandits)                     | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2018/15/15.py) |                                                                                     |                                                                                        |
 | 16 | [Chronal Classification                ](events/2018/16/16.md#day-16-chronal-classification)               | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2018/16/16.py) |                                                                                        |
 | 17 | Reservoir Research                                                                                      |                                                                                        |                                                                                        |
 | 18 | [Settlers of The North Pole            ](events/2018/18/18.md#day-18-settlers-of-the-north-pole)           | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2018/18/18.py) |                                                                                        |
