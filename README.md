@@ -23,7 +23,7 @@ Year          |   🐍   |   🦀  |
 Year           |   🐍   |   🦀  |
 :---:          | :----: | :--: |
 [2019](#2019) | 35     | 10
-[2018](#2018) | 44     | 13
+[2018](#2018) | 46     | 13
 [2017](#2017) | 50     | 24
 [2016](#2016) | 50     | 38
 [2015](#2015) | 50     | 45
@@ -275,7 +275,7 @@ Year           |   🐍   |   🦀  |
 | 21 | [Chronal Conversion                    ](events/2018/21/21.md#day-21-chronal-conversion)                   | [⭐  ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2018/21/21.py) |                                                                                        |
 | 22 | [Mode Maze                             ](events/2018/22/22.md#day-22-mode-maze)                            | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2018/22/22.py) |                                                                                        |
 | 23 | [Experimental Emergency Teleportation  ](events/2018/23/23.md#day-23-experimental-emergency-teleportation) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2018/23/23.py) |                                                                                        |
-| 24 | Immune System Simulator 20XX                                                                            |                                                                                        |                                                                                        |
+| 24 | [Immune System Simulator 20XX          ](events/2018/24/24.md#day-24-immune-system-simulator-20xx)         | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2018/24/24.py) |                                                                                        |
 | 25 | [Four-Dimensional Adventure            ](events/2018/25/25.md#day-25-four-dimensional-adventure)           | [⭐  ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2018/25/25.py) |                                                                                        |
 
 </details>
