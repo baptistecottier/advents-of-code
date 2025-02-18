@@ -13,7 +13,7 @@ Thanks [Scotow](https://github.com/scotow) for the initial framework and preciou
 Year          |   🐍   |   🦀  |
 :---:         | :---:  | :--: |
 [2024](#2024) | 50     | 18
-[2023](#2023) | 27     | 12
+[2023](#2023) | 38     | 12
 [2022](#2022) | 37     | 26
 [2021](#2021) | 34     | 8 
 [2020](#2020) | 48     | 16
@@ -23,7 +23,7 @@ Year          |   🐍   |   🦀  |
 Year           |   🐍   |   🦀  |
 :---:          | :----: | :--: |
 [2019](#2019) | 35     | 10
-[2018](#2018) | 46     | 13
+[2018](#2018) | 47     | 13
 [2017](#2017) | 50     | 24
 [2016](#2016) | 50     | 38
 [2015](#2015) | 50     | 45
@@ -93,13 +93,13 @@ Year           |   🐍   |   🦀  |
 | 14 | [Parabolic Reflector Dish             ](events/2023/14/14.md#day-14-parabolic-reflector-dish)       | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2023/14/14.py) |                                                                                        |
 | 15 | [Lens Library                         ](events/2023/15/15.md#day-15-lens-library)                   | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2023/15/15.py) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2023/15/15.rs) |
 | 16 | [The Floor Will Be Lava               ](events/2023/16/16.md#day-16-the-floor-will-be-lava)         | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2023/16/16.py) |                                                                                        |
-| 17 | Clumsy Crucible                                                                                  |                                                                                        |                                                                                        |
+| 17 | [Clumsy Crucible                      ](events/2023/17/17.md#day-17-clumsy-crucible)                | [⭐  ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2023/17/17.py) |                                                                                        |                                                          |                                                                                        |                                                                                        |
 | 18 | [Lavaduct Lagoon                      ](events/2023/18/18.md#day-18-lavaduct-lagoon)                | [⭐  ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2023/18/18.py) |                                                                                        |
 | 19 | [Aplenty                              ](events/2023/19/19.md#day-19-aplenty)                        | [⭐  ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2023/19/19.py) |                                                                                        |
 | 20 | Pulse Propagation                                                                                |                                                                                        |                                                                                        |
 | 21 | Step Counter                                                                                     |                                                                                        |                                                                                        |
-| 22 | Sand Slabs                                                                                       |                                                                                        |                                                                                        |
-| 23 | A Long Walk                                                                                      |                                                                                        |                                                                                        |
+| 22 | [Sand Slabs                           ](events/2023/22/22.md#day-22-sand-slabs)                     |[⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2023/22/22.py) |                                                                                        |                                                                                       |                                                                                        |
+| 23 | [A Long Walk                          ](events/2023/23/23.md#day-23-a-long-walk)                    | [⭐  ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2023/23/23.py) |                                                                                        |
 | 24 | [Never Tell Me The Odds               ](events/2023/24/24.md#day-24-never-tell-me-the-odds)         | [⭐  ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2023/24/24.py) |                                                                                        |
 | 25 | Snowverload                                                                                      |                                                                                        |                                                                                        |
 
@@ -272,7 +272,7 @@ Year           |   🐍   |   🦀  |
 | 18 | [Settlers of The North Pole            ](events/2018/18/18.md#day-18-settlers-of-the-north-pole)           | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2018/18/18.py) |                                                                                        |
 | 19 | [Go With The Flow                      ](events/2018/19/19.md#day-19-go-with-the-flow)                     | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2018/19/19.py) |                                                                                        |
 | 20 | [A Regular Map                         ](events/2018/20/20.md#day-20-a-regular-map)                        | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2018/20/20.py) |                                                                                        |
-| 21 | [Chronal Conversion                    ](events/2018/21/21.md#day-21-chronal-conversion)                   | [⭐  ](https://github.com/baptistecottier/advents-of-code/tree/main/events/2018/21/21.py) |                                                                                        |
+| 21 | [Chronal Conversion                    ](events/2018/21/21.md#day-21-chronal-conversion)                   | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2018/21/21.py) |                                                                                        |
 | 22 | [Mode Maze                             ](events/2018/22/22.md#day-22-mode-maze)                            | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2018/22/22.py) |                                                                                        |
 | 23 | [Experimental Emergency Teleportation  ](events/2018/23/23.md#day-23-experimental-emergency-teleportation) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2018/23/23.py) |                                                                                        |
 | 24 | [Immune System Simulator 20XX          ](events/2018/24/24.md#day-24-immune-system-simulator-20xx)         | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/2018/24/24.py) |                                                                                        |
