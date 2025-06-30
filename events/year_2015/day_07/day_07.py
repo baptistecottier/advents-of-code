@@ -2,7 +2,9 @@
 
 from dataclasses import dataclass
 from operator import and_, lshift, or_, rshift, inv
+from typing import Optional, Callable
 from pythonfw.classes import Register
+
 
 @dataclass
 class Gate:
@@ -16,9 +18,9 @@ class Gate:
         wire_out (str): The identifier of the output wire.
         wire_in (tuple[str]): A tuple containing the identifiers of input wires.
     """
-    op: callable
+    op: Callable
     wire_out: str
-    wire_in: tuple[str]
+    wire_in: tuple[str, ...]
 
 
 def preprocessing(puzzle_input: str) -> list[Gate]:
@@ -45,11 +47,12 @@ def preprocessing(puzzle_input: str) -> list[Gate]:
                 case 'OR' : op = or_
                 case 'RSHIFT': op = rshift
                 case 'LSHIFT': op = lshift
+                case _: raise ValueError(f"Invalid function name: {op}")
             circuit.append(Gate(op, out_, (w1, w2)))
     return circuit
 
 
-def solver(circuit: list[Gate], wire: str = None):
+def solver(circuit: list[Gate], wire: Optional[str] = None):
     """Solves the circuit by evaluating gates and calculating wire signals.
 
     Args:

@@ -19,7 +19,7 @@ class LightGrid:
     h: int
     always_on: set
 
-def preprocessing(puzzle_input: str) -> tuple[set[tuple[int]], int, int]:
+def preprocessing(puzzle_input: str) -> LightGrid:
     """
     Converts puzzle input string to a set of coordinates with active lights.
 

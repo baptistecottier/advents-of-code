@@ -27,6 +27,7 @@ def solver(reindeers_infos: list[list[int]], t: int = 2504):
         tuple[int, int]: (max_distance, max_points)
     """
     bonus = [0 for _ in reindeers_infos]
+    ranking = []
     for second in range(1, int(t)):
         ranking = []
         for speed, duration, rest in reindeers_infos:
@@ -39,4 +40,4 @@ def solver(reindeers_infos: list[list[int]], t: int = 2504):
             if rank == best:
                 bonus[i] += 1
 
-    return (max(ranking), max(bonus))
+    return (max(ranking) if ranking else 0, max(bonus) if bonus else 0)

@@ -1,8 +1,8 @@
 """Advent of Code - Year 2015 - Day 06"""
 
+from collections.abc import Callable
 from dataclasses import dataclass
 from itertools import product
-
 
 @dataclass
 class Instruction:
@@ -69,7 +69,7 @@ def solver(instructions: list[Instruction]):
     yield apply_instructions(instructions, 0, lambda x: max(0, x - 1), True)
 
 
-def apply_instructions(instructions: list[Instruction], toggle: int, func: callable, cumul: bool):
+def apply_instructions(instructions: list[Instruction], toggle: int, func: Callable, cumul: bool):
     """
     Apply lighting instructions to a 1000x1000 grid and return total light value.
 

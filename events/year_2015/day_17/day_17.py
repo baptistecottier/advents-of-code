@@ -3,7 +3,7 @@
 from itertools import combinations
 
 
-def preprocessing(puzzle_input: str) -> tuple[int]:
+def preprocessing(puzzle_input: str) -> tuple[int, ...]:
     """Process input into tuple of container sizes.
 
     Args:
@@ -38,7 +38,10 @@ def solver(*containers: tuple[int], liters: int = 150):
     total = 0
     found = False
     for size in range(len(containers)):
-        size_total = sum(sum(comb) == int(liters) for comb in combinations(containers, size))
+        size_total = 0
+        for comb in combinations(containers, size):
+            if sum(comb, start = 0) == liters:
+                size_total += 1
         if not found and size_total != 0:
             found = True
             yield (2, size_total)

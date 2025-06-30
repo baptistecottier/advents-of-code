@@ -68,10 +68,10 @@ def next_word(word: str) -> str:
     Returns:
         str: Next sequential word with incremented letters.
     """
-    word = list(word)
+    letters = list(word)
     i = len(word) - 1
-    while word[i] == 'z':
-        word[i] = 'a'
+    while letters[i] == 'z':
+        letters[i] = 'a'
         i -= 1
-    word[i] = chr(ord(word[i]) + 1)
-    return "".join(word)
+    letters[i] = chr(ord(letters[i]) + 1)
+    return "".join(letters)

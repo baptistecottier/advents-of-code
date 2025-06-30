@@ -1,7 +1,6 @@
 """Advent of Code - Year 2015 - Day 12"""
 
 from json import loads
-import builtins
 
 
 def solver(document: str):
@@ -46,13 +45,13 @@ def get_sum(document: int | list | dict, allow_red: bool) -> int:
         >>> get_sum([1, {"c": "red", "b": 2}, 3], False)
         4
     """
-    match type(document):
-        case builtins.int:
-            return document
-        case builtins.list:
-            return sum(get_sum(subdocument , allow_red) for subdocument in document)
-        case builtins.dict:
-            if allow_red or 'red' not in document.values():
-                return get_sum(list(document.values()), allow_red)
-            return 0
-        case _: return 0
+    if isinstance(document, int):
+        return document
+    elif isinstance(document, list):
+        return sum(get_sum(subdocument, allow_red) for subdocument in document)
+    elif isinstance(document, dict):
+        if allow_red or 'red' not in document.values():
+            return get_sum(list(document.values()), allow_red)
+        return 0
+    else:
+        return 0

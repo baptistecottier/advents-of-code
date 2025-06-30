@@ -1,8 +1,9 @@
 """Advent of Code - Year 2015 - Day 16"""
 
 from operator import eq, lt, gt
+from collections.abc import Callable
 from copy     import deepcopy
-from parse    import parse
+from parse    import parse, Result
 
 
 def preprocessing(puzzle_input: str):
@@ -29,8 +30,10 @@ def preprocessing(puzzle_input: str):
     """
     aunts = []
     for aunt_data in puzzle_input.splitlines():
-        _, c1, v1, c2, v2, c3, v3 = parse("Sue {:d}: {}: {:d}, {}: {:d}, {}: {:d}", aunt_data)
-        aunts.append({c1: v1, c2: v2, c3: v3})
+        result = parse("Sue {:d}: {}: {:d}, {}: {:d}, {}: {:d}", aunt_data)
+        if isinstance(result, Result):
+            _, c1, v1, c2, v2, c3, v3 = result
+            aunts.append({c1: v1, c2: v2, c3: v3})
     return aunts
 
 
@@ -49,7 +52,7 @@ def solver(aunts: list):
     yield find_sue(aunts, gt, lt)
 
 
-def find_sue(aunts: list, op1: callable, op2: callable):
+def find_sue(aunts: list, op1: Callable, op2: Callable):
     """
     Identifies the aunt Sue based on compound values and comparison operations.
 

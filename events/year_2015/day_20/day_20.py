@@ -1,7 +1,7 @@
 """Advent of Code - Year 2015 - Day 20"""
 
 from math import sqrt
-
+from collections.abc import Callable
 
 def solver(str_target: str):
     """Find the lucky house numbers based on target value.
@@ -18,7 +18,7 @@ def solver(str_target: str):
     yield find_lucky_house(target // 11, lambda _: 50)
 
 
-def find_lucky_house(target: int, bound: callable) -> int:
+def find_lucky_house(target: int, bound: Callable) -> int:
     """
     Find the house number where the sum of bounded divisors first exceeds the target.
 
@@ -35,7 +35,7 @@ def find_lucky_house(target: int, bound: callable) -> int:
     return n
 
 
-def bounded_divisors_sum(n: int, bound: callable) -> int:
+def bounded_divisors_sum(n: int, bound: Callable) -> int:
     """
     Calculates the sum of divisors of n and their quotients, up to a bound.
     """

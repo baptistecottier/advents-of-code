@@ -1,6 +1,6 @@
 aoc::main!();
 
-fn preprocessing(_input: &str) -> &str {
+fn preprocessing(puzzle_input: &str) -> &str {
     "unsolved"
 }
 

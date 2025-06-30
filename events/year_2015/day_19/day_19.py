@@ -3,7 +3,7 @@
 from collections import defaultdict
 
 
-def preprocessing(puzzle_input: str) -> tuple[defaultdict[list], str]:
+def preprocessing(puzzle_input: str) -> tuple[defaultdict[str, list], str]:
     """
     Preprocess the puzzle input into a dictionary of replacements and a molecule.
 
@@ -23,7 +23,7 @@ def preprocessing(puzzle_input: str) -> tuple[defaultdict[list], str]:
     return replacements, molecule
 
 
-def solver(replacements: defaultdict[list], molecule_: str):
+def solver(replacements: defaultdict[str, list], molecule_: str):
     """
     Solve the molecule replacement problem.
     
