@@ -1,7 +1,7 @@
 """Advent of Code - Year 2015 - Day 18"""
 
-from itertools import product
 from dataclasses import dataclass, replace
+from itertools   import product
 
 @dataclass
 class LightGrid:
@@ -18,6 +18,7 @@ class LightGrid:
     w: int
     h: int
     always_on: set
+
 
 def preprocessing(puzzle_input: str) -> LightGrid:
     """
@@ -39,36 +40,45 @@ def preprocessing(puzzle_input: str) -> LightGrid:
     return lights
 
 
-def solver(lights: LightGrid, iterations: int = 100):
+def solver(lights: LightGrid, iterations: int = 100) -> tuple[int, int]:
     """
-    Solve both parts of the puzzle.
+    Solve the puzzle by calculating the number of lights that are on after a given number of 
+    iterations.
 
-    Args:
-        lights: The initial light grid
-        iterations: Number of iterations to run the simulation (default: 100)
-
-    Yields:
-        Part 1: Result after applying steps with corners off
-        Part 2: Result after applying steps with corners always on
-    """
-    yield apply_steps(replace(lights, always_on = set()), iterations)
-    yield apply_steps(lights, iterations)
-
-
-def apply_steps(lights: LightGrid, iterations: int):
-    """
-    Apply game of life rules to the light grid for a given number of iterations.
-
-    For each iteration, a light stays on if it has 2 or 3 neighbors that are on, 
-    and turns on if it has exactly 3 neighbors that are on. Otherwise, it turns off.
-    Lights in the `always_on` set remain on regardless of the rules.
-
-    Args:
-        lights: The LightGrid object containing the current state
-        iterations: Number of iterations to perform
+    Parameters:
+        lights (LightGrid): The initial grid of lights.
+        iterations (int, optional): The number of iterations to apply. Defaults to 100.
 
     Returns:
-        int: The total number of lights that are on after all iterations
+        tuple[int, int]: A tuple containing:
+            - Part 1: Number of lights on after iterations without any always-on corners
+            - Part 2: Number of lights on after iterations with the original grid
+
+    Examples:
+        >>> grid = LightGrid({(0, 0), (0, 1), (1, 0)}, 3, 3)
+        >>> solver(grid, 4)
+        (4, 7)
+    """
+    return (apply_steps(replace(lights, always_on = set()), iterations),
+            apply_steps(lights, iterations))
+
+
+def apply_steps(lights: LightGrid, iterations: int) -> int:
+    """
+    Applies the Game of Life rules to a light grid for a given number of iterations.
+    
+    Args:
+        lights: A LightGrid object containing the current state of lights
+        iterations: The number of iterations to simulate
+    
+    Returns:
+        int: The number of lights that are on after all iterations
+        
+    Example:
+        >>> grid = LightGrid(width=5, height=5)
+        >>> grid.on = {(1, 1), (2, 2), (3, 3)}
+        >>> apply_steps(grid, 4)
+        0
     """
     neighbours = {(-1, 0), (-1, 1), (0, 1), (1, 1), (1, 0), (1, -1), (0, -1), (-1, -1)}
     lights.on.update(lights.always_on)

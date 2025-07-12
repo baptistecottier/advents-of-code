@@ -3,27 +3,30 @@
 from itertools import pairwise
 
 
-def solver(strings: str):
-    """Solves the nice string puzzle by checking both old and new rules.
-
-    This function processes a list of strings and counts how many are 'nice' according to
-    two different sets of rules:
-
-    Old rules (a string is nice if all conditions are met):
-        1. Contains at least three vowels (aeiou)
-        2. Contains at least one letter that appears twice in a row
-        3. Does not contain the strings: 'ab', 'cd', 'pq', or 'xy'
-
-    New rules (a string is nice if all conditions are met):
-        1. Contains a pair of letters that appears at least twice
-        2. Contains one letter that repeats with exactly one letter between them
-
+def solver(strings: str) -> tuple[int, int]:
+    """
+    Count strings that satisfy nice string criteria according to old and new rules.
+    
+    Old rules: has a letter pair, contains at least 3 vowels, no forbidden substrings.
+    New rules: has repeating letter pair, contains letter sandwich pattern (aba).
+    
+    Examples:
+        Old rules:
+        - "ugknbfddgicrmopn" is nice (has vowels, double letters, no forbidden substrings)
+        - "aaa" is nice (has vowels, double letter, no forbidden substrings)
+        - "jchzalrnumimnmhp" is not nice (no double letter)
+        - "haegwjzuvuyypxyu" is not nice (contains "xy")
+        
+        New rules:
+        - "qjhvhtzxzqqjkmpb" is nice (pair "qj" appears twice, has "zxz")
+        - "xxyxx" is nice (pair "xx" appears twice, has "xyx")
+        - "uurcxstgmygtbstg" is not nice (has repeating pair but no letter sandwich)
+    
     Args:
-        strings (str): A multiline string containing the strings to check
-
-    Yields:
-        int: Number of strings that are nice according to the old rules
-        int: Number of strings that are nice according to the new rules
+        strings: Newline-separated strings to evaluate.
+        
+    Returns:
+        Tuple of (count of nice strings by old rules, count by new rules).
     """
     nice_old_rules = 0
     nice_new_rules = 0
@@ -40,5 +43,4 @@ def solver(strings: str):
            and any(a == c and a != b for (a, b, c) in (string[i: i + 3] for i in range(l - 1)))):
             nice_new_rules += 1
 
-    yield nice_old_rules
-    yield nice_new_rules
+    return nice_old_rules, nice_new_rules

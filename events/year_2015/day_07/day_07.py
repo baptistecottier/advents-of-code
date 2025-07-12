@@ -1,14 +1,18 @@
 """Advent of Code - Year 2015 - Day 07"""
 
-from dataclasses import dataclass
-from operator import and_, lshift, or_, rshift, inv
-from typing import Optional, Callable
+# Standard imports
+from collections.abc  import Callable
+from dataclasses      import dataclass
+from operator         import and_, inv, lshift, or_, rshift
+
+# First-party import
 from pythonfw.classes import Register
 
 
 @dataclass
 class Gate:
-    """A class representing a logical gate in a circuit.
+    """
+    A class representing a logical gate in a circuit.
 
     This class defines a gate that performs operations on input wires and outputs
     the result to an output wire.
@@ -24,13 +28,24 @@ class Gate:
 
 
 def preprocessing(puzzle_input: str) -> list[Gate]:
-    """Converts circuit instructions into a list of Gate objects.
+    """
+    Converts circuit instructions into a list of Gate objects.
 
     Args:
         puzzle_input (str): String containing circuit gate instructions
 
     Returns:
         list[Gate]: List of Gate objects representing the circuit
+        
+    Examples:
+        >>> preprocessing("123 -> x")
+        [Gate(op=<function <lambda> at ...>, wire_out='x', wire_in=('123',))]
+        
+        >>> preprocessing("NOT x -> h")
+        [Gate(op=<function inv at ...>, wire_out='h', wire_in=('x',))]
+        
+        >>> preprocessing("x AND y -> z")
+        [Gate(op=<function and_ at ...>, wire_out='z', wire_in=('x', 'y'))]
     """
     circuit = []
     for gate in puzzle_input.splitlines():
@@ -52,22 +67,24 @@ def preprocessing(puzzle_input: str) -> list[Gate]:
     return circuit
 
 
-def solver(circuit: list[Gate], wire: Optional[str] = None):
-    """Solves the circuit by evaluating gates and calculating wire signals.
-
-    Args:
-        circuit (list[Gate]): List of Gate objects representing the circuit's 
-            connections and operations
-        wire (str, optional): The target wire to evaluate. If None, evaluates 
-            the whole circuit. Defaults to None.
-
-    Yields:
-        int: Signal values:
-            - First yield: The initial signal on wire 'a'
-            - Second yield: The signal on wire 'a' after setting wire 'b' to 
-              the initial signal
+def solver(circuit: list[Gate], wire: str = "a") -> tuple[int, int]:
     """
-    if not wire:
+    Solves a circuit puzzle by finding signal values for a specific wire.
+    
+    Args:
+        circuit: List of Gate objects representing the circuit
+        wire: Wire identifier to find the signal for (default: "a")
+        
+    Returns:
+        Tuple of (initial_signal, modified_signal) where modified_signal
+        is the result after setting wire 'b' to the initial signal value
+        
+    Examples:
+        >>> gates = [Gate(lambda: 123, 'x', ()), Gate(lambda x: x, 'a', ('x',))]
+        >>> solver(gates)
+        (123, 123)
+    """
+    if wire == "a":
         circuit.sort(key = lambda gate: (len(gate.wire_out) , gate.wire_out))
         circuit = circuit[1:] + [circuit[0]]
 
@@ -78,7 +95,6 @@ def solver(circuit: list[Gate], wire: Optional[str] = None):
         return wires['a'] % pow(2,16)
 
     signal = run(circuit)
-    yield signal
-
     circuit[0] = Gate(lambda x: x, 'b', (str(signal),))
-    yield run(circuit)
+
+    return signal, run(circuit)

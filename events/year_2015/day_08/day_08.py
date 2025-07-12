@@ -3,7 +3,7 @@
 from ast import literal_eval
 
 
-def solver(strings: str):
+def solver(strings: str) -> tuple[int, int]:
     """
     Calculates the difference between encoded and decoded string lengths.
 

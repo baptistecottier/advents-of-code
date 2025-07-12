@@ -3,19 +3,25 @@
 from itertools import groupby
 
 
-def solver(password: str):
+def solver(password: str) -> tuple[str, str]:
     """
-    Solves password puzzle by generating two valid passwords.
+    Solves password-related puzzle by providing two new passwords based on the input.
 
-    Args:
-        password (str): Initial password to validate and update
+    Parameters:
+        password (str): The initial password to update.
 
-    Yields:
-        str: Two consecutive valid passwords that meet security requirements 
+    Returns:
+        tuple[str, str]: A tuple containing two updated passwords:
+                         - The first password after updating
+                         - The second password after updating the next word
+
+    Examples:
+        >>> solver("abcdefgh")
+        ('abcdffaa', 'abcdffbb')
     """
     password = update_password(password)
-    yield update_password(password)
-    yield update_password(next_word(password))
+    return (update_password(password),
+            update_password(next_word(password)))
 
 
 def update_password(password: str) -> str:
@@ -43,10 +49,28 @@ def update_password(password: str) -> str:
 
 def is_password_ok(password: str) -> bool:
     """
-    Validates a string password based on specific rules:
-    - Must not contain 'i', 'o', or 'l'
-    - Must contain at least two different pairs of repeating letters
-    - Must contain at least one increasing straight of three letters
+    Validates a password based on specific rules.
+
+    Args:
+        password (str): The password to validate.
+
+    Returns:
+        bool: True if the password meets all criteria, False otherwise.
+
+    Rules:
+        - Must not contain the letters 'i', 'o', or 'l'
+        - Must contain at least two different pairs of repeating letters (e.g., 'aa', 'bb')
+        - Must contain at least one increasing straight of three letters (e.g., 'abc', 'bcd')
+
+    Examples:
+        >>> is_password_ok("abcdefgh")
+        False  # Missing pairs of letters
+        >>> is_password_ok("abcdffgg")
+        False  # Missing straight
+        >>> is_password_ok("abcdeffg")
+        True  # Has 'cde' straight and 'ff' pair
+        >>> is_password_ok("abcdeffi")
+        False  # Contains forbidden letter 'i'
     """
     if any(x in password for x in "iol"):
         return False
@@ -60,13 +84,22 @@ def is_password_ok(password: str) -> bool:
 
 
 def next_word(word: str) -> str:
-    """Returns the next word by incrementing the last letter, carrying over 'z' to 'a'.
+    """
+    Returns the next word by incrementing the last letter, carrying over 'z' to 'a'.
 
     Args:
         word (str): Input string of lowercase letters.
 
     Returns:
         str: Next sequential word with incremented letters.
+        
+    Examples:
+        >>> next_word("abc")
+        "abd"
+        >>> next_word("abz")
+        "aca"
+        >>> next_word("azz")
+        "baa"
     """
     letters = list(word)
     i = len(word) - 1

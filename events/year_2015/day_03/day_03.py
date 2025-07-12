@@ -1,5 +1,7 @@
 """Advent of Code - Year 2015 - Day 03"""
 
+from collections.abc import Iterator
+
 
 def preprocessing(puzzle_input: str) -> list[tuple[int, int]]:
     """
@@ -33,33 +35,31 @@ def preprocessing(puzzle_input: str) -> list[tuple[int, int]]:
     return directions
 
 
-def solver(directions: list[tuple[int, int]]):
-    "Simulate deliveries, for Santa only first then with the help of Robo-Santa"
+def solver(directions: list[tuple[int, int]]) -> Iterator[int]:
+    """
+    Simulate deliveries, for Santa only first then with the help of Robo-Santa
+    """
     yield deliver(directions.copy(), 1)
     yield deliver(directions[:-1], 2)
 
 
-def deliver(directions: list[tuple[int, int]], n: int) -> int | None:
+def deliver(directions: list[tuple[int, int]], n: int) -> int:
     """
-    Calculate the number of houses receiving at least one present.
-
-    Santa and his helpers deliver presents by following directions, with each deliverer taking
-    turns moving according to the provided directions. Multiple deliverers can visit the same house.
-
+    Simulates n deliverers moving according to given directions and delivering presents to houses.
+    
     Args:
-        directions (list[tuple[int, int]]): List of movement directions, where each tuple contains
-            (dx, dy) representing movement in x and y directions respectively.
-        n (int): Number of deliverers (e.g., 1 for just Santa, 2 for Santa and Robo-Santa)
-
+        directions: List of (dx, dy) tuples representing movement directions.
+        n: Number of deliverers.
+    
     Returns:
-        int: Number of unique houses that received at least one present
-
-    Example:
-        >>> directions = [(0, 1), (1, 0), (0, -1), (-1, 0)]
-        >>> deliver(directions, 2)
-        4
+        Number of unique houses that received at least one present.
+        
+    Examples:
+        >>> deliver([(0, 1), (0, 1)], 1)  # Single deliverer going north twice
+        3
+        >>> deliver([(0, 1), (1, 0)], 2)  # Two deliverers, one goes north, one goes east
+        3
     """
-
     deliverers = [(0, 0) for _ in range(n)]
     houses     = {(0, 0)}
 

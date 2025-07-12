@@ -1,6 +1,7 @@
 """Advent of Code - Year 2015 - Day 22"""
 
-import copy
+from collections.abc import Iterator
+from copy import deepcopy
 from dataclasses import dataclass
 
 @dataclass
@@ -20,7 +21,8 @@ class Player:
 
 @dataclass
 class Boss:
-    """Boss class representing the adversary in a game.
+    """
+    Boss class representing the adversary in a game.
 
     Attributes:
         hp (int): Health points of the boss.
@@ -31,16 +33,39 @@ class Boss:
 
 def preprocessing(puzzle_input: str) -> Boss:
     """
-    Parse the puzzle input to extract the hit points and damage of the boss.
+    Parses the puzzle input string and returns a Boss instance with hit points and damage.
+
+    Args:
+        puzzle_input (str): Multiline string with boss stats in the format:
+                            "Hit Points: X
+                            Damage: Y".
+
+    Returns:
+        Boss: An instance of Boss initialized with parsed hit points and damage.
+
+    Example:
+        >>> preprocessing("Hit Points: 55\nDamage: 8")
+        Boss(hp=55, damage=8)
     """
     (hp, damage) = (int(item.split(": ")[1]) for item in puzzle_input.splitlines())
     return Boss(hp, damage)
 
 
-def solver(boss: Boss):
+def solver(boss: Boss) -> Iterator[int]:
     """
-    Solve the two parts of the Wizard Simulator 20XX puzzle by finding the minimum mana required to
-    defeat the boss.
+    Solves the boss fight puzzle for both normal and hard modes, yielding the minimum mana spent to
+    win.
+
+    Args:
+        boss (Boss): The boss character to fight.
+
+    Yields:
+        int: The minimum mana required to win in each mode (normal, hard).
+
+    Example:
+        >>> boss = Boss(hp=55, damage=8)
+        >>> list(solver(boss))
+        [953, 1289]
     """
     player = Player(50, 500, 0)
 
@@ -54,18 +79,30 @@ def player_turn(
     player: Player,
     boss: Boss,
     hard_mode: bool,
-    winning_manas: set[int]):
+    winning_manas: set[int]) -> None:
     """
-    Handle the player's turn in a magic duel against the boss, applying spells and casting
-    spells.
+    Simulates the player's turn in the turn-based battle, applying spell effects, handling spell
+    casting, and updating game state.
+
+    Args:
+        spells (list[list[int]]): List of active spells, each represented as a list of spell
+                                  attributes.
+        player (Player): The current state of the player (hp, mana, spent).
+        boss (Boss): The current state of the boss (hp, damage).
+        hard_mode (bool): If True, player loses 1 hp at the start of their turn.
+        winning_manas (set[int]): Set to collect mana costs of winning strategies.
+
+    Returns:
+        None
     """
     player.hp = player.hp - hard_mode
     if player.hp <= 0:
-        return
+        return None
+
     boss.hp = boss.hp - sum(spell[2] for spell in spells)
     if boss.hp <= 0:
         winning_manas.add(player.spent)
-        return
+        return None
 
     player.mana += sum(spell[4] for spell in spells)
 
@@ -74,26 +111,30 @@ def player_turn(
         spell[1] -= 1
 
     if player.mana < 53:
-        return
+        return None
 
     for cost, php, bdmg in [[53, 0, 4], [73, 2, 2]]:
         if player.mana >= cost:
             boss_turn(
-                copy.deepcopy(spells),
+                deepcopy(spells),
                 Player(player.hp + php, player.mana - cost, player.spent + cost),
                 Boss(boss.hp - bdmg, boss.damage),
                 hard_mode,
-                winning_manas)
+                winning_manas
+            )
 
     ongoing_spells = [spell[0] for spell in spells]
     for spell in [[113 , 6, 0, 7, 0], [173, 6, 3, 0, 0], [229 , 5, 0, 0, 101]]:
         if spell[0] not in ongoing_spells:
             boss_turn(
-                copy.deepcopy(spells) + [spell],
+                deepcopy(spells) + [spell],
                 Player(player.hp, player.mana - spell[0], player.spent + spell[0]),
                 Boss(boss.hp, boss.damage),
                 hard_mode,
-                winning_manas)
+                winning_manas
+            )
+
+    return None
 
 
 def boss_turn(
@@ -101,16 +142,34 @@ def boss_turn(
     player: Player,
     boss: Boss,
     hard_mode: bool,
-    winning_manas: set[int]):
+    winning_manas: set[int]) -> None:
     """
-    Handle the boss turn phase, updating spells, health, mana, and determining game outcome.
+    Executes the boss's turn in the game, applying active spell effects, updating player and boss
+    stats, and determining if the game should continue or end.
+
+    Args:
+        spells (list[list[int]]): List of active spells, each represented as a list of spell
+                                  attributes.
+        player (Player): The player object, with current stats.
+        boss (Boss): The boss object, with current stats.
+        hard_mode (bool): Whether the game is in hard mode.
+        winning_manas (set[int]): Set of mana values representing winning outcomes.
+
+    Returns:
+        None or result of player_turn: Returns None if the game ends, otherwise proceeds to the
+                                       player's turn.
+
+    Example:
+        >>> boss_turn(active_spells, player, boss, False, set())
     """
     if winning_manas!= set() and player.spent > min(winning_manas):
         return None
+
     boss.hp = boss.hp - sum(spell[2] for spell in spells)
     if boss.hp <= 0:
         winning_manas.add(player.spent)
         return None
+
     player.hp = player.hp -  max(1, boss.damage - sum(spell[3] for spell in spells))
     if player.hp <= 0:
         return None
@@ -121,9 +180,4 @@ def boss_turn(
     for spell in spells :
         spell[1] -= 1
 
-    return player_turn(
-        copy.deepcopy(spells),
-        player,
-        boss,
-        hard_mode,
-        winning_manas)
+    return player_turn(deepcopy(spells), player, boss, hard_mode, winning_manas)

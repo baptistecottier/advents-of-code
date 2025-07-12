@@ -1,10 +1,11 @@
 """Advent of Code - Year 2015 - Day 23"""
 
-from collections.abc import Callable
+from collections.abc import Callable, Iterator
 
 
 def preprocessing(puzzle_input: str) -> list[tuple[int, Callable, str | int]]:
-    """Transform puzzle input into computer instructions.
+    """
+    Transform puzzle input into computer instructions.
     
     Turns assembly-like instructions into tuples of pain and suffering.
     Warning: May cause uncontrollable urges to write more assembly code.
@@ -14,6 +15,15 @@ def preprocessing(puzzle_input: str) -> list[tuple[int, Callable, str | int]]:
 
     Returns:
         list[tuple]: A perfectly normal list of opcodes that definitely won't crash
+
+    Example:
+        >>> preprocessing("inc a\njio a, +2\ntpl a\ninc a")
+        [
+            (<function ...>, 'a'),
+            (<function ...>, (True, 1)),
+            (<function ...>, 'a'),
+            (<function ...>, 'a')
+        ]
     """
     ops = []
     for line in puzzle_input.splitlines():
@@ -26,7 +36,7 @@ def preprocessing(puzzle_input: str) -> list[tuple[int, Callable, str | int]]:
             case 'inc':
                 ops.append((lambda x: x + 1, data[1]))
             case 'jmp':
-                ops.append((lambda _: 1, (False, int(data[1]) - 1)))
+                ops.append((lambda : 1, (False, int(data[1]) - 1)))
             case 'jie':
                 ops.append((lambda x: (1 + x) % 2, (True, int(data[2]) - 1)))
             case 'jio':
@@ -34,14 +44,28 @@ def preprocessing(puzzle_input: str) -> list[tuple[int, Callable, str | int]]:
     return ops
 
 
-def solver(lines: list[tuple[Callable, str | tuple[bool, int]]]):
-    """Yields program execution results with registers initially set to 0 and 1 respectively."""
-    yield execute_program(lines, 0)
-    yield execute_program(lines, 1)
+def solver(lines: list[tuple[Callable, str | tuple[bool, int]]]) -> Iterator[int]:
+    """
+    Executes a program with different initial values for register 'a' and yields the results.
+
+    Args:
+        lines (list[tuple[Callable, str | tuple[bool, int]]]): 
+            A list of instructions, each as a tuple containing a callable and its arguments.
+
+    Yields:
+        int: The result of executing the program with 'a' initialized to 0 and then to 1.
+
+    Example:
+        results = list(solver(instructions))
+        # results[0] is the output with a=0, results[1] with a=1
+    """
+    for a in [0, 1]:
+        yield execute_program(lines, a)
 
 
 def execute_program(lines: list[tuple[Callable, str | tuple[bool, int]]], a: int) -> int:
-    """Execute program with given instructions and initial 'a' value.
+    """
+    Execute program with given instructions and initial 'a' value.
     
     Args:
         lines: List of instruction tuples (operation type, function, parameter)

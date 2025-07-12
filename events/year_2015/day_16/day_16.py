@@ -1,31 +1,27 @@
 """Advent of Code - Year 2015 - Day 16"""
 
-from operator import eq, lt, gt
+# Standard imports
 from collections.abc import Callable
 from copy     import deepcopy
+from operator import eq, lt, gt
+
+# Third-party import
 from parse    import parse, Result
 
 
-def preprocessing(puzzle_input: str):
+def preprocessing(puzzle_input: str) -> list[dict]:
     """
-    Preprocesses puzzle input to extract information about aunts and their possessions.
+    Parse puzzle input into a list of dictionaries representing aunts' properties.
+    Each line in the input represents an aunt and is parsed to extract compound-value pairs.
 
-    This function takes a string input containing information about multiple aunts and their
-    possessions, parses it, and converts it into a list of dictionaries where each dictionary
-    represents an aunt's possessions.
-
-    Args:
-        puzzle_input (str): A string containing multiple lines of aunt data in the format
-                           'Sue N: item1: count1, item2: count2, item3: count3'
+    Parameters:
+        puzzle_input (str): Multi-line string with aunt data
 
     Returns:
-        list[dict]: A list of dictionaries where each dictionary contains three key-value pairs
-                    representing an aunt's possessions. The keys are the item names (strings)
-                    and the values are the corresponding counts (integers).
+        list[dict]: List of dictionaries where each dict contains compound-value pairs for an aunt
 
     Example:
-        >>> input_str = "Sue 1: cars: 9, akitas: 3, goldfish: 0"
-        >>> preprocessing(input_str)
+        >>> preprocessing("Sue 1: cars: 9, akitas: 3, goldfish: 0")
         [{'cars': 9, 'akitas': 3, 'goldfish': 0}]
     """
     aunts = []
@@ -37,37 +33,50 @@ def preprocessing(puzzle_input: str):
     return aunts
 
 
-def solver(aunts: list):
+def solver(aunts: list) -> tuple[int, int]:
     """
-    Solves the Aunt Sue puzzle for both parts.
+    Finds the correct Aunt Sue using different comparison methods.
 
     Args:
-        aunts: Dictionary containing information about all Aunt Sues.
-
-    Yields:
-        int: The ID of the Aunt Sue matching the criteria for part 1.
-        int: The ID of the Aunt Sue matching the modified criteria for part 2.
-    """
-    yield find_sue(deepcopy(aunts), eq, eq)
-    yield find_sue(aunts, gt, lt)
-
-
-def find_sue(aunts: list, op1: Callable, op2: Callable):
-    """
-    Identifies the aunt Sue based on compound values and comparison operations.
-
-    Args:
-        aunts (list): List of dictionaries where each dictionary represents an aunt's compounds and
-                      their values.
-        op1 (function): Comparison operator for 'cats' and 'trees'.
-        op2 (function): Comparison operator for 'pomeranians' and 'goldfish'.
+        aunts: List of aunts with their known properties.
 
     Returns:
-        int or None: The number of the aunt Sue that matches the criteria, or None if no match is
-                     found.
+        Tuple containing:
+            - The Sue number found using equality comparison for all properties
+            - The Sue number found using custom comparison (gt for some, lt for others)
+    
+    Example:
+        >>> solver([{'number': 1, 'cats': 7}, {'number': 2, 'trees': 3}])
+        (1, 2)
     """
-    sue = { "children": 3, "cats":     7, "samoyeds": 2, "pomeranians":  3, "akitas":   0,
-            "vizslas":  0, "goldfish": 5, "trees":    3, "cars":         2, "perfumes": 1}
+    return (find_sue(deepcopy(aunts), eq, eq),
+            find_sue(aunts, gt, lt))
+
+
+def find_sue(aunts: list, op1: Callable, op2: Callable) -> int:
+    """
+    Find the aunt Sue that matches the MFCSAM reading based on compound comparisons.
+    
+    Uses different comparison operators for specific compounds:
+    - op1 for 'cats' and 'trees'
+    - op2 for 'pomeranians' and 'goldfish'
+    - equality check for all other compounds
+    
+    Args:
+        aunts: List of dictionaries, each representing an aunt with her compounds
+        op1: Comparison operator for 'cats' and 'trees'
+        op2: Comparison operator for 'pomeranians' and 'goldfish'
+    
+    Returns:
+        The number of the matching aunt or -1 if not found
+    
+    Example:
+        >>> aunts = [{'cats': 8}, {'goldfish': 3}, {'cars': 2, 'perfumes': 1}]
+        >>> find_sue(aunts, operator.gt, operator.lt)
+        3
+    """
+    sue = {"children": 3, "cats":     7, "samoyeds": 2, "pomeranians":  3, "akitas":   0,
+           "vizslas":  0, "goldfish": 5, "trees":    3, "cars":         2, "perfumes": 1}
     for n, compounds in enumerate(aunts, 1):
         for compound, value in list(compounds.items()):
             if compound in ['cats', 'trees']:
@@ -82,4 +91,4 @@ def find_sue(aunts: list, op1: Callable, op2: Callable):
                 del compounds[compound]
         if compounds == {}:
             return n
-    return None
+    return -1

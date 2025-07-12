@@ -4,46 +4,53 @@ from itertools import combinations
 
 
 def preprocessing(puzzle_input: str) -> tuple[int, ...]:
-    """Process input into tuple of container sizes.
+    """
+    Process input into tuple of container sizes.
 
     Args:
         puzzle_input (str): Raw puzzle input string with container sizes.
 
     Returns:
         tuple[int]: Container sizes as integers.
+        
+    Examples:
+        >>> preprocessing("20\\n15\\n10\\n5\\n5")
+        (20, 15, 10, 5, 5)
+        
+        >>> preprocessing("10\\n20\\n30")
+        (10, 20, 30)
     """
     return tuple(int(container) for container in puzzle_input.splitlines())
 
 
-def solver(*containers: tuple[int], liters: int = 150):
+def solver(containers: tuple[int], liters: int = 150) -> tuple[int, int]:
     """
-    Calculates container combinations that can hold a specified amount of liquid.
-
-    This function iterates through all possible combinations of containers to find those
-    that can exactly hold the specified number of liters. It yields two results:
-    1. The total number of valid combinations (all sizes)
-    2. The number of combinations using the minimum number of containers
+    Calculate the number of container combinations for a specific volume.
 
     Args:
-        *containers (tuple[int]): A variable number of integer arguments representing container
-                                  sizes
-        liters (int, optional): The target volume to fill. Defaults to 150.
+        containers: A variable-length tuple of container sizes (integers).
+        liters: The target volume to be reached (default: 150).
 
-    Yields:
-        tuple[int, int]: First yield is (2, count) where count is the number of combinations using
-                         minimum containers.
-                         Second yield is (1, count) where count is the total number of valid
-                         combinations.
+    Returns:
+        tuple: A tuple containing:
+            - The total number of valid combinations
+            - The number of valid combinations with the minimum number of containers
+
+    Examples:
+        >>> solver(20, 15, 10, 5, 5, liters=25)
+        (4, 3)  # 4 total combinations, 3 minimum-container combinations
+        
+        >>> solver(10, 20, 30, 40, 50, liters=50)
+        (3, 1)  # 3 total combinations, 1 minimum-container combination
     """
-    total = 0
-    found = False
+    combin = []
+
     for size in range(len(containers)):
         size_total = 0
         for comb in combinations(containers, size):
             if sum(comb, start = 0) == liters:
                 size_total += 1
-        if not found and size_total != 0:
-            found = True
-            yield (2, size_total)
-        total += size_total
-    yield (1, total)
+        if size_total != 0:
+            combin.append(size_total)
+
+    return sum(combin), combin[0]

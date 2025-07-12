@@ -4,13 +4,23 @@ from itertools import permutations, pairwise
 
 
 def preprocessing(puzzle_input: str) -> list[int]:
-    """Process input string to extract happiness changes.
+    """
+    Process input string to extract happiness changes.
 
     Args:
         puzzle_input (str): Raw puzzle input containing happiness changes.
 
     Returns:
         list[int]: List of integer happiness changes, negative for losses.
+
+    Examples:
+        >>> preprocessing("Alice would gain 54 happiness units by sitting next to Bob.")
+        [54]
+        >>> preprocessing("Alice would lose 79 happiness units by sitting next to Carol.")
+        [-79]
+        >>> preprocessing("Alice would gain 54 happiness units by sitting next to Bob.
+                           Bob would lose 7 happiness units by sitting next to Alice.")
+        [54, -7]
     """
     changes = []
     for change in puzzle_input.splitlines():
@@ -19,18 +29,25 @@ def preprocessing(puzzle_input: str) -> list[int]:
     return changes
 
 
-def solver(changes: list[int]):
+def solver(changes: list[int]) -> tuple[int, int]:
     """
     Solves the seating happiness optimization problem with and without including 'myself'.
 
     Args:
         changes (list[int]): List of happiness values between each pair of guests.
 
-    Yields:
-        int: First yield is optimal happiness without 'myself', second with 'myself' included.
+    Returns:
+        tuple[int, int]: Tuple containing optimal happiness without 'myself' and with 'myself'
+                         included.
+
+    Examples:
+        >>> solver([54, -79, 0, 89]) # Simple case with 2 people
+        (143, 89)
+        >>> solver([54, -7, 83, -62, 23, -40]) # Case with 3 people
+        (128, 108)
     """
-    yield compute_changes(changes, myself = False)
-    yield compute_changes(changes, myself = True)
+    return (compute_changes(changes, myself = False),
+            compute_changes(changes, myself = True))
 
 
 def compute_changes(changes: list[int], myself: bool) -> int:
@@ -50,6 +67,12 @@ def compute_changes(changes: list[int], myself: bool) -> int:
 
     Returns:
         int: Maximum total happiness achievable from the optimal seating arrangement.
+        
+    Examples:
+        >>> compute_changes([54, -7, 83, -62, 23, -40], False)  # 3 people
+        128
+        >>> compute_changes([54, -7, 83, -62, 23, -40], True)  # 3 people + myself
+        108
     """
     n = 1 + int((len(changes)**.5)) + myself
     best = 0

@@ -3,22 +3,34 @@
 from json import loads
 
 
-def solver(document: str):
+def solver(document: str) -> tuple[int, int]:
     """
     Calculate sums based on JSON document parsing with different filtering options.
 
     Args:
         document (str): JSON formatted string to process
 
-    Yields:
-        int: Two sum values - first with red values included, second excluding red values
+    Returns:
+        tuple[int, int]: Two sum values - first with red values included, second excluding red
+                         values
+
+    Examples:
+        >>> solver('[1,2,3]')
+        (6, 6)
+        >>> solver('{"a":2,"b":4}')
+        (6, 6)
+        >>> solver('{"a":2,"b":"red","c":4}')
+        (6, 0)
+        >>> solver('[1,{"c":"red","b":2},3]')
+        (6, 4)
     """
-    yield get_sum(loads(document), True)
-    yield get_sum(loads(document), False)
+    return (get_sum(loads(document), allow_red = True),
+            get_sum(loads(document), allow_red = False))
 
 
 def get_sum(document: int | list | dict, allow_red: bool) -> int:
-    """Calculate sum of all numbers in a nested document structure.
+    """
+    Calculate sum of all numbers in a nested document structure.
 
     This function recursively processes a document that can contain integers, lists, and
     dictionaries, summing all integer values encountered while respecting special rules for
@@ -47,11 +59,9 @@ def get_sum(document: int | list | dict, allow_red: bool) -> int:
     """
     if isinstance(document, int):
         return document
-    elif isinstance(document, list):
+    if isinstance(document, list):
         return sum(get_sum(subdocument, allow_red) for subdocument in document)
-    elif isinstance(document, dict):
+    if isinstance(document, dict):
         if allow_red or 'red' not in document.values():
             return get_sum(list(document.values()), allow_red)
-        return 0
-    else:
-        return 0
+    return 0

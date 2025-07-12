@@ -1,24 +1,27 @@
 """Advent of Code - Year 2015 - Day 04"""
 
+from collections.abc    import Iterator
 from pythonfw.functions import md5
 
 
-def solver(target: str):
-    """Find the lowest positive number that produces an MD5 hash starting with specified zeros.
-
-    This function iterates through numbers to find the smallest one that, when appended to
-    the target string and hashed using MD5, produces a hash starting with either five or six zeros.
-
+def solver(target: str) -> Iterator[int]:
+    """
+    Find values that produce MD5 hashes with specific prefixes when combined with target.
+    
+    Iteratively finds integers that, when appended to 'target', produce MD5 hashes starting with
+    '00000' (first yield) and '000000' (second yield).
+    
     Args:
-        target (str): The input string to which numbers will be appended before hashing.
-
+        target: The string prefix to combine with counter values for hashing.
+        
     Yields:
-        int: First yields the lowest number that produces a hash starting with five zeros,
-             then yields the lowest number that produces a hash starting with six zeros.
-
-    Example:
-        >>> list(solver("abcdef"))
+        Integers that produce MD5 hashes with the required number of leading zeros.
+        
+    Examples:
+        >>> list(solver("abcdef"))  # Both numbers for '00000' and '000000'
         [609043, 6742839]
+        >>> next(solver("pqrstuv"))  # Another example from the problem
+        1048970
     """
     counter = 0
     for trigger in ['00000', '000000']:

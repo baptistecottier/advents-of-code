@@ -1,7 +1,7 @@
 """Advent of Code - Year 2015 - Day 21"""
 
-from itertools import product, combinations
 from dataclasses import dataclass
+from itertools import product, combinations
 
 @dataclass(unsafe_hash = True)
 class Item:
@@ -26,48 +26,60 @@ class Player:
 
 def preprocessing(puzzle_input: str) -> tuple[int, int, int]:
     """
-    Extract key stats from the puzzle input.
+    Parses the puzzle input and extracts hit points, damage, and armor values.
 
     Args:
-        puzzle_input (str): The puzzle input containing HP, damage, and armor values.
+        puzzle_input (str): Multiline string with each line in the format 'Label: value'.
 
     Returns:
-        tuple[int, int, int]: The extracted hit points, damage, and armor values.
+        tuple[int, int, int]: A tuple containing (hp, damage, armor) as integers.
+
+    Example:
+        >>> preprocessing("Hit Points: 100\nDamage: 8\nArmor: 2")
+        (100, 8, 2)
     """
     (hp, damage, armor) = (int(item.split(": ")[1]) for item in puzzle_input.splitlines())
     return hp, damage, armor
 
 
-def solver(hp: int, damage: int, armor: int):
+def solver(hp: int, damage: int, armor: int) -> tuple[int, int]:
     """
-    Computes the minimum cost to win and maximum cost to lose against a boss.
-    
+    Simulates all possible fights and returns the minimum cost to win and the maximum cost to lose.
+
     Args:
-        *boss_stats: A tuple containing boss statistics (hit points, damage, armor)
-    
-    Yields:
-        int: First, the minimum cost to win a fight
-        int: Second, the maximum cost to lose a fight
+        hp (int): The player's hit points.
+        damage (int): The player's damage value.
+        armor (int): The player's armor value.
+
+    Returns:
+        tuple[int, int]: A tuple containing the minimum cost to win and the maximum cost to lose.
+
+    Examples:
+        >>> solver(100, 8, 5)
+        (78, 148)
     """
-    costs = simulate_all_fights(hp, damage, armor)
-    yield min(costs[True])
-    yield max(costs[False])
+    costs_if_player_wins = simulate_all_fights(hp, damage, armor)
+    return min(costs_if_player_wins[True]), max(costs_if_player_wins[False])
 
 
 def simulate_all_fights(boss_hp: int, boss_damage: int, boss_armor: int) -> dict[bool, set]:
     """
-    Simulates all possible equipment combinations against a boss and returns the costs for wins and
-    losses.
-    
+    Simulates all possible fights between the player and the boss using different equipment 
+    combinations.
+
     Args:
-        boss_hp: The boss's hit points
-        boss_damage: The boss's damage
-        boss_armor: The boss's armor
-        
+        boss_hp (int): The hit points of the boss.
+        boss_damage (int): The damage value of the boss.
+        boss_armor (int): The armor value of the boss.
+
     Returns:
-        A dictionary with keys 0 and 1 containing sets of costs where:
-        - costs[False]: costs of equipment combinations that result in player losing
-        - costs[True]: costs of equipment combinations that result in player winning
+        dict[bool, set]: A dictionary mapping True (player wins) and False (player loses) to sets
+                         of total equipment costs.
+
+    Example:
+        >>> results = simulate_all_fights(100, 8, 2)
+        >>> results
+        {True: {78, 95, 102, ...}, False: {148, 153, ...}}
     """
     weapons =   {Item(8, 4, 0) , Item(10, 5, 0), Item(25, 6, 0), Item(40, 7, 0),
                  Item(74, 8, 0)}

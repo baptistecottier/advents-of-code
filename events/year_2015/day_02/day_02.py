@@ -18,23 +18,24 @@ class Box:
 
 
 def preprocessing(puzzle_input: str) -> list[Box]:
-    """Process raw puzzle input into a list of Box objects.
-
-    Takes a string containing box dimensions in the format 'lxwxh' (length x width x height)
-    per line and converts it into Box objects. Dimensions are sorted in ascending order.
-
+    """
+    Parse puzzle input into a list of Box objects with sorted dimensions.
+    
     Args:
-        puzzle_input (str): Raw input string with box dimensions, one per line in 'lxwxh' format
-
+        puzzle_input: String containing box dimensions in 'lxwxh' format.
+        
     Returns:
-        list[Box]: List of Box objects created from the input dimensions
-
+        List of Box objects with dimensions sorted in ascending order.
+        
     Raises:
-        ValueError: If input format is invalid for any box specification
-
-    Example:
-        >>> preprocessing("2x3x4\n1x1x10")
-        [Box(l=2, w=3, h=4), Box(l=1, w=1, h=10)]
+        ValueError: If input doesn't match the expected format.
+        
+    Examples:
+        >>> preprocessing("2x3x4")
+        [Box(l=2, w=3, h=4)]
+        
+        >>> preprocessing("1x1x10\\n2x3x4")
+        [Box(l=1, w=1, h=10), Box(l=2, w=3, h=4)]
     """
     boxes = []
     for box in puzzle_input.splitlines():
@@ -46,20 +47,25 @@ def preprocessing(puzzle_input: str) -> list[Box]:
     return boxes
 
 
-def solver(boxes: list[Box]):
-    """Calculate total wrapping paper and ribbon needed for all boxes.
-
-    Computes the required amount of wrapping paper and ribbon for a list of boxes.
-    For each box, calculates:
-    - Paper: 3 * (l * w) + 2 * (l + w) * h
-    - Ribbon: h * (l * w) + 2 * (l + w)
-
+def solver(boxes: list[Box]) -> tuple[int, int]:
+    """
+    Calculate the total wrapping paper and ribbon needed for all boxes.
+    
     Args:
-        boxes (list[Box]): List of Box objects containing length (l), width (w), and height (h)
-
-    Yields:
-        int: Total square feet of wrapping paper needed
-        int: Total feet of ribbon needed 
+        boxes: List of Box objects with dimensions l, w, and h
+        
+    Returns:
+        tuple: (total paper needed, total ribbon needed)
+        
+    Examples:
+        >>> solver([Box(l=2, w=3, h=4)])
+        (58, 34)
+        
+        >>> solver([Box(l=1, w=1, h=10)])
+        (43, 14)
+        
+        >>> solver([Box(l=2, w=3, h=4), Box(l=1, w=1, h=10)])
+        (101, 48)
     """
     paper  = 0
     ribbon = 0
@@ -70,5 +76,4 @@ def solver(boxes: list[Box]):
         paper  += 3 * preprod + presum * box.h
         ribbon += box.h * preprod + presum
 
-    yield paper
-    yield ribbon
+    return paper, ribbon

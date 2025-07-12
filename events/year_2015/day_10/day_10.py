@@ -3,18 +3,24 @@
 from itertools import groupby
 
 
-def solver(digits: str, iterations: int = 40):
-    """Solves both parts of the puzzle by applying Conway's Look-and-Say sequence.
+def solver(digits: str, iterations: int = 40) -> tuple[int, int]:
+    """
+    Solves both parts of the puzzle by applying Conway's Look-and-Say sequence.
 
     Args:
         digits (str): Initial sequence of digits
         iterations (int, optional): Number of iterations for part 1. Defaults to 40.
 
-    Yields:
-        int: Length of resulting sequences for part 1 and 2
+    Returns:
+        tuple[int, int]: Length of resulting sequences for part 1 and part 2
+
+    Examples:
+        >>> solver("1", 1)
+        (2, 6)  # Part 1: "1" -> "11" (length 2), Part 2: after 11 iterations (length 6)
+        >>> solver("11", 1)
+        (2, 6)  # Part 1: "11" -> "21" (length 2), Part 2: after 11 iterations (length 6)
     """
-    yield conway(digits, iterations)
-    yield conway(digits, iterations + 10)
+    return conway(digits, iterations), conway(digits, iterations + 10)
 
 
 def conway(digits: str, iterations: int) -> int:

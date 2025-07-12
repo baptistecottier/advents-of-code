@@ -1,17 +1,34 @@
 """Advent of Code - Year 2015 - Day 01"""
 
 
-def solver(instructions: str):
+def solver(instructions: str) -> tuple[int, int | None]:
     """
-    Solve puzzle by checking floor after each instruction. The first time a negative floor is met
-    is stored as `basement` and yield for part 2, while the final floor is returned for part 1.
+    Parse parenthesis instructions to track floor position.
     
-    Args: 
-        instructions (str): Raw puzzle input
-    
-    Yields:
-        1: The final floor
-        2: Number of steps to reach the basement for the first time
+    Args:
+        instructions: A string of parenthesis where '(' means go up, ')' means go down.
+        
+    Returns:
+        Tuple of (final floor number, position when basement is first entered or None)
+        
+    Raises:
+        ValueError: If any character other than '(' or ')' is encountered.
+        
+    Examples:
+        >>> solver("(())")
+        (0, None)
+        >>> solver("()()")
+        (0, None)
+        >>> solver("(((")
+        (3, None)
+        >>> solver("(()(()(")
+        (3, None)
+        >>> solver("))(((((")
+        (3, 1)
+        >>> solver("())")
+        (-1, 3)
+        >>> solver("))(")
+        (-1, 1)
     """
     floor = 0
     basement = None
@@ -27,5 +44,4 @@ def solver(instructions: str):
         if basement is None and floor < 0:
             basement = i
 
-    yield floor
-    yield basement
+    return floor, basement
