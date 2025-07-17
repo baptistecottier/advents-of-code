@@ -24,8 +24,8 @@ def preprocessing(puzzle_input: str) -> list[int]:
     """
     changes = []
     for change in puzzle_input.splitlines():
-        gain = int(change.split(' ')[3])
-        changes.append(gain if 'gain' in change else - gain)
+        gain = int(change.split(" ")[3])
+        changes.append(gain if "gain" in change else -gain)
     return changes
 
 
@@ -46,15 +46,17 @@ def solver(changes: list[int]) -> tuple[int, int]:
         >>> solver([54, -7, 83, -62, 23, -40]) # Case with 3 people
         (128, 108)
     """
-    return (compute_changes(changes, myself = False),
-            compute_changes(changes, myself = True))
+    return (
+        compute_changes(changes, myself=False),
+        compute_changes(changes, myself=True),
+    )
 
 
 def compute_changes(changes: list[int], myself: bool) -> int:
     """
     Compute the optimal arrangement of people to maximize happiness changes.
 
-    This function calculates the maximum possible happiness score by trying all possible 
+    This function calculates the maximum possible happiness score by trying all possible
     seating arrangements in a circular table. Each person's happiness is affected by who
     they sit next to.
 
@@ -67,18 +69,18 @@ def compute_changes(changes: list[int], myself: bool) -> int:
 
     Returns:
         int: Maximum total happiness achievable from the optimal seating arrangement.
-        
+
     Examples:
         >>> compute_changes([54, -7, 83, -62, 23, -40], False)  # 3 people
         128
         >>> compute_changes([54, -7, 83, -62, 23, -40], True)  # 3 people + myself
         108
     """
-    n = 1 + int((len(changes)**.5)) + myself
+    n = 1 + int((len(changes) ** 0.5)) + myself
     best = 0
     for arrangement in permutations(range(n)):
         acc = 0
-        for (a, b) in pairwise(arrangement + (arrangement[0],)):
+        for a, b in pairwise(arrangement + (arrangement[0],)):
             if n - myself in (a, b):
                 continue
             i1 = (n - 1 - myself) * a + b - (b > a)

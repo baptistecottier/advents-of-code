@@ -24,8 +24,10 @@ def solver(document: str) -> tuple[int, int]:
         >>> solver('[1,{"c":"red","b":2},3]')
         (6, 4)
     """
-    return (get_sum(loads(document), allow_red = True),
-            get_sum(loads(document), allow_red = False))
+    return (
+        get_sum(loads(document), allow_red=True),
+        get_sum(loads(document), allow_red=False),
+    )
 
 
 def get_sum(document: int | list | dict, allow_red: bool) -> int:
@@ -62,6 +64,6 @@ def get_sum(document: int | list | dict, allow_red: bool) -> int:
     if isinstance(document, list):
         return sum(get_sum(subdocument, allow_red) for subdocument in document)
     if isinstance(document, dict):
-        if allow_red or 'red' not in document.values():
+        if allow_red or "red" not in document.values():
             return get_sum(list(document.values()), allow_red)
     return 0

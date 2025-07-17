@@ -1,6 +1,7 @@
 """Advent of Code - Year 2015 - Day 20"""
 
-from math            import sqrt
+from math import sqrt
+
 
 def solver(puzzle_input: str) -> tuple[int, int]:
     """
@@ -47,17 +48,17 @@ def find_lucky_house(target: int, multiplier: int, max_houses_per_elf: int = -1)
 def bounded_divisors_sum(n: int, bound: int) -> int:
     """
     Calculate the sum of divisors and their corresponding quotients for a given number.
-    
+
     If bound is -1, it defaults to the square root of n. Otherwise, it considers
     divisors up to the specified bound.
-    
+
     Args:
         n: The number to find divisors for
         bound: Upper limit for divisors to consider (-1 for sqrt(n))
-    
+
     Returns:
         Sum of all divisors and their corresponding quotients
-    
+
     Examples:
         >>> bounded_divisors_sum(12, -1)
         28  # (1 + 12) + (2 + 6) + (3 + 4)

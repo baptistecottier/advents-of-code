@@ -1,7 +1,8 @@
 """Advent of Code - Year 2015 - Day 18"""
 
 from dataclasses import dataclass, replace
-from itertools   import product
+from itertools import product
+
 
 @dataclass
 class LightGrid:
@@ -14,6 +15,7 @@ class LightGrid:
         h (int): Height of the grid.
         always_on (set): Set of coordinates that are always on regardless of game rules.
     """
+
     on: set
     w: int
     h: int
@@ -34,7 +36,7 @@ def preprocessing(puzzle_input: str) -> LightGrid:
     x, y = 0, 0
     for y, line in enumerate(puzzle_input.splitlines()):
         for x, c in enumerate(line):
-            if c == '#':
+            if c == "#":
                 lights_on.add((x, y))
     lights = LightGrid(lights_on, x, y, {(0, 0), (0, y), (y, 0), (x, y)})
     return lights
@@ -42,7 +44,7 @@ def preprocessing(puzzle_input: str) -> LightGrid:
 
 def solver(lights: LightGrid, iterations: int = 100) -> tuple[int, int]:
     """
-    Solve the puzzle by calculating the number of lights that are on after a given number of 
+    Solve the puzzle by calculating the number of lights that are on after a given number of
     iterations.
 
     Parameters:
@@ -59,21 +61,23 @@ def solver(lights: LightGrid, iterations: int = 100) -> tuple[int, int]:
         >>> solver(grid, 4)
         (4, 7)
     """
-    return (apply_steps(replace(lights, always_on = set()), iterations),
-            apply_steps(lights, iterations))
+    return (
+        apply_steps(replace(lights, always_on=set()), iterations),
+        apply_steps(lights, iterations),
+    )
 
 
 def apply_steps(lights: LightGrid, iterations: int) -> int:
     """
     Applies the Game of Life rules to a light grid for a given number of iterations.
-    
+
     Args:
         lights: A LightGrid object containing the current state of lights
         iterations: The number of iterations to simulate
-    
+
     Returns:
         int: The number of lights that are on after all iterations
-        
+
     Example:
         >>> grid = LightGrid(width=5, height=5)
         >>> grid.on = {(1, 1), (2, 2), (3, 3)}
@@ -85,7 +89,7 @@ def apply_steps(lights: LightGrid, iterations: int) -> int:
 
     for _ in range(iterations):
         updated_lights = lights.always_on.copy()
-        for (x, y) in product(range(lights.w + 1), range(lights.h + 1)):
+        for x, y in product(range(lights.w + 1), range(lights.h + 1)):
             match sum((x + dx, y + dy) in lights.on for (dx, dy) in neighbours):
                 case 3:
                     updated_lights.add((x, y))

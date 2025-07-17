@@ -4,16 +4,16 @@
 def solver(instructions: str) -> tuple[int, int | None]:
     """
     Parse parenthesis instructions to track floor position.
-    
+
     Args:
         instructions: A string of parenthesis where '(' means go up, ')' means go down.
-        
+
     Returns:
         Tuple of (final floor number, position when basement is first entered or None)
-        
+
     Raises:
         ValueError: If any character other than '(' or ')' is encountered.
-        
+
     Examples:
         >>> solver("(())")
         (0, None)
@@ -34,9 +34,9 @@ def solver(instructions: str) -> tuple[int, int | None]:
     basement = None
 
     for i, c in enumerate(instructions, 1):
-        if c == '(':
+        if c == "(":
             floor += 1
-        elif c == ')':
+        elif c == ")":
             floor -= 1
         else:
             raise ValueError(f"Only parenthesis are accepted. Your instruction: {c}")

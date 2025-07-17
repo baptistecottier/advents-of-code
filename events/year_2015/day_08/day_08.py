@@ -24,5 +24,5 @@ def solver(strings: str) -> tuple[int, int]:
 
     for string in strings.splitlines():
         encoded += len(string) - len(literal_eval(string))
-        decoded += 2 + string.count('\"') + string.count('\\')
+        decoded += 2 + string.count('"') + string.count("\\")
     return (encoded, decoded)

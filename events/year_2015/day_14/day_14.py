@@ -6,26 +6,26 @@ from pythonfw.functions import extract_chunks
 def preprocessing(puzzle_input: str) -> list[list[int]]:
     """
     Extract numerical values from puzzle input in groups of 3.
-    
+
     Args:
         puzzle_input (list): Raw puzzle input
-        
+
     Returns:
         list: List of list containing (speed, duration, rest) values
-        
+
     Examples:
         >>> preprocessing(
             "Comet can fly 14 km/s for 10 seconds, but then must rest for 127 seconds."
             )
         [[14, 10, 127]]
-        
+
         >>> preprocessing(
             "Comet can fly 14 km/s for 10 seconds, but then must rest for 127 seconds.\\n
              Dancer can fly 16 km/s for 11 seconds, but then must rest for 162 seconds."
             )
         [[14, 10, 127], [16, 11, 162]]
     """
-    return extract_chunks(puzzle_input, 3, neg = False)
+    return extract_chunks(puzzle_input, 3, neg=False)
 
 
 def solver(reindeers_infos: list[list[int]], t: int = 2504) -> tuple[int, int]:
@@ -38,11 +38,11 @@ def solver(reindeers_infos: list[list[int]], t: int = 2504) -> tuple[int, int]:
 
     Returns:
         tuple[int, int]: (max_distance, max_points)
-        
+
     Examples:
         >>> solver([[14, 10, 127], [16, 11, 162]], 1000)
         (1120, 312)
-        
+
         >>> solver([[14, 10, 127]], 1000)
         (1120, 1000)
     """

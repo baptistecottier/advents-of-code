@@ -2,11 +2,11 @@
 
 # Standard imports
 from collections.abc import Callable
-from copy     import deepcopy
+from copy import deepcopy
 from operator import eq, lt, gt
 
 # Third-party import
-from parse    import parse, Result
+from parse import parse, Result
 
 
 def preprocessing(puzzle_input: str) -> list[dict]:
@@ -44,49 +44,60 @@ def solver(aunts: list) -> tuple[int, int]:
         Tuple containing:
             - The Sue number found using equality comparison for all properties
             - The Sue number found using custom comparison (gt for some, lt for others)
-    
+
     Example:
         >>> solver([{'number': 1, 'cats': 7}, {'number': 2, 'trees': 3}])
         (1, 2)
     """
-    return (find_sue(deepcopy(aunts), eq, eq),
-            find_sue(aunts, gt, lt))
+    return (find_sue(deepcopy(aunts), eq, eq), find_sue(aunts, gt, lt))
 
 
 def find_sue(aunts: list, op1: Callable, op2: Callable) -> int:
     """
     Find the aunt Sue that matches the MFCSAM reading based on compound comparisons.
-    
+
     Uses different comparison operators for specific compounds:
     - op1 for 'cats' and 'trees'
     - op2 for 'pomeranians' and 'goldfish'
     - equality check for all other compounds
-    
+
     Args:
         aunts: List of dictionaries, each representing an aunt with her compounds
         op1: Comparison operator for 'cats' and 'trees'
         op2: Comparison operator for 'pomeranians' and 'goldfish'
-    
+
     Returns:
         The number of the matching aunt or -1 if not found
-    
+
     Example:
         >>> aunts = [{'cats': 8}, {'goldfish': 3}, {'cars': 2, 'perfumes': 1}]
         >>> find_sue(aunts, operator.gt, operator.lt)
         3
     """
-    sue = {"children": 3, "cats":     7, "samoyeds": 2, "pomeranians":  3, "akitas":   0,
-           "vizslas":  0, "goldfish": 5, "trees":    3, "cars":         2, "perfumes": 1}
+    sue = {
+        "children": 3,
+        "cats": 7,
+        "samoyeds": 2,
+        "pomeranians": 3,
+        "akitas": 0,
+        "vizslas": 0,
+        "goldfish": 5,
+        "trees": 3,
+        "cars": 2,
+        "perfumes": 1,
+    }
     for n, compounds in enumerate(aunts, 1):
         for compound, value in list(compounds.items()):
-            if compound in ['cats', 'trees']:
+            if compound in ["cats", "trees"]:
                 if op1(value, sue[compound]):
                     del compounds[compound]
-                else: break
-            elif compound in ['pomeranians', 'goldfish']:
+                else:
+                    break
+            elif compound in ["pomeranians", "goldfish"]:
                 if op2(value, sue[compound]):
                     del compounds[compound]
-                else: break
+                else:
+                    break
             elif value == sue[compound]:
                 del compounds[compound]
         if compounds == {}:

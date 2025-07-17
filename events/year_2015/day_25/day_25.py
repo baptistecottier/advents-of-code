@@ -20,7 +20,7 @@ def preprocessing(puzzle_input: str) -> tuple[int, int]:
         >>> preprocessing("To continue, please consult the code grid in row 4, column 5.")
         (4, 5)
     """
-    numbers = [int(n) for n in findall(r'[0-9]+', puzzle_input)]
+    numbers = [int(n) for n in findall(r"[0-9]+", puzzle_input)]
     if len(numbers) != 2:
         raise ValueError("Puzzle input must contain two numbers")
     return numbers[0], numbers[1]
@@ -42,4 +42,4 @@ def solver(row: int, col: int) -> int:
         32451966
     """
     e = (row + col) * (row + col - 1) // 2 - row
-    return 20151125 * pow(252533, e, 33554393) % 33554393
+    yield 20151125 * pow(252533, e, 33554393) % 33554393

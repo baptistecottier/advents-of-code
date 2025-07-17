@@ -25,12 +25,13 @@ def preprocessing(puzzle_input: str) -> list[tuple[int, int]]:
         >>> preprocessing('^>v<')
         [(0, 1), (1, 0), (0, -1), (-1, 0)]
     """
-    converter  = {'^': (0,  1), '>': (1 , 0), 'v': (0, -1), '<': (-1, 0)}
+    converter = {"^": (0, 1), ">": (1, 0), "v": (0, -1), "<": (-1, 0)}
     directions = []
     for direction in puzzle_input:
         if direction not in "<>^v":
-            raise KeyError((f"Wrong input: {direction}."
-                            "Should be any of '<', '>', '^', and 'v'"))
+            raise KeyError(
+                (f"Wrong input: {direction}." "Should be any of '<', '>', '^', and 'v'")
+            )
         directions.append(converter[direction])
     return directions
 
@@ -46,14 +47,14 @@ def solver(directions: list[tuple[int, int]]) -> Iterator[int]:
 def deliver(directions: list[tuple[int, int]], n: int) -> int:
     """
     Simulates n deliverers moving according to given directions and delivering presents to houses.
-    
+
     Args:
         directions: List of (dx, dy) tuples representing movement directions.
         n: Number of deliverers.
-    
+
     Returns:
         Number of unique houses that received at least one present.
-        
+
     Examples:
         >>> deliver([(0, 1), (0, 1)], 1)  # Single deliverer going north twice
         3
@@ -61,7 +62,7 @@ def deliver(directions: list[tuple[int, int]], n: int) -> int:
         3
     """
     deliverers = [(0, 0) for _ in range(n)]
-    houses     = {(0, 0)}
+    houses = {(0, 0)}
 
     while directions:
         dx, dy = directions.pop(0)

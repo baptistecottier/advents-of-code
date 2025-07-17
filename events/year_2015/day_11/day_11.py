@@ -20,8 +20,7 @@ def solver(password: str) -> tuple[str, str]:
         ('abcdffaa', 'abcdffbb')
     """
     password = update_password(password)
-    return (update_password(password),
-            update_password(next_word(password)))
+    return (update_password(password), update_password(next_word(password)))
 
 
 def update_password(password: str) -> str:
@@ -77,8 +76,10 @@ def is_password_ok(password: str) -> bool:
     if sum(len(list(v)) > 1 for _, v in groupby(password)) <= 1:
         return False
     for i in range(len(password) - 2):
-        if (ord(password[i + 1]) - ord(password[i]) == 1
-            and ord(password[i + 2]) - ord(password[i]) == 2):
+        if (
+            ord(password[i + 1]) - ord(password[i]) == 1
+            and ord(password[i + 2]) - ord(password[i]) == 2
+        ):
             return True
     return False
 
@@ -92,7 +93,7 @@ def next_word(word: str) -> str:
 
     Returns:
         str: Next sequential word with incremented letters.
-        
+
     Examples:
         >>> next_word("abc")
         "abd"
@@ -103,8 +104,8 @@ def next_word(word: str) -> str:
     """
     letters = list(word)
     i = len(word) - 1
-    while letters[i] == 'z':
-        letters[i] = 'a'
+    while letters[i] == "z":
+        letters[i] = "a"
         i -= 1
     letters[i] = chr(ord(letters[i]) + 1)
     return "".join(letters)

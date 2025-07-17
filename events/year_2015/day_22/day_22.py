@@ -4,6 +4,7 @@ from collections.abc import Iterator
 from copy import deepcopy
 from dataclasses import dataclass
 
+
 @dataclass
 class Player:
     """
@@ -14,6 +15,7 @@ class Player:
         mana (int): Mana points available for casting spells.
         spent (int): Total mana spent by the player.
     """
+
     hp: int
     mana: int
     spent: int
@@ -28,8 +30,10 @@ class Boss:
         hp (int): Health points of the boss.
         damage (int): Damage points that boss can inflict on opponents.
     """
+
     hp: int
     damage: int
+
 
 def preprocessing(puzzle_input: str) -> Boss:
     """
@@ -79,7 +83,8 @@ def player_turn(
     player: Player,
     boss: Boss,
     hard_mode: bool,
-    winning_manas: set[int]) -> None:
+    winning_manas: set[int],
+) -> None:
     """
     Simulates the player's turn in the turn-based battle, applying spell effects, handling spell
     casting, and updating game state.
@@ -107,7 +112,7 @@ def player_turn(
     player.mana += sum(spell[4] for spell in spells)
 
     spells = [spell for spell in spells if spell[1] > 1]
-    for spell in spells :
+    for spell in spells:
         spell[1] -= 1
 
     if player.mana < 53:
@@ -120,18 +125,18 @@ def player_turn(
                 Player(player.hp + php, player.mana - cost, player.spent + cost),
                 Boss(boss.hp - bdmg, boss.damage),
                 hard_mode,
-                winning_manas
+                winning_manas,
             )
 
     ongoing_spells = [spell[0] for spell in spells]
-    for spell in [[113 , 6, 0, 7, 0], [173, 6, 3, 0, 0], [229 , 5, 0, 0, 101]]:
+    for spell in [[113, 6, 0, 7, 0], [173, 6, 3, 0, 0], [229, 5, 0, 0, 101]]:
         if spell[0] not in ongoing_spells:
             boss_turn(
                 deepcopy(spells) + [spell],
                 Player(player.hp, player.mana - spell[0], player.spent + spell[0]),
                 Boss(boss.hp, boss.damage),
                 hard_mode,
-                winning_manas
+                winning_manas,
             )
 
     return None
@@ -142,7 +147,8 @@ def boss_turn(
     player: Player,
     boss: Boss,
     hard_mode: bool,
-    winning_manas: set[int]) -> None:
+    winning_manas: set[int],
+) -> None:
     """
     Executes the boss's turn in the game, applying active spell effects, updating player and boss
     stats, and determining if the game should continue or end.
@@ -162,7 +168,7 @@ def boss_turn(
     Example:
         >>> boss_turn(active_spells, player, boss, False, set())
     """
-    if winning_manas!= set() and player.spent > min(winning_manas):
+    if winning_manas != set() and player.spent > min(winning_manas):
         return None
 
     boss.hp = boss.hp - sum(spell[2] for spell in spells)
@@ -170,14 +176,14 @@ def boss_turn(
         winning_manas.add(player.spent)
         return None
 
-    player.hp = player.hp -  max(1, boss.damage - sum(spell[3] for spell in spells))
+    player.hp = player.hp - max(1, boss.damage - sum(spell[3] for spell in spells))
     if player.hp <= 0:
         return None
 
     player.mana += sum(spell[4] for spell in spells)
 
     spells = [spell for spell in spells if spell[1] > 1]
-    for spell in spells :
+    for spell in spells:
         spell[1] -= 1
 
     return player_turn(deepcopy(spells), player, boss, hard_mode, winning_manas)

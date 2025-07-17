@@ -1,8 +1,9 @@
 """Advent of Code - Year 2015 - Day 24"""
 
 from itertools import combinations
-from math      import prod
+from math import prod
 from collections.abc import Iterator
+
 
 def preprocessing(puzzle_input: str) -> list[int]:
     """
@@ -60,7 +61,7 @@ def get_quantum_entanglement(packages: list[int], groups: int) -> int:
     target = sum(packages) // groups
     size = 1
     while True:
-        for package in combinations(packages,size):
+        for package in combinations(packages, size):
             if sum(package) == target:
                 return prod(package)
         size += 1

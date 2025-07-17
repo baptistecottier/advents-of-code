@@ -3,11 +3,13 @@
 from dataclasses import dataclass
 from itertools import product, combinations
 
-@dataclass(unsafe_hash = True)
+
+@dataclass(unsafe_hash=True)
 class Item:
     """
     Represents an item with cost, damage, and armor attributes.
     """
+
     cost: int
     damage: int
     armor: int
@@ -19,6 +21,7 @@ class Player:
     Player class representing an entity in the game with health points, damage, and armor
     attributes.
     """
+
     hp: int
     damage: int
     armor: int
@@ -38,7 +41,9 @@ def preprocessing(puzzle_input: str) -> tuple[int, int, int]:
         >>> preprocessing("Hit Points: 100\nDamage: 8\nArmor: 2")
         (100, 8, 2)
     """
-    (hp, damage, armor) = (int(item.split(": ")[1]) for item in puzzle_input.splitlines())
+    (hp, damage, armor) = (
+        int(item.split(": ")[1]) for item in puzzle_input.splitlines()
+    )
     return hp, damage, armor
 
 
@@ -62,9 +67,11 @@ def solver(hp: int, damage: int, armor: int) -> tuple[int, int]:
     return min(costs_if_player_wins[True]), max(costs_if_player_wins[False])
 
 
-def simulate_all_fights(boss_hp: int, boss_damage: int, boss_armor: int) -> dict[bool, set]:
+def simulate_all_fights(
+    boss_hp: int, boss_damage: int, boss_armor: int
+) -> dict[bool, set]:
     """
-    Simulates all possible fights between the player and the boss using different equipment 
+    Simulates all possible fights between the player and the boss using different equipment
     combinations.
 
     Args:
@@ -81,24 +88,45 @@ def simulate_all_fights(boss_hp: int, boss_damage: int, boss_armor: int) -> dict
         >>> results
         {True: {78, 95, 102, ...}, False: {148, 153, ...}}
     """
-    weapons =   {Item(8, 4, 0) , Item(10, 5, 0), Item(25, 6, 0), Item(40, 7, 0),
-                 Item(74, 8, 0)}
+    weapons = {
+        Item(8, 4, 0),
+        Item(10, 5, 0),
+        Item(25, 6, 0),
+        Item(40, 7, 0),
+        Item(74, 8, 0),
+    }
 
-    armors =    {Item(0, 0, 0) , Item(13, 0, 1), Item(31, 0, 2), Item(53, 0, 3),
-                 Item(75, 0, 4), Item(102, 0, 5)}
+    armors = {
+        Item(0, 0, 0),
+        Item(13, 0, 1),
+        Item(31, 0, 2),
+        Item(53, 0, 3),
+        Item(75, 0, 4),
+        Item(102, 0, 5),
+    }
 
-    rings =     {Item(0, 0, 0) , Item(0, 0, 0) , Item(20, 0, 1), Item(25, 1, 0),
-                 Item(40, 0, 2), Item(50, 2, 0), Item(80, 0, 3), Item(100, 3, 0)}
+    rings = {
+        Item(0, 0, 0),
+        Item(0, 0, 0),
+        Item(20, 0, 1),
+        Item(25, 1, 0),
+        Item(40, 0, 2),
+        Item(50, 2, 0),
+        Item(80, 0, 3),
+        Item(100, 3, 0),
+    }
 
     costs = {False: set(), True: set()}
 
-    for (weapon, armor, (left_ring, right_ring)) in product(weapons,
-                                                            armors,
-                                                            combinations(rings, 2)):
+    for weapon, armor, (left_ring, right_ring) in product(
+        weapons, armors, combinations(rings, 2)
+    ):
         equipment = (weapon, armor, left_ring, right_ring)
-        player = Player(100,
-                        max(1, sum(item.damage for item in equipment) - boss_armor),
-                        sum(item.armor  for item in equipment))
+        player = Player(
+            100,
+            max(1, sum(item.damage for item in equipment) - boss_armor),
+            sum(item.armor for item in equipment),
+        )
         boss = Player(boss_hp, max(1, boss_damage - player.armor), boss_armor)
 
         while boss.hp > 0 and player.hp > 0:

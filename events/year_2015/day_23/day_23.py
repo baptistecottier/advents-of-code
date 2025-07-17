@@ -6,7 +6,7 @@ from collections.abc import Callable, Iterator
 def preprocessing(puzzle_input: str) -> list[tuple[int, Callable, str | int]]:
     """
     Transform puzzle input into computer instructions.
-    
+
     Turns assembly-like instructions into tuples of pain and suffering.
     Warning: May cause uncontrollable urges to write more assembly code.
 
@@ -27,19 +27,19 @@ def preprocessing(puzzle_input: str) -> list[tuple[int, Callable, str | int]]:
     """
     ops = []
     for line in puzzle_input.splitlines():
-        data = line.split(' ')
+        data = line.split(" ")
         match data[0]:
-            case 'hlf':
+            case "hlf":
                 ops.append((lambda x: x // 2, data[1]))
-            case 'tpl':
+            case "tpl":
                 ops.append((lambda x: x * 3, data[1]))
-            case 'inc':
+            case "inc":
                 ops.append((lambda x: x + 1, data[1]))
-            case 'jmp':
-                ops.append((lambda : 1, (False, int(data[1]) - 1)))
-            case 'jie':
+            case "jmp":
+                ops.append((lambda: 1, (False, int(data[1]) - 1)))
+            case "jie":
                 ops.append((lambda x: (1 + x) % 2, (True, int(data[2]) - 1)))
-            case 'jio':
+            case "jio":
                 ops.append((lambda x: x == 1, (True, int(data[2]) - 1)))
     return ops
 
@@ -49,7 +49,7 @@ def solver(lines: list[tuple[Callable, str | tuple[bool, int]]]) -> Iterator[int
     Executes a program with different initial values for register 'a' and yields the results.
 
     Args:
-        lines (list[tuple[Callable, str | tuple[bool, int]]]): 
+        lines (list[tuple[Callable, str | tuple[bool, int]]]):
             A list of instructions, each as a tuple containing a callable and its arguments.
 
     Yields:
@@ -63,18 +63,20 @@ def solver(lines: list[tuple[Callable, str | tuple[bool, int]]]) -> Iterator[int
         yield execute_program(lines, a)
 
 
-def execute_program(lines: list[tuple[Callable, str | tuple[bool, int]]], a: int) -> int:
+def execute_program(
+    lines: list[tuple[Callable, str | tuple[bool, int]]], a: int
+) -> int:
     """
     Execute program with given instructions and initial 'a' value.
-    
+
     Args:
         lines: List of instruction tuples (operation type, function, parameter)
         a: Initial value for register 'a'
-        
+
     Returns:
         Final value of register 'b' after execution completes
     """
-    reg = {"a": a , "b": 0}
+    reg = {"a": a, "b": 0}
     line = -1
     while (line := line + 1) < len(lines):
         f, arg = lines[line]
@@ -85,4 +87,4 @@ def execute_program(lines: list[tuple[Callable, str | tuple[bool, int]]], a: int
             test_a, n = arg
             if (test_a is False) or f(reg["a"]) != 0:
                 line += n
-    return reg['b']
+    return reg["b"]
