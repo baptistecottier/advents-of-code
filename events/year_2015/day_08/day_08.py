@@ -1,4 +1,7 @@
-"""Advent of Code - Year 2015 - Day 08"""
+"""
+Advent of Code - Year 2015 - Day 8
+https://adventofcode.com/2015/day/8
+"""
 
 from ast import literal_eval
 

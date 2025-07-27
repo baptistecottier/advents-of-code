@@ -1,5 +1,9 @@
-"""Advent of Code - Year 2015 - Day 25"""
+"""
+Advent of Code - Year 2015 - Day 25
+https://adventofcode.com/2015/day/25
+"""
 
+from collections.abc import Iterator
 from re import findall
 
 
@@ -26,7 +30,7 @@ def preprocessing(puzzle_input: str) -> tuple[int, int]:
     return numbers[0], numbers[1]
 
 
-def solver(row: int, col: int) -> int:
+def solver(row: int, col: int) -> Iterator[int]:
     """
     Generates the code value at a given position in a grid using a specific formula.
 

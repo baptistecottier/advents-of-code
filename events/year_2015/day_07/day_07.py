@@ -1,4 +1,7 @@
-"""Advent of Code - Year 2015 - Day 07"""
+"""
+Advent of Code - Year 2015 - Day 7
+https://adventofcode.com/2015/day/7
+"""
 
 # Standard imports
 from collections.abc import Callable
@@ -97,7 +100,7 @@ def solver(circuit: list[Gate], wire: str = "a") -> tuple[int, int]:
     def run(circuit):
         wires = Register()
         for gate in circuit:
-            wires[gate.wire_out] = gate.op(*(wires.get(a) for a in gate.wire_in))
+            wires[gate.wire_out] = gate.op(*(wires.get_value(a) for a in gate.wire_in))
         return wires["a"] % pow(2, 16)
 
     signal = run(circuit)

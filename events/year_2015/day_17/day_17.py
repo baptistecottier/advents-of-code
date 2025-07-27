@@ -1,4 +1,7 @@
-"""Advent of Code - Year 2015 - Day 17"""
+"""
+Advent of Code - Year 2015 - Day 17
+https://adventofcode.com/2015/day/17
+"""
 
 from itertools import combinations
 

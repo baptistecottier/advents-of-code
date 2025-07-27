@@ -1,6 +1,12 @@
-"""Advent of Code - Year 2015 - Day 04"""
+"""
+Advent of Code - Year 2015 - Day 4
+https://adventofcode.com/2015/day/4
+"""
 
+# Stabdard imports
 from collections.abc import Iterator
+
+# First-party imports
 from pythonfw.functions import md5
 
 

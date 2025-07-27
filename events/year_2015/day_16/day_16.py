@@ -1,4 +1,7 @@
-"""Advent of Code - Year 2015 - Day 16"""
+"""
+Advent of Code - Year 2015 - Day 16
+https://adventofcode.com/2015/day/16
+"""
 
 # Standard imports
 from collections.abc import Callable

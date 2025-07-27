@@ -1,4 +1,7 @@
-"""Advent of Code - Year 2015 - Day 18"""
+"""
+Advent of Code - Year 2015 - Day 18
+https://adventofcode.com/2015/day/18
+"""
 
 from dataclasses import dataclass, replace
 from itertools import product

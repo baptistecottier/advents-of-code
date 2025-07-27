@@ -1,4 +1,7 @@
-"""Advent of Code - Year 2015 - Day 01"""
+"""
+Advent of Code - Year 2015 - Day 1
+https://adventofcode.com/2015/day/1
+"""
 
 
 def solver(instructions: str) -> tuple[int, int | None]:

@@ -1,4 +1,7 @@
-"""Advent of Code - Year 2015 - Day 15"""
+"""
+Advent of Code - Year 2015 - Day 15
+https://adventofcode.com/2015/day/15
+"""
 
 # Standard imports
 from collections import defaultdict

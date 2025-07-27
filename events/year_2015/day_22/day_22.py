@@ -1,4 +1,7 @@
-"""Advent of Code - Year 2015 - Day 22"""
+"""
+Advent of Code - Year 2015 - Day 22
+https://adventofcode.com/2015/day/22
+"""
 
 from collections.abc import Iterator
 from copy import deepcopy
