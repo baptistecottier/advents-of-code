@@ -1,44 +1,44 @@
-"""Advent of Code - Year 2017 - Day 12"""
+"""
+Advent of Code - Year 2017 - Day 12
+https://adventofcode.com/2017/day/12
+"""
+
 
 def preprocessing(puzzle_input: str) -> list[list[int]]:
     """
     Returns a list of lists containing pipe connections between programs.
-    
+
     Example
         >>> preprocessing(0 <-> 1, 2\n1 <-> 1\n2 <-> 0)
         [[1, 2], [1], [0]]
-    
+
     Note
         Left part of the connection is implicited stored as the list index
     """
     communications = []
     for communication in puzzle_input.splitlines():
-        left = communication.split(' <-> ')[1]
-        communications.append(list(map(int,left.split(', '))))
+        left = communication.split(" <-> ")[1]
+        communications.append(list(map(int, left.split(", "))))
     return communications
 
 
-def solver(communications: list[list[int]]):
+def solver(communications: list[list[int]]) -> tuple[int, int]:
     """
-    Identifies connected groups in a communication network and yields results.
-    
-    This function solves two problems:
-    1. First yield: Returns the size of group containing program 0
-    2. Second yield: Returns the total number of discrete groups in the network
-    
+    Find connected components in a communication network graph.
+
     Args:
-        communications (list[list[int]]): A list where each index i contains a list of programs
-                                         that can communicate with program i
-    
-    Yields:
-        int: First, the size of the group containing program 0
-        int: Then, the total number of groups in the network
-    
-    Algorithm:
-        Iteratively processes each unprocessed program, identifying all connected programs
-        using a breadth-first search approach to find complete communication groups.
+        communications: List where communications[i] contains nodes connected to node i
+
+    Returns:
+        tuple: (size of first group found, total number of groups)
+
+    Examples:
+        >>> solver([[1, 2], [0], [0, 3, 4], [2], [2]])
+        (3, 2)
+        >>> solver([[1], [0, 2], [1]])
+        (3, 1)
     """
-    n_groups = 0
+    groups = []
     size = len(communications)
     to_group = set(range(size))
 
@@ -52,8 +52,6 @@ def solver(communications: list[list[int]]):
             for item in pipes.copy():
                 pipes.update(communications[item])
         to_group.difference_update(group)
-        if n_groups == 0:
-            yield len(group)
-        n_groups += 1
+        groups.append(len(group))
 
-    yield n_groups
+    return groups[0], len(groups)

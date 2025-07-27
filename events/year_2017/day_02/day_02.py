@@ -1,7 +1,10 @@
-"""Advent of Code - Year 2017 - Day 02"""
+"""
+Advent of Code - Year 2017 - Day 2
+https://adventofcode.com/2017/day/2
+"""
 
-from itertools  import permutations
-from re         import split
+from itertools import permutations
+from re import split
 
 
 def preprocessing(puzzle_input: str) -> list[list[int]]:
@@ -20,18 +23,26 @@ def preprocessing(puzzle_input: str) -> list[list[int]]:
         >>> preprocessing("5 1 9 5\\n7 5 3\\n2 4 6 8")
         [[5, 1, 9, 5], [7, 5, 3], [2, 4, 6, 8]]
     """
-    lines = [[int(n) for n in split(r'\s', line)] for line in puzzle_input.splitlines()]
+    lines = [[int(n) for n in split(r"\s", line)] for line in puzzle_input.splitlines()]
     return lines
 
 
-def solver(spreadsheet: list[list[int]]):
+def solver(spreadsheet: list[list[int]]) -> tuple[int, int]:
     """
-    Calculates two checksums for a spreadsheet: the difference between max and min in each row,
-    and the sum of the quotients of the only divisible pair in each row.
+    Calculate checksum and checkdiv for a 2D spreadsheet.
 
-    Yields:
-        int: The checksum (sum of row max-min differences).
-        int: The sum of divisible quotients per row.
+    Args:
+        spreadsheet: List of lists containing integers representing rows and columns.
+
+    Returns:
+        tuple: (checksum, checkdiv) where checksum is sum of max-min differences
+               and checkdiv is sum of integer divisions from evenly divisible pairs.
+
+    Examples:
+        >>> solver([[5, 1, 9, 5], [7, 5, 3], [2, 4, 6, 8]])
+        (18, 9)
+        >>> solver([[5, 9, 2, 8], [9, 4, 7, 3]])
+        (8, 6)
     """
     checksum = 0
     checkdiv = 0
@@ -43,5 +54,4 @@ def solver(spreadsheet: list[list[int]]):
                 checkdiv += a // b
                 break
 
-    yield checksum
-    yield checkdiv
+    return checksum, checkdiv

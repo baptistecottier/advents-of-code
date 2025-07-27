@@ -1,9 +1,18 @@
-"""Advent of Code - Year 2017 - Day 14"""
+"""
+Advent of Code - Year 2017 - Day 14
+https://adventofcode.com/2017/day/14
+"""
 
+# Stadard import
+from collections.abc import Iterator
+
+# First-party import
 from events.year_2017.day_10 import day_10
 
-def solver(salt: str):
-    """Solves a maze puzzle based on knot hash.
+
+def solver(salt: str) -> Iterator[int]:
+    """
+    Solves a maze puzzle based on knot hash.
 
     Args:
         salt (str): Base string used to generate the knot hash.
@@ -11,15 +20,10 @@ def solver(salt: str):
     Yields:
         int: First, the total number of cells in the maze.
         int: Second, the number of connected regions in the maze.
-
-    Notes:
-        - Uses day_10.knot_hash to generate a 128x128 grid
-        - First part counts total occupied cells
-        - Second part counts connected regions using a BFS approach
     """
     maze = set()
     for row in range(128):
-        hex_hash = int(day_10.knot_hash(f"{salt}-{row}",256), 16)
+        hex_hash = int(day_10.knot_hash(f"{salt}-{row}", 256), 16)
         maze.update(set((row, i) for i in range(128) if hex_hash >> i & 1))
     yield len(maze)
 

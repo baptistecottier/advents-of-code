@@ -1,13 +1,16 @@
-"""Advent of Code - Year 2017 - Day 07"""
+"""
+Advent of Code - Year 2017 - Day 7
+https://adventofcode.com/2017/day/7
+"""
 
 from collections import defaultdict
-from parse       import parse, Result
+from parse import parse, Result
 
 
 def preprocessing(puzzle_input: str) -> dict[str, dict]:
     """
     Parse puzzle input as a dict, refering weight and children nodes
-    
+
     Example
         >>> preprocessing("ktlj (57)\nfwft (72) -> ktlj")
         {'ktlj': {'weight': 55, 'children': []},  }
@@ -17,49 +20,50 @@ def preprocessing(puzzle_input: str) -> dict[str, dict]:
         result = parse("{} ({:d}{}", node)
         if isinstance(result, Result):
             name, weight, children = result
-            children = children[5:].split(', ')
-            tree[name] = {"weight": weight, "children": children if children != [''] else []}
+            children = children[5:].split(", ")
+            tree[name] = {
+                "weight": weight,
+                "children": children if children != [""] else [],
+            }
     return tree
 
 
-def solver(tree: dict[str, dict]):
+def solver(tree: dict[str, dict]) -> tuple[str, int]:
     """
     Solve a tree balancing problem.
-    
+
     Find the root node and the unbalanced node's corrected weight.
-    
+
     Args:
         tree: Dictionary where keys are node names and values are node info dicts with
              'weight', 'children', and optionally 'sum_weight' keys.
-    
-    Yields:
-        str: The root node name
-        int: The corrected weight of the unbalanced node
     """
+    root = ""
     list_children = sum((node["children"] for node in tree.values()), [])
     for name in tree.keys():
         if name not in list_children:
             root = name
-            yield root
             break
 
     for name, infos in tree.items():
         tree[name]["sum_weight"] = sum_weight(tree, name)
 
-    for name, infos in sorted(tree.items(), key = lambda x : x[1]["sum_weight"]):
+    for name, infos in sorted(tree.items(), key=lambda x: x[1]["sum_weight"]):
         if infos["children"]:
             weights = defaultdict(list)
             for child in infos["children"]:
                 weights[tree[child]["sum_weight"]].append(child)
             if len(weights) != 1:
-                weights = sorted(weights.items(), key = lambda x : len(x[1]))
+                weights = sorted(weights.items(), key=lambda x: len(x[1]))
                 (u_weight, u_name), (b_weight, _) = weights
-                yield tree[u_name.pop()]["weight"] + b_weight - u_weight
-                return
+                return root, tree[u_name.pop()]["weight"] + b_weight - u_weight
+
+    raise ValueError("Impossible to balance the node's weight")
 
 
-def sum_weight(tree: dict[str, dict], child: str):
-    """Calculate the total weight of a node and all its children in a tree structure.
+def sum_weight(tree: dict[str, dict], child: str) -> int:
+    """
+    Calculate the total weight of a node and all its children in a tree structure.
 
     Args:
         tree (dict[str, dict]): A dictionary representing the tree where each node contains

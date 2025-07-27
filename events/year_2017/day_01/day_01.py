@@ -1,4 +1,8 @@
-"""Advent of Code - Year 2017 - Day 01"""
+"""
+Advent of Code - Year 2017 - Day 1
+https://adventofcode.com/2017/day/1
+"""
+
 
 def preprocessing(puzzle_input: str) -> list[int]:
     """
@@ -13,8 +17,9 @@ def preprocessing(puzzle_input: str) -> list[int]:
     return list(map(int, puzzle_input))
 
 
-def solver(captcha: list[int]):
-    """Solves the captcha puzzle by finding matching digits in a circular list.
+def solver(captcha: list[int]) -> tuple[int, int]:
+    """
+    Solves the captcha puzzle by finding matching digits in a circular list.
 
     This function takes a list of digits and returns a tuple of two sums:
     1. Sum of digits that match the next digit in the circular list
@@ -28,11 +33,10 @@ def solver(captcha: list[int]):
             - First sum: matches with next digit
             - Second sum: matches with halfway digit
     """
-    return (sum_matches(captcha, 1),
-            sum_matches(captcha, len(captcha) // 2))
+    return (sum_matches(captcha, 1), sum_matches(captcha, len(captcha) // 2))
 
 
-def sum_matches(captcha: list[int], delta: int):
+def sum_matches(captcha: list[int], delta: int) -> int:
     """
     Returns the sum of elements in 'captcha' that match the element 'delta' positions ahead,
     wrapping around the list.

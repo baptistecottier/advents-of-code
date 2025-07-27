@@ -1,14 +1,18 @@
-"""Advent of Code - Year 2017 - Day 19"""
+"""
+Advent of Code - Year 2017 - Day 19
+https://adventofcode.com/2017/day/19
+"""
 
 from pythonfw.classes import Point
+
 
 def preprocessing(puzzle_input: str) -> tuple[dict, Point]:
     """
     Process the puzzle input to extract the path and starting point.
-    
+
     Args:
         puzzle_input: A string representing the puzzle input.
-        
+
     Returns:
         A tuple containing:
         - A dictionary mapping coordinates (x, y) to characters in the path.
@@ -18,43 +22,32 @@ def preprocessing(puzzle_input: str) -> tuple[dict, Point]:
     start = Point()
     for y, row in enumerate(puzzle_input.splitlines()):
         for x, c in enumerate(row):
-            if c != ' ':
+            if c != " ":
                 if y == 0:
                     start = Point(x, y)
                 path[(x, y)] = c
     return path, start
 
 
-def solver(routing, pos):
+def solver(routing: dict, pos: Point) -> tuple[str, int]:
     """
-    Navigate through a routing path and collect letters encountered.
-    
-    Traverses a path defined by coordinates in 'routing', starting at 'pos', following
-    straight paths and turning at corners according to specific rules. Letters
-    encountered along the way are collected. The function yields the collected letters
-    and the total steps taken once the path ends.
-    
+    Navigate through a routing path, collecting letters and counting steps.
+
     Args:
-        routing (dict): A dictionary mapping (x, y) tuples to characters representing
-                       the path layout.
-        pos (object): An object with x, y attributes and move(dx, dy) and xy() methods
-                     representing the current position on the path.
-    
-    Yields:
-        str: The string of letters collected along the path.
-        int: The total number of steps taken to complete the path.
-    
-    Note:
-        The path is considered ended when no valid turn can be made.
+        routing: Dictionary mapping (x, y) coordinates to path characters.
+        pos: Point object with current position.
+
+    Returns:
+        Tuple of (collected letters, total steps).
     """
-    dx, dy  = 0, 1
+    dx, dy = 0, 1
     letters = ""
-    steps   = 1
+    steps = 1
 
     while 1:
         turn = False
         while (pos.x + dx, pos.y + dy) in routing:
-            if routing[pos.xy()] not in ' |-':
+            if routing[pos.xy()] not in " |-":
                 letters += routing[pos.xy()]
             pos.move(dx, dy)
             steps += 1
@@ -68,8 +61,7 @@ def solver(routing, pos):
                 break
 
         if not turn:
-            if routing.get(pos.xy(), ' ') not in ' |-':
+            if routing.get(pos.xy(), " ") not in " |-":
                 letters += routing[pos.xy()]
-            yield letters
-            yield steps
-            break
+            return letters, steps
+    raise ValueError("No path found!")

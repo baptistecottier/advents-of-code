@@ -1,24 +1,31 @@
-"""Advent of Code - Year 2017 - Day 13"""
+"""
+Advent of Code - Year 2017 - Day 13
+https://adventofcode.com/2017/day/13
+"""
 
-from collections.abc import Generator
+from collections.abc import Iterator
 from dataclasses import dataclass
+
 
 @dataclass
 class Scan:
-    """Class storing scan parameters"""
+    """
+    Class storing scan parameters"""
+
     depth: int
     range: int
 
     @property
     def duration(self):
-        """Return the duration of a scan"""
+        """
+        Return the duration of a scan"""
         return 2 * (self.range - 1)
 
 
 def preprocessing(puzzle_input: str) -> list[Scan]:
     """
     Stores depth, range for each scan given records in the puzzle input
-    
+
     Args:
         puzzle_input (str): raw string from input file
             Example:
@@ -37,21 +44,21 @@ def preprocessing(puzzle_input: str) -> list[Scan]:
     """
     scans = []
     for line in puzzle_input.splitlines():
-        scan_depth, scan_range = ([int(item) for item in line.split(': ')])
+        scan_depth, scan_range = [int(item) for item in line.split(": ")]
         scans.append(Scan(scan_depth, scan_range))
     return scans
 
 
-def solver(scans: list[Scan]) -> Generator[int, None, None]:
+def solver(scans: list[Scan]) -> Iterator[int]:
     """
     Solves the firewall traversal problem.
-    
+
     Part 1: Calculates the severity of being caught while traversing a firewall without delay.
     Part 2: Finds the minimum delay required to traverse the firewall without being caught.
-    
+
     Args:
         scans: List of Scan objects representing the firewall layers.
-    
+
     Yields:
         int: First, the total severity if starting with no delay.
                 Second, the minimum delay required to pass through without being caught.
