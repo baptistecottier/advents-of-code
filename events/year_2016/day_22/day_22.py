@@ -1,13 +1,21 @@
-"""Advent of Code - Year 2016 - Day 22"""
+"""
+Advent of Code - Year 2016 - Day 22
+https://adventofcode.com/2016/day/22
+"""
 
+# Standard imports
 from dataclasses import dataclass
 from itertools import product
+
+# First-class imports
 from pythonfw.functions import extract_chunks
-from pythonfw.classes   import Point
+from pythonfw.classes import Point
+
 
 @dataclass
 class Node:
-    """A class representing a node in a grid storage system.
+    """
+    A class representing a node in a grid storage system.
     This class represents a storage node with its position coordinates and storage metrics.
     Attributes:
         x (int): The x-coordinate position of the node in the grid.
@@ -18,6 +26,7 @@ class Node:
     Properties:
         pt: Returns a Point object representing the node's (x,y) coordinates.
     """
+
     x: int
     y: int
     size: int
@@ -37,26 +46,25 @@ class Node:
 
 def preprocessing(puzzle_input: str) -> list[Node]:
     """
-    Process the raw puzzle input to create a list of Node objects.
+    Parse puzzle input and create a list of Node objects.
 
     Args:
-        puzzle_input (str): Raw input string containing node parameters.
+        puzzle_input: Raw puzzle input string containing node data
 
     Returns:
-        list[Node]: List of Node objects created from the input parameters.
+        List of Node objects created from extracted parameters
 
-    Notes:
-        - Uses extract_chunks() helper function to parse input into chunks of 5 parameters
-        - Skips first line of input
-        - Creates Node objects by unpacking parameters using *args
+    Example:
+        >>> preprocessing("node1 data\nnode2 data\n")
+        [Node(...), Node(...)]
     """
     nodes = []
-    for param in extract_chunks(puzzle_input, take = 5, skip = 1):
+    for param in extract_chunks(puzzle_input, take=5, skip=1):
         nodes.append(Node(*param))
     return nodes
 
 
-def solver(nodes: list[Node]):
+def solver(nodes: list[Node]) -> tuple[int, int]:
     """
     Solves the puzzle by analyzing node usage and movement.
 
@@ -67,22 +75,26 @@ def solver(nodes: list[Node]):
         int: Number of viable node pairs.
         int: Minimum number of steps to move data to the target.
     """
-    yield sum(na.used < nb.avail for (na, nb) in product(nodes, nodes) if na.used)
-
     empty = None
     walls = set()
+    n_viable_node_pairs = sum(na.used < nb.avail for (na, nb) in product(nodes, nodes) if na.used)
+
     for node in nodes:
         if node.used == 0:
             empty = node.pt
         if node.used > 100:
             walls.add(node.pt)
-    pt_min = min(walls, key = lambda x: x.manhattan())
+    pt_min = min(walls, key=lambda x: x.manhattan())
     if pt_min.x != 0:
         wall = pt_min
         wall.move(-1, 0)
     else:
-        wall = max(walls, key = lambda x: x.manhattan())
+        wall = max(walls, key=lambda x: x.manhattan())
         wall.move(1, 0)
     width = max(node.x for node in nodes)
     if empty is not None:
-        yield empty.manhattan(wall.x, wall.y) + wall.manhattan(width, 0) + 5 * (width - 1)
+        return (n_viable_node_pairs,
+                empty.manhattan(wall.x, wall.y) +
+                wall.manhattan(width, 0) + 5 * (width - 1)
+                )
+    raise ValueError("No way to move data to the target")

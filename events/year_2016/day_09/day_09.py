@@ -1,53 +1,63 @@
-"""Advent of Code - Year 2016 - Day 09"""
+"""
+Advent of Code - Year 2016 - Day 9
+https://adventofcode.com/2016/day/9
+"""
 
+from collections.abc import Iterator
 from parse import parse, Result
 
 
-def solver(file: str):
+def solver(file: str) -> Iterator[int]:
     """
-    Solves Part 1 and Part 2 of Day 9 puzzle.
-
-    This function processes a file containing a compressed sequence and yields two values:
-    1. The decompressed length when markers are processed only once (Part 1)
-    2. The decompressed length when markers are processed recursively (Part 2)
+    Solve the decompression puzzle for both non-recursive and recursive modes.
 
     Args:
-        file (str): Path to the input file containing the compressed sequence
+        file (str): The compressed string to decompress.
 
     Yields:
-        int: The length of the decompressed sequence for Part 1
-        int: The length of the decompressed sequence for Part 2
+        int: Decompressed file size for non-recursive mode, then recursive mode.
+
+    Examples:
+        >>> list(solver("A(1x5)BC"))
+        [7, 7]
+        >>> list(solver("X(8x2)(3x3)ABCY"))
+        [20, 36]
     """
-    yield get_file_size(file, False)
-    yield get_file_size(file, True)
+    for recursivity in [False, True]:
+        yield get_file_size(file, recursivity)
 
 
 def get_file_size(file: str, recursivity: bool) -> int:
     """
-    Calculates the decompressed size of a file string using marker-based expansion.
+    Calculate the decompressed size of a file with compression markers.
 
     Args:
-        file (str): The input string representing the compressed file.
-        recursivity (bool): If True, recursively decompresses markers within markers. If False, only
-            decompresses top-level markers.
+        file (str): The compressed file content as a string
+        recursivity (bool): Whether to recursively decompress nested markers
 
     Returns:
-        int: The total length of the decompressed file.
+        int: The total size of the decompressed file
 
-    Notes:
-        Markers in the input string are of the form (AxB), meaning the next A characters should be
-        repeated B times. If recursivity is enabled, nested markers are also expanded recursively.
+    Raises:
+        ValueError: If the compression marker format is invalid
+
+    Examples:
+        >>> get_file_size("A(1x5)BC", False)
+        7
+        >>> get_file_size("A(2x2)BCD(2x2)EFG", False)
+        11
     """
     for i, c in enumerate(file):
-        if c == '(':
-            result = parse('({:d}x{:d}){}', file[i:])
+        if c == "(":
+            result = parse("({:d}x{:d}){}", file[i:])
             if isinstance(result, Result):
                 width, rep, _ = result
                 length = i + len(str(width) + str(rep)) + 3
                 size = i + get_file_size(file[length + width:], recursivity)
                 if recursivity is True:
-                    return size + rep * get_file_size(file[length: length + width], True)
+                    return size + rep * get_file_size(
+                        file[length: length + width], True
+                    )
                 return size + rep * len(file[length: length + width])
-            else:
-                raise ValueError("Incorrect input format. I can not decompress your file")
+            raise ValueError("Incorrect input format. I can not decompress your file")
     return len(file)

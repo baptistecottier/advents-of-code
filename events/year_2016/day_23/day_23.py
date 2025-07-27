@@ -1,4 +1,7 @@
-"""Advent of Code - Year 2016 - Day 23"""
+"""
+Advent of Code - Year 2016 - Day 23
+https://adventofcode.com/2016/day/23
+"""
 
 from math import factorial
 
@@ -18,19 +21,25 @@ def preprocessing(puzzle_input: str) -> list[list[str]]:
             - first element: operation name
             - second element: operation parameters
     """
-    return list(line.split(' ', 1) for line in puzzle_input.splitlines())
+    return list(line.split(" ", 1) for line in puzzle_input.splitlines())
 
 
-def solver(instructions: list[list[str]]):
+def solver(instructions: list[list[str]]) -> tuple[int, int]:
     """
-    Solves the puzzle by computing two results based on parsed instructions.
+    Solves the assembly code optimization problem by calculating factorial values with delta offset.
 
     Args:
-        instructions (list[list[str]]): The parsed instructions from the input.
+        instructions (list[list[str]]): List of assembly instructions where each instruction is a
+            list of strings.
 
-    Yields:
-        int: The computed result for two different cases.
+    Returns:
+        tuple[int, int]: Solutions for part 1 (factorial(7) + delta) and part 2
+            (factorial(12) + delta).
+
+    Example:
+        >>> instructions = [['cpy', '1', 'a'], ..., ['cpy', '81', 'c'], ['cpy', '94', 'd']]
+        >>> solver(instructions)
+        (12345, 479001694)
     """
     delta = int(instructions[19][1][:-2]) * int(instructions[20][1][:-2])
-    yield factorial(7) + delta
-    yield factorial(12) + delta
+    return factorial(7) + delta, factorial(12) + delta

@@ -1,4 +1,9 @@
-"""Advent of Code - Year 2016 - Day 12"""
+"""
+Advent of Code - Year 2016 - Day 12
+https://adventofcode.com/2016/day/12
+"""
+
+from collections.abc import Iterator
 
 
 def preprocessing(puzzle_input: str) -> list[list[str]]:
@@ -15,30 +20,21 @@ def preprocessing(puzzle_input: str) -> list[list[str]]:
     return [line.split() for line in puzzle_input.splitlines()]
 
 
-def solver(program: list[list[str]]):
+def solver(program: list[list[str]]) -> Iterator[int]:
     """
-    Solves a specific puzzle by processing a given program and generating results based on extracted
-    parameters.
+    Computes Fibonacci sequence values and yields results at specific positions.
+
 
     Args:
-        program (list[list[str]]): A list of instructions, where each instruction is a list of 
-        strings.
-            The function expects specific values at certain indices:
-                - program[2][1]: Used as the 'fibo' parameter (int).
-                - program[16][1]: Used as the 'fa' parameter (int).
-                - program[17][1]: Used as the 'fb' parameter (int).
+        program: List of instruction lists containing numeric values at specific indices.
 
     Yields:
-        int: The computed result after performing a modified Fibonacci sequence calculation and
-            applying additional arithmetic using 'fa' and 'fb'.
-
-    Note:
-        The function assumes the input 'program' has at least 18 instructions, each with at least 
-        two elements, and that the relevant elements can be converted to integers.
+        int: Fibonacci value plus product of two factors at position fibo, and final result after
+             fibo+8 iterations.
     """
     fibo = int(program[2][1])
-    fa   = int(program[16][1])
-    fb   = int(program[17][1])
+    fa = int(program[16][1])
+    fb = int(program[17][1])
     a, b = 1, 1
 
     for f in range(fibo + 8):

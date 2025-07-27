@@ -1,21 +1,29 @@
-"""Advent of Code - Year 2016 - Day 01"""
+"""
+Advent of Code - Year 2016 - Day 1
+https://adventofcode.com/2016/day/1
+"""
 
+# Standard import
 from dataclasses import dataclass
+
+# First class import
 from pythonfw.classes import Point
 
 
 @dataclass
 class Instruction:
-    """A class representing a movement instruction in a grid system.
+    """
+    A class representing a movement instruction in a grid system.
 
     The Instruction class holds information about movement in a 2D grid,
     including direction and distance.
 
     Attributes:
         dx (int): The change in x-coordinate (horizontal movement)
-        dy (int): The change in y-coordinate (vertical movement) 
+        dy (int): The change in y-coordinate (vertical movement)
         n_blocks (int): Number of blocks to move in the specified direction
     """
+
     dx: int
     dy: int
     n_blocks: int
@@ -23,63 +31,56 @@ class Instruction:
 
 def preprocessing(puzzle_input: str) -> list[Instruction]:
     """
-    Processes a string of directions into a list of Instructions.
+    Parses the puzzle input into a list of Instruction objects representing movement steps.
 
-    The function takes a string of comma-separated directions and converts them into a list
-    of Instructions for navigation. Each direction consists of a turn ('L' for left, 'R' for right)
-    followed by a number of steps.
-
-    The function maintains a direction state using 'face' which rotates through four cardinal
-    directions: North (0), West (1), South (2), and East (3).
-
-    Parameters:
-        data (str): A string of comma-separated directions (e.g., "L4, R3, L2")
+    Args:
+        puzzle_input (str): A string of comma-separated movement instructions (e.g., "R2, L3").
 
     Returns:
-        list[Instruction]: A list of Instruction objects, each containing:
-            - x-coordinate movement (-1, 0, or 1)
-            - y-coordinate movement (-1, 0, or 1)
-            - number of steps to take in that direction
+        list[Instruction]: A list of Instruction objects with direction and step count.
 
     Example:
-        >>> preprocessing("L4, R3")
-        [Instruction(0, -1, 4), Instruction(1, 0, 3)]
+        >>> preprocessing("R2, L3")
+        [Instruction(0, -1, 2), Instruction(-1, 0, 3)]
     """
-    ways = [(1,0) , (0, -1), (-1, 0), (0,1)]
-    face  = 0
+    directions = [(1, 0), (0, -1), (-1, 0), (0, 1)]
+    face = 0
     path = []
-    for step in puzzle_input.split(', '):
+    for step in puzzle_input.split(", "):
         match step[0]:
-            case 'L': face = (face - 1) % 4
-            case 'R': face = (face + 1) % 4
-        path.append(Instruction(*ways[face], int(step[1:])))
+            case "L":
+                face = (face - 1) % 4
+            case "R":
+                face = (face + 1) % 4
+        path.append(Instruction(*directions[face], int(step[1:])))
     return path
 
 
-def solver(path: list[Instruction]):
+def solver(path: list[Instruction]) -> tuple[int, int]:
     """
-    Solves the navigation puzzle by processing a list of movement instructions.
+    Solves the navigation puzzle by following a list of instructions and tracking visited positions.
 
     Args:
-        path (list[Instruction]): A list of Instruction objects, each specifying a direction and the
-            number of blocks to move.
+        path (list[Instruction]): A list of movement instructions.
 
     Returns:
-        tuple[int, Optional[int]]: A tuple containing:
-            - The Manhattan distance from the starting point to the final position after processing all
-              instructions.
-            - The Manhattan distance to the first location visited twice, or None if no location is
-              visited twice.
+        tuple[int, int]: A tuple containing:
+            - The Manhattan distance from the starting point to the final position.
+            - The Manhattan distance to the first location visited twice (0 if none).
+
+    Example:
+        >>> solver([Instruction(0, -1, 2), Instruction(-1, 0, 3)])
+        (5, 0)
     """
-    pos     = Point()
+    pos = Point()
     visited = {pos.xy()}
-    twice   = None
+    twice = 0
 
     while path:
         instr = path.pop(0)
         for _ in range(instr.n_blocks):
             pos.move(instr.dx, instr.dy)
-            if twice is None and pos.xy() in visited:
+            if twice == 0 and pos.xy() in visited:
                 twice = pos.manhattan()
             visited.add(pos.xy())
-    return (pos.manhattan(), twice)
+    return pos.manhattan(), twice

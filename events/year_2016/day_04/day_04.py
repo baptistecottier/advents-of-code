@@ -1,6 +1,11 @@
-"""Advent of Code - Year 2016 - Day 04"""
+"""
+Advent of Code - Year 2016 - Day 4
+https://adventofcode.com/2016/day/4
+"""
+
+from collections import Counter
 from dataclasses import dataclass
-import collections
+
 
 @dataclass
 class Room:
@@ -19,62 +24,103 @@ class Room:
     cs: str
 
     @property
-    def decrypted_name(self):
-        """Returns the decrypted room name by shifting each letter by the sector ID.
+    def decrypted_name(self) -> str:
+        """
+        Decrypt the room name by shifting each letter by the room ID.
+
+        Each letter is shifted forward in the alphabet by the room ID amount,
+        wrapping around from 'z' to 'a'. Non-alphabetic characters are unchanged.
 
         Returns:
-            str: The decrypted name using Caesar cipher with sector ID as shift
+            str: The decrypted room name.
+
+        Examples:
+            >>> room = Room(name="qzmt-zixmtkozy-ivhz", id=343)
+            >>> room.decrypted_name()
+            'very encrypted name'
+
+            >>> room = Room(name="abc", id=1)
+            >>> room.decrypted_name()
+            'bcd'
         """
-        return ''.join(chr(97 + (ord(c) - 97 + self.id) % 26) for c in self.name)
+        return "".join(chr(97 + (ord(c) - 97 + self.id) % 26) for c in self.name)
 
     @property
-    def real_checksum(self):
+    def real_checksum(self) -> str:
         """
-        Generates 5-letter checksum from most common letters in name.
+        Calculate the real checksum of the room name.
+
+        Returns the 5 most common letters in the room name, with ties broken
+        alphabetically. Letters are sorted before counting to ensure consistent
+        tie-breaking.
+
         Returns:
-            str: Checksum string from 5 most frequent letters
+            str: A 5-character string representing the checksum.
+
+        Examples:
+            >>> room = Room("aaaaa-bbb-z-y-x")
+            >>> room.real_checksum()
+            'abxyz'
+
+            >>> room = Room("a-b-c-d-e-f-g-h")
+            >>> room.real_checksum()
+            'abcde'
         """
-        common_letters = collections.Counter(sorted(self.name)).most_common()[:5]
-        return ''.join(letter for letter, _ in common_letters)
+        common_letters = Counter(sorted(self.name)).most_common()[:5]
+        return "".join(letter for letter, _ in common_letters)
 
 
 def preprocessing(puzzle_input: str) -> list[Room]:
-    """Process room data into Room objects.
+    """
+    Parse puzzle input into a list of Room objects.
+
+    Extracts room names (with dashes removed), IDs, and checksums from formatted input strings.
+    Each line should contain a room in format: "name-parts-123[abcde]"
 
     Args:
-        data (str): Raw room data string with room names, IDs and checksums.
+        puzzle_input (str): Multi-line string with room data
 
     Returns:
-        list[Room]: List of Room objects with parsed name, ID and checksum.
+        list[Room]: List of Room objects with parsed name, ID, and checksum
+
+    Examples:
+        >>> preprocessing("aaaaa-bbb-z-y-x-123[abxyz]")
+        [Room("aaaaabbbbzyx", 123, "abxyz")]
+
+        >>> preprocessing("a-b-c-d-e-f-g-h-987[abcde]\\ntotally-real-room-200[decoy]")
+        [Room("abcdefgh", 987, "abcde"), Room("totallyrealroom", 200, "decoy")]
     """
     rooms = []
     for room in puzzle_input.split():
-        room_name = room[:-11].replace('-','')
+        room_name = room[:-11].replace("-", "")
         room_id = int(room[-10:-7])
         room_cs = room[-6:-1]
         rooms.append(Room(room_name, room_id, room_cs))
     return rooms
 
 
-def solver(rooms: list[Room]):
+def solver(rooms: list[Room]) -> tuple[int, int]:
     """
-    Processes a list of Room objects to solve two related puzzles.
-
-    For each room, if the decrypted name contains the substring 'objects', yields a tuple (2, room.id).
-    Also, if the room's calculated checksum matches its real checksum, adds the room's id to a running sum.
-    At the end, yields a tuple (1, sum_id), where sum_id is the sum of ids of all valid rooms.
+    Solve room validation and find storage room.
 
     Args:
-        rooms (list[Room]): List of Room objects to process.
+        rooms: List of Room objects with id, decrypted_name, cs, and real_checksum attributes.
 
-    Yields:
-        tuple[int, int]: (2, room.id) for rooms with 'objects' in their decrypted name.
-        tuple[int, int]: (1, sum_id) after processing all rooms, where sum_id is the sum of valid room ids.
+    Returns:
+        tuple[int, int]: Sum of valid room IDs and storage room ID (-1 if not found).
+
+    Examples:
+        >>> rooms = [Room(id=123, decrypted_name="storage objects", cs="abc", real_checksum="abc")]
+        >>> solver(rooms)
+        (123, 123)
     """
     sum_id = 0
+    storage_room = -1
+
     for room in rooms:
-        if 'objects' in room.decrypted_name:
-            yield (2, room.id)
+        if "objects" in room.decrypted_name:
+            storage_room = room.id
         if room.cs == room.real_checksum:
             sum_id += room.id
-    yield (1, sum_id)
+
+    return sum_id, storage_room

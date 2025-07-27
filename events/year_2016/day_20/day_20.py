@@ -1,7 +1,12 @@
-"""Advent of Code - Year 2016 - Day 20"""
+"""
+Advent of Code - Year 2016 - Day 20
+https://adventofcode.com/2016/day/20
+"""
+
 
 def preprocessing(puzzle_input: str) -> set[tuple[int, int]]:
-    """Converts puzzle input into a set of blacklisted IP ranges.
+    """
+    Converts puzzle input into a set of blacklisted IP ranges.
 
     Args:
         puzzle_input (str): Raw puzzle input containing IP ranges
@@ -11,57 +16,60 @@ def preprocessing(puzzle_input: str) -> set[tuple[int, int]]:
     """
     blacklist = set()
     for element in puzzle_input.splitlines():
-        inf, sup = (int(item) for item in element.split('-'))
+        inf, sup = (int(item) for item in element.split("-"))
         blacklist.add((inf, sup))
     return blacklist
 
 
-def solver(intervales: set[tuple[int, int]], max_val: int = 4_294_967_295):
+def solver(intervales: set[tuple[int, int]], max_val: int = 4_294_967_295) -> tuple[int, int]:
     """
-    Yields the first allowed IP and then the count of allowed IPs not covered by given intervals.
+    Find the first allowed IP address and count total allowed IPs within blocked intervals.
 
     Args:
-        intervales (set[tuple[int, int]]): Set of (start, end) tuples representing blocked IP 
-                                           ranges.
-        max_val (int, optional): Maximum IP value to consider. Defaults to 4_294_967_295.
+        intervales: Set of blocked IP ranges as (start, end) tuples
+        max_val: Maximum IP address value (default: 4,294,967,295)
 
-    Yields:
-        int: The first allowed IP address.
-        int: The total number of allowed IP addresses.
+    Returns:
+        Tuple of (first_allowed_ip, total_allowed_count)
+
+    Examples:
+        >>> solver({(5, 8), (0, 2), (4, 7)}, 9)
+        (3, 2)
+        >>> solver({(0, 0), (2, 2)}, 4)
+        (1, 3)
     """
     counter_ip = 0
-    allowed_ip =next_allowed_ip(0, intervales)
-    yield allowed_ip
+    allowed_ip = next_allowed_ip(0, intervales)
+    first_allowed_ip = allowed_ip
     while allowed_ip <= max_val:
-        intervales  = set((inf , sup) for (inf , sup) in intervales if sup > allowed_ip)
-        min_ip      = min(intervales, key = lambda item: item[0], default=[max_val + 1])[0]
+        intervales = set((inf, sup) for (inf, sup) in intervales if sup > allowed_ip)
+        min_ip = min(intervales, key=lambda item: item[0], default=[max_val + 1])[0]
         counter_ip += min_ip - allowed_ip
-        allowed_ip  = next_allowed_ip(min_ip, intervales)
-    yield counter_ip
+        allowed_ip = next_allowed_ip(min_ip, intervales)
+    return first_allowed_ip, counter_ip
 
 
 def next_allowed_ip(start: int, intervales: set[tuple[int, int]]) -> int:
     """
-    Find the next IP address that is not within any blocked interval.
-
-    This function recursively searches for the first allowed IP address starting from 
-    a given value, considering a list of blocked IP ranges.
+    Find the next allowed IP address starting from a given position.
 
     Args:
-        start (int): The IP address to start searching from
-        intervales (list[tuple[int, int]]): List of tuples containing (lower, upper) bounds 
-            of blocked IP ranges
+        start: Starting IP address to check
+        intervales: Set of blocked IP ranges as (min, max) tuples (inclusive)
 
     Returns:
-        int: The next allowed IP address that doesn't fall within any blocked range
+        First IP address >= start that is not in any blocked range
 
-    Example:
-        >>> intervals = [(5,8), (0,2), (4,7)]
-        >>> next_allowed_ip(1, intervals)
+    Examples:
+        >>> next_allowed_ip(0, {(0, 2), (5, 7)})
         3
+        >>> next_allowed_ip(10, {(0, 2), (5, 7)})
+        10
+        >>> next_allowed_ip(1, {(0, 5), (6, 10)})
+        11
     """
     for inf, sup in intervales:
         if start in range(inf, sup + 1):
             intervales = set((inf, sup) for (inf, sup) in intervales if sup > start)
-            return next_allowed_ip(sup + 1 ,intervales)
+            return next_allowed_ip(sup + 1, intervales)
     return start

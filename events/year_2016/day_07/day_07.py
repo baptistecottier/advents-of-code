@@ -1,10 +1,14 @@
-"""Advent of Code - Year 2016 - Day 07"""
+"""
+Advent of Code - Year 2016 - Day 7
+https://adventofcode.com/2016/day/7
+"""
 
 import re
 
 
 def preprocessing(puzzle_input: str) -> list[tuple[str, str]]:
-    """Process raw puzzle input to extract network addresses.
+    """
+    Process raw puzzle input to extract network addresses.
 
     This function takes a string input containing network addresses and splits each address
     into supernet and hypernet sequences. Square brackets [] in the input denote hypernet sequences.
@@ -23,32 +27,25 @@ def preprocessing(puzzle_input: str) -> list[tuple[str, str]]:
     """
     adresses = []
     for adress in puzzle_input.splitlines():
-        values =  re.split(r'\[|\]', adress)
-        supernet, hypernet = values[::2] , values[1:][::2]
-        adresses.append(('-'.join(supernet), '_'.join(hypernet)))
+        values = re.split(r"\[|\]", adress)
+        supernet, hypernet = values[::2], values[1:][::2]
+        adresses.append(("-".join(supernet), "_".join(hypernet)))
     return adresses
 
 
-def solver(adresses: list[tuple[str, str]]):
+def solver(adresses: list[tuple[str, str]]) -> tuple[int, int]:
     """
-    Analyzes a list of address tuples to determine support for TLS and SSL protocols.
-
-    Each address is represented as a tuple of two strings: the supernet sequence (sn) and the hypernet
-    sequence (hn). The function counts how many addresses support TLS (Transport-Layer Snooping) and
-    SSL (Super-Secret Listening) based on the following rules:
-
-    - TLS support: The supernet sequence contains an ABBA pattern and the hypernet sequence does not.
-    - SSL support: There exists an ABA pattern in the supernet sequence with a corresponding BAB pattern
-        in the hypernet sequence.
+    Solve TLS and SSL support counting for IP addresses.
 
     Args:
-            adresses (list[tuple[str, str]]): List of tuples, each containing the supernet and hypernet
-                    sequences as strings.
+        adresses: List of tuples containing (supernet, hypernet) sequences
 
     Returns:
-            tuple[int, int]: A tuple containing two integers:
-                    - The number of addresses that support TLS.
-                    - The number of addresses that support SSL.
+        Tuple of (TLS support count, SSL support count)
+
+    Example:
+        >>> solver([("abba-qrst", "mnop"), ("abcd-xyyx", "bddb"), ("aba-xyz", "bab")])
+        (1, 1)
     """
     cnt_tls_support = 0
     cnt_ssl_support = 0
@@ -63,10 +60,10 @@ def solver(adresses: list[tuple[str, str]]):
 
 def has_aba(sn: str, hn: str) -> bool:
     """
-    Check if a supernet sequence contains an ABA pattern and its corresponding BAB pattern exists 
+    Check if a supernet sequence contains an ABA pattern and its corresponding BAB pattern exists
     in hypernet.
 
-    An ABA pattern is any three-character sequence which consists of the same characters in first 
+    An ABA pattern is any three-character sequence which consists of the same characters in first
     and last positions, and a different character in the middle position.
     A corresponding BAB pattern is the same sequence with the inner and outer characters swapped.
 

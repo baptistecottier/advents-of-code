@@ -1,10 +1,13 @@
-"""Advent of Code - Year 2016 - Day 14"""
+"""
+Advent of Code - Year 2016 - Day 14
+https://adventofcode.com/2016/day/14
+"""
 
-from re   import search
+from re import search
 from pythonfw import functions
 
 
-def solver(salt: str):
+def solver(salt: str) -> tuple[int, int]:
     """
     Generates the 64th one-time pad key index for given salt using two different hash stretching
     factors.
@@ -19,26 +22,23 @@ def solver(salt: str):
     Note:
         The function relies on the external `get_otp_key` function to compute the key indices.
     """
-    yield get_otp_key(salt, 1)[63]
-    yield get_otp_key(salt, 2017)[63]
+    return get_otp_key(salt)[63], get_otp_key(salt, 2017)[63]
 
 
-def get_otp_key(salt: str, recursions: int) -> list[int]:
+def get_otp_key(salt: str, recursions: int = 1) -> list[int]:
     """
-    Finds the indices of one-time pad (OTP) keys based on MD5 hashes and triplet/quintuplet 
-    patterns.
-
-    For each index, generates an MD5 hash (optionally stretched), and checks for quintuplets. If a
-    quintuplet is found, searches the previous 1000 hashes for a triplet of the same character. If
-    found, adds the index of the triplet to the set of OTP keys. Stops after finding 64 keys and
-    processes 1000 more indices to ensure all valid keys are found.
+    Generate One-Time Password keys by finding MD5 hashes with specific patterns.
 
     Args:
-        salt (str): The salt string used as a prefix for hashing.
-        recursions (int): Number of times to recursively apply the MD5 hash.
+        salt: Base string to append indices to for hashing
+        recursions: Number of times to recursively hash each value (default: 1)
 
     Returns:
-        list[int]: Sorted list of indices corresponding to the found OTP keys.
+        Sorted list of indices that form valid OTP keys (up to 64 keys)
+
+    Note:
+        A valid key has a triplet pattern and a corresponding quintuplet pattern within the next
+        1000 indices.
     """
     hashes = {}
     index, keys = 0, set()
@@ -61,7 +61,7 @@ def get_otp_key(salt: str, recursions: int) -> list[int]:
                     else:
                         candidate_hash = rec_md5(f"{salt}{candidate}", recursions)
                         hashes[candidate] = candidate_hash
-                    triplets = search(r'(\w)?\1\1', candidate_hash)
+                    triplets = search(r"(\w)?\1\1", candidate_hash)
                     if triplets and triplets.group() == target:
                         keys.add(candidate)
         index += 1
@@ -69,7 +69,8 @@ def get_otp_key(salt: str, recursions: int) -> list[int]:
 
 
 def rec_md5(m: str, recursions: int) -> str:
-    """Recursively applies MD5 hashing to a string.
+    """
+    Recursively applies MD5 hashing to a string.
 
     Args:
         m (str): Input string to hash
