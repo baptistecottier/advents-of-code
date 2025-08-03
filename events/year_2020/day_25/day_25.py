@@ -3,6 +3,8 @@ Advent of Code - Year 2020 - Day 25
 https://adventofcode.com/2020/day/25
 """
 
+from collections.abc import Iterator
+
 
 def preprocessing(puzzle_input: str) -> tuple[int, int]:
     """
@@ -15,7 +17,7 @@ def preprocessing(puzzle_input: str) -> tuple[int, int]:
     return p, q
 
 
-def solver(p: int, q: int):
+def solver(p: int, q: int) -> Iterator[int]:
     """
     Finds the encryption key by determining the loop size for one of the public keys and applying
     the transformation with the other key.

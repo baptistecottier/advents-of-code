@@ -3,6 +3,10 @@ Advent of Code - Year 2018 - Day 21
 https://adventofcode.com/2018/day/21
 """
 
+# Standard imports
+from collections.abc import Iterator
+
+# First party import
 from events.year_2018.day_19.day_19 import update_reg
 
 
@@ -42,7 +46,7 @@ def preprocessing(puzzle_input: str) -> tuple[int,
 
 def solver(ip: int,
            instructions: list[tuple[str, int, int, int]],
-           inst_with_reg_0: tuple[int, int]):
+           inst_with_reg_0: tuple[int, int]) -> Iterator[int]:
     """
     Simulates the program and yields values of the register involved with register 0 at the special
     instruction.
@@ -58,13 +62,13 @@ def solver(ip: int,
         before repetition).
     """
     line_inst_with_0, register_with_0 = inst_with_reg_0
-    expected = None
+    expected = 0
     visited = set()
     reg = [0, 0, 0, 0, 0, 0]
 
     while True:
         if reg[ip] == line_inst_with_0:
-            if expected is None:
+            if expected == 0:
                 yield reg[register_with_0]
             if reg[register_with_0] in visited:
                 yield expected

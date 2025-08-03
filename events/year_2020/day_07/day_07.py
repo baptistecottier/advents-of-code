@@ -42,7 +42,7 @@ def solver(rules: dict[str, list[tuple[int, str]]]) -> tuple[int, int]:
     return len(answer), count_bags("shiny gold", rules) - 1
 
 
-def count_bags(color: str, rules):
+def count_bags(color: str, rules) -> int:
     """
     Recursively counts the total number of bags contained within a bag of the given color,
     including itself, based on the provided containment rules.

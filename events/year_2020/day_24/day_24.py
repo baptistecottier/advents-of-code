@@ -26,7 +26,7 @@ def preprocessing(puzzle_input: str) -> set[tuple[int, int]]:
     return tiles
 
 
-def solver(tiles: set[tuple[int, int]]):
+def solver(tiles: set[tuple[int, int]]) -> tuple[int, int]:
     """
     Simulates 100 iterations of a tile-flipping process on a hexagonal grid and returns the initial
     and final counts of black tiles.

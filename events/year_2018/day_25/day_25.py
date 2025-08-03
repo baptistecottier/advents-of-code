@@ -3,6 +3,10 @@ Advent of Code - Year 2018 - Day 25
 https://adventofcode.com/2018/day/25
 """
 
+# Standard imports
+from collections.abc import Iterator
+
+# First party imports
 from pythonfw.functions import extract_chunks
 
 
@@ -11,7 +15,7 @@ def preprocessing(puzzle_input: str) -> list[list[int]]:
     return extract_chunks(puzzle_input, 4)
 
 
-def solver(spacetime: list[list[int]]):
+def solver(spacetime: list[list[int]]) -> Iterator[int]:
     """
     Groups spacetime coordinates into constellations based on Manhattan distance and returns the
     total count.

@@ -49,7 +49,8 @@ def solver(
     return counter, prod(ticket[candidates[i][0]] for i in range(6))
 
 
-def invalid_detector(rules: list[list[chain]], nearby: list[list[int]]):
+def invalid_detector(rules: list[list[chain]], nearby: list[list[int]]
+                     ) -> tuple[int, list[list[int]]]:
     """
     Detects and counts invalid values in nearby tickets based on provided rules, and filters out
     invalid tickets.

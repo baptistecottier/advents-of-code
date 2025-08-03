@@ -5,6 +5,7 @@ https://adventofcode.com/2018/day/17
 
 # Standard imports
 from collections import deque
+from collections.abc import Iterator
 import re
 
 # First-party imports
@@ -31,7 +32,7 @@ def preprocessing(puzzle_input: str) -> set[tuple[int, int]]:
     return clay
 
 
-def solver(clay: set[tuple[int, int]]):
+def solver(clay: set[tuple[int, int]]) -> Iterator[int]:
     """
     Simulates water flow through clay formations to find all reachable water positions.
     """
@@ -44,6 +45,8 @@ def solver(clay: set[tuple[int, int]]):
             while (x, y + 1) not in clay and y > max_depth:
                 water.add((x, y + 1))
                 y += 1
+    yield 0
+    yield 0
 
 
 def draw(clay: set[tuple[int, int]]) -> None:

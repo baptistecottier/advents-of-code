@@ -13,7 +13,7 @@ def preprocessing(puzzle_input: str) -> list[int]:
     return list(map(int, puzzle_input.split(',')))
 
 
-def solver(integers: list[int]):
+def solver(integers: list[int]) -> tuple[int, int]:
     """
     Solves a puzzle by running a Program with given integers and yields two computed results based
     on memory manipulations.
@@ -26,7 +26,7 @@ def solver(integers: list[int]):
     program.run()
     modulo = program.memory[0] - delta
 
-    yield delta + 12 * modulo + 2
-
     target = 19_690_720 - delta
-    yield target // modulo * 100 + (target % modulo)
+
+    return (delta + 12 * modulo + 2,
+            target // modulo * 100 + (target % modulo))

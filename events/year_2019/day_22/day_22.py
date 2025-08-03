@@ -68,7 +68,7 @@ def solver(shuffle: list[tuple[str, int]]) -> tuple[int, int]:
             rev_proceed(shuffle, 119315717514047, 2020, 101741582076661))
 
 
-def proceed(shuffle: list[tuple[str, int]], nb_cards: int, pos: int):
+def proceed(shuffle: list[tuple[str, int]], nb_cards: int, pos: int) -> int:
     """
     Processes a sequence of shuffle operations on a deck of cards and returns the final position of
     a specified card.
@@ -81,7 +81,7 @@ def proceed(shuffle: list[tuple[str, int]], nb_cards: int, pos: int):
     return pos
 
 
-def rev_proceed(shuffle: list[tuple[str, int]], nb_cards: int, index, rep=1):
+def rev_proceed(shuffle: list[tuple[str, int]], nb_cards: int, index, rep=1) -> int:
     """
     Computes the final position of a card after applying a sequence of reverse shuffle operations
     multiple times on a deck of cards.

@@ -6,11 +6,12 @@ https://adventofcode.com/2019/day/20
 from collections import defaultdict, deque
 
 
-def preprocessing(puzzle_input: str) -> tuple[
-        list[str],
-        tuple[int, int],
-        tuple[int, int],
-        dict[tuple[int, int], tuple[int, int]]]:
+def preprocessing(puzzle_input: str
+                  ) -> tuple[
+                        list[str],
+                        tuple[int, int],
+                        tuple[int, int],
+                        dict[tuple[int, int], tuple[int, int]]]:
     """
     Parses the puzzle input into a grid, start and end positions, and a mapping of portal gates.
     """
@@ -51,7 +52,8 @@ def solver(
         grid: list[str],
         start: tuple[int, int],
         end: tuple[int, int],
-        gates: dict[tuple[int, int], tuple[int, int]]):
+        gates: dict[tuple[int, int], tuple[int, int]]
+        ) -> tuple[int, int]:
     """
     Finds the shortest path length(s) from a start to an end position in a grid with portals and
     recursive levels, yielding results as they are found.

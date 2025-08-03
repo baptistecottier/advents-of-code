@@ -3,6 +3,7 @@ Advent of Code - Year 2020 - Day 17
 https://adventofcode.com/2020/day/17
 """
 
+from collections.abc import Iterator
 from itertools import product
 
 
@@ -20,7 +21,7 @@ def preprocessing(puzzle_input: str) -> tuple[set[tuple[int, ...]], int]:
     return activated, size
 
 
-def solver(activated: set[tuple[int, ...]], size: int):
+def solver(activated: set[tuple[int, ...]], size: int) -> Iterator[int]:
     """
     Yields the result of booting up a grid of given size and initial activated cells in 3 and 4
     dimensions.

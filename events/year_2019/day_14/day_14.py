@@ -15,7 +15,7 @@ class Chemical:
     qty: int
 
 
-def preprocessing(puzzle_input):
+def preprocessing(puzzle_input: str) -> dict[Chemical, list[Chemical]]:
     """
     Parses the puzzle input string and returns a dictionary mapping output Chemical objects to
     lists of input Chemical objects representing the reactions.
@@ -38,7 +38,7 @@ def preprocessing(puzzle_input):
     return reactions
 
 
-def solver(reactions):
+def solver(reactions: dict[Chemical, list[Chemical]]) -> None:
     """
     Processes a set of chemical reactions to break down 'FUEL' into its base components, ultimately
     reducing all chemicals to 'ORE'.

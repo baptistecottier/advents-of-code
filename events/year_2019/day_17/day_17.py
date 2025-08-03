@@ -3,6 +3,10 @@ Advent of Code - Year 2019 - Day 17
 https://adventofcode.com/2019/day/17
 """
 
+# Standard imports
+from collections.abc import Iterator
+
+# First party imports
 from pythonfw.classes import Particule2D
 from events.year_2019.ship_computer import Program
 
@@ -14,7 +18,7 @@ def preprocessing(puzzle_input: str) -> tuple[int, ...]:
     return tuple(map(int, puzzle_input.split(',')))
 
 
-def solver(*intcode: int):
+def solver(*intcode: int) -> Iterator[int]:
     """
     Processes an Intcode program output to identify scaffold intersections and yields the sum of
     their alignment parameters.

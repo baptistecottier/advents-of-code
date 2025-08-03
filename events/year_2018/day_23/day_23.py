@@ -5,7 +5,7 @@ https://adventofcode.com/2018/day/23
 
 from collections.abc import Iterator
 from re import findall
-from z3 import If, Optimize, Ints, Sum
+from z3 import If, Optimize, Ints, ArithRef, Sum
 
 
 def preprocessing(puzzle_input: str) -> set[tuple[tuple[int, int, int], int]]:
@@ -32,7 +32,7 @@ def solver(nanobots: set[tuple[tuple[int, int, int], int]]) -> Iterator[int]:
     yield in_range
 
     candidate = Ints("x y z")
-    reachable = Sum(If(z3_dist(pos, candidate) <= r, 1, 0) for pos, r in nanobots)
+    reachable = Sum([If(z3_dist(pos, candidate) <= r, 1, 0) for pos, r in list(nanobots)])
 
     opt = Optimize()
     opt.maximize(reachable)
@@ -43,11 +43,9 @@ def solver(nanobots: set[tuple[tuple[int, int, int], int]]) -> Iterator[int]:
     yield sum(abs(int(str(model[n]))) for n in candidate)
 
 
-def z3_abs(x):
-    """Returns the absolute value of x using Z3 conditional logic."""
-    return If(x >= 0, x, -x)
-
-
-def z3_dist(x, y):
+def z3_dist(x: tuple[int, int, int], y: list[ArithRef]) -> ArithRef:
     """Calculates the Manhattan distance between two points using Z3 solver constraints."""
-    return Sum([If(a - b >= 0, a - b, b - a) for a, b in zip(x, y)])
+    distance = Sum([If(a - b >= 0, a - b, b - a) for a, b in zip(x, y)])
+    if not isinstance(distance, ArithRef):
+        raise ValueError("Something went wrong")
+    return distance

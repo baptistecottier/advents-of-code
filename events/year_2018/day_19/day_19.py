@@ -23,7 +23,7 @@ def preprocessing(puzzle_input: str) -> tuple[int, list[tuple[str, int, int, int
     ip = int(lines.pop(0)[-1])
     for line in lines:
         details = line.split()
-        a, b, c = list(int(n) for n in details[1:])
+        a, b, c = list(map(int, details[1:]))
         instructions.append((details[0], a, b, c))
     return ip, instructions
 
@@ -84,7 +84,7 @@ def sum_divisors(n: int) -> int:
     return sum(divisors)
 
 
-def update_reg(reg, instruction):
+def update_reg(reg: list[int], instruction: tuple[str, int, int, int]) -> None:
     """
     Updates a register array based on the given instruction operation and operands.
     """

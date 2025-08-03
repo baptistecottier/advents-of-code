@@ -3,6 +3,8 @@ Advent of Code - Year 2018 - Day 12
 https://adventofcode.com/2018/day/12
 """
 
+from collections.abc import Iterator
+
 
 def preprocessing(puzzle_input: str) -> tuple[str, dict[str, str]]:
     """
@@ -17,7 +19,7 @@ def preprocessing(puzzle_input: str) -> tuple[str, dict[str, str]]:
     return state, combinations
 
 
-def solver(state: str, spread: dict[str, str]):
+def solver(state: str, spread: dict[str, str]) -> Iterator[int]:
     """
     Solves plant growth simulation by detecting convergence patterns.
 
@@ -46,7 +48,7 @@ def solver(state: str, spread: dict[str, str]):
     yield next_sum + (next_sum - current_sum) * (50_000_000_000 - n)
 
 
-def generate(state: str, spread: dict[str, str]):
+def generate(state: str, spread: dict[str, str]) -> str:
     """
     Generates the next state of plants based on current state and spread rules.
     """
@@ -55,7 +57,7 @@ def generate(state: str, spread: dict[str, str]):
                    [spread[state[n - 5:] + '.' * n] for n in range(1, 5)])
 
 
-def sum_pots(state: str, generations: int):
+def sum_pots(state: str, generations: int) -> int:
     """
     Calculate the sum of pot positions containing plants, adjusted for generation offset.
     """

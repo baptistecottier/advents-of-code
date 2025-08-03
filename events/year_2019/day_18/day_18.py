@@ -4,6 +4,7 @@ https://adventofcode.com/2019/day/18
 """
 
 from collections import deque
+from collections.abc import Iterator
 from copy import deepcopy
 
 
@@ -21,20 +22,17 @@ def preprocessing(puzzle_input: str) -> tuple[list[list[str]], tuple[int, int], 
     return grid, entrance, n_keys
 
 
-def solver(grid, entrance, n_keys):
+def solver(grid: list[list[str]], entrance: tuple[int, int], n_keys: int) -> Iterator[int]:
     """
     Solves the shortest path to collect all keys in a grid-based puzzle, starting from the entrance,
     using BFS.
     """
-    print(n_keys)
-    print(entrance)
     queue = deque([([entrance], set())])
     while queue:
         path, keys = queue.popleft()
         go_back = len(path) < 2
         x, y = path[-1]
-        # print(path)
-        # print(keys)
+
         if grid[y][x].isupper():
             if grid[y][x].lower() not in keys:
                 continue
@@ -42,9 +40,6 @@ def solver(grid, entrance, n_keys):
             keys.add(grid[y][x])
             go_back = True
             if len(keys) == n_keys:
-                print(keys)
-                print(len(path))
-                print(path)
                 yield len(path) - 1
         for tx, ty in [(x, y - 1), (x, y + 1), (x - 1, y), (x + 1, y)]:
             if grid[ty][tx] != '#' and (go_back or path[-2] != (tx, ty)):

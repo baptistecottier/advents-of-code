@@ -5,6 +5,7 @@ https://adventofcode.com/2018/day/15
 
 # Standard imports
 from collections import deque
+from collections.abc import Iterator
 from dataclasses import dataclass, replace
 
 # First-party imports
@@ -58,7 +59,7 @@ def preprocessing(puzzle_input: str) -> tuple[list[Unit], set[tuple[int, int]]]:
     return units, cave
 
 
-def solver(units: list[Unit], cave: set[tuple[int, int]]):
+def solver(units: list[Unit], cave: set[tuple[int, int]]) -> Iterator[int]:
     """
     Solves the combat simulation problem for both parts of the puzzle.
     This function simulates combat between elves and goblins in a cave system. It solves both:

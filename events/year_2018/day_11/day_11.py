@@ -51,7 +51,7 @@ def solver(serial: int) -> Iterator[str]:
     yield ",".join(str(n) for n in max_infos)
 
 
-def maximum_power(grid: list[list[int]], width: int):
+def maximum_power(grid: list[list[int]], width: int) -> tuple[int, int, int]:
     """
     Find the top-left coordinates and maximum power sum for a square subgrid of given width.
     """

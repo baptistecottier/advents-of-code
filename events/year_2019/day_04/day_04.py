@@ -15,7 +15,7 @@ def preprocessing(puzzle_input: str) -> tuple[int, int]:
     return int(min_bound), int(max_bound)
 
 
-def solver(b_min, b_max):
+def solver(b_min: int, b_max: int) -> tuple[int, int]:
     """
     Counts the number of passwords within the given range that meet specific criteria for
     increasing digits and repeated digits.

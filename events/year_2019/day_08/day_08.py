@@ -10,7 +10,8 @@ from itertools import product
 from pythonfw.functions import screen_reader
 
 
-def preprocessing(puzzle_input: str, image_width: int = 25, image_height: int = 6):
+def preprocessing(puzzle_input: str, image_width: int = 25, image_height: int = 6
+                  ) -> dict[int, dict[int, set[tuple[int, int]]]]:
     """
     Processes the puzzle input string into a dictionary of layers, each mapping digits 0-9 to sets
     of (x, y) pixel coordinates based on the specified image width and height.
@@ -24,7 +25,11 @@ def preprocessing(puzzle_input: str, image_width: int = 25, image_height: int = 
     return layers
 
 
-def solver(layers, image_width=25, image_height=6) -> tuple[int, str]:
+def solver(
+        layers: dict[int, dict[int, set[tuple[int, int]]]],
+        image_width: int = 25,
+        image_height: int = 6
+        ) -> tuple[int, str]:
     """
     Solves the image layer puzzle by finding the layer with the fewest zeros and decoding the final
     image, yielding both results.

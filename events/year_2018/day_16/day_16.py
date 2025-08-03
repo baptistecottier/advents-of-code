@@ -4,6 +4,7 @@ https://adventofcode.com/2018/day/16
 """
 
 # Standards imports
+from collections.abc import Iterator
 from copy import deepcopy
 
 # First-party imports
@@ -21,7 +22,7 @@ def preprocessing(puzzle_input: str) -> tuple[list[list[list[int]]], list[list[i
     return samples, tests
 
 
-def solver(samples: list[list[list[int]]], tests: list[list[int]]):
+def solver(samples: list[list[list[int]]], tests: list[list[int]]) -> Iterator[int]:
     """
     Solves a puzzle by analyzing opcode samples to determine valid operations and executing test
     instructions.
