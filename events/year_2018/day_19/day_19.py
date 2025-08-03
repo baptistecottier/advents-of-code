@@ -43,20 +43,6 @@ def solver(ip: int, instructions: list[tuple[str, int, int, int]]) -> Iterator[i
     yield run(ip, instructions, 1)
 
 
-def part_2(ip: int, instructions: list[tuple[str, int, int, int]]) -> int:
-    """
-    Runs the instructions with register 0 set to 1 and returns the result.
-
-    Args:
-        ip (int): The instruction pointer index.
-        instructions (list[tuple[str, int, int, int]]): The list of instructions.
-
-    Returns:
-        int: The result of the program with register 0 set to 1.
-    """
-    return run(ip, instructions, 1)
-
-
 def run(ip: int, instructions: list[tuple[str, int, int, int]], reg_zero: int) -> int:
     """
     Executes the instructions with the given initial value for register 0.
@@ -72,17 +58,7 @@ def run(ip: int, instructions: list[tuple[str, int, int, int]], reg_zero: int) -
     cycle = 1
     reg = [reg_zero, 0, 0, 0, 0, 0]
     while reg[5] == 0:
-        op, a, b, c = instructions[reg[ip]]
-        match op:
-            case 'addr': reg[c] = reg[a] + reg[b]
-            case 'addi': reg[c] = reg[a] + b
-            case 'mulr': reg[c] = reg[a] * reg[b]
-            case 'muli': reg[c] = reg[a] * b
-            case 'gtrr': reg[c] = int(reg[a] > reg[b])
-            case 'eqrr': reg[c] = int(reg[a] == reg[b])
-            case 'setr': reg[c] = reg[a]
-            case 'seti': reg[c] = a
-            case _: continue
+        update_reg(reg, instructions[reg[ip]])
         cycle += 1
         reg[ip] += 1
         if reg[ip] + 1 > len(instructions):
@@ -106,3 +82,29 @@ def sum_divisors(n: int) -> int:
             divisors.add(k)
             divisors.add(n // k)
     return sum(divisors)
+
+
+def update_reg(reg, instruction):
+    """
+    Updates a register array based on the given instruction operation and operands.
+    """
+    op, a, b, c = instruction
+    match op:
+        case 'addr': reg[c] = reg[a] + reg[b]
+        case 'addi': reg[c] = reg[a] + b
+        case 'mulr': reg[c] = reg[a] * reg[b]
+        case 'muli': reg[c] = reg[a] * b
+        case 'gtrr': reg[c] = int(reg[a] > reg[b])
+        case 'eqrr': reg[c] = int(reg[a] == reg[b])
+        case 'setr': reg[c] = reg[a]
+        case 'seti': reg[c] = a
+        case 'banr': reg[c] = reg[a] & reg[b]
+        case 'bani': reg[c] = reg[a] & b
+        case 'borr': reg[c] = reg[a] | reg[b]
+        case 'bori': reg[c] = reg[a] | b
+        case 'gtir': reg[c] = int(a > reg[b])
+        case 'gtri': reg[c] = int(reg[a] > b)
+        case 'eqir': reg[c] = int(a == reg[b])
+        case 'eqri': reg[c] = int(reg[a] == b)
+        case _:
+            raise ValueError("Unknown operator")

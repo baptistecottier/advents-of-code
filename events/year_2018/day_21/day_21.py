@@ -3,6 +3,8 @@ Advent of Code - Year 2018 - Day 21
 https://adventofcode.com/2018/day/21
 """
 
+from events.year_2018.day_19.day_19 import update_reg
+
 
 def preprocessing(puzzle_input: str) -> tuple[int,
                                               list[tuple[str, int, int, int]],
@@ -61,8 +63,6 @@ def solver(ip: int,
     reg = [0, 0, 0, 0, 0, 0]
 
     while True:
-        op, a, b, c = instructions[reg[ip]]
-
         if reg[ip] == line_inst_with_0:
             if expected is None:
                 yield reg[register_with_0]
@@ -72,21 +72,5 @@ def solver(ip: int,
             expected = reg[register_with_0]
             visited.add(expected)
 
-        match op:
-            case 'addr': reg[c] = reg[a] + reg[b]
-            case 'addi': reg[c] = reg[a] + b
-            case 'mulr': reg[c] = reg[a] * reg[b]
-            case 'muli': reg[c] = reg[a] * b
-            case 'banr': reg[c] = reg[a] & reg[b]
-            case 'bani': reg[c] = reg[a] & b
-            case 'borr': reg[c] = reg[a] | reg[b]
-            case 'bori': reg[c] = reg[a] | b
-            case 'setr': reg[c] = reg[a]
-            case 'seti': reg[c] = a
-            case 'gtir': reg[c] = int(a > reg[b])
-            case 'gtri': reg[c] = int(reg[a] > b)
-            case 'gtrr': reg[c] = int(reg[a] > reg[b])
-            case 'eqir': reg[c] = int(a == reg[b])
-            case 'eqri': reg[c] = int(reg[a] == b)
-            case 'eqrr': reg[c] = int(reg[a] == reg[b])
+        update_reg(reg, instructions[reg[ip]])
         reg[ip] += 1
