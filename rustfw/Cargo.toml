@@ -4,10 +4,16 @@ version = "0.1.0"
 edition = "2021"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
+[target.x86_64-apple-darwin]
+rustflags = [
+  "-C", "link-arg=-undefined",
+  "-C", "link-arg=dynamic_lookup",
+]
+
 [dependencies]
 itertools = "0.13.0"
 num-integer = "0.1.46"
-pathfinding = "4.11.0"
+pathfinding = "4.12.0"
 bitvec = "1.0.0"
 md5 = "0.7.0"
 crypto = "0.5.1"
@@ -24,1249 +30,1249 @@ roots = "0.0.8"
 
 [[bin]]
 name = "2015-01"
-path = "../events/2015/01/01.rs"
+path = "../events/year_2015/day_01/day_01.rs"
 
 
 [[bin]]
 name = "2015-02"
-path = "../events/2015/02/02.rs"
+path = "../events/year_2015/day_02/day_02.rs"
 
 
 [[bin]]
 name = "2015-03"
-path = "../events/2015/03/03.rs"
+path = "../events/year_2015/day_03/day_03.rs"
 
 
 [[bin]]
 name = "2015-04"
-path = "../events/2015/04/04.rs"
+path = "../events/year_2015/day_04/day_04.rs"
 
 
 [[bin]]
 name = "2015-05"
-path = "../events/2015/05/05.rs"
+path = "../events/year_2015/day_05/day_05.rs"
 
 
 [[bin]]
 name = "2015-06"
-path = "../events/2015/06/06.rs"
+path = "../events/year_2015/day_06/day_06.rs"
 
 
 [[bin]]
 name = "2015-07"
-path = "../events/2015/07/07.rs"
+path = "../events/year_2015/day_07/day_07.rs"
 
 
 [[bin]]
 name = "2015-08"
-path = "../events/2015/08/08.rs"
+path = "../events/year_2015/day_08/day_08.rs"
 
 
 [[bin]]
 name = "2015-09"
-path = "../events/2015/09/09.rs"
+path = "../events/year_2015/day_09/day_09.rs"
 
 
 [[bin]]
 name = "2015-10"
-path = "../events/2015/10/10.rs"
+path = "../events/year_2015/day_10/day_10.rs"
 
 
 [[bin]]
 name = "2015-11"
-path = "../events/2015/11/11.rs"
+path = "../events/year_2015/day_11/day_11.rs"
 
 
 [[bin]]
 name = "2015-12"
-path = "../events/2015/12/12.rs"
+path = "../events/year_2015/day_12/day_12.rs"
 
 
 [[bin]]
 name = "2015-13"
-path = "../events/2015/13/13.rs"
+path = "../events/year_2015/day_13/day_13.rs"
 
 
 [[bin]]
 name = "2015-14"
-path = "../events/2015/14/14.rs"
+path = "../events/year_2015/day_14/day_14.rs"
 
 
 [[bin]]
 name = "2015-15"
-path = "../events/2015/15/15.rs"
+path = "../events/year_2015/day_15/day_15.rs"
 
 
 [[bin]]
 name = "2015-16"
-path = "../events/2015/16/16.rs"
+path = "../events/year_2015/day_16/day_16.rs"
 
 
 [[bin]]
 name = "2015-17"
-path = "../events/2015/17/17.rs"
+path = "../events/year_2015/day_17/day_17.rs"
 
 
 [[bin]]
 name = "2015-18"
-path = "../events/2015/18/18.rs"
+path = "../events/year_2015/day_18/day_18.rs"
 
 
 [[bin]]
 name = "2015-19"
-path = "../events/2015/19/19.rs"
+path = "../events/year_2015/day_19/day_19.rs"
 
 
 [[bin]]
 name = "2015-20"
-path = "../events/2015/20/20.rs"
+path = "../events/year_2015/day_20/day_20.rs"
 
 
 [[bin]]
 name = "2015-21"
-path = "../events/2015/21/21.rs"
+path = "../events/year_2015/day_21/day_21.rs"
 
 
 [[bin]]
 name = "2015-22"
-path = "../events/2015/22/22.rs"
+path = "../events/year_2015/day_22/day_22.rs"
 
 
 [[bin]]
 name = "2015-23"
-path = "../events/2015/23/23.rs"
+path = "../events/year_2015/day_23/day_23.rs"
 
 
 [[bin]]
 name = "2015-24"
-path = "../events/2015/24/24.rs"
+path = "../events/year_2015/day_24/day_24.rs"
 
 
 [[bin]]
 name = "2015-25"
-path = "../events/2015/25/25.rs"
+path = "../events/year_2015/day_25/day_25.rs"
 
 
 [[bin]]
 name = "2016-01"
-path = "../events/2016/01/01.rs"
+path = "../events/year_2016/day_01/day_01.rs"
 
 
 [[bin]]
 name = "2016-02"
-path = "../events/2016/02/02.rs"
+path = "../events/year_2016/day_02/day_02.rs"
 
 
 [[bin]]
 name = "2016-03"
-path = "../events/2016/03/03.rs"
+path = "../events/year_2016/day_03/day_03.rs"
 
 
 [[bin]]
 name = "2016-04"
-path = "../events/2016/04/04.rs"
+path = "../events/year_2016/day_04/day_04.rs"
 
 
 [[bin]]
 name = "2016-05"
-path = "../events/2016/05/05.rs"
+path = "../events/year_2016/day_05/day_05.rs"
 
 
 [[bin]]
 name = "2016-06"
-path = "../events/2016/06/06.rs"
+path = "../events/year_2016/day_06/day_06.rs"
 
 
 [[bin]]
 name = "2016-07"
-path = "../events/2016/07/07.rs"
+path = "../events/year_2016/day_07/day_07.rs"
 
 
 [[bin]]
 name = "2016-08"
-path = "../events/2016/08/08.rs"
+path = "../events/year_2016/day_08/day_08.rs"
 
 
 [[bin]]
 name = "2016-09"
-path = "../events/2016/09/09.rs"
+path = "../events/year_2016/day_09/day_09.rs"
 
 
 [[bin]]
 name = "2016-10"
-path = "../events/2016/10/10.rs"
+path = "../events/year_2016/day_10/day_10.rs"
 
 
 [[bin]]
 name = "2016-11"
-path = "../events/2016/11/11.rs"
+path = "../events/year_2016/day_11/day_11.rs"
 
 
 [[bin]]
 name = "2016-12"
-path = "../events/2016/12/12.rs"
+path = "../events/year_2016/day_12/day_12.rs"
 
 
 [[bin]]
 name = "2016-13"
-path = "../events/2016/13/13.rs"
+path = "../events/year_2016/day_13/day_13.rs"
 
 
 [[bin]]
 name = "2016-14"
-path = "../events/2016/14/14.rs"
+path = "../events/year_2016/day_14/day_14.rs"
 
 
 [[bin]]
 name = "2016-15"
-path = "../events/2016/15/15.rs"
+path = "../events/year_2016/day_15/day_15.rs"
 
 
 [[bin]]
 name = "2016-16"
-path = "../events/2016/16/16.rs"
+path = "../events/year_2016/day_16/day_16.rs"
 
 
 [[bin]]
 name = "2016-17"
-path = "../events/2016/17/17.rs"
+path = "../events/year_2016/day_17/day_17.rs"
 
 
 [[bin]]
 name = "2016-18"
-path = "../events/2016/18/18.rs"
+path = "../events/year_2016/day_18/day_18.rs"
 
 
 [[bin]]
 name = "2016-19"
-path = "../events/2016/19/19.rs"
+path = "../events/year_2016/day_19/day_19.rs"
 
 
 [[bin]]
 name = "2016-20"
-path = "../events/2016/20/20.rs"
+path = "../events/year_2016/day_20/day_20.rs"
 
 
 [[bin]]
 name = "2016-21"
-path = "../events/2016/21/21.rs"
+path = "../events/year_2016/day_21/day_21.rs"
 
 
 [[bin]]
 name = "2016-22"
-path = "../events/2016/22/22.rs"
+path = "../events/year_2016/day_22/day_22.rs"
 
 
 [[bin]]
 name = "2016-23"
-path = "../events/2016/23/23.rs"
+path = "../events/year_2016/day_23/day_23.rs"
 
 
 [[bin]]
 name = "2016-24"
-path = "../events/2016/24/24.rs"
+path = "../events/year_2016/day_24/day_24.rs"
 
 
 [[bin]]
 name = "2016-25"
-path = "../events/2016/25/25.rs"
+path = "../events/year_2016/day_25/day_25.rs"
 
 
 [[bin]]
 name = "2017-01"
-path = "../events/2017/01/01.rs"
+path = "../events/year_2017/day_01/day_01.rs"
 
 
 [[bin]]
 name = "2017-02"
-path = "../events/2017/02/02.rs"
+path = "../events/year_2017/day_02/day_02.rs"
 
 
 [[bin]]
 name = "2017-03"
-path = "../events/2017/03/03.rs"
+path = "../events/year_2017/day_03/day_03.rs"
 
 
 [[bin]]
 name = "2017-04"
-path = "../events/2017/04/04.rs"
+path = "../events/year_2017/day_04/day_04.rs"
 
 
 [[bin]]
 name = "2017-05"
-path = "../events/2017/05/05.rs"
+path = "../events/year_2017/day_05/day_05.rs"
 
 
 [[bin]]
 name = "2017-06"
-path = "../events/2017/06/06.rs"
+path = "../events/year_2017/day_06/day_06.rs"
 
 
 [[bin]]
 name = "2017-07"
-path = "../events/2017/07/07.rs"
+path = "../events/year_2017/day_07/day_07.rs"
 
 
 [[bin]]
 name = "2017-08"
-path = "../events/2017/08/08.rs"
+path = "../events/year_2017/day_08/day_08.rs"
 
 
 [[bin]]
 name = "2017-09"
-path = "../events/2017/09/09.rs"
+path = "../events/year_2017/day_09/day_09.rs"
 
 
 [[bin]]
 name = "2017-10"
-path = "../events/2017/10/10.rs"
+path = "../events/year_2017/day_10/day_10.rs"
 
 
 [[bin]]
 name = "2017-11"
-path = "../events/2017/11/11.rs"
+path = "../events/year_2017/day_11/day_11.rs"
 
 
 [[bin]]
 name = "2017-12"
-path = "../events/2017/12/12.rs"
+path = "../events/year_2017/day_12/day_12.rs"
 
 
 [[bin]]
 name = "2017-13"
-path = "../events/2017/13/13.rs"
+path = "../events/year_2017/day_13/day_13.rs"
 
 
 [[bin]]
 name = "2017-14"
-path = "../events/2017/14/14.rs"
+path = "../events/year_2017/day_14/day_14.rs"
 
 
 [[bin]]
 name = "2017-15"
-path = "../events/2017/15/15.rs"
+path = "../events/year_2017/day_15/day_15.rs"
 
 
 [[bin]]
 name = "2017-16"
-path = "../events/2017/16/16.rs"
+path = "../events/year_2017/day_16/day_16.rs"
 
 
 [[bin]]
 name = "2017-17"
-path = "../events/2017/17/17.rs"
+path = "../events/year_2017/day_17/day_17.rs"
 
 
 [[bin]]
 name = "2017-18"
-path = "../events/2017/18/18.rs"
+path = "../events/year_2017/day_18/day_18.rs"
 
 
 [[bin]]
 name = "2017-19"
-path = "../events/2017/19/19.rs"
+path = "../events/year_2017/day_19/day_19.rs"
 
 
 [[bin]]
 name = "2017-20"
-path = "../events/2017/20/20.rs"
+path = "../events/year_2017/day_20/day_20.rs"
 
 
 [[bin]]
 name = "2017-21"
-path = "../events/2017/21/21.rs"
+path = "../events/year_2017/day_21/day_21.rs"
 
 
 [[bin]]
 name = "2017-22"
-path = "../events/2017/22/22.rs"
+path = "../events/year_2017/day_22/day_22.rs"
 
 
 [[bin]]
 name = "2017-23"
-path = "../events/2017/23/23.rs"
+path = "../events/year_2017/day_23/day_23.rs"
 
 
 [[bin]]
 name = "2017-24"
-path = "../events/2017/24/24.rs"
+path = "../events/year_2017/day_24/day_24.rs"
 
 
 [[bin]]
 name = "2017-25"
-path = "../events/2017/25/25.rs"
+path = "../events/year_2017/day_25/day_25.rs"
 
 
 [[bin]]
 name = "2018-01"
-path = "../events/2018/01/01.rs"
+path = "../events/year_2018/day_01/day_01.rs"
 
 
 [[bin]]
 name = "2018-02"
-path = "../events/2018/02/02.rs"
+path = "../events/year_2018/day_02/day_02.rs"
 
 
 [[bin]]
 name = "2018-03"
-path = "../events/2018/03/03.rs"
+path = "../events/year_2018/day_03/day_03.rs"
 
 
 [[bin]]
 name = "2018-04"
-path = "../events/2018/04/04.rs"
+path = "../events/year_2018/day_04/day_04.rs"
 
 
 [[bin]]
 name = "2018-05"
-path = "../events/2018/05/05.rs"
+path = "../events/year_2018/day_05/day_05.rs"
 
 
 [[bin]]
 name = "2018-06"
-path = "../events/2018/06/06.rs"
+path = "../events/year_2018/day_06/day_06.rs"
 
 
 [[bin]]
 name = "2018-07"
-path = "../events/2018/07/07.rs"
+path = "../events/year_2018/day_07/day_07.rs"
 
 
 [[bin]]
 name = "2018-08"
-path = "../events/2018/08/08.rs"
+path = "../events/year_2018/day_08/day_08.rs"
 
 
 [[bin]]
 name = "2018-09"
-path = "../events/2018/09/09.rs"
+path = "../events/year_2018/day_09/day_09.rs"
 
 
 [[bin]]
 name = "2018-10"
-path = "../events/2018/10/10.rs"
+path = "../events/year_2018/day_10/day_10.rs"
 
 
 [[bin]]
 name = "2018-11"
-path = "../events/2018/11/11.rs"
+path = "../events/year_2018/day_11/day_11.rs"
 
 
 [[bin]]
 name = "2018-12"
-path = "../events/2018/12/12.rs"
+path = "../events/year_2018/day_12/day_12.rs"
 
 
 [[bin]]
 name = "2018-13"
-path = "../events/2018/13/13.rs"
+path = "../events/year_2018/day_13/day_13.rs"
 
 
 [[bin]]
 name = "2018-14"
-path = "../events/2018/14/14.rs"
+path = "../events/year_2018/day_14/day_14.rs"
 
 
 [[bin]]
 name = "2018-15"
-path = "../events/2018/15/15.rs"
+path = "../events/year_2018/day_15/day_15.rs"
 
 
 [[bin]]
 name = "2018-16"
-path = "../events/2018/16/16.rs"
+path = "../events/year_2018/day_16/day_16.rs"
 
 
 [[bin]]
 name = "2018-17"
-path = "../events/2018/17/17.rs"
+path = "../events/year_2018/day_17/day_17.rs"
 
 
 [[bin]]
 name = "2018-18"
-path = "../events/2018/18/18.rs"
+path = "../events/year_2018/day_18/day_18.rs"
 
 
 [[bin]]
 name = "2018-19"
-path = "../events/2018/19/19.rs"
+path = "../events/year_2018/day_19/day_19.rs"
 
 
 [[bin]]
 name = "2018-20"
-path = "../events/2018/20/20.rs"
+path = "../events/year_2018/day_20/day_20.rs"
 
 
 [[bin]]
 name = "2018-21"
-path = "../events/2018/21/21.rs"
+path = "../events/year_2018/day_21/day_21.rs"
 
 
 [[bin]]
 name = "2018-22"
-path = "../events/2018/22/22.rs"
+path = "../events/year_2018/day_22/day_22.rs"
 
 
 [[bin]]
 name = "2018-23"
-path = "../events/2018/23/23.rs"
+path = "../events/year_2018/day_23/day_23.rs"
 
 
 [[bin]]
 name = "2018-24"
-path = "../events/2018/24/24.rs"
+path = "../events/year_2018/day_24/day_24.rs"
 
 
 [[bin]]
 name = "2018-25"
-path = "../events/2018/25/25.rs"
+path = "../events/year_2018/day_25/day_25.rs"
 
 
 [[bin]]
 name = "2019-01"
-path = "../events/2019/01/01.rs"
+path = "../events/year_2019/day_01/day_01.rs"
 
 
 [[bin]]
 name = "2019-02"
-path = "../events/2019/02/02.rs"
+path = "../events/year_2019/day_02/day_02.rs"
 
 
 [[bin]]
 name = "2019-03"
-path = "../events/2019/03/03.rs"
+path = "../events/year_2019/day_03/day_03.rs"
 
 
 [[bin]]
 name = "2019-04"
-path = "../events/2019/04/04.rs"
+path = "../events/year_2019/day_04/day_04.rs"
 
 
 [[bin]]
 name = "2019-05"
-path = "../events/2019/05/05.rs"
+path = "../events/year_2019/day_05/day_05.rs"
 
 
 [[bin]]
 name = "2019-06"
-path = "../events/2019/06/06.rs"
+path = "../events/year_2019/day_06/day_06.rs"
 
 
 [[bin]]
 name = "2019-07"
-path = "../events/2019/07/07.rs"
+path = "../events/year_2019/day_07/day_07.rs"
 
 
 [[bin]]
 name = "2019-08"
-path = "../events/2019/08/08.rs"
+path = "../events/year_2019/day_08/day_08.rs"
 
 
 [[bin]]
 name = "2019-09"
-path = "../events/2019/09/09.rs"
+path = "../events/year_2019/day_09/day_09.rs"
 
 
 [[bin]]
 name = "2019-10"
-path = "../events/2019/10/10.rs"
+path = "../events/year_2019/day_10/day_10.rs"
 
 
 [[bin]]
 name = "2019-11"
-path = "../events/2019/11/11.rs"
+path = "../events/year_2019/day_11/day_11.rs"
 
 
 [[bin]]
 name = "2019-12"
-path = "../events/2019/12/12.rs"
+path = "../events/year_2019/day_12/day_12.rs"
 
 
 [[bin]]
 name = "2019-13"
-path = "../events/2019/13/13.rs"
+path = "../events/year_2019/day_13/day_13.rs"
 
 
 [[bin]]
 name = "2019-14"
-path = "../events/2019/14/14.rs"
+path = "../events/year_2019/day_14/day_14.rs"
 
 
 [[bin]]
 name = "2019-15"
-path = "../events/2019/15/15.rs"
+path = "../events/year_2019/day_15/day_15.rs"
 
 
 [[bin]]
 name = "2019-16"
-path = "../events/2019/16/16.rs"
+path = "../events/year_2019/day_16/day_16.rs"
 
 
 [[bin]]
 name = "2019-17"
-path = "../events/2019/17/17.rs"
+path = "../events/year_2019/day_17/day_17.rs"
 
 
 [[bin]]
 name = "2019-18"
-path = "../events/2019/18/18.rs"
+path = "../events/year_2019/day_18/day_18.rs"
 
 
 [[bin]]
 name = "2019-19"
-path = "../events/2019/19/19.rs"
+path = "../events/year_2019/day_19/day_19.rs"
 
 
 [[bin]]
 name = "2019-20"
-path = "../events/2019/20/20.rs"
+path = "../events/year_2019/day_20/day_20.rs"
 
 
 [[bin]]
 name = "2019-21"
-path = "../events/2019/21/21.rs"
+path = "../events/year_2019/day_21/day_21.rs"
 
 
 [[bin]]
 name = "2019-22"
-path = "../events/2019/22/22.rs"
+path = "../events/year_2019/day_22/day_22.rs"
 
 
 [[bin]]
 name = "2019-23"
-path = "../events/2019/23/23.rs"
+path = "../events/year_2019/day_23/day_23.rs"
 
 
 [[bin]]
 name = "2019-24"
-path = "../events/2019/24/24.rs"
+path = "../events/year_2019/day_24/day_24.rs"
 
 
 [[bin]]
 name = "2019-25"
-path = "../events/2019/25/25.rs"
+path = "../events/year_2019/day_25/day_25.rs"
 
 
 [[bin]]
 name = "2020-01"
-path = "../events/2020/01/01.rs"
+path = "../events/year_2020/day_01/day_01.rs"
 
 
 [[bin]]
 name = "2020-02"
-path = "../events/2020/02/02.rs"
+path = "../events/year_2020/day_02/day_02.rs"
 
 
 [[bin]]
 name = "2020-03"
-path = "../events/2020/03/03.rs"
+path = "../events/year_2020/day_03/day_03.rs"
 
 
 [[bin]]
 name = "2020-04"
-path = "../events/2020/04/04.rs"
+path = "../events/year_2020/day_04/day_04.rs"
 
 
 [[bin]]
 name = "2020-05"
-path = "../events/2020/05/05.rs"
+path = "../events/year_2020/day_05/day_05.rs"
 
 
 [[bin]]
 name = "2020-06"
-path = "../events/2020/06/06.rs"
+path = "../events/year_2020/day_06/day_06.rs"
 
 
 [[bin]]
 name = "2020-07"
-path = "../events/2020/07/07.rs"
+path = "../events/year_2020/day_07/day_07.rs"
 
 
 [[bin]]
 name = "2020-08"
-path = "../events/2020/08/08.rs"
+path = "../events/year_2020/day_08/day_08.rs"
 
 
 [[bin]]
 name = "2020-09"
-path = "../events/2020/09/09.rs"
+path = "../events/year_2020/day_09/day_09.rs"
 
 
 [[bin]]
 name = "2020-10"
-path = "../events/2020/10/10.rs"
+path = "../events/year_2020/day_10/day_10.rs"
 
 
 [[bin]]
 name = "2020-11"
-path = "../events/2020/11/11.rs"
+path = "../events/year_2020/day_11/day_11.rs"
 
 
 [[bin]]
 name = "2020-12"
-path = "../events/2020/12/12.rs"
+path = "../events/year_2020/day_12/day_12.rs"
 
 
 [[bin]]
 name = "2020-13"
-path = "../events/2020/13/13.rs"
+path = "../events/year_2020/day_13/day_13.rs"
 
 
 [[bin]]
 name = "2020-14"
-path = "../events/2020/14/14.rs"
+path = "../events/year_2020/day_14/day_14.rs"
 
 
 [[bin]]
 name = "2020-15"
-path = "../events/2020/15/15.rs"
+path = "../events/year_2020/day_15/day_15.rs"
 
 
 [[bin]]
 name = "2020-16"
-path = "../events/2020/16/16.rs"
+path = "../events/year_2020/day_16/day_16.rs"
 
 
 [[bin]]
 name = "2020-17"
-path = "../events/2020/17/17.rs"
+path = "../events/year_2020/day_17/day_17.rs"
 
 
 [[bin]]
 name = "2020-18"
-path = "../events/2020/18/18.rs"
+path = "../events/year_2020/day_18/day_18.rs"
 
 
 [[bin]]
 name = "2020-19"
-path = "../events/2020/19/19.rs"
+path = "../events/year_2020/day_19/day_19.rs"
 
 
 [[bin]]
 name = "2020-20"
-path = "../events/2020/20/20.rs"
+path = "../events/year_2020/day_20/day_20.rs"
 
 
 [[bin]]
 name = "2020-21"
-path = "../events/2020/21/21.rs"
+path = "../events/year_2020/day_21/day_21.rs"
 
 
 [[bin]]
 name = "2020-22"
-path = "../events/2020/22/22.rs"
+path = "../events/year_2020/day_22/day_22.rs"
 
 
 [[bin]]
 name = "2020-23"
-path = "../events/2020/23/23.rs"
+path = "../events/year_2020/day_23/day_23.rs"
 
 
 [[bin]]
 name = "2020-24"
-path = "../events/2020/24/24.rs"
+path = "../events/year_2020/day_24/day_24.rs"
 
 
 [[bin]]
 name = "2020-25"
-path = "../events/2020/25/25.rs"
+path = "../events/year_2020/day_25/day_25.rs"
 
 
 [[bin]]
 name = "2021-01"
-path = "../events/2021/01/01.rs"
+path = "../events/year_2021/day_01/day_01.rs"
 
 
 [[bin]]
 name = "2021-02"
-path = "../events/2021/02/02.rs"
+path = "../events/year_2021/day_02/day_02.rs"
 
 
 [[bin]]
 name = "2021-03"
-path = "../events/2021/03/03.rs"
+path = "../events/year_2021/day_03/day_03.rs"
 
 
 [[bin]]
 name = "2021-04"
-path = "../events/2021/04/04.rs"
+path = "../events/year_2021/day_04/day_04.rs"
 
 
 [[bin]]
 name = "2021-05"
-path = "../events/2021/05/05.rs"
+path = "../events/year_2021/day_05/day_05.rs"
 
 
 [[bin]]
 name = "2021-06"
-path = "../events/2021/06/06.rs"
+path = "../events/year_2021/day_06/day_06.rs"
 
 
 [[bin]]
 name = "2021-07"
-path = "../events/2021/07/07.rs"
+path = "../events/year_2021/day_07/day_07.rs"
 
 
 [[bin]]
 name = "2021-08"
-path = "../events/2021/08/08.rs"
+path = "../events/year_2021/day_08/day_08.rs"
 
 
 [[bin]]
 name = "2021-09"
-path = "../events/2021/09/09.rs"
+path = "../events/year_2021/day_09/day_09.rs"
 
 
 [[bin]]
 name = "2021-10"
-path = "../events/2021/10/10.rs"
+path = "../events/year_2021/day_10/day_10.rs"
 
 
 [[bin]]
 name = "2021-11"
-path = "../events/2021/11/11.rs"
+path = "../events/year_2021/day_11/day_11.rs"
 
 
 [[bin]]
 name = "2021-12"
-path = "../events/2021/12/12.rs"
+path = "../events/year_2021/day_12/day_12.rs"
 
 
 [[bin]]
 name = "2021-13"
-path = "../events/2021/13/13.rs"
+path = "../events/year_2021/day_13/day_13.rs"
 
 
 [[bin]]
 name = "2021-14"
-path = "../events/2021/14/14.rs"
+path = "../events/year_2021/day_14/day_14.rs"
 
 
 [[bin]]
 name = "2021-15"
-path = "../events/2021/15/15.rs"
+path = "../events/year_2021/day_15/day_15.rs"
 
 
 [[bin]]
 name = "2021-16"
-path = "../events/2021/16/16.rs"
+path = "../events/year_2021/day_16/day_16.rs"
 
 
 [[bin]]
 name = "2021-17"
-path = "../events/2021/17/17.rs"
+path = "../events/year_2021/day_17/day_17.rs"
 
 
 [[bin]]
 name = "2021-18"
-path = "../events/2021/18/18.rs"
+path = "../events/year_2021/day_18/day_18.rs"
 
 
 [[bin]]
 name = "2021-19"
-path = "../events/2021/19/19.rs"
+path = "../events/year_2021/day_19/day_19.rs"
 
 
 [[bin]]
 name = "2021-20"
-path = "../events/2021/20/20.rs"
+path = "../events/year_2021/day_20/day_20.rs"
 
 
 [[bin]]
 name = "2021-21"
-path = "../events/2021/21/21.rs"
+path = "../events/year_2021/day_21/day_21.rs"
 
 
 [[bin]]
 name = "2021-22"
-path = "../events/2021/22/22.rs"
+path = "../events/year_2021/day_22/day_22.rs"
 
 
 [[bin]]
 name = "2021-23"
-path = "../events/2021/23/23.rs"
+path = "../events/year_2021/day_23/day_23.rs"
 
 
 [[bin]]
 name = "2021-24"
-path = "../events/2021/24/24.rs"
+path = "../events/year_2021/day_24/day_24.rs"
 
 
 [[bin]]
 name = "2021-25"
-path = "../events/2021/25/25.rs"
+path = "../events/year_2021/day_25/day_25.rs"
 
 
 [[bin]]
 name = "2022-01"
-path = "../events/2022/01/01.rs"
+path = "../events/year_2022/day_01/day_01.rs"
 
 
 [[bin]]
 name = "2022-02"
-path = "../events/2022/02/02.rs"
+path = "../events/year_2022/day_02/day_02.rs"
 
 
 [[bin]]
 name = "2022-03"
-path = "../events/2022/03/03.rs"
+path = "../events/year_2022/day_03/day_03.rs"
 
 
 [[bin]]
 name = "2022-04"
-path = "../events/2022/04/04.rs"
+path = "../events/year_2022/day_04/day_04.rs"
 
 
 [[bin]]
 name = "2022-05"
-path = "../events/2022/05/05.rs"
+path = "../events/year_2022/day_05/day_05.rs"
 
 
 [[bin]]
 name = "2022-06"
-path = "../events/2022/06/06.rs"
+path = "../events/year_2022/day_06/day_06.rs"
 
 
 [[bin]]
 name = "2022-07"
-path = "../events/2022/07/07.rs"
+path = "../events/year_2022/day_07/day_07.rs"
 
 
 [[bin]]
 name = "2022-08"
-path = "../events/2022/08/08.rs"
+path = "../events/year_2022/day_08/day_08.rs"
 
 
 [[bin]]
 name = "2022-09"
-path = "../events/2022/09/09.rs"
+path = "../events/year_2022/day_09/day_09.rs"
 
 
 [[bin]]
 name = "2022-10"
-path = "../events/2022/10/10.rs"
+path = "../events/year_2022/day_10/day_10.rs"
 
 
 [[bin]]
 name = "2022-11"
-path = "../events/2022/11/11.rs"
+path = "../events/year_2022/day_11/day_11.rs"
 
 
 [[bin]]
 name = "2022-12"
-path = "../events/2022/12/12.rs"
+path = "../events/year_2022/day_12/day_12.rs"
 
 
 [[bin]]
 name = "2022-13"
-path = "../events/2022/13/13.rs"
+path = "../events/year_2022/day_13/day_13.rs"
 
 
 [[bin]]
 name = "2022-14"
-path = "../events/2022/14/14.rs"
+path = "../events/year_2022/day_14/day_14.rs"
 
 
 [[bin]]
 name = "2022-15"
-path = "../events/2022/15/15.rs"
+path = "../events/year_2022/day_15/day_15.rs"
 
 
 [[bin]]
 name = "2022-16"
-path = "../events/2022/16/16.rs"
+path = "../events/year_2022/day_16/day_16.rs"
 
 
 [[bin]]
 name = "2022-17"
-path = "../events/2022/17/17.rs"
+path = "../events/year_2022/day_17/day_17.rs"
 
 
 [[bin]]
 name = "2022-18"
-path = "../events/2022/18/18.rs"
+path = "../events/year_2022/day_18/day_18.rs"
 
 
 [[bin]]
 name = "2022-19"
-path = "../events/2022/19/19.rs"
+path = "../events/year_2022/day_19/day_19.rs"
 
 
 [[bin]]
 name = "2022-20"
-path = "../events/2022/20/20.rs"
+path = "../events/year_2022/day_20/day_20.rs"
 
 
 [[bin]]
 name = "2022-21"
-path = "../events/2022/21/21.rs"
+path = "../events/year_2022/day_21/day_21.rs"
 
 
 [[bin]]
 name = "2022-22"
-path = "../events/2022/22/22.rs"
+path = "../events/year_2022/day_22/day_22.rs"
 
 
 [[bin]]
 name = "2022-23"
-path = "../events/2022/23/23.rs"
+path = "../events/year_2022/day_23/day_23.rs"
 
 
 [[bin]]
 name = "2022-24"
-path = "../events/2022/24/24.rs"
+path = "../events/year_2022/day_24/day_24.rs"
 
 
 [[bin]]
 name = "2022-25"
-path = "../events/2022/25/25.rs"
+path = "../events/year_2022/day_25/day_25.rs"
 
 
 [[bin]]
 name = "2023-01"
-path = "../events/2023/01/01.rs"
+path = "../events/year_2023/day_01/day_01.rs"
 
 
 [[bin]]
 name = "2023-02"
-path = "../events/2023/02/02.rs"
+path = "../events/year_2023/day_02/day_02.rs"
 
 
 [[bin]]
 name = "2023-03"
-path = "../events/2023/03/03.rs"
+path = "../events/year_2023/day_03/day_03.rs"
 
 
 [[bin]]
 name = "2023-04"
-path = "../events/2023/04/04.rs"
+path = "../events/year_2023/day_04/day_04.rs"
 
 
 [[bin]]
 name = "2023-05"
-path = "../events/2023/05/05.rs"
+path = "../events/year_2023/day_05/day_05.rs"
 
 
 [[bin]]
 name = "2023-06"
-path = "../events/2023/06/06.rs"
+path = "../events/year_2023/day_06/day_06.rs"
 
 
 [[bin]]
 name = "2023-07"
-path = "../events/2023/07/07.rs"
+path = "../events/year_2023/day_07/day_07.rs"
 
 
 [[bin]]
 name = "2023-08"
-path = "../events/2023/08/08.rs"
+path = "../events/year_2023/day_08/day_08.rs"
 
 
 [[bin]]
 name = "2023-09"
-path = "../events/2023/09/09.rs"
+path = "../events/year_2023/day_09/day_09.rs"
 
 
 [[bin]]
 name = "2023-10"
-path = "../events/2023/10/10.rs"
+path = "../events/year_2023/day_10/day_10.rs"
 
 
 [[bin]]
 name = "2023-11"
-path = "../events/2023/11/11.rs"
+path = "../events/year_2023/day_11/day_11.rs"
 
 
 [[bin]]
 name = "2023-12"
-path = "../events/2023/12/12.rs"
+path = "../events/year_2023/day_12/day_12.rs"
 
 
 [[bin]]
 name = "2023-13"
-path = "../events/2023/13/13.rs"
+path = "../events/year_2023/day_13/day_13.rs"
 
 
 [[bin]]
 name = "2023-14"
-path = "../events/2023/14/14.rs"
+path = "../events/year_2023/day_14/day_14.rs"
 
 
 [[bin]]
 name = "2023-15"
-path = "../events/2023/15/15.rs"
+path = "../events/year_2023/day_15/day_15.rs"
 
 
 [[bin]]
 name = "2023-16"
-path = "../events/2023/16/16.rs"
+path = "../events/year_2023/day_16/day_16.rs"
 
 
 [[bin]]
 name = "2023-17"
-path = "../events/2023/17/17.rs"
+path = "../events/year_2023/day_17/day_17.rs"
 
 
 [[bin]]
 name = "2023-18"
-path = "../events/2023/18/18.rs"
+path = "../events/year_2023/day_18/day_18.rs"
 
 
 [[bin]]
 name = "2023-19"
-path = "../events/2023/19/19.rs"
+path = "../events/year_2023/day_19/day_19.rs"
 
 
 [[bin]]
 name = "2023-20"
-path = "../events/2023/20/20.rs"
+path = "../events/year_2023/day_20/day_20.rs"
 
 
 [[bin]]
 name = "2023-21"
-path = "../events/2023/21/21.rs"
+path = "../events/year_2023/day_21/day_21.rs"
 
 
 [[bin]]
 name = "2023-22"
-path = "../events/2023/22/22.rs"
+path = "../events/year_2023/day_22/day_22.rs"
 
 
 [[bin]]
 name = "2023-23"
-path = "../events/2023/23/23.rs"
+path = "../events/year_2023/day_23/day_23.rs"
 
 
 [[bin]]
 name = "2023-24"
-path = "../events/2023/24/24.rs"
+path = "../events/year_2023/day_24/day_24.rs"
 
 
 [[bin]]
 name = "2023-25"
-path = "../events/2023/25/25.rs"
+path = "../events/year_2023/day_25/day_25.rs"
 
 
 [[bin]]
 name = "2024-01"
-path = "../events/2024/01/01.rs"
+path = "../events/year_2024/day_01/day_01.rs"
 
 
 [[bin]]
 name = "2024-02"
-path = "../events/2024/02/02.rs"
+path = "../events/year_2024/day_02/day_02.rs"
 
 
 [[bin]]
 name = "2024-03"
-path = "../events/2024/03/03.rs"
+path = "../events/year_2024/day_03/day_03.rs"
 
 
 [[bin]]
 name = "2024-04"
-path = "../events/2024/04/04.rs"
+path = "../events/year_2024/day_04/day_04.rs"
 
 
 [[bin]]
 name = "2024-05"
-path = "../events/2024/05/05.rs"
+path = "../events/year_2024/day_05/day_05.rs"
 
 
 [[bin]]
 name = "2024-06"
-path = "../events/2024/06/06.rs"
+path = "../events/year_2024/day_06/day_06.rs"
 
 
 [[bin]]
 name = "2024-07"
-path = "../events/2024/07/07.rs"
+path = "../events/year_2024/day_07/day_07.rs"
 
 
 [[bin]]
 name = "2024-08"
-path = "../events/2024/08/08.rs"
+path = "../events/year_2024/day_08/day_08.rs"
 
 
 [[bin]]
 name = "2024-09"
-path = "../events/2024/09/09.rs"
+path = "../events/year_2024/day_09/day_09.rs"
 
 
 [[bin]]
 name = "2024-10"
-path = "../events/2024/10/10.rs"
+path = "../events/year_2024/day_10/day_10.rs"
 
 
 [[bin]]
 name = "2024-11"
-path = "../events/2024/11/11.rs"
+path = "../events/year_2024/day_11/day_11.rs"
 
 
 [[bin]]
 name = "2024-12"
-path = "../events/2024/12/12.rs"
+path = "../events/year_2024/day_12/day_12.rs"
 
 
 [[bin]]
 name = "2024-13"
-path = "../events/2024/13/13.rs"
+path = "../events/year_2024/day_13/day_13.rs"
 
 
 [[bin]]
 name = "2024-14"
-path = "../events/2024/14/14.rs"
+path = "../events/year_2024/day_14/day_14.rs"
 
 
 [[bin]]
 name = "2024-15"
-path = "../events/2024/15/15.rs"
+path = "../events/year_2024/day_15/day_15.rs"
 
 
 [[bin]]
 name = "2024-16"
-path = "../events/2024/16/16.rs"
+path = "../events/year_2024/day_16/day_16.rs"
 
 
 [[bin]]
 name = "2024-17"
-path = "../events/2024/17/17.rs"
+path = "../events/year_2024/day_17/day_17.rs"
 
 
 [[bin]]
 name = "2024-18"
-path = "../events/2024/18/18.rs"
+path = "../events/year_2024/day_18/day_18.rs"
 
 
 [[bin]]
 name = "2024-19"
-path = "../events/2024/19/19.rs"
+path = "../events/year_2024/day_19/day_19.rs"
 
 
 [[bin]]
 name = "2024-20"
-path = "../events/2024/20/20.rs"
+path = "../events/year_2024/day_20/day_20.rs"
 
 
 [[bin]]
 name = "2024-21"
-path = "../events/2024/21/21.rs"
+path = "../events/year_2024/day_21/day_21.rs"
 
 
 [[bin]]
 name = "2024-22"
-path = "../events/2024/22/22.rs"
+path = "../events/year_2024/day_22/day_22.rs"
 
 
 [[bin]]
 name = "2024-23"
-path = "../events/2024/23/23.rs"
+path = "../events/year_2024/day_23/day_23.rs"
 
 
 [[bin]]
 name = "2024-24"
-path = "../events/2024/24/24.rs"
+path = "../events/year_2024/day_24/day_24.rs"
 
 
 [[bin]]
 name = "2024-25"
-path = "../events/2024/25/25.rs"
+path = "../events/year_2024/day_25/day_25.rs"
