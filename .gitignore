@@ -13,3 +13,4 @@ rustfw/Cargo.lock
 rustfw/Cargo.toml
 rustfw/src/lib.rs
 .pylintrc
+.vscode/**
