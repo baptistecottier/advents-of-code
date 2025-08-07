@@ -1,0 +1,205 @@
+#!./.venv/bin/python
+# -*- coding: utf-8 -*-
+
+"""
+Advent of Code puzzle runner and utility functions.
+"""
+
+# Standard import
+import builtins
+import sys
+
+# Third-party import
+from aocd.models import Puzzle
+from aocd import submit
+
+
+def color_text(txt: str, color: str):
+    """
+    Return the given text string wrapped in ANSI color codes for terminal output.
+
+    Args:
+        txt (str): The text to color.
+        color (str or None): The name of the color (e.g., 'red', 'green').
+                             If None, returns the text unchanged.
+
+    Returns:
+        str: The colored text with ANSI escape codes, or the original text if color is None.
+
+    Examples:
+        >>> color_text("Hello", "red")
+        '\\x1b[31mHello\\x1b[0m'
+    """
+    ansi_colors = ["black", "red", "green", "yellow", "blue", "magenta", "cyan", "white"]
+    if color is None:
+        return txt
+    code = ansi_colors.index(color.casefold())
+    reset = "\x1b[0m"
+    return f"\x1b[{code + 30}m{txt}{reset}"
+
+
+def _check_example_answers(my_answers, answer_a, answer_b):
+    """Check example answers and print results."""
+    success = True
+    answers = list(zip([1, 2], my_answers, [answer_a, answer_b]))
+
+    for part, guess, answer in answers:
+        if not answer:
+            continue
+        if str(guess) == str(answer):
+            print(f"  |__Part {part}: {color_text('pass', 'green')}")
+        else:
+            print((f"""  |__Part {part}: {color_text('fail', 'red')}."""
+                   f"""Your guess: {guess}. Answer: {answer}"""))
+            success = False
+
+    return success
+
+
+def _format_answers(answers):
+    """Format answers for comparison."""
+    my_answers = ["None", "None"]
+    for part, answer in enumerate(answers):
+        my_answers[part] = str(answer)
+        if isinstance(answer, tuple):
+            my_answers[part] = answer[1]
+
+    if my_answers and isinstance(my_answers[0], builtins.tuple):
+        my_answers = [guess for (_, guess) in my_answers[::-1]]
+
+    return my_answers
+
+
+def _process_example_data(day_module, data):
+    """Process example data through preprocessing if available."""
+    if 'preprocessing' in dir(day_module):
+        return day_module.preprocessing(data)
+    return data
+
+
+def _solve_example(day_module, data, args):
+    """Solve an example using the day module's solver."""
+    if 'solver' not in dir(day_module):
+        return (-1,)
+
+    match args, isinstance(data, builtins.tuple):
+        case None, True:
+            return day_module.solver(*data)
+        case None, False:
+            return day_module.solver(data)
+        case _, True:
+            return day_module.solver(*data, **args)
+        case _, True:
+            return day_module.solver(data, **args)
+
+
+def solve_examples(puzzle, details=False):
+    """
+    Solve and validate puzzle examples.
+
+    Args:
+        puzzle: The puzzle object containing examples to test.
+        details (bool): Whether to print detailed example information.
+
+    Returns:
+        bool: True if all examples passed, False otherwise.
+    """
+    examples_success = True
+    day_module = __import__(f"day_{str(puzzle.day).zfill(2)}")
+
+    for i, (data, answer_a, answer_b, args) in enumerate(puzzle.examples, 1):
+        if details:
+            print(puzzle.examples[i - 1])
+
+        print(f"----Example {i}")
+
+        processed_data = _process_example_data(day_module, data)
+        answers = _solve_example(day_module, processed_data, args)
+        my_answers = _format_answers(answers)
+
+        if not _check_example_answers(my_answers, answer_a, answer_b):
+            examples_success = False
+
+    return examples_success
+
+
+def solve_day(puzzle: Puzzle):
+    """
+    Solve a puzzle by loading input data and executing the day's solver.
+
+    Attempts to load input from a local file first, falling back to puzzle.input_data if not found.
+    Dynamically imports the corresponding day module and calls its solver function with the
+    processed input. Submits answers for each part of the puzzle.
+
+    Args:
+        puzzle (Puzzle): Puzzle object containing year, day, and input_data attributes
+
+    Examples:
+        >>> puzzle = Puzzle(year=2023, day=1, input_data="1abc2\npqr3stu8vwx")
+        >>> solve_day(puzzle)  # Loads day_01.py, calls solver(), submits answers
+
+        >>> puzzle = Puzzle(year=2022, day=15, input_data="sensor data...")
+        >>> solve_day(puzzle)  # Handles tuple inputs and custom part submissions
+    """
+    try:
+        input_path = f"./events/year_{puzzle.year}/day_{puzzle.day}/day_{puzzle.day}.input"
+        with open(input_path, encoding="utf-8") as data:
+            puzzle_input = pp(data.read())
+    except FileNotFoundError:
+        puzzle_input = pp(puzzle.input_data)
+
+    day_module = __import__(f"day_{str(puzzle.day).zfill(2)}")
+    if 'solver' in dir(day_module):
+        if isinstance(puzzle_input, builtins.tuple):
+            answers = day_module.solver(*puzzle_input)
+        else:
+            answers = day_module.solver(puzzle_input)
+    else:
+        answers = (-1,)
+
+    for (part, answer) in enumerate(answers, 1):
+        if isinstance(answer, builtins.tuple):
+            fixed_part, fixed_answer = answer
+            submit(fixed_answer, fixed_part, puzzle.day, puzzle.year)
+        else:
+            submit(str(answer), "a" if part == 1 else "b", puzzle.day, puzzle.year)
+
+
+if __name__ == '__main__':
+    year = int(sys.argv[1])
+
+    try:
+        days = [sys.argv[2].zfill(2)]
+    except IndexError:
+        days = [str(d).zfill(2) for d in range(1, 26)]
+
+    for day in days:
+        print(f"Advent of code - year {year} - Day {day}")
+        sys.path.append(f"./events/year_{year}/day_{day}/")
+        module = __import__(f"day_{day}")
+
+        if "preprocessing" in dir(module):
+            pp = module.preprocessing
+        else:
+            def pp(x):
+                """
+                If preprocessing is not defined, set it as the dentity function
+                """
+                return x
+
+        if 'solver' in dir(module):
+            slv = module.solver
+        else:
+            raise NameError("No solver function defined")
+
+        if "-e" in sys.argv or "-ev" in sys.argv:
+            SUCCESS = solve_examples(Puzzle(int(year), int(day)), "-ev" in sys.argv)
+            if SUCCESS:
+                user_input = input("Do you want to run your code against your own input? (y/n) - ")
+                if user_input in ['y', 'Y', '']:
+                    solve_day(Puzzle(year, int(day)))
+            else:
+                sys.exit(0)
+
+        else:
+            solve_day(Puzzle(year, int(day)))
