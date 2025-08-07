@@ -28,7 +28,7 @@ def upload_example():
 
 
 def bfs(
-        maze: set,
+        maze: set | dict[tuple[int, int], int],
         start: tuple,
         end: tuple,
         max_length: int = 1_000,
