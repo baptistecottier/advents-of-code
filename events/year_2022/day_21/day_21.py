@@ -46,7 +46,7 @@ def solver(monkeys: list[list[str]], left: str, right: str) -> tuple[int, int]:
     return yelled_number_by_root_monkey, humn
 
 
-def root_yell(mnks: list[list[str]], humn: int, left: str, right: str):
+def root_yell(mnks: list[list[str]], humn: int, left: str, right: str) -> int:
     """
     Evaluates a list of monkey operations and returns either the sum or the sign of the difference
     between two specified monkeys' values, depending on the presence of 'humn'.

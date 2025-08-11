@@ -10,7 +10,8 @@ from dataclasses import dataclass
 @dataclass
 class Scan:
     """
-    Class storing scan parameters"""
+    Class storing scan parameters
+    """
 
     depth: int
     range: int
@@ -18,7 +19,8 @@ class Scan:
     @property
     def duration(self):
         """
-        Return the duration of a scan"""
+        Return the duration of a scan
+        """
         return 2 * (self.range - 1)
 
 

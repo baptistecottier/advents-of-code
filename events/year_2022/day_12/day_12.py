@@ -42,7 +42,8 @@ def preprocessing(puzzle_input: str
 def solver(
         heightmap: dict[tuple[int, int], int],
         starting_points: list[tuple[int, int]],
-        end: tuple[int, int]):
+        end: tuple[int, int]
+        ) -> tuple[int, int]:
     """
     Solves the maze by computing the shortest distances from multiple starting points to the end
     point using BFS and returns the first and minimum positive distance.
@@ -54,7 +55,8 @@ def solver(
     return distances[0], min(dist for dist in distances if dist > 0)
 
 
-def climbable(pos: tuple[int, int], new: tuple[int, int], heightmap: dict[tuple[int, int], int]):
+def climbable(pos: tuple[int, int], new: tuple[int, int], heightmap: dict[tuple[int, int], int]
+              ) -> bool:
     """
     Determines if moving from the current position to a new position is allowed based on the height
     difference in the heightmap.

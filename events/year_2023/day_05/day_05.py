@@ -3,6 +3,7 @@ Advent of Code - Year 2023 - Day 5
 https://adventofcode.com/2023/day/5
 """
 
+from collections.abc import Iterator
 from pythonfw.functions import extract_chunks
 
 
@@ -16,7 +17,7 @@ def preprocessing(puzzle_input: str) -> tuple[list[int], list[list[list[int]]]]:
     return seeds, maps
 
 
-def solver(seeds: list[int], maps: list[list[list[int]]]):
+def solver(seeds: list[int], maps: list[list[list[int]]]) -> Iterator[int]:
     """
     Solves a mapping puzzle by finding the minimum location for given seeds and maps, and yields
     two results based on seed transformations.

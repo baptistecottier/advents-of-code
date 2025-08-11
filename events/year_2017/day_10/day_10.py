@@ -8,7 +8,8 @@ from collections.abc import Iterator
 
 def solver(puzzle_input: str, n: int = 256) -> Iterator[str]:
     """
-    Compute knot_hash first without then with input/output processing"""
+    Compute knot_hash first without then with input/output processing
+    """
     for io_processing in [False, True]:
         yield knot_hash(puzzle_input, n, io_processing)
 

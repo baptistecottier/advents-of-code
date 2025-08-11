@@ -17,7 +17,7 @@ def preprocessing(puzzle_input: str) -> list[tuple[int, int]]:
     return galaxies
 
 
-def solver(galaxies: list[tuple[int, int]], expansion_factor: int = 1_000_000):
+def solver(galaxies: list[tuple[int, int]], expansion_factor: int = 1_000_000) -> tuple[int, int]:
     """
     Calculates the total Manhattan distance between galaxy pairs, accounting for expanded empty
     rows and columns.

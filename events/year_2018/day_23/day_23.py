@@ -44,7 +44,9 @@ def solver(nanobots: set[tuple[tuple[int, int, int], int]]) -> Iterator[int]:
 
 
 def z3_dist(x: tuple[int, int, int], y: list[ArithRef]) -> ArithRef:
-    """Calculates the Manhattan distance between two points using Z3 solver constraints."""
+    """
+    Calculates the Manhattan distance between two points using Z3 solver constraints.
+    """
     distance = Sum([If(a - b >= 0, a - b, b - a) for a, b in zip(x, y)])
     if not isinstance(distance, ArithRef):
         raise ValueError("Something went wrong")

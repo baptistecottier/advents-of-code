@@ -3,6 +3,7 @@ Advent of Code - Year 2022 - Day 14
 https://adventofcode.com/2022/day/14
 """
 
+from collections.abc import Iterator
 from re import findall
 
 
@@ -31,7 +32,7 @@ def preprocessing(puzzle_input: str) -> set[tuple[int, int]]:
     return rocks
 
 
-def solver(rocks: set[tuple[int, int]]):
+def solver(rocks: set[tuple[int, int]]) -> Iterator[int]:
     """
     Simulates sand falling through a grid of rocks and yields the sand count at the end of the
     endless phase and at rest.

@@ -65,7 +65,8 @@ def fill(pos: tuple[int, int, int],
          pt_min: Point,
          pt_max: Point,
          droplet: list[list[int]],
-         steam: list[tuple[int, int, int]]):
+         steam: list[tuple[int, int, int]]
+         ) -> None:
     """
     Recursively fills a 3D space starting from a given position, marking visited positions in
     'steam' and avoiding positions in 'droplet' within specified bounds.

@@ -5,7 +5,9 @@ https://adventofcode.com/2018/day/8
 
 
 def preprocessing(puzzle_input: str) -> list[int]:
-    """Converts space-separated string of numbers into a list of integers."""
+    """
+    Converts space-separated string of numbers into a list of integers.
+    """
     return list(map(int, puzzle_input.split(' ')))
 
 
@@ -30,7 +32,8 @@ def solver(tree: list[int]) -> tuple[int, int]:
 
 
 def read_tree(data: list[int]) -> tuple[int, int, list[int]]:
-    """Parse a tree structure from a flat list of integers and calculate metadata sums.
+    """
+    Parse a tree structure from a flat list of integers and calculate metadata sums.
 
     Args:
         data: List of integers representing tree structure [children_count, metadata_count, ...]

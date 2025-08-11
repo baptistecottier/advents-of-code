@@ -4,6 +4,7 @@ https://adventofcode.com/2022/day/23
 """
 
 from collections import Counter
+from collections.abc import Iterator
 
 
 def preprocessing(puzzle_input: str) -> list[tuple[int, int]]:
@@ -20,7 +21,7 @@ def preprocessing(puzzle_input: str) -> list[tuple[int, int]]:
     return elves
 
 
-def solver(elves: list[tuple[int, int]]):
+def solver(elves: list[tuple[int, int]]) -> Iterator[int]:
     """
     Simulates elf movement according to specified rules and yields the result after 10 rounds and
     the round when no elf moves.
@@ -30,6 +31,7 @@ def solver(elves: list[tuple[int, int]]):
               {(-1, -1), (-1, 0), (-1, 1)}, {(1, -1), (1, 0), (1, 1)}]
     direction = [(0, -1), (0, 1), (-1, 0), (1, 0)]
     i = -1
+
     while True:
         i += 1
         new_elves = []
@@ -61,4 +63,3 @@ def solver(elves: list[tuple[int, int]]):
 
         if set(elves) == set(relves):
             yield i + 1
-            break

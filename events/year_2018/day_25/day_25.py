@@ -11,7 +11,9 @@ from pythonfw.functions import extract_chunks
 
 
 def preprocessing(puzzle_input: str) -> list[list[int]]:
-    """Preprocesses puzzle input by extracting chunks of 4 integers."""
+    """
+    Preprocesses puzzle input by extracting chunks of 4 integers.
+    """
     return extract_chunks(puzzle_input, 4)
 
 

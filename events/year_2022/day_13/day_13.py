@@ -36,7 +36,7 @@ def solver(packets: list[Any]) -> tuple[int, int]:
     return sum(orders), (packets.index([2]) + 1) * (packets.index([6]) + 1)
 
 
-def is_pair_sorted(a: int | list, b: int | list):
+def is_pair_sorted(a: int | list, b: int | list) -> bool:
     """
     Recursively determines if two elements (integers or nested lists) are sorted in ascending order
     according to custom comparison rules.

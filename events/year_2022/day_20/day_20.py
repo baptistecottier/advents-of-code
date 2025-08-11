@@ -22,7 +22,7 @@ def solver(file: list[int]) -> Iterator[int]:
         yield mix(file, n_mix, decrypted)
 
 
-def mix(file: list[int], n_mix: int, decrypted=False):
+def mix(file: list[int], n_mix: int, decrypted=False) -> int:
     """
     Mixes a list of integers according to a custom shuffling algorithm and returns the sum of
     values at specific offsets from the zero value.

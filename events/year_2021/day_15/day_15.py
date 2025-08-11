@@ -3,7 +3,11 @@ Advent of Code - Year 2021 - Day 15
 https://adventofcode.com/2021/day/15
 """
 
+# Standard imports
+from collections.abc import Iterator
 from itertools import product
+
+# First-party imports
 from pythonfw.functions import dijkstra
 
 
@@ -20,7 +24,7 @@ def preprocessing(puzzle_input: str) -> tuple[dict[tuple[int, int], int], int, i
     return (risk_map, x, y)
 
 
-def solver(map_dict: dict[tuple[int, int], int], w: int, h: int):
+def solver(map_dict: dict[tuple[int, int], int], w: int, h: int) -> Iterator[int]:
     """
     Solves the pathfinding problem on an initial map and its expanded version using Dijkstra's
     algorithm.

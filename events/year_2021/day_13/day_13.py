@@ -16,17 +16,18 @@ def preprocessing(puzzle_input: str) -> tuple[set[tuple[int, ...]], list[tuple[s
     return dots, folds
 
 
-def solver(dots: set[tuple[int, ...]], folds: list[tuple[str, int]]):
+def solver(dots: set[tuple[int, ...]], folds: list[tuple[str, int]]) -> tuple[int, str]:
     """
     Processes a set of dot coordinates and a list of fold instructions, yielding the number of
     visible dots after the first fold and the final screen representation.
     """
+    length_after_first_fold = -1
     for k, (axis, n) in enumerate(folds):
         if axis == 'x':
             dots = {(min(x, 2 * n - x), y) for (x, y) in dots}
         if axis == 'y':
             dots = {(x, min(y, 2 * n - y)) for (x, y) in dots}
         if k == 0:
-            yield len(dots)
+            length_after_first_fold = len(dots)
 
-    yield screen_reader(dots)
+    return length_after_first_fold, screen_reader(dots)

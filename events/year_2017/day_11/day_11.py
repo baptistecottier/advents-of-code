@@ -8,7 +8,8 @@ from pythonfw.classes import Point
 
 def preprocessing(puzzle_input: str) -> list[str]:
     """
-    Returns puzzle input as a list of values separated by a comma"""
+    Returns puzzle input as a list of values separated by a comma
+    """
     return puzzle_input.split(",")
 
 

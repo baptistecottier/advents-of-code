@@ -136,7 +136,9 @@ def fight(
 
 
 def is_fight_over(units: list[Unit]) -> bool:
-    """Returns True if only one unit type remains alive, indicating the fight is over."""
+    """
+    Returns True if only one unit type remains alive, indicating the fight is over.
+    """
     return len(set({u.type for u in units if u.hp > 0})) == 1
 
 

@@ -10,7 +10,8 @@ from itertools import product
 
 def preprocessing(puzzle_input: str) -> int:
     """
-    Converts puzzle input into an integer"""
+    Converts puzzle input into an integer
+    """
     return int(puzzle_input)
 
 

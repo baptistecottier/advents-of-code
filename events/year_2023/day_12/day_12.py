@@ -27,7 +27,7 @@ def solver(records: list[tuple[str, list[int]]]) -> Iterator[int]:
     # yield test(records, 4) # Theoritically correct
 
 
-def test(records: list[tuple[str, list[int]]], rep: int = 0):
+def test(records: list[tuple[str, list[int]]], rep: int = 0) -> int:
     """
     Counts the number of valid arrangements of '#' and '.' in the given records that match the
     specified patterns, optionally repeating them.

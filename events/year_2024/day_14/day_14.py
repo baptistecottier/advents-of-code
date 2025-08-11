@@ -4,6 +4,7 @@ https://adventofcode.com/2024/day/14
 """
 
 # Standard immports
+from collections.abc import Iterator
 from math import prod
 
 # First party imports
@@ -17,7 +18,7 @@ def preprocessing(puzzle_input: str) -> list[list[int]]:
     return extract_chunks(puzzle_input, 4)
 
 
-def solver(robots: list[list[int]], w: int = 101, h: int = 103):
+def solver(robots: list[list[int]], w: int = 101, h: int = 103) -> Iterator[int]:
     """
     Simulates robot movements on a grid and yields specific metrics based on row and column
     occupancy over time.
@@ -49,7 +50,7 @@ def solver(robots: list[list[int]], w: int = 101, h: int = 103):
         seconds += 1
 
 
-def safety_factor(robots: list[list[int]], w: int = 101, h: int = 103):
+def safety_factor(robots: list[list[int]], w: int = 101, h: int = 103) -> int:
     """
     Given a list of robots, we sort them according to the quadrant they belong to.
     """

@@ -21,13 +21,13 @@ def preprocessing(puzzle_input: str) -> dict[str, set[tuple[int, int]]]:
 
 def solver(letters: dict[str, set[tuple[int, int]]]) -> tuple[int, int]:
     """
-    Solves the puzzle by applying the find_xmas and find_x_mas functions to the given letters
+    Solves the puzzle by applying the count_xmas and count_x_mas functions to the given letters
     dictionary.
     """
-    return find_xmas(letters), find_x_mas(letters)
+    return count_xmas(letters), count_x_mas(letters)
 
 
-def find_xmas(letters):
+def count_xmas(letters: dict[str, set[tuple[int, int]]]) -> int:
     """
     Patterns to be detected are:
     XMAS    X...    X...    ...X    SAMX    S...    S...    ...S
@@ -50,7 +50,7 @@ def find_xmas(letters):
     return cnt
 
 
-def find_x_mas(letters):
+def count_x_mas(letters: dict[str, set[tuple[int, int]]]) -> int:
     """
     Patterns to be detected are:
     M.S     S.M     M.M     S.S

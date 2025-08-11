@@ -25,7 +25,7 @@ def solver(bets: list[tuple[str, int]]) -> Iterator[int]:
         yield winnings(bets, joker)
 
 
-def winnings(bets: list[tuple[str, int]], joker: str):
+def winnings(bets: list[tuple[str, int]], joker: str) -> int:
     """
     Calculates the total winnings based on ranked poker hands with a specified joker card.
     """

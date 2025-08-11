@@ -4,6 +4,9 @@ https://adventofcode.com/2023/day/14
 """
 
 
+from collections.abc import Iterator
+
+
 def preprocessing(puzzle_input: str) -> tuple[set[tuple[int, int]], set[tuple[int, int]], int, int]:
     """
     Parses the puzzle input and returns sets of round and square rock positions along with grid
@@ -21,7 +24,8 @@ def preprocessing(puzzle_input: str) -> tuple[set[tuple[int, int]], set[tuple[in
     return rounded, cube, x + 1, height
 
 
-def solver(rounded: set[tuple[int, int]], cube: set[tuple[int, int]], w: int, h: int):
+def solver(rounded: set[tuple[int, int]], cube: set[tuple[int, int]], w: int, h: int
+           ) -> Iterator[int]:
     """
     Simulates tilting operations on a grid and yields the sum of y-coordinates after each cycle,
     detecting cycles to efficiently compute future states.
