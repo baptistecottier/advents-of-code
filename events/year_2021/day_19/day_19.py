@@ -8,94 +8,48 @@ https://adventofcode.com/2021/day/19
 """
 
 
-import itertools
-import re
+from itertools import permutations, combinations_with_replacement
+from pythonfw.functions import extract_chunks
+
+def preprocessing(puzzle_input: str) -> list[list[list[int]]]:
+    puzzle_input="""--- scanner 0 ---
+-1,-1,1
+-2,-2,2
+-3,-3,3
+-2,-3,1
+5,6,-4
+8,0,7"""
+    scans = []
+    scanners_raw = puzzle_input.split('\n\n')
+
+    for scanner_raw in scanners_raw:
+        _, beacons_raw = scanner_raw.split('\n', 1)
+        beacons = extract_chunks(beacons_raw, 3)
+        scans.append((beacons))
+        
+    return scans
 
 
-def ints(string):
-    return map(int, re.findall(r"-?[0-9]+", string))
+def solver(scans: list[list[list[int]]]) -> tuple[int, int]:
+    for scan in scans:
+        generate_other_perspectives(scan)
+    return (0, 0)
 
 
-def convert(x, y, z, ori):
-    xneg, xaxis, yneg, yaxis, zneg = ori
-    out = [0, 0, 0]
-    axis = [0, 1, 2]
-    out[axis.pop(xaxis)] = x * xneg
-    out[axis.pop(yaxis)] = y * yneg
-    out[axis.pop()] = z * zneg
-    return tuple(out)
+def generate_other_perspectives(scans: list[list[int]]) -> list[list[int]]:
+    perspectives = []
 
+    for a, b, c in permutations(range(3), 3):
+        for d in combinations_with_replacement((-1, 1), 3):
+            perspective = []            
+            for s in scans:
+                perspective.append([s[a] * d[a], s[b] * d[b], s[c] * d[c]])
+            perspectives.append(perspective)
+    
+    return perspectives
 
-def convert_reverse(x, y, z, ori):
-    xneg, xaxis, yneg, yaxis, zneg = ori
-    ins = [x, y, z]
-    axis = [0, 1, 2]
-    x = ins[axis.pop(xaxis)] * xneg
-    y = ins[axis.pop(yaxis)] * yneg
-    z = ins[axis.pop()] * zneg
-    return x, y, z
-
-
-def match(main, other):
-    for ori in itertools.product((-1, 1), (0, 1, 2), (-1, 1), (0, 1), (-1, 1)):
-        for x, y, z in main:
-            for xx, yy, zz in other:
-                match_count = 0
-                for xxx, yyy, zzz in main:
-                    if (x, y, z) == (xxx, yyy, zzz):
-                        continue
-                    dx = xxx - x
-                    dy = yyy - y
-                    dz = zzz - z
-                    dxx, dyy, dzz = convert(dx, dy, dz, ori)
-                    if (xx + dxx, yy + dyy, zz + dzz) in other:
-                        match_count += 1
-                if match_count >= 11:
-                    x, y, z = convert(x, y, z, ori)
-                    dx, dy, dz = x - xx, y - yy, z - zz
-                    return (
-                        set(
-                            convert_reverse(x + dx, y + dy, z + dz, ori)
-                            for x, y, z in other
-                        ),
-                        convert_reverse(dx, dy, dz, ori),
-                    )
-
-
-with open("Day19/puzzle_input") as f:
-    inp2 = f.read().strip().split("\n\n")
-    scanners = []
-    for lines in inp2:
-        scanner = set()
-        for line in lines.splitlines()[1:]:
-            scanner.add(tuple(ints(line)))
-        scanners.append(scanner)
-
-    todo = [0]
-    matched = set([0])
-    beacons = set(scanners[0])
-    scanners_pos = set([(0, 0, 0)])
-    while todo:
-        new = []
-        for main in todo:
-            for i, other in enumerate(scanners):
-                if i in matched:
-                    continue
-                res = match(scanners[main], other)
-                if res:
-                    m, s = res
-                    new.append(i)
-                    matched.add(i)
-                    scanners[i] = m
-                    scanners_pos.add(s)
-                    beacons |= m
-        todo = new
-
-    print("Part 1:", len(beacons))
-    print(
-        "Part 2:",
-        max(
-            abs(x1 - x2) + abs(y1 - y2) + abs(z1 - z2)
-            for (x1, y1, z1), (x2, y2, z2) in itertools.combinations(scanners_pos, 2)
-        ),
-    )
+def is_candidate(src: list[int], dst: list[int]):
+    return sum(
+        sorted(abs(item) for item in s) == sorted(abs(item) for item in d)
+        for s, d in zip(src, dst)
+        ) >= 12
