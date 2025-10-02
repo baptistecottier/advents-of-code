@@ -8,10 +8,16 @@ fn preprocessing(puzzle_input: &str) -> (HashSet<(i32, i32)>, (i32, i32), (i32, 
     for (y, line) in puzzle_input.lines().enumerate() {
         for (x, c) in line.chars().enumerate() {
             match c {
-                '#' => { kiosk.insert((x as i32, y as i32)); },
-                'S' => { start = (x as i32, y as i32); },
-                'E' => { end = (x as i32, y as i32); },
-                _ => {},
+                '#' => {
+                    kiosk.insert((x as i32, y as i32));
+                }
+                'S' => {
+                    start = (x as i32, y as i32);
+                }
+                'E' => {
+                    end = (x as i32, y as i32);
+                }
+                _ => {}
             }
         }
     }
@@ -55,7 +61,6 @@ fn part_1(kiosk: HashSet<(i32, i32)>, start: (i32, i32), end: (i32, i32)) -> i32
     }
     lowest_score
 }
-
 
 fn part_2(kiosk: HashSet<(i32, i32)>, start: (i32, i32), end: (i32, i32)) -> usize {
     let mut paths = VecDeque::new();

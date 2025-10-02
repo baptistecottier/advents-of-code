@@ -6,7 +6,7 @@ https://adventofcode.com/2018/day/20
 import networkx
 
 
-def preprocessing(puzzle_input: str) -> list[int]:
+def preprocessing(puzzle_input: str) -> list[float]:
     """
     Parses a regex-like path string to build a maze graph and returns shortest path lengths from
     origin.
@@ -43,7 +43,7 @@ def preprocessing(puzzle_input: str) -> list[int]:
                 pos.update(ends)
                 starts, ends = branch.pop()
 
-    return networkx.algorithms.shortest_path_length(maze, source=0).values()
+    return list(networkx.algorithms.shortest_path_length(maze, source=0).values())
 
 
 def solver(lengths: list[int]) -> tuple[int, int]:
