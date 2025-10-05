@@ -1,4 +1,3 @@
-
 aoc::main!();
 
 fn preprocessing(input: &str) -> (Vec<i32>, Vec<i32>) {
