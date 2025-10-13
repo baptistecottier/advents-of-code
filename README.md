@@ -12,7 +12,7 @@ Thanks [Scotow](https://github.com/scotow) for the initial framework and preciou
 
 Year          |   🐍   |   🦀  |
 :---:         | :---:  | :--: |
-[2024](#2024) | 50     | 20
+[2024](#2024) | 50     | 24
 [2023](#2023) | 38     | 12
 [2022](#2022) | 40     | 26
 [2021](#2021) | 43     | 8 
@@ -48,9 +48,9 @@ Year          |   🐍   |   🦀  |
 | 04 | [Ceres Search            ](events/year_2024/day_04/day_04.md#day-4-ceres-search)              | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/year_2024/day_04/day_04.py) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/year_2024/day_04/day_04.rs) |
 | 05 | [Print Queue             ](events/year_2024/day_05/day_05.md#day-5-print-queue)               | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/year_2024/day_05/day_05.py) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/year_2024/day_05/day_05.rs) |
 | 06 | [Guard Gallivant         ](events/year_2024/day_06/day_06.md#day-6-guard-gallivant)           | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/year_2024/day_06/day_06.py) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/year_2024/day_06/day_06.rs) |
-| 07 | [Bridge Repair           ](events/year_2024/day_07/day_07.md#day-7-bridge-repair)             | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/year_2024/day_07/day_07.py) |
+| 07 | [Bridge Repair           ](events/year_2024/day_07/day_07.md#day-7-bridge-repair)             | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/year_2024/day_07/day_07.py) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/year_2024/day_07/day_07.rs) |
 | 08 | [Resonant Collinearity   ](events/year_2024/day_08/day_08.md#day-8-resonant-collinearity)     | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/year_2024/day_08/day_08.py) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/year_2024/day_08/day_08.rs) |
-| 09 | [Disk Fragmenter         ](events/year_2024/day_09/day_09.md#day-9-disk-fragmenter)           | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/year_2024/day_09/day_09.py) |
+| 09 | [Disk Fragmenter         ](events/year_2024/day_09/day_09.md#day-9-disk-fragmenter)           | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/year_2024/day_09/day_09.py) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/year_2024/day_09/day_09.rs) |
 | 10 | [Hoof It                 ](events/year_2024/day_10/day_10.md#day-10-hoof-it)                  | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/year_2024/day_10/day_10.py) |
 | 11 | [Plutonian Pebbles       ](events/year_2024/day_11/day_11.md#day-11-plutonian-pebbles)        | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/year_2024/day_11/day_11.py) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/year_2024/day_11/day_11.rs) |
 | 12 | [Garden Groups           ](events/year_2024/day_12/day_12.md#day-12-garden-groups)            | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/year_2024/day_12/day_12.py) |
