@@ -1,10 +1,10 @@
-aoc::main!(); 
+aoc::main!();
 
 fn preprocessing(input: &str) -> Vec<u16> {
     input
-    .lines()
-    .map(|measurement| measurement.parse().unwrap())
-    .collect_vec()
+        .lines()
+        .map(|measurement| measurement.parse().unwrap())
+        .collect_vec()
 }
 
 fn part_1(measurements: Vec<u16>) -> usize {

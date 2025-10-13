@@ -8,14 +8,13 @@ macro_rules! main {
         use {
             aho_corasick::{AhoCorasick, PatternID},
             aoc::screen_reader,
-            grid::Grid,
             itertools::{chain, iproduct, multizip, repeat_n, FoldWhile, Itertools},
             md5::compute,
             mod_exp::mod_exp,
-            num::{Integer, pow, traits::Euclid},
+            num::{pow, traits::Euclid, Integer},
             rand::random,
             regex::Regex,
-            roots::{find_roots_quadratic,Roots},
+            roots::{find_roots_quadratic, Roots},
             serde_json::{json, Value},
             std::cmp::Ordering,
             std::collections::{HashMap, HashSet, VecDeque},
@@ -29,9 +28,10 @@ macro_rules! main {
         fn main() {
             let year = &module_path!()[..4];
             let day = &module_path!()[5..];
-            let puzzle_input =
-                read_to_string(format!("../events/{}/{}/{}.input", year, day, day).trim_end())
-                    .expect("File does not exist");
+            let puzzle_input = read_to_string(
+                format!("../events/year_{}/day_{}/day_{}.input", year, day, day).trim_end(),
+            )
+            .expect("File does not exist");
 
             let input = preprocessing(puzzle_input.as_str());
 
