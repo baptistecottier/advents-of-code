@@ -28,9 +28,10 @@ macro_rules! main {
         fn main() {
             let year = &module_path!()[..4];
             let day = &module_path!()[5..];
-            let puzzle_input =
-                read_to_string(format!("../events/year_{}/day_{}/day_{}.input", year, day, day).trim_end())
-                    .expect("File does not exist");
+            let puzzle_input = read_to_string(
+                format!("../events/year_{}/day_{}/day_{}.input", year, day, day).trim_end(),
+            )
+            .expect("File does not exist");
 
             let input = preprocessing(puzzle_input.as_str());
 
