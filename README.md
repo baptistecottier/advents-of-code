@@ -25,7 +25,7 @@ Year          |   🐍   |   🦀  |
 [2019](#2019) | 38     | 10
 [2018](#2018) | 47     | 13
 [2017](#2017) | 50     | 24
-[2016](#2016) | 50     | 38
+[2016](#2016) | 50     | 40
 [2015](#2015) | 50     | 45
 </td>
 </tr> 
@@ -338,7 +338,7 @@ Year          |   🐍   |   🦀  |
 | 14 | [One-Time Pad                          ](events/year_2016/day_14/day_14.md#day-14-one-time-pad)                           | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/year_2016/day_14/day_14.py) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/year_2016/day_14/day_14.rs) |
 | 15 | [Timing is Everything                  ](events/year_2016/day_15/day_15.md#day-15-timing-is-everything)                   | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/year_2016/day_15/day_15.py) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/year_2016/day_15/day_15.rs) |
 | 16 | [Dragon Checksum                       ](events/year_2016/day_16/day_16.md#day-16-dragon-checksum)                        | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/year_2016/day_16/day_16.py) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/year_2016/day_16/day_16.rs) |
-| 17 | [Two Steps Forward                     ](events/year_2016/day_17/day_17.md#day-17-two-steps-forward)                      | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/year_2016/day_17/day_17.py) |                                                                                        |
+| 17 | [Two Steps Forward                     ](events/year_2016/day_17/day_17.md#day-17-two-steps-forward)                      | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/year_2016/day_17/day_17.py) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/year_2016/day_17/day_17.rs) |
 | 18 | [Like a Rogue                          ](events/year_2016/day_18/day_18.md#day-18-like-a-rogue)                           | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/year_2016/day_18/day_18.py) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/year_2016/day_18/day_18.rs) |
 | 19 | [An Elephant Named Joseph              ](events/year_2016/day_19/day_19.md#day-19-an-elephant-named-joseph)               | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/year_2016/day_19/day_19.py) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/year_2016/day_19/day_19.rs) |
 | 20 | [Firewall Rules                        ](events/year_2016/day_20/day_20.md#day-20-firewall-rules)                         | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/year_2016/day_20/day_20.py) |                                                                                        |
