@@ -19,11 +19,9 @@ fn preprocessing(input: &str) -> Vec<HashMap<(usize, usize), u32>> {
     cnt_hiking_trails(starts, grid)
 }
 
-
 fn part_1(hiking_trails: Vec<HashMap<(usize, usize), u32>>) -> usize {
     hiking_trails.iter().map(|hm| hm.len()).sum()
 }
-
 
 fn part_2(hiking_trails: Vec<HashMap<(usize, usize), u32>>) -> u32 {
     hiking_trails
@@ -31,7 +29,6 @@ fn part_2(hiking_trails: Vec<HashMap<(usize, usize), u32>>) -> u32 {
         .map(|hm| hm.values().sum::<u32>())
         .sum()
 }
-
 
 fn cnt_hiking_trails(
     starts: Vec<(usize, usize)>,
