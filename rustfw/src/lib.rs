@@ -16,6 +16,7 @@ macro_rules! main {
             rand::random,
             regex::Regex,
             roots::{find_roots_quadratic, Roots},
+            scan_fmt::scan_fmt,
             serde_json::{json, Value},
             std::cmp::Ordering,
             std::collections::{HashMap, HashSet, VecDeque},
