@@ -1271,3 +1271,63 @@ path = "../events/year_2024/day_24/day_24.rs"
 [[bin]]
 name = "2024-25"
 path = "../events/year_2024/day_25/day_25.rs"
+
+
+[[bin]]
+name = "2025-01"
+path = "../events/year_2025/day_01/day_01.rs"
+
+
+[[bin]]
+name = "2025-02"
+path = "../events/year_2025/day_02/day_02.rs"
+
+
+[[bin]]
+name = "2025-03"
+path = "../events/year_2025/day_03/day_03.rs"
+
+
+[[bin]]
+name = "2025-04"
+path = "../events/year_2025/day_04/day_04.rs"
+
+
+[[bin]]
+name = "2025-05"
+path = "../events/year_2025/day_05/day_05.rs"
+
+
+[[bin]]
+name = "2025-06"
+path = "../events/year_2025/day_06/day_06.rs"
+
+
+[[bin]]
+name = "2025-07"
+path = "../events/year_2025/day_07/day_07.rs"
+
+
+[[bin]]
+name = "2025-08"
+path = "../events/year_2025/day_08/day_08.rs"
+
+
+[[bin]]
+name = "2025-09"
+path = "../events/year_2025/day_09/day_09.rs"
+
+
+[[bin]]
+name = "2025-10"
+path = "../events/year_2025/day_10/day_10.rs"
+
+
+[[bin]]
+name = "2025-11"
+path = "../events/year_2025/day_11/day_11.rs"
+
+
+[[bin]]
+name = "2025-12"
+path = "../events/year_2025/day_12/day_12.rs"

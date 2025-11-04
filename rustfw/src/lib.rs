@@ -13,6 +13,7 @@ macro_rules! main {
             md5::compute,
             mod_exp::mod_exp,
             num::{pow, traits::Euclid, Integer},
+            pathfinding::directed::{bfs::bfs, dijkstra::dijkstra},
             rand::random,
             regex::Regex,
             roots::{find_roots_quadratic, Roots},
