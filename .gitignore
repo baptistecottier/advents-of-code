@@ -1,16 +1,27 @@
-target
-.DS_Store
-**.pyc
-**/.vscode/settings.json
-**.sol
-rename.py
-**/.coverage
+# Build artifacts
+target/
+build/
+*.pyc
+__pycache__/
+.pytest_cache/
+.coverage
 
+# System files
+.DS_Store
+.vscode/
+*.sol
+
+# Virtual environment
+.venv/
+
+# Framework files (auto-generated)
 pythonfw/classes.py
 pythonfw/functions.py
 pythonfw/ship_computer.py
 rustfw/Cargo.lock
 rustfw/Cargo.toml
 rustfw/src/lib.rs
+
+# Config files
 .pylintrc
-.vscode/**
+rename.py
