@@ -1,9 +1,72 @@
-# 🎁 Advents of code
+# 🎁 Advent of Code Solutions
+
+A comprehensive development environment for Advent of Code with professional CLI tools, shell autocompletion, and intelligent automation.
 
 Here are my solutions for the [Advent of Code](https://adventofcode.com) challenges 🎄⭐🎅🏻.
 Some puzzles are solved in Python 🐍, some are solved in Rust 🦀.
 
 Thanks [Scotow](https://github.com/scotow) for the initial framework and precious coding advices.
+
+## 🚀 Quick Start
+
+```bash
+# One-time setup
+source setup.sh
+
+# Run solutions with intelligent features  
+aocp 2024 1          # Python with auto-input, examples, verification
+aocr 2024 1          # Rust with Cargo integration, optimization
+```
+
+## ✨ Features
+
+- **🤖 Smart CLI Tools**: `aocp` (Python) and `aocr` (Rust) with full AOC integration
+- **⚡ Shell Completion**: Tab completion for years, days, and flags  
+- **🎯 Auto-Input**: Automatically downloads and saves puzzle inputs
+- **📝 Example Extraction**: Parses and saves examples from puzzle descriptions
+- **✅ Answer Verification**: Check solutions against AOC servers
+- **🎨 Rich Output**: Colored, formatted results with timing
+
+For detailed documentation see [`docs/`](docs/) directory.
+
+## 🛠️ Setup
+
+### 🚀 **Quick Setup (Fresh Clone)**
+```bash
+# Clone the repository
+git clone <repo>
+cd advents-of-code
+
+# One-time initial setup (installs dependencies, configures AOC token, etc.)
+./scripts/initial_setup.sh
+
+# Daily usage - load environment 
+source setup.sh
+```
+
+### 💫 **Daily Usage**
+```bash
+# Each time you open a new terminal
+source setup.sh
+
+# Your tools are now ready!
+aocp 2024 1              # Run Python solution
+aocr 2024 1              # Run Rust solution
+```
+
+### 🔧 **Manual Setup**
+If you prefer manual setup:
+```bash
+# Install Python dependencies
+python3 -m pip install -r requirements.txt
+
+# Configure AOC session token
+mkdir -p ~/.config/aocd
+echo "YOUR_SESSION_TOKEN" > ~/.config/aocd/token
+
+# Load environment
+source setup.sh
+```
 
 ## 🎄 Summary
 <table>
@@ -12,6 +75,7 @@ Thanks [Scotow](https://github.com/scotow) for the initial framework and preciou
 
 Year          |   🐍   |   🦀  |
 :---:         | :---:  | :--: |
+[2025](#2025) | 0      | 0
 [2024](#2024) | 50     | 26
 [2023](#2023) | 38     | 12
 [2022](#2022) | 40     | 26
@@ -34,6 +98,28 @@ Year          |   🐍   |   🦀  |
 
 
 ## ⭐ Yearly detailed scores
+
+<details>
+    <summary> 
+    <a id="2025"><h2>2025 🎉</h2></a>
+    </summary>
+
+| Day | Title                     | Python | Rust |
+| :-: | :------------------------ | :----: | :--: |
+| 01 | [TBD](events/year_2025/day_01/day_01.md) |  |  |
+| 02 | [TBD](events/year_2025/day_02/day_02.md) |  |  |
+| 03 | [TBD](events/year_2025/day_03/day_03.md) |  |  |
+| 04 | [TBD](events/year_2025/day_04/day_04.md) |  |  |
+| 05 | [TBD](events/year_2025/day_05/day_05.md) |  |  |
+| 06 | [TBD](events/year_2025/day_06/day_06.md) |  |  |
+| 07 | [TBD](events/year_2025/day_07/day_07.md) |  |  |
+| 08 | [TBD](events/year_2025/day_08/day_08.md) |  |  |
+| 09 | [TBD](events/year_2025/day_09/day_09.md) |  |  |
+| 10 | [TBD](events/year_2025/day_10/day_10.md) |  |  |
+| 11 | [TBD](events/year_2025/day_11/day_11.md) |  |  |
+| 12 | [TBD](events/year_2025/day_12/day_12.md) |  |  |
+
+</details>
 
 <details>
     <summary> 
@@ -384,3 +470,77 @@ Year          |   🐍   |   🦀  |
 | 25 | [Let It Snow                           ](events/year_2015/day_25/day_25.md#day-25-let-it-snow)                             | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/year_2015/day_25/day_25.py) | [⭐  ](https://github.com/baptistecottier/advents-of-code/tree/main/events/year_2015/day_25/day_25.rs) |
 
 </details>
+
+## 🛠️ Development Tools
+
+This repository includes CLI tools for running Advent of Code solutions:
+
+### 🐍 `aocp` - Python Runner
+```bash
+# Run specific year/day
+aocp 2024 1
+
+# Run with example testing 
+aocp 2024 1 --examples
+
+# Extract puzzle examples
+aocp 2024 1 --extract-examples
+
+# Save input file only
+aocp 2024 1 --save-input
+
+# Run multiple days
+aocp 2024 --days 1-5
+aocp 2024 --days 1,3,5
+```
+
+### 🦀 `aocr` - Rust Runner  
+```bash
+# Build and run
+aocr 2024 1
+
+# Check compilation only
+aocr 2024 1 --check
+
+# Build in release mode
+aocr 2024 1 --release
+
+# Extract examples
+aocr 2024 1 --extract-examples
+```
+
+### 🚀 Shell Autocompletion
+
+Both tools support intelligent shell autocompletion for faster development:
+
+```bash
+# Quick setup (current session)
+cd /path/to/advents-of-code
+source setup_completion_interactive.sh
+
+# Test completions
+aocp <TAB>      # Shows: 2015 2016 2017...
+aocp 2024 <TAB> # Shows: 1 2 3 4...  
+aocp --<TAB>    # Shows: --help --examples --extract-examples...
+
+aocr <TAB>      # Shows: 2015 2016 2017...
+aocr 2024 <TAB> # Shows: 1 2 3 4...
+aocr --<TAB>    # Shows: --help --check --release...
+```
+
+**Permanent Installation:**
+```bash
+# Add to ~/.bashrc or ~/.zshrc:
+source /path/to/advents-of-code/enable_completion.sh
+```
+
+**Troubleshooting:** If completion doesn't work, see [COMPLETION_TROUBLESHOOTING.md](COMPLETION_TROUBLESHOOTING.md)
+
+### 📋 Features
+
+- ⚡ **Smart Input Management**: Auto-downloads and caches puzzle inputs
+- 🧪 **Example Testing**: Validates solutions against puzzle examples  
+- 📊 **Answer Verification**: Integrates with AOC for answer checking
+- 💾 **Persistent Examples**: Saves extracted examples to `.examples` files
+- 🎨 **Colored Output**: Professional terminal display with status indicators
+- 🔄 **Auto-completion**: Context-aware shell completion for all arguments
