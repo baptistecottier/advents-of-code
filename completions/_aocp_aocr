@@ -1,0 +1,68 @@
+#compdef aocp aocr
+
+# Zsh completion for aocp and aocr
+
+_aocp() {
+    local context state line
+    typeset -A opt_args
+    
+    _arguments -C \
+        '1: :_years' \
+        '2: :_days' \
+        '--help[Show help message]' \
+        '-h[Show help message]' \
+        '--days[Specify days to run]:days:' \
+        '-e[Test examples before running]' \
+        '--examples[Test examples before running]' \
+        '-ev[Test examples with verbose output]' \
+        '--examples-verbose[Test examples with verbose output]' \
+        '--no-local[Force use of remote input (bypass local files)]' \
+        '--force[Force run even if examples fail]' \
+        '--save-input[Save puzzle input to local .input file and exit]' \
+        '--extract-examples[Extract and display examples from puzzle description]' \
+        '--refresh-examples[Force refresh examples (ignore cached .examples files)]'
+}
+
+_aocr() {
+    local context state line
+    typeset -A opt_args
+    
+    _arguments -C \
+        '1: :_years' \
+        '2: :_days' \
+        '--help[Show help message]' \
+        '-h[Show help message]' \
+        '--days[Specify days to run]:days:' \
+        '-c[Check compilation only (cargo check)]' \
+        '--check[Check compilation only (cargo check)]' \
+        '-r[Build in release mode (optimized)]' \
+        '--release[Build in release mode (optimized)]' \
+        '--build-only[Build only, do not run]' \
+        '-v[Verbose cargo output]' \
+        '--verbose[Verbose cargo output]' \
+        '--time[Measure execution time]' \
+        '--save-input[Save puzzle input to local .input file]' \
+        '--extract-examples[Extract and display examples from puzzle description]' \
+        '--refresh-examples[Force refresh examples (ignore cached .examples files)]'
+}
+
+_years() {
+    local years
+    years=(2015 2016 2017 2018 2019 2020 2021 2022 2023 2024 2025)
+    _describe 'year' years
+}
+
+_days() {
+    local days
+    days=(1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25)
+    _describe 'day' days
+}
+
+case "$service" in
+    aocp)
+        _aocp "$@"
+        ;;
+    aocr) 
+        _aocr "$@"
+        ;;
+esac

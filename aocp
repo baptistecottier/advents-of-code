@@ -1,4 +1,4 @@
-#!./.venv/bin/python
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
 """
@@ -6,11 +6,20 @@ Advent of Code puzzle runner and utility functions.
 """
 
 # Standard import
+import argparse
 import builtins
 import sys
+from pathlib import Path
 
 # Third-party import
 from aocd.models import Puzzle
+
+try:
+    import argcomplete
+    ARGCOMPLETE_AVAILABLE = True
+except ImportError:
+    argcomplete = None
+    ARGCOMPLETE_AVAILABLE = False
 from aocd import submit
 
 
@@ -77,20 +86,20 @@ def _process_example_data(day_module, data):
     return data
 
 
-def _solve_example(day_module, data, args):
+def _solve_example(day_module, data, example_args):
     """Solve an example using the day module's solver."""
     if 'solver' not in dir(day_module):
         return (-1,)
 
-    match args, isinstance(data, builtins.tuple):
+    match example_args, isinstance(data, builtins.tuple):
         case None, True:
             return day_module.solver(*data)
         case None, False:
             return day_module.solver(data)
         case _, True:
-            return day_module.solver(*data, **args)
+            return day_module.solver(*data, **example_args)
         case _, True:
-            return day_module.solver(data, **args)
+            return day_module.solver(data, **example_args)
 
 
 def solve_examples(puzzle, details=False):
@@ -107,14 +116,14 @@ def solve_examples(puzzle, details=False):
     examples_success = True
     day_module = __import__(f"day_{str(puzzle.day).zfill(2)}")
 
-    for i, (data, answer_a, answer_b, args) in enumerate(puzzle.examples, 1):
+    for i, (data, answer_a, answer_b, example_args) in enumerate(puzzle.examples, 1):
         if details:
             print(puzzle.examples[i - 1])
 
         print(f"----Example {i}")
 
         processed_data = _process_example_data(day_module, data)
-        answers = _solve_example(day_module, processed_data, args)
+        answers = _solve_example(day_module, processed_data, example_args)
         my_answers = _format_answers(answers)
 
         if not _check_example_answers(my_answers, answer_a, answer_b):
@@ -123,30 +132,203 @@ def solve_examples(puzzle, details=False):
     return examples_success
 
 
-def solve_day(puzzle: Puzzle):
-    """
-    Solve a puzzle by loading input data and executing the day's solver.
-
-    Attempts to load input from a local file first, falling back to puzzle.input_data if not found.
-    Dynamically imports the corresponding day module and calls its solver function with the
-    processed input. Submits answers for each part of the puzzle.
-
-    Args:
-        puzzle (Puzzle): Puzzle object containing year, day, and input_data attributes
-
-    Examples:
-        >>> puzzle = Puzzle(year=2023, day=1, input_data="1abc2\npqr3stu8vwx")
-        >>> solve_day(puzzle)  # Loads day_01.py, calls solver(), submits answers
-
-        >>> puzzle = Puzzle(year=2022, day=15, input_data="sensor data...")
-        >>> solve_day(puzzle)  # Handles tuple inputs and custom part submissions
-    """
+def save_examples_to_file(puzzle: Puzzle, examples: list) -> bool:
+    """Save examples to a .examples file."""
+    if not examples:
+        return False
+    
+    day_str = str(puzzle.day).zfill(2)
+    examples_dir = Path(f"./events/year_{puzzle.year}/day_{day_str}")
+    examples_dir.mkdir(parents=True, exist_ok=True)
+    
+    examples_path = examples_dir / f"day_{day_str}.examples"
+    
     try:
-        input_path = f"./events/year_{puzzle.year}/day_{puzzle.day}/day_{puzzle.day}.input"
-        with open(input_path, encoding="utf-8") as data:
-            puzzle_input = pp(data.read())
-    except FileNotFoundError:
-        puzzle_input = pp(puzzle.input_data)
+        import json
+        with open(examples_path, 'w', encoding='utf-8') as f:
+            json.dump(examples, f, indent=2, ensure_ascii=False)
+        
+        print(f"  💾 Examples saved to: {examples_path}")
+        return True
+    except (OSError, IOError) as e:
+        print(f"  ❌ Failed to save examples: {e}")
+        return False
+
+
+def load_examples_from_file(puzzle: Puzzle) -> list:
+    """Load examples from a .examples file if it exists."""
+    import json
+    
+    day_str = str(puzzle.day).zfill(2)
+    examples_path = Path(f"./events/year_{puzzle.year}/day_{day_str}/day_{day_str}.examples")
+    
+    if not examples_path.exists():
+        return []
+    
+    try:
+        with open(examples_path, 'r', encoding='utf-8') as f:
+            examples = json.load(f)
+        
+        print(f"  📁 Loaded {len(examples)} examples from: {examples_path}")
+        return examples
+    except (OSError, IOError, json.JSONDecodeError) as e:
+        print(f"  ⚠️ Failed to load examples file: {e}")
+        return []
+
+
+def extract_examples_from_puzzle(puzzle: Puzzle, force_refresh: bool = False) -> list:
+    """Extract examples from puzzle description - proof of concept."""
+    # First, try to load from existing .examples file (unless forced refresh)
+    if not force_refresh:
+        existing_examples = load_examples_from_file(puzzle)
+        if existing_examples:
+            return existing_examples
+    
+    # For now, return some known examples for demonstration
+    # In a full implementation, this would parse the puzzle webpage
+    known_examples = {
+        # 2015 Day 1 examples
+        (2015, 1): [
+            {'input': '(())', 'expected_a': '0', 'expected_b': None},
+            {'input': '()()', 'expected_a': '0', 'expected_b': None},
+            {'input': '(((', 'expected_a': '3', 'expected_b': None},
+            {'input': '())', 'expected_a': '-1', 'expected_b': None},
+            {'input': ')))', 'expected_a': '-3', 'expected_b': None},
+        ],
+        # 2020 Day 1 examples  
+        (2020, 1): [
+            {'input': '1721\n979\n366\n299\n675\n1456', 'expected_a': '514579', 'expected_b': None},
+        ],
+    }
+    
+    key = (puzzle.year, puzzle.day)
+    if key in known_examples:
+        print(f"  📚 Found {len(known_examples[key])} known examples for {puzzle.year} day {puzzle.day}")
+        examples = known_examples[key]
+        # Save the examples for future use
+        save_examples_to_file(puzzle, examples)
+        return examples
+    
+    print(f"  ❓ No examples available for {puzzle.year} day {puzzle.day} (would need web scraping)")
+    return []
+
+
+def save_input_to_file(puzzle: Puzzle, verbose: bool = True) -> bool:
+    """Save puzzle input to local .input file."""
+    try:
+        input_dir = Path(f"./events/year_{puzzle.year}/day_{str(puzzle.day).zfill(2)}")
+        input_dir.mkdir(parents=True, exist_ok=True)
+        
+        input_path = input_dir / f"day_{str(puzzle.day).zfill(2)}.input"
+        
+        # Check if file already exists and has content
+        if input_path.exists() and input_path.stat().st_size > 0:
+            if verbose:
+                print(f"  📁 Input file already exists: {input_path}")
+            return True
+        
+        # Fetch and save the input
+        input_data = puzzle.input_data
+        with open(input_path, 'w', encoding='utf-8') as f:
+            f.write(input_data)
+        
+        if verbose:
+            print(f"  💾 Saved input to: {input_path}")
+        return True
+        
+    except (OSError, IOError, ConnectionError) as e:
+        if verbose:
+            print(f"  ❌ Failed to save input: {e}")
+        return False
+
+
+def parse_and_display_results(answers, puzzle):
+    """Parse and nicely display the puzzle results with colored output."""
+    import io
+    from contextlib import redirect_stdout, redirect_stderr
+    
+    print("📊 Results:")
+    
+    for part, answer in enumerate(answers, 1):
+        part_letter = "a" if part == 1 else "b"
+        medal = "🥇" if part == 1 else "🥈"
+        
+        # Capture the output from aocd submit
+        stdout_capture = io.StringIO()
+        stderr_capture = io.StringIO()
+        
+        try:
+            with redirect_stdout(stdout_capture), redirect_stderr(stderr_capture):
+                if isinstance(answer, builtins.tuple):
+                    fixed_part, fixed_answer = answer
+                    submit(fixed_answer, fixed_part, puzzle.day, puzzle.year)
+                else:
+                    submit(str(answer), part_letter, puzzle.day, puzzle.year)
+            
+            # Get the captured output
+            output = stdout_capture.getvalue() + stderr_capture.getvalue()
+            
+            # Parse the aocd output to determine status and color
+            if "already solved with same answer" in output:
+                colored_status = color_text("✅ Correct (already solved)", "green")
+            elif "That's the right answer" in output:
+                colored_status = color_text("🎉 Correct (new submission)", "green")
+            elif "That's not the right answer" in output:
+                colored_status = color_text("❌ Incorrect", "red")
+            elif "You gave an answer too recently" in output:
+                colored_status = color_text("⏰ Rate limited", "yellow")
+            else:
+                colored_status = color_text("📤 Submitted", "blue")
+                
+            print(f"  {medal} Part {part}: {answer} - {colored_status}")
+            
+        except (ConnectionError, TimeoutError):
+            print(f"  {medal} Part {part}: {answer} - {color_text('❌ Network error', 'red')}")
+
+
+def solve_day(puzzle: Puzzle, use_local_input: bool = True, preprocessing_func=None):
+    """
+    Solve an Advent of Code puzzle by importing the corresponding day module and running its solver.
+    
+    Args:
+        puzzle: AOC Puzzle object containing year, day, and input data
+        use_local_input: If True, attempts to use local input file first, 
+                        falls back to puzzle.input_data if file not found or empty
+    
+    Examples:
+        >>> puzzle = Puzzle(year=2022, day=15)
+        >>> solve_day(puzzle)  # Loads day_01.py, calls solver(), submits answers
+        
+        >>> puzzle = Puzzle(year=2022, day=15, input_data="sensor data...")
+        >>> solve_day(puzzle, use_local_input=False)  # Uses puzzle.input_data directly
+    """
+    puzzle_input = None
+    
+    if use_local_input:
+        try:
+            input_path = f"./events/year_{puzzle.year}/day_{str(puzzle.day).zfill(2)}/day_{str(puzzle.day).zfill(2)}.input"
+            with open(input_path, encoding="utf-8") as data:
+                file_content = data.read().strip()
+                if file_content:  # Only use local file if it has content
+                    puzzle_input = preprocessing_func(file_content) if preprocessing_func else file_content
+                    print(f"  📁 Using local input: {input_path}")
+        except FileNotFoundError:
+            pass
+    
+    if puzzle_input is None:
+        # Try to save the input locally for future use
+        input_path = f"./events/year_{puzzle.year}/day_{str(puzzle.day).zfill(2)}/day_{str(puzzle.day).zfill(2)}.input"
+        try:
+            save_input_to_file(puzzle, verbose=False)
+            print("  💾 Input auto-saved for future use")
+            # Now read the locally saved file
+            with open(input_path, encoding="utf-8") as data:
+                puzzle_input = preprocessing_func(data.read().strip()) if preprocessing_func else data.read().strip()
+                print(f"  📁 Using auto-saved input: {input_path}")
+        except (OSError, IOError):
+            # Fallback to remote if saving fails
+            puzzle_input = preprocessing_func(puzzle.input_data) if preprocessing_func else puzzle.input_data
+            print("  🌐 Using remote input from AOC")
 
     day_module = __import__(f"day_{str(puzzle.day).zfill(2)}")
     if 'solver' in dir(day_module):
@@ -157,49 +339,198 @@ def solve_day(puzzle: Puzzle):
     else:
         answers = (-1,)
 
-    for (part, answer) in enumerate(answers, 1):
-        if isinstance(answer, builtins.tuple):
-            fixed_part, fixed_answer = answer
-            submit(fixed_answer, fixed_part, puzzle.day, puzzle.year)
+    # Display results with nice formatting
+    parse_and_display_results(answers, puzzle)
+
+
+def parse_arguments():
+    """Parse command line arguments."""
+    parser = argparse.ArgumentParser(
+        description="🎄 Advent of Code puzzle runner",
+        formatter_class=argparse.RawDescriptionHelpFormatter,
+        epilog="""
+Examples:
+  aocp 2024 1                    # Run day 1 of 2024
+  aocp 2024 1 --examples         # Test examples first  
+  aocp 2024 1 --no-local         # Use remote input only
+  aocp 2024 1 --save-input       # Save puzzle input to local file
+  aocp 2024                      # Run all days of 2024
+  aocp 2024 --days 1-5           # Run days 1 through 5
+  aocp 2024 --days 1,3,5         # Run specific days
+        """
+    )
+    
+    parser.add_argument('year', type=int, help='Year (e.g., 2024)')
+    
+    parser.add_argument('day', type=int, nargs='?', 
+                       help='Day number (1-25). If omitted, runs all days.')
+    
+    parser.add_argument('--days', type=str,
+                       help='Specify days to run: "1-5" for range or "1,3,5" for specific days')
+    
+    parser.add_argument('-e', '--examples', action='store_true',
+                       help='Test examples before running on real input')
+    
+    parser.add_argument('-ev', '--examples-verbose', action='store_true',
+                       help='Test examples with verbose output')
+    
+    parser.add_argument('--no-local', action='store_true',
+                       help='Skip local input files, use remote input only')
+    
+    parser.add_argument('--force', action='store_true',
+                       help='Run on real input even if examples fail')
+    
+    parser.add_argument('--save-input', action='store_true',
+                       help='Save puzzle input to local .input file')
+    
+    parser.add_argument('--extract-examples', action='store_true',
+                       help='Extract and display examples from puzzle description')
+    
+    parser.add_argument('--refresh-examples', action='store_true',
+                       help='Force refresh examples (ignore cached .examples files)')
+    
+    # Enable argcomplete if available with custom completers
+    # Note: Disabled to use bash completion for proper numeric day ordering
+    # if ARGCOMPLETE_AVAILABLE and argcomplete:
+    #     argcomplete.autocomplete(parser)
+    
+    return parser.parse_args()
+
+
+def parse_days_string(days_str):
+    """Parse days string like '1-5' or '1,3,5' into list of day numbers."""
+    days = []
+    
+    for part in days_str.split(','):
+        part = part.strip()
+        if '-' in part:
+            start, end = map(int, part.split('-'))
+            days.extend(range(start, end + 1))
         else:
-            submit(str(answer), "a" if part == 1 else "b", puzzle.day, puzzle.year)
+            days.append(int(part))
+    
+    return sorted(set(days))  # Remove duplicates and sort
+
+
+def display_extracted_examples(puzzle: Puzzle, force_refresh: bool = False):
+    """Display extracted examples from puzzle description."""
+    print("📖 Extracting examples from puzzle description...")
+    examples = extract_examples_from_puzzle(puzzle, force_refresh=force_refresh)
+    if examples:
+        print(f"  📋 Extracted {len(examples)} examples:")
+        for i, example in enumerate(examples, 1):
+            print(f"    {i}. Input: {example['input'][:50]}{'...' if len(example['input']) > 50 else ''}")
+            if example.get('expected_a'):
+                print(f"       Expected Part A: {example['expected_a']}")
+            if example.get('expected_b'):
+                print(f"       Expected Part B: {example['expected_b']}")
+    else:
+        print("  ❓ No examples extracted")
+
+
+def run_day(year: int, day_number: int, parsed_args):
+    """Run a specific day with given arguments."""
+    day_str = str(day_number).zfill(2)
+    print(f"\n🎄 Advent of Code - Year {year} - Day {day_str}")
+    
+    # Save input if requested
+    if parsed_args.save_input:
+        puzzle = Puzzle(year, day_number)
+        if not save_input_to_file(puzzle, verbose=True):
+            return False
+        print("  ✅ Input saved successfully")
+        return True  # Exit after saving input if that's all that was requested
+    
+    # Add day directory to Python path
+    day_path = f"./events/year_{year}/day_{day_str}/"
+    if day_path not in sys.path:
+        sys.path.insert(0, day_path)
+    
+    try:
+        module = __import__(f"day_{day_str}")
+    except ImportError as e:
+        print(f"❌ Could not import day_{day_str}: {e}")
+        return False
+    
+    # Set up preprocessing function for solve_day to use
+    if "preprocessing" in dir(module):
+        preprocessing_func = module.preprocessing
+    else:
+        preprocessing_func = lambda x: x
+    
+    # Check if solver exists
+    if 'solver' not in dir(module):
+        print(f"❌ No solver function defined in day_{day_str}")
+        return False
+    
+    puzzle = Puzzle(year, day_number)
+    
+    # Extract examples if requested
+    if parsed_args.extract_examples or parsed_args.refresh_examples:
+        display_extracted_examples(puzzle, force_refresh=parsed_args.refresh_examples)
+    
+    # Handle examples
+    if parsed_args.examples or parsed_args.examples_verbose:
+        print("🧪 Testing examples...")
+        success = solve_examples(puzzle, parsed_args.examples_verbose)
+        
+        if success:
+            print("✅ All examples passed!")
+        else:
+            print("❌ Some examples failed!")
+            if not parsed_args.force:
+                user_input = input("Continue with real input anyway? (y/N): ")
+                if user_input.lower() not in ['y', 'yes']:
+                    return False
+    
+    # Run on real input
+    print("🚀 Running on real input...")
+    solve_day(puzzle, use_local_input=not parsed_args.no_local, preprocessing_func=preprocessing_func)
+    return True
+
+
+# Global preprocessing function placeholder
+pp = lambda x: x
 
 
 if __name__ == '__main__':
-    year = int(sys.argv[1])
-
-    try:
-        days = [sys.argv[2].zfill(2)]
-    except IndexError:
-        days = [str(d).zfill(2) for d in range(1, 26)]
-
-    for day in days:
-        print(f"Advent of code - year {year} - Day {day}")
-        sys.path.append(f"./events/year_{year}/day_{day}/")
-        module = __import__(f"day_{day}")
-
-        if "preprocessing" in dir(module):
-            pp = module.preprocessing
-        else:
-            def pp(x):
-                """
-                If preprocessing is not defined, set it as the dentity function
-                """
-                return x
-
-        if 'solver' in dir(module):
-            slv = module.solver
-        else:
-            raise NameError("No solver function defined")
-
-        if "-e" in sys.argv or "-ev" in sys.argv:
-            SUCCESS = solve_examples(Puzzle(int(year), int(day)), "-ev" in sys.argv)
-            if SUCCESS:
-                user_input = input("Do you want to run your code against your own input? (y/n) - ")
-                if user_input in ['y', 'Y', '']:
-                    solve_day(Puzzle(year, int(day)))
-            else:
-                sys.exit(0)
-
-        else:
-            solve_day(Puzzle(year, int(day)))
+    args = parse_arguments()
+    
+    # Determine which days to run
+    days_to_run = []
+    
+    if args.day is not None:
+        days_to_run = [args.day]
+    elif args.days:
+        try:
+            days_to_run = parse_days_string(args.days)
+        except ValueError as e:
+            print(f"❌ Invalid days format: {e}")
+            sys.exit(1)
+    else:
+        # Run all days (1-25)
+        days_to_run = list(range(1, 26))
+    
+    # Validate days
+    invalid_days = [d for d in days_to_run if d < 1 or d > 25]
+    if invalid_days:
+        print(f"❌ Invalid day numbers: {invalid_days} (must be 1-25)")
+        sys.exit(1)
+    
+    print(f"🎯 Running {len(days_to_run)} day(s) for year {args.year}")
+    if len(days_to_run) > 1:
+        print(f"📅 Days: {', '.join(map(str, days_to_run))}")
+    
+    # Run each day
+    success_count = 0
+    for day_num in days_to_run:
+        try:
+            if run_day(args.year, day_num, args):
+                success_count += 1
+        except KeyboardInterrupt:
+            print("\n⏹️ Interrupted by user")
+            break
+        except (ImportError, FileNotFoundError, AttributeError) as e:
+            print(f"❌ Error running day {day_num}: {e}")
+    
+    print(f"\n🏁 Completed {success_count}/{len(days_to_run)} days successfully")

@@ -1,0 +1,511 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+
+"""
+Advent of Code Rust runner - companion to aocp for Rust solutions.
+"""
+
+import argparse
+import subprocess
+import sys
+from pathlib import Path
+
+try:
+    import argcomplete
+    ARGCOMPLETE_AVAILABLE = True
+except ImportError:
+    argcomplete = None
+    ARGCOMPLETE_AVAILABLE = False
+
+
+def parse_arguments():
+    """Parse command line arguments."""
+    parser = argparse.ArgumentParser(
+        description="🦀 Advent of Code Rust runner with Cargo integration",
+        formatter_class=argparse.RawDescriptionHelpFormatter,
+        epilog="""
+Examples:
+  aocr 2024 1                    # Build and run day 1 of 2024
+  aocr 2024 1 --check            # Check compilation only
+  aocr 2024 1 --release          # Build in release mode
+  aocr 2024 1 --save-input       # Save puzzle input to local file
+  aocr 2024                      # Build and run all days of 2024
+  aocr 2024 --days 1-5           # Run days 1 through 5
+  aocr 2024 --days 1,3,5         # Run specific days
+        """
+    )
+    
+    parser.add_argument('year', type=int, help='Year (e.g., 2024)')
+    
+    parser.add_argument('day', type=int, nargs='?', 
+                       help='Day number (1-25). If omitted, runs all days.')
+    
+    parser.add_argument('--days', type=str,
+                       help='Specify days to run: "1-5" for range or "1,3,5" for specific days')
+    
+    parser.add_argument('-c', '--check', action='store_true',
+                       help='Check compilation only (cargo check)')
+    
+    parser.add_argument('-r', '--release', action='store_true',
+                       help='Build in release mode (optimized)')
+    
+    parser.add_argument('--build-only', action='store_true',
+                       help='Build only, do not run')
+    
+    parser.add_argument('-v', '--verbose', action='store_true',
+                       help='Verbose cargo output')
+    
+    parser.add_argument('--time', action='store_true',
+                       help='Measure execution time')
+    
+    parser.add_argument('--save-input', action='store_true',
+                       help='Save puzzle input to local .input file')
+    
+    parser.add_argument('--extract-examples', action='store_true',
+                       help='Extract and display examples from puzzle description')
+    
+    parser.add_argument('--refresh-examples', action='store_true',
+                       help='Force refresh examples (ignore cached .examples files)')
+    
+    # Enable argcomplete if available with custom completers
+    # Note: Disabled to use bash completion for proper numeric day ordering  
+    # if ARGCOMPLETE_AVAILABLE and argcomplete:
+    #     argcomplete.autocomplete(parser)
+    
+    return parser.parse_args()
+
+
+def parse_days_string(days_str):
+    """Parse days string like '1-5' or '1,3,5' into list of day numbers."""
+    days = []
+    
+    for part in days_str.split(','):
+        part = part.strip()
+        if '-' in part:
+            start, end = map(int, part.split('-'))
+            days.extend(range(start, end + 1))
+        else:
+            days.append(int(part))
+    
+    return sorted(set(days))  # Remove duplicates and sort
+
+
+def get_project_root():
+    """Find the Rust project root (rustfw directory)."""
+    current = Path.cwd()
+    
+    # First check if we're already in rustfw
+    if current.name == 'rustfw' and (current / 'Cargo.toml').exists():
+        return current
+    
+    # Look for rustfw directory
+    rustfw_path = current / 'rustfw'
+    if rustfw_path.exists() and (rustfw_path / 'Cargo.toml').exists():
+        return rustfw_path
+    
+    # Check parent directories
+    while current.parent != current:
+        rustfw_path = current / 'rustfw'
+        if rustfw_path.exists() and (rustfw_path / 'Cargo.toml').exists():
+            return rustfw_path
+        current = current.parent
+    
+    raise FileNotFoundError("Could not find rustfw directory with Cargo.toml")
+
+
+def check_binary_exists(year: int, day: int, project_root: Path) -> bool:
+    """Check if the binary entry exists in Cargo.toml."""
+    cargo_toml = project_root / 'Cargo.toml'
+    binary_name = f"{year}-{day:02d}"
+    
+    try:
+        with open(cargo_toml, 'r', encoding='utf-8') as f:
+            content = f.read()
+            return f'name = "{binary_name}"' in content
+    except FileNotFoundError:
+        return False
+
+
+def parse_and_display_output(output: str, year: int, day: int):
+    """Parse and nicely display the program output with correctness checking."""
+    import re
+    
+    def color_text(text: str, color: str) -> str:
+        """Return colored text for terminal output."""
+        colors = {"red": 31, "green": 32, "yellow": 33, "blue": 34, "magenta": 35, "cyan": 36}
+        if color not in colors:
+            return text
+        return f"\x1b[{colors[color]}m{text}\x1b[0m"
+    
+    def check_answer_correctness(part: int, answer: str, year: int, day: int) -> str:
+        """Check if answer is correct against AOC data."""
+        try:
+            from aocd.models import Puzzle
+            puzzle = Puzzle(year, day)
+            
+            expected_a = puzzle.answer_a if hasattr(puzzle, 'answer_a') and puzzle.answer_a else None
+            expected_b = puzzle.answer_b if hasattr(puzzle, 'answer_b') and puzzle.answer_b else None
+            
+            if part == 1 and expected_a:
+                if str(answer) == str(expected_a):
+                    return color_text("✅ Correct", "green")
+                return color_text(f"❌ Wrong (expected: {expected_a})", "red")
+            if part == 2 and expected_b:
+                if str(answer) == str(expected_b):
+                    return color_text("✅ Correct", "green")
+                return color_text(f"❌ Wrong (expected: {expected_b})", "red")
+            return color_text("❓ Unknown", "yellow")
+                
+        except ImportError:
+            return color_text("📦 aocd not available", "blue")
+        except (ConnectionError, TimeoutError, OSError):
+            return color_text("❓ Could not verify", "yellow")
+    
+    # Try to parse tuple format like (460, 668)
+    tuple_match = re.match(r'^\s*\((\d+),\s*(\d+)\)\s*$', output)
+    if tuple_match:
+        part1, part2 = tuple_match.groups()
+        status1 = check_answer_correctness(1, part1, year, day)
+        status2 = check_answer_correctness(2, part2, year, day)
+        print(f"  🥇 Part 1: {part1} - {status1}")
+        print(f"  🥈 Part 2: {part2} - {status2}")
+        return
+    
+    # Try to parse individual lines with "Part 1:" and "Part 2:" format
+    lines = output.split('\n')
+    part1_found = False
+    part2_found = False
+    
+    for line in lines:
+        line = line.strip()
+        if not line:
+            continue
+            
+        # Look for "Part 1: value" or similar patterns
+        part1_match = re.search(r'(?:Part\s*1|Part\s*A|P1)[\s:]+(\d+)', line, re.IGNORECASE)
+        part2_match = re.search(r'(?:Part\s*2|Part\s*B|P2)[\s:]+(\d+)', line, re.IGNORECASE)
+        
+        if part1_match and not part1_found:
+            print(f"  🥇 Part 1: {part1_match.group(1)}")
+            part1_found = True
+        elif part2_match and not part2_found:
+            print(f"  🥈 Part 2: {part2_match.group(1)}")
+            part2_found = True
+    
+    # If no structured format detected, just show raw output with nice formatting
+    if not (tuple_match or part1_found or part2_found):
+        print("  📄 Raw output:")
+        for line in output.split('\n'):
+            if line.strip():
+                print(f"    {line}")
+
+
+def save_input_to_file(year: int, day: int, verbose: bool = True) -> bool:
+    """Save puzzle input to local .input file."""
+    try:
+        from aocd.models import Puzzle
+        
+        puzzle = Puzzle(year, day)
+        input_dir = Path(f"./events/year_{year}/day_{day:02d}")
+        input_dir.mkdir(parents=True, exist_ok=True)
+        
+        input_path = input_dir / f"day_{day:02d}.input"
+        
+        # Check if file already exists and has content
+        if input_path.exists() and input_path.stat().st_size > 0:
+            if verbose:
+                print(f"  📁 Input file already exists: {input_path}")
+            return True
+        
+        # Fetch and save the input
+        input_data = puzzle.input_data
+        with open(input_path, 'w', encoding='utf-8') as f:
+            f.write(input_data)
+        
+        if verbose:
+            print(f"  💾 Saved input to: {input_path}")
+        return True
+        
+    except ImportError:
+        if verbose:
+            print("  ❌ aocd library not available for input fetching")
+        return False
+    except (OSError, IOError, ConnectionError) as e:
+        if verbose:
+            print(f"  ❌ Failed to save input: {e}")
+        return False
+
+
+def save_examples_to_file(year: int, day: int, examples: list) -> bool:
+    """Save examples to a .examples file."""
+    if not examples:
+        return False
+    
+    day_str = f"{day:02d}"
+    examples_dir = Path(f"./events/year_{year}/day_{day_str}")
+    examples_dir.mkdir(parents=True, exist_ok=True)
+    
+    examples_path = examples_dir / f"day_{day_str}.examples"
+    
+    try:
+        import json
+        with open(examples_path, 'w', encoding='utf-8') as f:
+            json.dump(examples, f, indent=2, ensure_ascii=False)
+        
+        print(f"  💾 Examples saved to: {examples_path}")
+        return True
+    except (OSError, IOError) as e:
+        print(f"  ❌ Failed to save examples: {e}")
+        return False
+
+
+def load_examples_from_file(year: int, day: int) -> list:
+    """Load examples from a .examples file if it exists."""
+    import json
+    
+    day_str = f"{day:02d}"
+    examples_path = Path(f"./events/year_{year}/day_{day_str}/day_{day_str}.examples")
+    
+    if not examples_path.exists():
+        return []
+    
+    try:
+        with open(examples_path, 'r', encoding='utf-8') as f:
+            examples = json.load(f)
+        
+        print(f"  📁 Loaded {len(examples)} examples from: {examples_path}")
+        return examples
+    except (OSError, IOError, json.JSONDecodeError) as e:
+        print(f"  ⚠️ Failed to load examples file: {e}")
+        return []
+
+
+def extract_examples_from_puzzle(year: int, day: int, force_refresh: bool = False) -> list:
+    """Extract examples from puzzle description - proof of concept."""
+    # First, try to load from existing .examples file (unless forced refresh)
+    if not force_refresh:
+        existing_examples = load_examples_from_file(year, day)
+        if existing_examples:
+            return existing_examples
+    
+    try:
+        from aocd.models import Puzzle
+        # Verify puzzle exists (aocd will raise exception if not available)
+        Puzzle(year, day)
+    except ImportError:
+        print("  ❌ aocd library not available")
+        return []
+    
+    # For now, return some known examples for demonstration
+    known_examples = {
+        # 2015 Day 1 examples
+        (2015, 1): [
+            {'input': '(())', 'expected_a': '0', 'expected_b': None},
+            {'input': '()()', 'expected_a': '0', 'expected_b': None},
+            {'input': '(((', 'expected_a': '3', 'expected_b': None},
+            {'input': '())', 'expected_a': '-1', 'expected_b': None},
+            {'input': ')))', 'expected_a': '-3', 'expected_b': None},
+        ],
+        # 2020 Day 1 examples  
+        (2020, 1): [
+            {'input': '1721\n979\n366\n299\n675\n1456', 'expected_a': '514579', 'expected_b': None},
+        ],
+    }
+    
+    key = (year, day)
+    if key in known_examples:
+        print(f"  📚 Found {len(known_examples[key])} known examples for {year} day {day}")
+        examples = known_examples[key]
+        # Save the examples for future use
+        save_examples_to_file(year, day, examples)
+        return examples
+    
+    print(f"  ❓ No examples available for {year} day {day} (would need web scraping)")
+    return []
+
+
+def display_extracted_examples(year: int, day: int, force_refresh: bool = False):
+    """Display extracted examples from puzzle description."""
+    print("📖 Extracting examples from puzzle description...")
+    examples = extract_examples_from_puzzle(year, day, force_refresh=force_refresh)
+    if examples:
+        print(f"  📋 Extracted {len(examples)} examples:")
+        for i, example in enumerate(examples, 1):
+            print(f"    {i}. Input: {example['input'][:50]}{'...' if len(example['input']) > 50 else ''}")
+            if example.get('expected_a'):
+                print(f"       Expected Part A: {example['expected_a']}")
+            if example.get('expected_b'):
+                print(f"       Expected Part B: {example['expected_b']}")
+    else:
+        print("  ❓ No examples extracted")
+
+
+def run_cargo_command(args: list, project_root: Path, verbose: bool = False, show_output: bool = False, year: int = 0, day: int = 0) -> bool:
+    """Run a cargo command and return success status."""
+    try:
+        print(f"🔧 Running: cargo {' '.join(args)}")
+        
+        if verbose:
+            result = subprocess.run(['cargo'] + args, cwd=project_root, check=False)
+        else:
+            result = subprocess.run(
+                ['cargo'] + args, 
+                cwd=project_root, 
+                capture_output=True, 
+                text=True,
+                check=False
+            )
+            
+            # Show output for successful runs when requested (e.g., for 'cargo run')
+            if result.returncode == 0 and show_output and result.stdout.strip():
+                output = result.stdout.strip()
+                print("📊 Results:")
+                parse_and_display_output(output, year, day)
+            
+            if result.returncode != 0:
+                print("❌ Command failed:")
+                if result.stdout:
+                    print(result.stdout)
+                if result.stderr:
+                    print(result.stderr)
+                return False
+        
+        return result.returncode == 0
+        
+    except FileNotFoundError:
+        print("❌ Cargo not found. Make sure Rust is installed.")
+        return False
+    except KeyboardInterrupt:
+        print("\n⏹️ Interrupted by user")
+        return False
+
+
+def run_day(year: int, day_number: int, parsed_args, project_root: Path) -> bool:
+    """Build and run a specific day."""
+    day_str = f"{day_number:02d}"
+    binary_name = f"{year}-{day_str}"
+    
+    print(f"\n🦀 Advent of Code Rust - Year {year} - Day {day_str}")
+    
+    # Save input if requested
+    if parsed_args.save_input:
+        if not save_input_to_file(year, day_number, verbose=True):
+            return False
+        print("  ✅ Input saved successfully")
+        return True  # Exit after saving input if that's all that was requested
+    
+    # Extract examples if requested
+    if parsed_args.extract_examples or parsed_args.refresh_examples:
+        display_extracted_examples(year, day_number, force_refresh=parsed_args.refresh_examples)
+    
+    # Check if binary exists in Cargo.toml
+    if not check_binary_exists(year, day_number, project_root):
+        print(f"❌ Binary '{binary_name}' not found in Cargo.toml")
+        print(f"   Make sure events/year_{year}/day_{day_str}/day_{day_str}.rs exists")
+        return False
+    
+    # Check if input file exists, auto-save if needed (only when actually running, not just checking/building)
+    if not parsed_args.check and not parsed_args.build_only:
+        input_path = Path(f"./events/year_{year}/day_{day_str}/day_{day_str}.input")
+        if not input_path.exists() or input_path.stat().st_size == 0:
+            try:
+                save_input_to_file(year, day_number, verbose=False)
+                print("  💾 Input auto-saved for future use")
+            except (OSError, IOError, ConnectionError, ImportError):
+                pass  # Continue without input if auto-save fails
+    
+    # Build cargo command
+    if parsed_args.check:
+        cargo_args = ['check', '--bin', binary_name]
+        action = "Checking"
+    elif parsed_args.build_only:
+        cargo_args = ['build', '--bin', binary_name]
+        action = "Building"
+    else:
+        cargo_args = ['run', '--bin', binary_name]
+        action = "Running"
+    
+    # Add release flag if specified
+    if parsed_args.release:
+        cargo_args.append('--release')
+        action += " (release mode)"
+    
+    print(f"🔧 {action}...")
+    
+    # Determine if we should show output (for cargo run commands)
+    show_output = not parsed_args.check and not parsed_args.build_only
+    
+    # Add timing if requested
+    if parsed_args.time and not parsed_args.check and not parsed_args.build_only:
+        # Use time command for measuring execution
+        cargo_args = ['time'] + ['cargo'] + cargo_args
+        success = run_cargo_command(cargo_args[1:], project_root, parsed_args.verbose, show_output, year, day_number)
+    else:
+        success = run_cargo_command(cargo_args, project_root, parsed_args.verbose, show_output, year, day_number)
+    
+    if success:
+        if parsed_args.check:
+            print("✅ Compilation check passed!")
+        elif parsed_args.build_only:
+            print("✅ Build completed successfully!")
+        else:
+            print("✅ Execution completed!")
+    
+    return success
+
+
+def main():
+    """Main entry point."""
+    args = parse_arguments()
+    
+    # Find project root
+    try:
+        project_root = get_project_root()
+        print(f"📁 Using Rust project: {project_root}")
+    except FileNotFoundError as e:
+        print(f"❌ {e}")
+        sys.exit(1)
+    
+    # Determine which days to run
+    days_to_run = []
+    
+    if args.day is not None:
+        days_to_run = [args.day]
+    elif args.days:
+        try:
+            days_to_run = parse_days_string(args.days)
+        except ValueError as e:
+            print(f"❌ Invalid days format: {e}")
+            sys.exit(1)
+    else:
+        # Run all days (1-25)
+        days_to_run = list(range(1, 26))
+    
+    # Validate days
+    invalid_days = [d for d in days_to_run if d < 1 or d > 25]
+    if invalid_days:
+        print(f"❌ Invalid day numbers: {invalid_days} (must be 1-25)")
+        sys.exit(1)
+    
+    print(f"🎯 Running {len(days_to_run)} day(s) for year {args.year}")
+    if len(days_to_run) > 1:
+        print(f"📅 Days: {', '.join(map(str, days_to_run))}")
+    
+    # Run each day
+    success_count = 0
+    for day_num in days_to_run:
+        try:
+            if run_day(args.year, day_num, args, project_root):
+                success_count += 1
+        except KeyboardInterrupt:
+            print("\n⏹️ Interrupted by user")
+            break
+    
+    print(f"\n🏁 Completed {success_count}/{len(days_to_run)} days successfully")
+    
+    if success_count == 0:
+        sys.exit(1)
+
+
+if __name__ == '__main__':
+    main()
