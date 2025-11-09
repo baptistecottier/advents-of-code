@@ -1194,5 +1194,12 @@ if __name__ == '__main__':
         display_scoreboard(args.year, days_to_run, day_results)
     
     print(f"🏁 Completed {success_count}/{len(days_to_run)} days successfully")
-    sys.exit(0)
+    sys.stdout.flush()
+    sys.stderr.flush()
+    # Exit immediately without waiting for child processes
+    os._exit(0)
+
+
+
+
 
