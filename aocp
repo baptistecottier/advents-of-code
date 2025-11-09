@@ -11,6 +11,7 @@ import builtins
 import datetime
 import io
 import multiprocessing
+import os
 import sys
 import threading
 from contextlib import redirect_stdout, redirect_stderr
@@ -610,7 +611,9 @@ def solve_day(puzzle: Puzzle, use_local_input: bool = True, preprocessing_func=N
             print("  🌐 Using remote input from AOC")
 
     # Add day directory to Python path to ensure we load the correct module
-    day_path = f"./events/year_{puzzle.year}/day_{str(puzzle.day).zfill(2)}/"
+    # Use absolute path to work from any directory, resolving symlinks
+    script_dir = Path(os.path.realpath(__file__)).parent
+    day_path = str(script_dir / f"events/year_{puzzle.year}/day_{str(puzzle.day).zfill(2)}/")
     if day_path not in sys.path:
         sys.path.insert(0, day_path)
     
@@ -780,7 +783,9 @@ def run_day(year: int, day_number: int, parsed_args, suppress_solver_prints: boo
         return (False, False, False)  # Not actually solving, just saving
     
     # Add day directory to Python path
-    day_path = f"./events/year_{year}/day_{day_str}/"
+    # Use absolute path to work from any directory, resolving symlinks
+    script_dir = Path(os.path.realpath(__file__)).parent
+    day_path = str(script_dir / f"events/year_{year}/day_{day_str}/")
     if day_path not in sys.path:
         sys.path.insert(0, day_path)
     
