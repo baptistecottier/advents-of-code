@@ -7,12 +7,17 @@ from math import prod
 from collections import defaultdict
 
 
+def _default_border_value() -> int:
+    """Default value used for positions outside the parsed heightmap (simulate border = 9)."""
+    return 9
+
+
 def preprocessing(puzzle_input: str) -> dict[tuple[int, int], int]:
     """
     Converts a multiline string of digits into a dictionary mapping (x, y) coordinates to integer
     values, defaulting to 9 to simulate borders.
     """
-    cave = defaultdict(lambda: 9)
+    cave = defaultdict(_default_border_value)
     for y, row in enumerate(puzzle_input.splitlines(), 1):
         for x, n in enumerate(row, 1):
             cave[(x, y)] = int(n)
