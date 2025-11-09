@@ -7,12 +7,12 @@ from collections import Counter
 from collections.abc import Iterator
 
 
-def preprocessing(puzzle_input: str) -> Iterator[list[str]]:
+def preprocessing(puzzle_input: str) -> list[list[str]]:
     """
-    Splits the input string into groups separated by double newlines and yields each group as a
+    Splits the input string into groups separated by double newlines and returns each group as a
     list of lines.
     """
-    return (group.splitlines() for group in puzzle_input.split('\n\n'))
+    return [group.splitlines() for group in puzzle_input.split('\n\n')]
 
 
 def solver(groups: Iterator[list[str]]) -> tuple[int, int]:
