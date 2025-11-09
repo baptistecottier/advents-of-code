@@ -15,7 +15,7 @@ Solutions for [Advent of Code](https://adventofcode.com) in Python and Rust.
 [2025](#2025) |   0    |   0    |
 [2024](#2024) |  50    |  22    |
 [2023](#2023) |  31    |  12    |
-[2022](#2022) |  34    |  18    |
+[2022](#2022) |  35    |  18    |
 [2021](#2021) |  33    |   8    |
 [2020](#2020) |  48    |  16    |
 
@@ -210,7 +210,7 @@ aocr 2024 --days 1,3,5   # Run specific days
 | 22 | [Monkey Map                  ](events/year_2022/day_22/day_22.md#day-22-monkey-map)               | [⭐  ](https://github.com/baptistecottier/advents-of-code/tree/main/events/year_2022/day_22/day_22.py) |                                                                                        |                                                                           |                                                                                      |                                                                                        |
 | 23 | [Unstable Diffusion          ](events/year_2022/day_23/day_23.md#day-23-unstable-diffusion)       | 
 | 24 | Blizzard Basin                                                                       |                                                                                      |                                                                                        |
-| 25 | [Full of Hot Air             ](events/year_2022/day_25/day_25.md#day-25-full-of-hot-air)          | 
+| 25 | [Full of Hot Air             ](events/year_2022/day_25/day_25.md#day-25-full-of-hot-air)          | [⭐  ](https://github.com/baptistecottier/advents-of-code/tree/main/events/year_2022/day_25/day_25.py) |                                                                                        |                                                                           |                                                                                      |                                                                                        |
 
 </details>
 
@@ -245,7 +245,7 @@ aocr 2024 --days 1,3,5   # Run specific days
 | 22 | Reactor Reboot                                                                   |                                                                                           |                                                                                        |
 | 23 | Amphipod                                                                         |                                                                                           |                                                                                        |
 | 24 | Arithmetic Logic Unit                                                            |                                                                                           |                                                                                        |
-| 25 | [Sea Cucumber            ](events/year_2021/day_25/day_25.md#day-25-sea-cucumber)             | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/year_2021/day_17/day_17.py)                                                                                       |                                                                                        |
+| 25 | [Sea Cucumber            ](events/year_2021/day_25/day_25.md#day-25-sea-cucumber)             | [⭐  ](https://github.com/baptistecottier/advents-of-code/tree/main/events/year_2021/day_17/day_17.py)                                                                                       |                                                                                        |
 
 </details>
 
