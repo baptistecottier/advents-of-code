@@ -1151,7 +1151,18 @@ if __name__ == '__main__':
             
             if all_correct and not timeout_occurred:
                 # Check if both parts were returned (day has 2 parts)
-                if num_parts_returned < 2:
+                # Special case: Day 25 only has 1 part, so it's complete if num_parts_returned >= 1
+                if day_num == 25:
+                    if num_parts_returned >= 1:
+                        success_count += 1
+                        day_results[day_num] = {'success': True, 'result': '✅', 'notes': 'Completed'}
+                    else:
+                        day_results[day_num] = {
+                            'success': False,
+                            'result': '🚧',
+                            'notes': 'Incomplete'
+                        }
+                elif num_parts_returned < 2:
                     # Only one part returned when two are available - mark as incomplete
                     day_results[day_num] = {
                         'success': False,
