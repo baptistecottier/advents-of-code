@@ -1,0 +1,7 @@
+[
+  {
+    "input_data": "\"\"\n\"abc\"\n\"aaa\\\"aaa\"\n\"\\x27\"",
+    "answer_a": "12",
+    "answer_b": "19"
+  }
+]

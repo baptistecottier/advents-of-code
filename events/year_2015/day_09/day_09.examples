@@ -1,0 +1,7 @@
+[
+  {
+    "input_data": "London to Dublin = 464\nLondon to Belfast = 518\nDublin to Belfast = 141",
+    "answer_a": "605",
+    "answer_b": "982"
+  }
+]

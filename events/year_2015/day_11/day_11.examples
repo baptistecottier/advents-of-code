@@ -1,0 +1,10 @@
+[
+  {
+    "input_data": "abcdefgh",
+    "answer_a": "abcdffaa"
+  },
+  {
+    "input_data": "ghijklmn",
+    "answer_a": "ghjaabcc"
+  }
+]

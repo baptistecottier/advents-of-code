@@ -1,0 +1,7 @@
+[
+  {
+    "input_data": "     |          \n     |  +--+    \n     A  |  C    \n F---|----E|--+ \n     |  |  |  D \n     +B-+  +--+ ",
+    "answer_a": "ABCDEF",
+    "answer_b": "38"
+  }
+]

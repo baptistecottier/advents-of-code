@@ -1,0 +1,7 @@
+[
+  {
+    "input_data": "F10\nN3\nF7\nR90\nF11",
+    "answer_a": "25",
+    "answer_b": "286"
+  }
+]

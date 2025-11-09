@@ -1,0 +1,11 @@
+[
+  {
+    "input_data": "abcdef\nbababc\nabbcde\nabcccd\naabcdd\nabcdee\nababab",
+    "answer_a": "12"
+  },
+  {
+    "input_data": "abcde\nfghij\nklmno\npqrst\nfguij\naxcye\nwvxyz",
+    "answer_a": null,
+    "answer_b": "fgij"
+  }
+]

@@ -1,0 +1,38 @@
+[
+  {
+    "input_data": "abba[mnop]qrst",
+    "answer_a": "1"
+  },
+  {
+    "input_data": "abcd[bddb]xyyx",
+    "answer_a": "0"
+  },
+  {
+    "input_data": "aaaa[qwer]tyui",
+    "answer_a": "0"
+  },
+  {
+    "input_data": "ioxxoj[asdfgh]zxcvbn",
+    "answer_a": "1"
+  },
+  {
+    "input_data": "aba[bab]xyz",
+    "answer_a": null,
+    "answer_b": "1"
+  },
+  {
+    "input_data": "xyx[xyx]xyx",
+    "answer_a": null,
+    "answer_b": "0"
+  },
+  {
+    "input_data": "aaa[kek]eke",
+    "answer_a": null,
+    "answer_b": "1"
+  },
+  {
+    "input_data": "zazbz[bzb]cdb",
+    "answer_a": null,
+    "answer_b": "1"
+  }
+]

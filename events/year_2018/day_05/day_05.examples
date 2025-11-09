@@ -1,0 +1,23 @@
+[
+  {
+    "input_data": "aA",
+    "answer_a": "0"
+  },
+  {
+    "input_data": "abBA",
+    "answer_a": "0"
+  },
+  {
+    "input_data": "abAB",
+    "answer_a": "4"
+  },
+  {
+    "input_data": "aabAAB",
+    "answer_a": "6"
+  },
+  {
+    "input_data": "dabAcCaCBAcCcaDA",
+    "answer_a": "10",
+    "answer_b": "4"
+  }
+]

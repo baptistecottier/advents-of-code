@@ -1,0 +1,32 @@
+[
+  {
+    "input_data": "111111-111111",
+    "answer_a": "1",
+    "answer_b": "0"
+  },
+  {
+    "input_data": "223450-223450",
+    "answer_a": "0",
+    "answer_b": "0"
+  },
+  {
+    "input_data": "123789-123789",
+    "answer_a": "0",
+    "answer_b": "0"
+  },
+  {
+    "input_data": "112233-112233",
+    "answer_a": "1",
+    "answer_b": "1"
+  },
+  {
+    "input_data": "123444-123444",
+    "answer_a": "1",
+    "answer_b": "0"
+  },
+  {
+    "input_data": "111122-111122",
+    "answer_a": "1",
+    "answer_b": "1"
+  }
+]

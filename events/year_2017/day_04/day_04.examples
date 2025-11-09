@@ -1,0 +1,39 @@
+[
+  {
+    "input_data": "aa bb cc dd ee",
+    "answer_a": "1"
+  },
+  {
+    "input_data": "aa bb cc dd aa",
+    "answer_a": "0"
+  },
+  {
+    "input_data": "aa bb cc dd aaa",
+    "answer_a": "1"
+  },
+  {
+    "input_data": "abcde fghij",
+    "answer_a": null,
+    "answer_b": "1"
+  },
+  {
+    "input_data": "abcde xyz ecdab",
+    "answer_a": null,
+    "answer_b": "0"
+  },
+  {
+    "input_data": "a ab abc abd abf abj",
+    "answer_a": null,
+    "answer_b": "1"
+  },
+  {
+    "input_data": "iiii oiii ooii oooi oooo",
+    "answer_a": null,
+    "answer_b": "1"
+  },
+  {
+    "input_data": "oiii ioii iioi iiio",
+    "answer_a": null,
+    "answer_b": "0"
+  }
+]

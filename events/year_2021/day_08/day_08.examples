@@ -1,0 +1,12 @@
+[
+  {
+    "input_data": "acedgfb cdfbe gcdfa fbcad dab cefabd cdfgeb eafb cagedb ab |\ncdfeb fcadb cdfeb cdbaf",
+    "answer_a": "0",
+    "answer_b": "5353"
+  },
+  {
+    "input_data": "be cfbegad cbdgef fgaecd cgeb fdcge agebfd fecdb fabcd edb |\nfdgacbe cefdb cefbgd gcbe\nedbfga begcd cbg gc gcadebf fbgde acbgfd abcde gfcbed gfec |\nfcgedb cgb dgebacf gc\nfgaebd cg bdaec gdafb agbcfd gdcbef bgcad gfac gcb cdgabef |\ncg cg fdcagb cbg\nfbegcd cbd adcefb dageb afcb bc aefdc ecdab fgdeca fcdbega |\nefabcd cedba gadfec cb\naecbfdg fbg gf bafeg dbefa fcge gcbea fcaegb dgceab fcbdga |\ngecf egdcabf bgf bfgea\nfgeab ca afcebg bdacfeg cfaedg gcfdb baec bfadeg bafgc acf |\ngebdcfa ecba ca fadegcb\ndbcfg fgd bdegcaf fgec aegbdf ecdfab fbedc dacgb gdcebf gf |\ncefg dcbef fcge gbcadfe\nbdfegc cbegaf gecbf dfcage bdacg ed bedf ced adcbefg gebcd |\ned bcgafe cdgba cbgef\negadfb cdbfeg cegd fecab cgb gbdefca cg fgcdab egfdb bfceg |\ngbdfcae bgc cg cgb\ngcafb gcf dcaebfg ecagb gf abcdeg gaef cafbge fdbac fegbdc |\nfgae cfgab fg bagce",
+    "answer_a": "26",
+    "answer_b": "61229"
+  }
+]

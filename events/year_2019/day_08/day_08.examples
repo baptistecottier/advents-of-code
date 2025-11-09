@@ -1,0 +1,19 @@
+[
+  {
+    "input_data": "123456789012",
+    "answer_a": "1",
+    "extra": {
+      "image_width": 3,
+      "image_height": 2
+    }
+  },
+  {
+    "input_data": "0222112222120000",
+    "answer_a": null,
+    "answer_b": "\u27cb",
+    "extra": {
+      "image_width": 2,
+      "image_height": 2
+    }
+  }
+]

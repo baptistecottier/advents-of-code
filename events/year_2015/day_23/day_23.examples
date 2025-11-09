@@ -1,0 +1,7 @@
+[
+  {
+    "input_data": "inc a\njio a, +2\ntpl a\ninc a",
+    "answer_a": "0",
+    "answer_b": "0"
+  }
+]

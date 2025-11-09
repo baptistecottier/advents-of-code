@@ -1,0 +1,21 @@
+[
+  {
+    "input_data": ">",
+    "answer_a": "2"
+  },
+  {
+    "input_data": "^>v<",
+    "answer_a": "4",
+    "answer_b": "3"
+  },
+  {
+    "input_data": "^v^v^v^v^v",
+    "answer_a": "2",
+    "answer_b": "11"
+  },
+  {
+    "input_data": "^v",
+    "answer_a": null,
+    "answer_b": "3"
+  }
+]

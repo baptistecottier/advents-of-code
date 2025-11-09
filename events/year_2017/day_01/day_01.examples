@@ -1,0 +1,43 @@
+[
+  {
+    "input_data": "1122",
+    "answer_a": "3"
+  },
+  {
+    "input_data": "1111",
+    "answer_a": "4"
+  },
+  {
+    "input_data": "1234",
+    "answer_a": "0"
+  },
+  {
+    "input_data": "91212129",
+    "answer_a": "9"
+  },
+  {
+    "input_data": "1212",
+    "answer_a": null,
+    "answer_b": "6"
+  },
+  {
+    "input_data": "1221",
+    "answer_a": null,
+    "answer_b": "0"
+  },
+  {
+    "input_data": "123425",
+    "answer_a": null,
+    "answer_b": "4"
+  },
+  {
+    "input_data": "123123",
+    "answer_a": null,
+    "answer_b": "12"
+  },
+  {
+    "input_data": "12131415",
+    "answer_a": null,
+    "answer_b": "4"
+  }
+]

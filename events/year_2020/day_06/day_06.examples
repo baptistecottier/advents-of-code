@@ -1,0 +1,12 @@
+[
+  {
+    "input_data": "abcx\nabcy\nabcz",
+    "answer_a": "6",
+    "answer_b": "3"
+  },
+  {
+    "input_data": "abc\n\na\nb\nc\n\nab\nac\n\na\na\na\na\n\nb",
+    "answer_a": "11",
+    "answer_b": "6"
+  }
+]

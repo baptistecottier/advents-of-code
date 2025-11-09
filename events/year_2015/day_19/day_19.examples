@@ -1,0 +1,20 @@
+[
+  {
+    "input_data": "H => HO\nH => OH\nO => HH\n\nHOH",
+    "answer_a": "4"
+  },
+  {
+    "input_data": "H => HO\nH => OH\nO => HH\n\nHOHOHO",
+    "answer_a": "7"
+  },
+  {
+    "input_data": "e => H\ne => O\nH => HO\nH => OH\nO => HH\n\nHOH",
+    "answer_a": null,
+    "answer_b": "3"
+  },
+  {
+    "input_data": "e => H\ne => O\nH => HO\nH => OH\nO => HH\n\nHOHOHO",
+    "answer_a": null,
+    "answer_b": "6"
+  }
+]

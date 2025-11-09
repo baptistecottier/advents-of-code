@@ -1,0 +1,11 @@
+[
+  {
+    "input_data": "5 1 9 5\n7 5 3\n2 4 6 8",
+    "answer_a": "18"
+  },
+  {
+    "input_data": "5 9 2 8\n9 4 7 3\n3 8 6 5",
+    "answer_a": null,
+    "answer_b": "9"
+  }
+]

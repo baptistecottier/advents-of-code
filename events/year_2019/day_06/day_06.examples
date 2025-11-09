@@ -1,0 +1,11 @@
+[
+  {
+    "input_data": "COM)B\nB)C\nC)D\nD)E\nE)F\nB)G\nG)H\nD)I\nE)J\nJ)K\nK)L",
+    "answer_a": "42"
+  },
+  {
+    "input_data": "COM)B\nB)C\nC)D\nD)E\nE)F\nB)G\nG)H\nD)I\nE)J\nJ)K\nK)L\nK)YOU\nI)SAN",
+    "answer_a": null,
+    "answer_b": "4"
+  }
+]

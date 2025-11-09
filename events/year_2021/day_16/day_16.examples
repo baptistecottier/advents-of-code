@@ -1,0 +1,70 @@
+[
+  {
+    "input_data": "D2FE28",
+    "answer_a": "6"
+  },
+  {
+    "input_data": "38006F45291200",
+    "answer_a": "9"
+  },
+  {
+    "input_data": "EE00D40C823060",
+    "answer_a": "14"
+  },
+  {
+    "input_data": "8A004A801A8002F478",
+    "answer_a": "16"
+  },
+  {
+    "input_data": "620080001611562C8802118E34",
+    "answer_a": "12"
+  },
+  {
+    "input_data": "C0015000016115A2E0802F182340",
+    "answer_a": "23"
+  },
+  {
+    "input_data": "A0016C880162017C3686B18A3D4780",
+    "answer_a": "31"
+  },
+  {
+    "input_data": "C200B40A82",
+    "answer_a": null,
+    "answer_b": "3"
+  },
+  {
+    "input_data": "04005AC33890",
+    "answer_a": null,
+    "answer_b": "54"
+  },
+  {
+    "input_data": "880086C3E88112",
+    "answer_a": null,
+    "answer_b": "7"
+  },
+  {
+    "input_data": "CE00C43D881120",
+    "answer_a": null,
+    "answer_b": "9"
+  },
+  {
+    "input_data": "D8005AC2A8F0",
+    "answer_a": null,
+    "answer_b": "1"
+  },
+  {
+    "input_data": "F600BC2D8F",
+    "answer_a": null,
+    "answer_b": "0"
+  },
+  {
+    "input_data": "9C005AC2F8F0",
+    "answer_a": null,
+    "answer_b": "0"
+  },
+  {
+    "input_data": "9C0141080250320F1802104A08",
+    "answer_a": null,
+    "answer_b": "1"
+  }
+]

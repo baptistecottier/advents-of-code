@@ -1,0 +1,16 @@
+[
+  {
+    "input_data": "..^^.",
+    "answer_a": "6",
+    "extra": {
+      "n_rows": 3
+    }
+  },
+  {
+    "input_data": ".^^.^.^^^^",
+    "answer_a": "38",
+    "extra": {
+      "n_rows": 10
+    }
+  }
+]

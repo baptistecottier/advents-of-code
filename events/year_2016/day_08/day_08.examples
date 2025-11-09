@@ -1,0 +1,10 @@
+[
+  {
+    "input_data": "rect 3x2\nrotate column x=1 by 1\nrotate row y=0 by 4\nrotate column x=1 by 1",
+    "answer_a": "6",
+    "extra": {
+      "screen_width": 7,
+      "screen_height": 3
+    }
+  }
+]

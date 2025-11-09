@@ -1,0 +1,6 @@
+[
+  {
+    "input_data": "Before: [3, 2, 1, 1]\n9 2 1 2\nAfter:  [3, 2, 2, 1]",
+    "answer_a": "1"
+  }
+]

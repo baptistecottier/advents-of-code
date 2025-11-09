@@ -1,0 +1,7 @@
+[
+  {
+    "input_data": "target area: x=20..30, y=-10..-5",
+    "answer_a": "45",
+    "answer_b": "112"
+  }
+]

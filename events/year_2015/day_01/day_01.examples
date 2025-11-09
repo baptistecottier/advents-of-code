@@ -1,27 +1,48 @@
 [
   {
-    "input": "(())",
-    "expected_a": "0",
-    "expected_b": null
+    "input_data": "(())",
+    "answer_a": "0"
   },
   {
-    "input": "()()",
-    "expected_a": "0",
-    "expected_b": null
+    "input_data": "()()",
+    "answer_a": "0"
   },
   {
-    "input": "(((",
-    "expected_a": "3",
-    "expected_b": null
+    "input_data": "(((",
+    "answer_a": "3"
   },
   {
-    "input": "())",
-    "expected_a": "-1",
-    "expected_b": null
+    "input_data": "(()(()(",
+    "answer_a": "3"
   },
   {
-    "input": ")))",
-    "expected_a": "-3",
-    "expected_b": null
+    "input_data": "))(((((",
+    "answer_a": "3"
+  },
+  {
+    "input_data": "())",
+    "answer_a": "-1"
+  },
+  {
+    "input_data": "))(",
+    "answer_a": "-1"
+  },
+  {
+    "input_data": ")))",
+    "answer_a": "-3"
+  },
+  {
+    "input_data": ")())())",
+    "answer_a": "-3"
+  },
+  {
+    "input_data": ")",
+    "answer_a": null,
+    "answer_b": "1"
+  },
+  {
+    "input_data": "()())",
+    "answer_a": null,
+    "answer_b": "5"
   }
 ]

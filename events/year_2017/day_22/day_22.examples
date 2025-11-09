@@ -1,0 +1,29 @@
+[
+  {
+    "input_data": "..#\n#..\n...",
+    "answer_a": "5",
+    "extra": {
+      "iterations": 7
+    }
+  },
+  {
+    "input_data": "..#\n#..\n...",
+    "answer_a": "41",
+    "extra": {
+      "iterations": 70
+    }
+  },
+  {
+    "input_data": "..#\n#..\n...",
+    "answer_a": "5587",
+    "answer_b": "2511944"
+  },
+  {
+    "input_data": "..#\n#..\n...",
+    "answer_a": null,
+    "answer_b": "26",
+    "extra": {
+      "iterations": 100
+    }
+  }
+]

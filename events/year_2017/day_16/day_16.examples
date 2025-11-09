@@ -1,0 +1,11 @@
+[
+  {
+    "input_data": "s1,x3/4,pe/b",
+    "answer_a": "baedc",
+    "answer_b": "ceadb",
+    "extra": {
+      "n_programs": 5,
+      "iterations": 2
+    }
+  }
+]

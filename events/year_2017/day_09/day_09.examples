@@ -1,0 +1,69 @@
+[
+  {
+    "input_data": "{}",
+    "answer_a": "1"
+  },
+  {
+    "input_data": "{{{}}}",
+    "answer_a": "6"
+  },
+  {
+    "input_data": "{{},{}}",
+    "answer_a": "5"
+  },
+  {
+    "input_data": "{{{},{},{{}}}}",
+    "answer_a": "16"
+  },
+  {
+    "input_data": "{<a>,<a>,<a>,<a>}",
+    "answer_a": "1"
+  },
+  {
+    "input_data": "{{<ab>},{<ab>},{<ab>},{<ab>}}",
+    "answer_a": "9"
+  },
+  {
+    "input_data": "{{<!!>},{<!!>},{<!!>},{<!!>}}",
+    "answer_a": "9"
+  },
+  {
+    "input_data": "{{<a!>},{<a!>},{<a!>},{<ab>}}",
+    "answer_a": "3"
+  },
+  {
+    "input_data": "<>",
+    "answer_a": null,
+    "answer_b": "0"
+  },
+  {
+    "input_data": "<random characters>",
+    "answer_a": null,
+    "answer_b": "17"
+  },
+  {
+    "input_data": "<<<<>",
+    "answer_a": null,
+    "answer_b": "3"
+  },
+  {
+    "input_data": "<{!>}>",
+    "answer_a": null,
+    "answer_b": "2"
+  },
+  {
+    "input_data": "<!!>",
+    "answer_a": null,
+    "answer_b": "0"
+  },
+  {
+    "input_data": "<!!!>>",
+    "answer_a": null,
+    "answer_b": "0"
+  },
+  {
+    "input_data": "<{o\"i!a,<{i<a>",
+    "answer_a": null,
+    "answer_b": "10"
+  }
+]

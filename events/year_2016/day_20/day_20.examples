@@ -1,0 +1,10 @@
+[
+  {
+    "input_data": "5-8\n0-2\n4-7",
+    "answer_a": "3",
+    "answer_b": "2",
+    "extra": {
+      "max_val": 9
+    }
+  }
+]

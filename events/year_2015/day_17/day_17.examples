@@ -1,0 +1,10 @@
+[
+  {
+    "input_data": "20\n15\n10\n5\n5",
+    "answer_a": "4",
+    "answer_b": "3",
+    "extra": {
+      "liters": 25
+    }
+  }
+]

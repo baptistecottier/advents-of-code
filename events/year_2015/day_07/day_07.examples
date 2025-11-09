@@ -1,0 +1,58 @@
+[
+  {
+    "input_data": "123 -> x\n456 -> y\nx AND y -> a\nx OR y -> e\nx LSHIFT 2 -> f\ny RSHIFT 2 -> g\nNOT x -> h\nNOT y -> i",
+    "answer_a": "72",
+    "extra": {
+      "wire": "d"
+    }
+  },
+  {
+    "input_data": "123 -> x\n456 -> y\nx AND y -> d\nx OR y -> a\nx LSHIFT 2 -> f\ny RSHIFT 2 -> g\nNOT x -> h\nNOT y -> i",
+    "answer_a": "507",
+    "extra": {
+      "wire": "e"
+    }
+  },
+  {
+    "input_data": "123 -> x\n456 -> y\nx AND y -> d\nx OR y -> e\nx LSHIFT 2 -> a\ny RSHIFT 2 -> g\nNOT x -> h\nNOT y -> i",
+    "answer_a": "492",
+    "extra": {
+      "wire": "f"
+    }
+  },
+  {
+    "input_data": "123 -> x\n456 -> y\nx AND y -> d\nx OR y -> e\nx LSHIFT 2 -> f\ny RSHIFT 2 -> a\nNOT x -> h\nNOT y -> i",
+    "answer_a": "114",
+    "extra": {
+      "wire": "g"
+    }
+  },
+  {
+    "input_data": "123 -> x\n456 -> y\nx AND y -> d\nx OR y -> e\nx LSHIFT 2 -> f\ny RSHIFT 2 -> g\nNOT x -> a\nNOT y -> i",
+    "answer_a": "65412",
+    "extra": {
+      "wire": "h"
+    }
+  },
+  {
+    "input_data": "123 -> x\n456 -> y\nx AND y -> d\nx OR y -> e\nx LSHIFT 2 -> f\ny RSHIFT 2 -> g\nNOT x -> h\nNOT y -> a",
+    "answer_a": "65079",
+    "extra": {
+      "wire": "i"
+    }
+  },
+  {
+    "input_data": "123 -> a\n456 -> y\na AND y -> d\na OR y -> e\na LSHIFT 2 -> f\ny RSHIFT 2 -> g\nNOT a -> h\nNOT y -> i",
+    "answer_a": "123",
+    "extra": {
+      "wire": "x"
+    }
+  },
+  {
+    "input_data": "123 -> x\n456 -> a\nx AND a -> d\nx OR a -> e\nx LSHIFT 2 -> f\na RSHIFT 2 -> g\nNOT x -> h\nNOT a -> i",
+    "answer_a": "456",
+    "extra": {
+      "wire": "y"
+    }
+  }
+]

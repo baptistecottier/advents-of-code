@@ -1,0 +1,12 @@
+[
+  {
+    "input_data": "18",
+    "answer_a": "33,45",
+    "answer_b": "90,269,16"
+  },
+  {
+    "input_data": "42",
+    "answer_a": "21,61",
+    "answer_b": "232,251,12"
+  }
+]

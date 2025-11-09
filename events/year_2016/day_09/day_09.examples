@@ -1,0 +1,38 @@
+[
+  {
+    "input_data": "ADVENT",
+    "answer_a": "6"
+  },
+  {
+    "input_data": "A(1x5)BC",
+    "answer_a": "7"
+  },
+  {
+    "input_data": "(3x3)XYZ",
+    "answer_a": "9",
+    "answer_b": "9"
+  },
+  {
+    "input_data": "A(2x2)BCD(2x2)EFG",
+    "answer_a": "11"
+  },
+  {
+    "input_data": "(6x1)(1x3)A",
+    "answer_a": "6"
+  },
+  {
+    "input_data": "X(8x2)(3x3)ABCY",
+    "answer_a": "18",
+    "answer_b": "20"
+  },
+  {
+    "input_data": "(27x12)(20x12)(13x14)(7x10)(1x12)A",
+    "answer_a": null,
+    "answer_b": "241920"
+  },
+  {
+    "input_data": "(25x3)(3x3)ABC(2x3)XY(5x2)PQRSTX(18x9)(3x2)TWO(5x7)SEVEN",
+    "answer_a": null,
+    "answer_b": "445"
+  }
+]

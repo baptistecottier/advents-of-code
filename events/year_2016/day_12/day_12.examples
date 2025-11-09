@@ -1,0 +1,6 @@
+[
+  {
+    "input_data": "cpy 41 a\ninc a\ninc a\ndec a\njnz a 2\ndec a",
+    "answer_a": "42"
+  }
+]

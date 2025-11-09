@@ -1,0 +1,44 @@
+[
+  {
+    "input_data": "211",
+    "answer_a": "4",
+    "extra": {
+      "iterations": 1
+    }
+  },
+  {
+    "input_data": "1",
+    "answer_a": "2",
+    "extra": {
+      "iterations": 1
+    }
+  },
+  {
+    "input_data": "11",
+    "answer_a": "2",
+    "extra": {
+      "iterations": 1
+    }
+  },
+  {
+    "input_data": "21",
+    "answer_a": "4",
+    "extra": {
+      "iterations": 1
+    }
+  },
+  {
+    "input_data": "1211",
+    "answer_a": "6",
+    "extra": {
+      "iterations": 1
+    }
+  },
+  {
+    "input_data": "111221",
+    "answer_a": "6",
+    "extra": {
+      "iterations": 1
+    }
+  }
+]

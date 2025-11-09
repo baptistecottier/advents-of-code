@@ -1,0 +1,18 @@
+[
+  {
+    "input_data": "ne,ne,ne",
+    "answer_a": "3"
+  },
+  {
+    "input_data": "ne,ne,sw,sw",
+    "answer_a": "0"
+  },
+  {
+    "input_data": "ne,ne,s,s",
+    "answer_a": "2"
+  },
+  {
+    "input_data": "se,sw,se,sw,sw",
+    "answer_a": "3"
+  }
+]

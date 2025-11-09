@@ -1,0 +1,7 @@
+[
+  {
+    "input_data": "mxmxvkd kfcds sqjhc nhms (contains dairy, fish)\ntrh fvjkl sbzzf mxmxvkd (contains dairy)\nsqjhc fvjkl (contains soy)\nsqjhc mxmxvkd sbzzf (contains fish)",
+    "answer_a": "5",
+    "answer_b": "mxmxvkd,sqjhc,fvjkl"
+  }
+]

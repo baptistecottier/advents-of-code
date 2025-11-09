@@ -1,0 +1,24 @@
+[
+  {
+    "input_data": "turn on 0,0 through 999,999",
+    "answer_a": "1000000"
+  },
+  {
+    "input_data": "toggle 0,0 through 999,0",
+    "answer_a": "1000"
+  },
+  {
+    "input_data": "turn off 499,499 through 500,500",
+    "answer_a": "0"
+  },
+  {
+    "input_data": "turn on 0,0 through 0,0",
+    "answer_a": null,
+    "answer_b": "1"
+  },
+  {
+    "input_data": "toggle 0,0 through 999,999",
+    "answer_a": null,
+    "answer_b": "2000000"
+  }
+]

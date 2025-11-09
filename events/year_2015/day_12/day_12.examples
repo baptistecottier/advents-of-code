@@ -1,0 +1,50 @@
+[
+  {
+    "input_data": "[1,2,3]",
+    "answer_a": "6",
+    "answer_b": "6"
+  },
+  {
+    "input_data": "{\"a\":2,\"b\":4}",
+    "answer_a": "6"
+  },
+  {
+    "input_data": "[[[3]]]",
+    "answer_a": "3"
+  },
+  {
+    "input_data": "{\"a\":{\"b\":4},\"c\":-1}",
+    "answer_a": "3"
+  },
+  {
+    "input_data": "{\"a\":[-1,1]}",
+    "answer_a": "0"
+  },
+  {
+    "input_data": "[-1,{\"a\":1}]",
+    "answer_a": "0"
+  },
+  {
+    "input_data": "[]",
+    "answer_a": "0"
+  },
+  {
+    "input_data": "{}",
+    "answer_a": "0"
+  },
+  {
+    "input_data": "[1,{\"c\":\"red\",\"b\":2},3]",
+    "answer_a": null,
+    "answer_b": "4"
+  },
+  {
+    "input_data": "{\"d\":\"red\",\"e\":[1,2,3,4],\"f\":5}",
+    "answer_a": null,
+    "answer_b": "0"
+  },
+  {
+    "input_data": "[1,\"red\",5]",
+    "answer_a": null,
+    "answer_b": "6"
+  }
+]

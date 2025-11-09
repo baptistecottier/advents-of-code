@@ -1,0 +1,18 @@
+[
+  {
+    "input_data": "FBFBBFFRLR",
+    "answer_a": "357"
+  },
+  {
+    "input_data": "BFFFBBFRRR",
+    "answer_a": "567"
+  },
+  {
+    "input_data": "FFFBBBFRRR",
+    "answer_a": "119"
+  },
+  {
+    "input_data": "BBFFBBFRLL",
+    "answer_a": "820"
+  }
+]

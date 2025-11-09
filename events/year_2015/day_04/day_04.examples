@@ -1,0 +1,10 @@
+[
+  {
+    "input_data": "abcdef",
+    "answer_a": "609043"
+  },
+  {
+    "input_data": "pqrstuv",
+    "answer_a": "1048970"
+  }
+]

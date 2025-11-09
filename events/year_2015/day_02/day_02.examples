@@ -1,0 +1,12 @@
+[
+  {
+    "input_data": "2x3x4",
+    "answer_a": "58",
+    "answer_b": "34"
+  },
+  {
+    "input_data": "1x1x10",
+    "answer_a": "43",
+    "answer_b": "14"
+  }
+]

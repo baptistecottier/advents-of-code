@@ -1,0 +1,26 @@
+[
+  {
+    "input_data": "9 players; last marble is worth 25 points",
+    "answer_a": "32"
+  },
+  {
+    "input_data": "10 players; last marble is worth 1618 points",
+    "answer_a": "8317"
+  },
+  {
+    "input_data": "13 players; last marble is worth 7999 points",
+    "answer_a": "146373"
+  },
+  {
+    "input_data": "17 players; last marble is worth 1104 points",
+    "answer_a": "2764"
+  },
+  {
+    "input_data": "21 players; last marble is worth 6111 points",
+    "answer_a": "54718"
+  },
+  {
+    "input_data": "30 players; last marble is worth 5807 points",
+    "answer_a": "37305"
+  }
+]

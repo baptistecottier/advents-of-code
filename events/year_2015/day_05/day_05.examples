@@ -1,0 +1,42 @@
+[
+  {
+    "input_data": "ugknbfddgicrmopn",
+    "answer_a": "1"
+  },
+  {
+    "input_data": "aaa",
+    "answer_a": "1"
+  },
+  {
+    "input_data": "jchzalrnumimnmhp",
+    "answer_a": "0"
+  },
+  {
+    "input_data": "haegwjzuvuyypxyu",
+    "answer_a": "0"
+  },
+  {
+    "input_data": "dvszwmarrgswjxmb",
+    "answer_a": "0"
+  },
+  {
+    "input_data": "qjhvhtzxzqqjkmpb",
+    "answer_a": null,
+    "answer_b": "1"
+  },
+  {
+    "input_data": "xxyxx",
+    "answer_a": null,
+    "answer_b": "1"
+  },
+  {
+    "input_data": "uurcxstgmygtbstg",
+    "answer_a": null,
+    "answer_b": "0"
+  },
+  {
+    "input_data": "ieodomkazucvgmuy",
+    "answer_a": null,
+    "answer_b": "0"
+  }
+]

@@ -1,0 +1,16 @@
+[
+  {
+    "input_data": "110010110100",
+    "answer_a": "100",
+    "extra": {
+      "disk_length": 12
+    }
+  },
+  {
+    "input_data": "10000",
+    "answer_a": "01100",
+    "extra": {
+      "disk_length": 20
+    }
+  }
+]

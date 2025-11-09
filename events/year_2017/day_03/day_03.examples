@@ -1,0 +1,18 @@
+[
+  {
+    "input_data": "1",
+    "answer_a": "0"
+  },
+  {
+    "input_data": "12",
+    "answer_a": "3"
+  },
+  {
+    "input_data": "23",
+    "answer_a": "2"
+  },
+  {
+    "input_data": "1024",
+    "answer_a": "31"
+  }
+]
