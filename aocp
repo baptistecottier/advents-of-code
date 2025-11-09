@@ -1045,7 +1045,7 @@ if __name__ == '__main__':
                     day_results[day_num] = {
                         'success': False,
                         'result': '🚧',
-                        'notes': f'Incomplete (1/{2} parts)'
+                        'notes': 'Incomplete'
                     }
                 else:
                     success_count += 1
