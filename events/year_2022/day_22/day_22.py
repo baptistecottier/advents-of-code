@@ -51,29 +51,39 @@ def solver(tiles, walls, path):
     dx = dy = 0
     for n, (dx, dy) in path:
         for _ in range(n):
-            if (x + dx, y + dy) in walls:
+            next_x, next_y = x + dx, y + dy
+            
+            # Check if next position is a wall
+            if (next_x, next_y) in walls:
                 continue
-            if (x + dx, y + dy) not in tiles:
+            
+            # If next position is out of bounds, wrap around
+            if (next_x, next_y) not in tiles:
                 match dx, dy:
                     case 1, 0:
                         tx = min(a for a, b in both if b == y)
                         if (tx, y) not in walls:
                             x = tx
+                        continue
                     case -1, 0:
                         tx = max(a for a, b in both if b == y)
                         if (tx, y) not in walls:
                             x = tx
+                        continue
                     case 0, 1:
                         ty = min(b for a, b in both if a == x)
                         if (x, ty) not in walls:
                             y = ty
+                        continue
                     case 0, -1:
                         ty = max(b for a, b in both if a == x)
                         if (x, ty) not in walls:
                             y = ty
+                        continue
             else:
-                x += dx
-                y += dy
+                # Normal move to adjacent tile
+                x = next_x
+                y = next_y
 
     facing = {(1, 0): 0, (0, 1): 1, (-1, 0): 2, (0, -1): 3}
     yield 1_000 * (y + 1) + 4 * (x + 1) + facing[(dx, dy)]
