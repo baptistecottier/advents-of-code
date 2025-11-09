@@ -684,17 +684,37 @@ def solve_day(puzzle: Puzzle, use_local_input: bool = True, preprocessing_func=N
 
     # Display results with nice formatting
     # Pass timeout_occurred flag to show timeout message in results section
-    if timeout_occurred:
-        all_correct, parts_solved_on_aoc = parse_and_display_results(answers, puzzle, timeout_seconds=timeout_seconds)
+    if not answers or answers is None or answers == (-1,):
+        # No valid answers - treat as failed
+        print("📊 Results:")
+        print("  ⚠️  No answers returned from solver")
+        all_correct = False
+        parts_solved_on_aoc = ()
+        has_valid_answers = False
+    elif timeout_occurred:
+        timeout_kwarg = timeout_seconds
+        all_correct, parts_solved_on_aoc = (
+            parse_and_display_results(answers, puzzle, timeout_seconds=timeout_kwarg)
+        )
+        # Check if we have valid answers
+        has_valid_answers = (
+            answers != (-1,) and
+            answers != () and
+            answers is not None and
+            not all(isinstance(a, tuple) and a[1] is None or a is None
+                   for a in answers)
+        )
     else:
         all_correct, parts_solved_on_aoc = parse_and_display_results(answers, puzzle)
-    
-    # Return whether all parts are correct, if timeout occurred, and which parts are solved on AOC
-    # has_valid_answers should be True only if we have actual valid answers (not None, not -1)
-    has_valid_answers = (
-        answers != (-1,) and 
-        not all(isinstance(a, tuple) and a[1] is None or a is None for a in answers)
-    )
+        # Check if we have valid answers
+        has_valid_answers = (
+            answers != (-1,) and
+            answers != () and
+            answers is not None and
+            not all(isinstance(a, tuple) and a[1] is None or a is None
+                   for a in answers)
+        )
+
     return (all_correct, timeout_occurred, has_valid_answers, parts_solved_on_aoc)
 
 
