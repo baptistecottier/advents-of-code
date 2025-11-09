@@ -363,8 +363,45 @@ class SolverTimeoutError(Exception):
     pass
 
 
+def _preprocessing_wrapper(preprocessing_func, data, timeout_seconds):
+    """Run preprocessing with timeout using threading.
+    
+    Args:
+        preprocessing_func: Function to run
+        data: Input data
+        timeout_seconds: Timeout in seconds
+    
+    Returns:
+        Result from preprocessing_func
+    
+    Raises:
+        SolverTimeoutError if preprocessing times out
+    """
+    result_container = []
+    exception_container = []
+    
+    def run_preprocessing():
+        try:
+            result_container.append(preprocessing_func(data))
+        except Exception as e:
+            exception_container.append(e)
+    
+    thread = threading.Thread(target=run_preprocessing, daemon=True)
+    thread.start()
+    thread.join(timeout=timeout_seconds)
+    
+    if thread.is_alive():
+        # Thread is still running - timeout occurred
+        raise SolverTimeoutError(f"Preprocessing timed out after {timeout_seconds} seconds")
+    
+    if exception_container:
+        raise exception_container[0]
+    
+    return result_container[0] if result_container else None
+
+
 def _solver_process_wrapper(conn, module_path, module_name, solver_name, args,
-                             suppress_output, memory_limit_mb=0):
+                            suppress_output, memory_limit_mb=0):
     """Wrapper to run solver in a subprocess and send result back via pipe.
     
     Args:
@@ -379,7 +416,7 @@ def _solver_process_wrapper(conn, module_path, module_name, solver_name, args,
             memory_bytes = memory_limit_mb * 1024 * 1024
             # Use soft limit only (won't fail if current exceeds)
             resource.setrlimit(resource.RLIMIT_AS, (memory_bytes, memory_bytes))
-        except ValueError as e:
+        except ValueError:
             # Soft limit exceeds hard limit on this system
             try:
                 # Try to set to hard limit instead
@@ -494,7 +531,7 @@ def run_solver_with_timeout(module_path, module_name, solver_name, args,
             else:
                 return (False, None, intermediate_results)
         
-        if process.is_alive():
+        if not process.is_alive():
             # Process finished, collect any remaining messages
             while parent_conn.poll(timeout=0.01):
                 try:
@@ -599,6 +636,8 @@ def solve_day(puzzle: Puzzle, use_local_input: bool = True, preprocessing_func=N
         >>> puzzle = Puzzle(year=2022, day=15, input_data="sensor data...")
         >>> solve_day(puzzle, use_local_input=False)  # Uses puzzle.input_data directly
     """
+    # Start timing to include preprocessing in timeout calculation
+    start_time = datetime.datetime.now()
     puzzle_input = None
     
     if use_local_input:
@@ -608,16 +647,27 @@ def solve_day(puzzle: Puzzle, use_local_input: bool = True, preprocessing_func=N
                 file_content = data.read().rstrip('\n')
                 if file_content:  # Only use local file if it has content
                     if preprocessing_func:
+                        # Calculate remaining timeout for preprocessing
+                        if timeout_seconds > 0:
+                            elapsed = (datetime.datetime.now() - start_time).total_seconds()
+                            remaining_preprocess_timeout = max(0.1, timeout_seconds - elapsed)
+                        else:
+                            remaining_preprocess_timeout = 60  # Large default if no timeout
+                        
                         if suppress_solver_prints:
                             with redirect_stdout(io.StringIO()), redirect_stderr(io.StringIO()):
-                                puzzle_input = preprocessing_func(file_content)
+                                puzzle_input = _preprocessing_wrapper(preprocessing_func, file_content, remaining_preprocess_timeout)
                         else:
-                            puzzle_input = preprocessing_func(file_content)
+                            puzzle_input = _preprocessing_wrapper(preprocessing_func, file_content, remaining_preprocess_timeout)
                     else:
                         puzzle_input = file_content
                     print(f"  📁 Using local input: {input_path}")
         except FileNotFoundError:
             pass
+        except SolverTimeoutError as e:
+            print(f"  ⏱️  Preprocessing timeout: {e}")
+            # Return failure with timeout flag
+            return (False, True, False, (), 0)  # all_correct, timeout_occurred, has_answers, parts_solved, num_parts
     
     if puzzle_input is None:
         # Try to save the input locally for future use
@@ -629,25 +679,43 @@ def solve_day(puzzle: Puzzle, use_local_input: bool = True, preprocessing_func=N
             with open(input_path, encoding="utf-8") as data:
                 file_data = data.read().rstrip('\n')
                 if preprocessing_func:
+                    # Calculate remaining timeout for preprocessing
+                    if timeout_seconds > 0:
+                        elapsed = (datetime.datetime.now() - start_time).total_seconds()
+                        remaining_preprocess_timeout = max(0.1, timeout_seconds - elapsed)
+                    else:
+                        remaining_preprocess_timeout = 60  # Large default if no timeout
+                    
                     if suppress_solver_prints:
                         with redirect_stdout(io.StringIO()), redirect_stderr(io.StringIO()):
-                            puzzle_input = preprocessing_func(file_data)
+                            puzzle_input = _preprocessing_wrapper(preprocessing_func, file_data, remaining_preprocess_timeout)
                     else:
-                        puzzle_input = preprocessing_func(file_data)
+                        puzzle_input = _preprocessing_wrapper(preprocessing_func, file_data, remaining_preprocess_timeout)
                 else:
                     puzzle_input = file_data
                 print(f"  📁 Using auto-saved input: {input_path}")
         except (OSError, IOError):
             # Fallback to remote if saving fails
             if preprocessing_func:
+                # Calculate remaining timeout for preprocessing
+                if timeout_seconds > 0:
+                    elapsed = (datetime.datetime.now() - start_time).total_seconds()
+                    remaining_preprocess_timeout = max(0.1, timeout_seconds - elapsed)
+                else:
+                    remaining_preprocess_timeout = 60  # Large default if no timeout
+                
                 if suppress_solver_prints:
                     with redirect_stdout(io.StringIO()), redirect_stderr(io.StringIO()):
-                        puzzle_input = preprocessing_func(puzzle.input_data)
+                        puzzle_input = _preprocessing_wrapper(preprocessing_func, puzzle.input_data, remaining_preprocess_timeout)
                 else:
-                    puzzle_input = preprocessing_func(puzzle.input_data)
+                    puzzle_input = _preprocessing_wrapper(preprocessing_func, puzzle.input_data, remaining_preprocess_timeout)
             else:
                 puzzle_input = puzzle.input_data
             print("  🌐 Using remote input from AOC")
+        except SolverTimeoutError as e:
+            print(f"  ⏱️  Preprocessing timeout: {e}")
+            # Return failure with timeout flag
+            return (False, True, False, (), 0)  # all_correct, timeout_occurred, has_answers, parts_solved, num_parts
 
     # Add day directory to Python path to ensure we load the correct module
     # Use absolute path to work from any directory, resolving symlinks
@@ -662,12 +730,16 @@ def solve_day(puzzle: Puzzle, use_local_input: bool = True, preprocessing_func=N
             answers = None
             timeout_occurred = False
             if timeout_seconds > 0:
+                # Calculate remaining timeout after preprocessing
+                elapsed = (datetime.datetime.now() - start_time).total_seconds()
+                remaining_timeout = max(1, timeout_seconds - elapsed)
+                
                 completed, answers, intermediate = run_solver_with_timeout(
                     day_path,
                     f"day_{str(puzzle.day).zfill(2)}",
                     'solver',
                     puzzle_input,
-                    timeout_seconds,
+                    remaining_timeout,
                     suppress_output=suppress_solver_prints,
                     memory_limit_mb=memory_limit_mb
                 )
