@@ -939,7 +939,7 @@ def display_scoreboard(year: int, days_to_run: list, day_results: dict):
                 notes_display = notes[:40]
             elif "Timeout" in notes:
                 status_emoji = "⏱️"
-                status_text = "Timed out"
+                status_text = " Timed out"
                 notes_display = notes[:40]
             elif "Incomplete" in notes:
                 status_emoji = "🚧"
@@ -991,7 +991,7 @@ def display_scoreboard(year: int, days_to_run: list, day_results: dict):
     
     percentage = 100 * successful_days // total_days if total_days > 0 else 0
     print(f"📊 Summary: Total: {total_days}, Successful: {successful_days}/{total_days} "
-          f"({percentage}%), Stars: {star_count}/50 ⭐")
+          f"({percentage}%), Stars: {star_count} ⭐")
     print(f"{'='*70}\n")
 
 
@@ -1054,7 +1054,7 @@ if __name__ == '__main__':
                 day_results[day_num] = {
                     'success': False,
                     'result': '⏱️',
-                    'notes': 'Timeout'
+                    'notes': ' Timeout'
                 }
             elif parts_solved_on_aoc == (1,) and not has_answers:
                 # Only part 1 solved on AOC and no valid solver answers - show as incomplete
