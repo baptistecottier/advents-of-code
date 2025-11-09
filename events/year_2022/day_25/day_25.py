@@ -48,7 +48,7 @@ def decode(decimal: int) -> str:
         decimal //= 5
     for index, number in enumerate(numbers):
         if number > 2:
-            number -= 5
+            numbers[index] = number - 5
             if index + 1 == len(numbers):
                 numbers.append(1)
             else:
