@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/local/bin/python3
 # -*- coding: utf-8 -*-
 
 """
@@ -8,7 +8,12 @@ Advent of Code puzzle runner and utility functions.
 # Standard import
 import argparse
 import builtins
+import datetime
+import io
+import multiprocessing
 import sys
+import threading
+from contextlib import redirect_stdout, redirect_stderr
 from pathlib import Path
 
 # Third-party import
@@ -98,7 +103,7 @@ def _solve_example(day_module, data, example_args):
             return day_module.solver(data)
         case _, True:
             return day_module.solver(*data, **example_args)
-        case _, True:
+        case _, False:
             return day_module.solver(data, **example_args)
 
 
@@ -242,16 +247,22 @@ def save_input_to_file(puzzle: Puzzle, verbose: bool = True) -> bool:
         return False
 
 
-def parse_and_display_results(answers, puzzle):
-    """Parse and nicely display the puzzle results with colored output."""
+def parse_and_display_results(answers, puzzle, timeout_seconds=None):
+    """Parse and nicely display the puzzle results with colored output.
+    
+    Returns: bool - True if all parts are correct, False otherwise
+    """
     import io
     from contextlib import redirect_stdout, redirect_stderr
+    from aocd.exceptions import AocdError
     
     print("📊 Results:")
+    all_correct = True
     
     for part, answer in enumerate(answers, 1):
         part_letter = "a" if part == 1 else "b"
         medal = "🥇" if part == 1 else "🥈"
+        is_correct = True  # Track if this part is correct
         
         # Capture the output from aocd submit
         stdout_capture = io.StringIO()
@@ -261,32 +272,276 @@ def parse_and_display_results(answers, puzzle):
             with redirect_stdout(stdout_capture), redirect_stderr(stderr_capture):
                 if isinstance(answer, builtins.tuple):
                     fixed_part, fixed_answer = answer
-                    submit(fixed_answer, fixed_part, puzzle.day, puzzle.year)
+                    result = submit(fixed_answer, fixed_part, puzzle.day, puzzle.year)
                 else:
-                    submit(str(answer), part_letter, puzzle.day, puzzle.year)
+                    result = submit(str(answer), part_letter, puzzle.day, puzzle.year)
             
             # Get the captured output
             output = stdout_capture.getvalue() + stderr_capture.getvalue()
             
+            # Check if aocd prevented the submission (returns None and prints message)
+            if result is None and "aocd will not submit" in output:
+                colored_status = color_text("✅ Correct (already known)", "green")
             # Parse the aocd output to determine status and color
-            if "already solved with same answer" in output:
+            elif "already solved with same answer" in output:
                 colored_status = color_text("✅ Correct (already solved)", "green")
+            elif "already solved with different answer" in output:
+                colored_status = color_text("🤔 Incorrect (but already solved)", "yellow")
+                is_correct = False
             elif "That's the right answer" in output:
                 colored_status = color_text("🎉 Correct (new submission)", "green")
             elif "That's not the right answer" in output:
                 colored_status = color_text("❌ Incorrect", "red")
+                is_correct = False
             elif "You gave an answer too recently" in output:
                 colored_status = color_text("⏰ Rate limited", "yellow")
+                is_correct = False  # Can't confirm correctness
             else:
+                print(f"  ⚠️  Unexpected submission response:\n{output}")
                 colored_status = color_text("📤 Submitted", "blue")
+                is_correct = False  # Unknown status
                 
             print(f"  {medal} Part {part}: {answer} - {colored_status}")
             
-        except (ConnectionError, TimeoutError):
-            print(f"  {medal} Part {part}: {answer} - {color_text('❌ Network error', 'red')}")
+            # Show timeout message if this is the last part and timeout occurred
+            if timeout_seconds is not None and part == len(answers):
+                print(f"    ⏱️ Solver execution timed out after {timeout_seconds} seconds")
+            
+        except AocdError as e:
+            error_msg = str(e)
+            if "is certain that" in error_msg and "is incorrect" in error_msg:
+                colored_status = color_text("❌ Incorrect (cached)", "red")
+                is_correct = False
+            elif "already solved" in error_msg:
+                colored_status = color_text("✅ Correct (already solved)", "green")
+            else:
+                colored_status = color_text(f"⚠️  {error_msg[:50]}", "yellow")
+                is_correct = False
+            print(f"  {medal} Part {part}: {answer} - {colored_status}")
+            
+            # Show timeout message if this is the last part and timeout occurred
+            if timeout_seconds is not None and part == len(answers):
+                print(f"    ⏱️ Solver execution timed out after {timeout_seconds} seconds")
+        except (ConnectionError, TimeoutError, Exception) as e:
+            error_type = type(e).__name__
+            if "SSL" in error_type or "certificate" in str(e).lower():
+                status_msg = "❌ SSL/Certificate error (network issue)"
+            elif "Connection" in error_type or "Timeout" in error_type:
+                status_msg = "❌ Network error"
+            else:
+                status_msg = f"⚠️  {error_type}"
+            print(f"  {medal} Part {part}: {answer} - {color_text(status_msg, 'red')}")
+            is_correct = False
+            
+            # Show timeout message if this is the last part and timeout occurred
+            if timeout_seconds is not None and part == len(answers):
+                print(f"    ⏱️ Solver execution timed out after {timeout_seconds} seconds")
+        
+        # If any part is incorrect, the whole day is incorrect
+        if not is_correct:
+            all_correct = False
+    
+    return all_correct
 
 
-def solve_day(puzzle: Puzzle, use_local_input: bool = True, preprocessing_func=None):
+class SolverTimeoutError(Exception):
+    """Custom timeout exception for solver execution."""
+    pass
+
+
+def _solver_process_wrapper(conn, module_path, module_name, solver_name, args, suppress_output):
+    """Wrapper to run solver in a subprocess and send result back via pipe."""
+    import os
+    
+    # If suppressing output, redirect file descriptors immediately at subprocess start
+    if suppress_output:
+        devnull_fd = os.open(os.devnull, os.O_WRONLY)
+        os.dup2(devnull_fd, 1)  # Redirect fd 1 (stdout) to /dev/null
+        os.dup2(devnull_fd, 2)  # Redirect fd 2 (stderr) to /dev/null
+        os.close(devnull_fd)
+    
+    try:
+        # Add module path and import the module in the subprocess
+        if module_path not in sys.path:
+            sys.path.insert(0, module_path)
+        day_module = __import__(module_name)
+        solver_func = getattr(day_module, solver_name)
+        
+        # Always use context managers for output suppression at Python level too
+        with redirect_stdout(io.StringIO()), redirect_stderr(io.StringIO()):
+            if isinstance(args, tuple):
+                result = solver_func(*args)
+            else:
+                result = solver_func(args)
+        
+        # Handle generators - send each yielded value as it arrives
+        if hasattr(result, '__iter__') and not isinstance(result, (str, bytes, dict, tuple)):
+            results = []
+            try:
+                for idx, item in enumerate(result):
+                    results.append(item)
+                    # Send each result immediately as it arrives
+                    conn.send(('result', (idx, item)))
+            except Exception:
+                import traceback
+                conn.send(('error', traceback.format_exc()))
+                return
+            # Signal completion
+            conn.send(('done', tuple(results)))
+        else:
+            # Non-generator result
+            if isinstance(result, tuple):
+                conn.send(('done', result))
+            else:
+                conn.send(('done', (result,)))
+    except Exception:
+        import traceback
+        conn.send(('error', traceback.format_exc()))
+    finally:
+        conn.close()
+
+
+def run_solver_with_timeout(module_path, module_name, solver_name, args,
+                            timeout_seconds, suppress_output=False):
+    """
+    Run solver function with timeout using multiprocessing.
+    
+    Args:
+        module_path: Path to module directory
+        module_name: Name of module to import (e.g., 'day_15')
+        solver_name: Name of solver function (usually 'solver')
+        args: Arguments to pass to solver
+        timeout_seconds: Timeout in seconds
+        suppress_output: Whether to suppress stdout/stderr
+    
+    Returns:
+        Tuple of (completed, result, intermediate_results)
+        - completed: True if solver finished, False if timed out
+        - result: Final result tuple
+        - intermediate_results: List of (part_index, result) tuples for partial results
+    """
+    parent_conn, child_conn = multiprocessing.Pipe()
+    process = multiprocessing.Process(
+        target=_solver_process_wrapper,
+        args=(child_conn, module_path, module_name, solver_name, args, suppress_output)
+    )
+    process.daemon = False
+    process.start()
+    
+    start_time = datetime.datetime.now()
+    partial_results = {}
+    intermediate_results = []  # Track results as they arrive
+    done = False
+    final_results = None
+    
+    # Listen for results as they arrive, with timeout
+    while True:
+        elapsed = (datetime.datetime.now() - start_time).total_seconds()
+        remaining_timeout = max(0.01, timeout_seconds - elapsed)
+        
+        if process.is_alive():
+            if elapsed > timeout_seconds:
+                # Timeout occurred
+                process.terminate()
+                process.join(timeout=1)
+                if process.is_alive():
+                    process.kill()
+                    process.join(timeout=0.5)
+                parent_conn.close()
+                # Return partial results collected so far
+                if partial_results:
+                    sorted_results = tuple(
+                        partial_results[i] for i in sorted(partial_results.keys())
+                    )
+                    return (False, sorted_results, intermediate_results)
+                else:
+                    return (False, None, intermediate_results)
+        else:
+            # Process finished, collect any remaining messages
+            while parent_conn.poll(timeout=0.01):
+                try:
+                    status, data = parent_conn.recv()
+                    if status == 'result':
+                        idx, result = data
+                        partial_results[idx] = result
+                        intermediate_results.append((idx, result))
+                        # Display immediately as result arrives
+                        print(f"  {'🥇' if idx == 0 else '🥈'} Part {idx + 1}: {result}")
+                    elif status == 'done':
+                        final_results = data
+                        done = True
+                        break
+                    elif status == 'error':
+                        parent_conn.close()
+                        raise Exception(f"Solver error: {data}")
+                except EOFError:
+                    done = True
+                    break
+            
+            if done:
+                parent_conn.close()
+                if final_results:
+                    return (True, final_results, intermediate_results)
+                elif partial_results:
+                    sorted_results = tuple(
+                        partial_results[i] for i in sorted(partial_results.keys())
+                    )
+                    return (True, sorted_results, intermediate_results)
+                else:
+                    return (True, None, intermediate_results)
+            else:
+                parent_conn.close()
+                if partial_results:
+                    sorted_results = tuple(
+                        partial_results[i] for i in sorted(partial_results.keys())
+                    )
+                    return (True, sorted_results, intermediate_results)
+                else:
+                    return (True, None, intermediate_results)
+        
+        # Poll for messages with remaining timeout
+        if parent_conn.poll(timeout=remaining_timeout):
+            try:
+                status, data = parent_conn.recv()
+                if status == 'result':
+                    idx, result = data
+                    partial_results[idx] = result
+                    intermediate_results.append((idx, result))
+                    # Don't display immediately - just collect for later display in Results section
+                elif status == 'done':
+                    final_results = data
+                    done = True
+                elif status == 'error':
+                    parent_conn.close()
+                    raise Exception(f"Solver error: {data}")
+            except EOFError:
+                done = True
+        
+        # If we get here, ensure we return
+        if done or not process.is_alive():
+            parent_conn.close()
+            if final_results:
+                return (True, final_results, intermediate_results)
+            elif partial_results:
+                sorted_results = tuple(
+                    partial_results[i] for i in sorted(partial_results.keys())
+                )
+                return (True, sorted_results, intermediate_results)
+            else:
+                return (True, None, intermediate_results)
+    
+    # Fallback return (should not reach here, but just in case)
+    parent_conn.close()
+    if partial_results:
+        sorted_results = tuple(
+            partial_results[i] for i in sorted(partial_results.keys())
+        )
+        return (False, sorted_results, intermediate_results)
+    else:
+        return (False, None, intermediate_results)
+
+
+def solve_day(puzzle: Puzzle, use_local_input: bool = True, preprocessing_func=None, suppress_solver_prints: bool = False, timeout_seconds: int = 60):
     """
     Solve an Advent of Code puzzle by importing the corresponding day module and running its solver.
     
@@ -294,7 +549,9 @@ def solve_day(puzzle: Puzzle, use_local_input: bool = True, preprocessing_func=N
         puzzle: AOC Puzzle object containing year, day, and input data
         use_local_input: If True, attempts to use local input file first, 
                         falls back to puzzle.input_data if file not found or empty
-    
+        preprocessing_func: Optional function to preprocess input data
+        suppress_solver_prints: If True, suppresses all print output from solver and preprocessing
+
     Examples:
         >>> puzzle = Puzzle(year=2022, day=15)
         >>> solve_day(puzzle)  # Loads day_01.py, calls solver(), submits answers
@@ -308,9 +565,16 @@ def solve_day(puzzle: Puzzle, use_local_input: bool = True, preprocessing_func=N
         try:
             input_path = f"./events/year_{puzzle.year}/day_{str(puzzle.day).zfill(2)}/day_{str(puzzle.day).zfill(2)}.input"
             with open(input_path, encoding="utf-8") as data:
-                file_content = data.read().strip()
+                file_content = data.read().rstrip('\n')
                 if file_content:  # Only use local file if it has content
-                    puzzle_input = preprocessing_func(file_content) if preprocessing_func else file_content
+                    if preprocessing_func:
+                        if suppress_solver_prints:
+                            with redirect_stdout(io.StringIO()), redirect_stderr(io.StringIO()):
+                                puzzle_input = preprocessing_func(file_content)
+                        else:
+                            puzzle_input = preprocessing_func(file_content)
+                    else:
+                        puzzle_input = file_content
                     print(f"  📁 Using local input: {input_path}")
         except FileNotFoundError:
             pass
@@ -323,24 +587,95 @@ def solve_day(puzzle: Puzzle, use_local_input: bool = True, preprocessing_func=N
             print("  💾 Input auto-saved for future use")
             # Now read the locally saved file
             with open(input_path, encoding="utf-8") as data:
-                puzzle_input = preprocessing_func(data.read().strip()) if preprocessing_func else data.read().strip()
+                file_data = data.read().rstrip('\n')
+                if preprocessing_func:
+                    if suppress_solver_prints:
+                        with redirect_stdout(io.StringIO()), redirect_stderr(io.StringIO()):
+                            puzzle_input = preprocessing_func(file_data)
+                    else:
+                        puzzle_input = preprocessing_func(file_data)
+                else:
+                    puzzle_input = file_data
                 print(f"  📁 Using auto-saved input: {input_path}")
         except (OSError, IOError):
             # Fallback to remote if saving fails
-            puzzle_input = preprocessing_func(puzzle.input_data) if preprocessing_func else puzzle.input_data
+            if preprocessing_func:
+                if suppress_solver_prints:
+                    with redirect_stdout(io.StringIO()), redirect_stderr(io.StringIO()):
+                        puzzle_input = preprocessing_func(puzzle.input_data)
+                else:
+                    puzzle_input = preprocessing_func(puzzle.input_data)
+            else:
+                puzzle_input = puzzle.input_data
             print("  🌐 Using remote input from AOC")
 
+    # Add day directory to Python path to ensure we load the correct module
+    day_path = f"./events/year_{puzzle.year}/day_{str(puzzle.day).zfill(2)}/"
+    if day_path not in sys.path:
+        sys.path.insert(0, day_path)
+    
     day_module = __import__(f"day_{str(puzzle.day).zfill(2)}")
     if 'solver' in dir(day_module):
-        if isinstance(puzzle_input, builtins.tuple):
-            answers = day_module.solver(*puzzle_input)
-        else:
-            answers = day_module.solver(puzzle_input)
+        try:
+            answers = None
+            timeout_occurred = False
+            if timeout_seconds > 0:
+                completed, answers, intermediate = run_solver_with_timeout(
+                    day_path,
+                    f"day_{str(puzzle.day).zfill(2)}",
+                    'solver',
+                    puzzle_input,
+                    timeout_seconds,
+                    suppress_output=suppress_solver_prints
+                )
+                
+                if not completed:
+                    # Timeout occurred
+                    timeout_occurred = True
+                    if answers is None:
+                        # No partial results, use placeholder
+                        answers = (-1,)
+                    # If answers is not None, we have partial results - keep them as is
+            else:
+                if suppress_solver_prints:
+                    with redirect_stdout(io.StringIO()), redirect_stderr(io.StringIO()):
+                        if isinstance(puzzle_input, builtins.tuple):
+                            answers = day_module.solver(*puzzle_input)
+                        else:
+                            answers = day_module.solver(puzzle_input)
+                else:
+                    if isinstance(puzzle_input, builtins.tuple):
+                        answers = day_module.solver(*puzzle_input)
+                    else:
+                        answers = day_module.solver(puzzle_input)
+        except SolverTimeoutError:
+            timeout_occurred = True
+            answers = (-1,)
+        except Exception as solver_exc:  # pylint: disable=broad-except
+            timeout_occurred = False  # Not a timeout, regular error
+            exc_type = type(solver_exc).__name__
+            exc_msg = str(solver_exc)[:80]
+            print(f"  ⚠️  Solver error ({exc_type}): {exc_msg}")
+            # For single day runs, show full traceback
+            if suppress_solver_prints is False:
+                import traceback
+                print("\n  Full traceback:")
+                traceback.print_exc()
+            answers = (-1,)
     else:
+        timeout_occurred = False
         answers = (-1,)
 
     # Display results with nice formatting
-    parse_and_display_results(answers, puzzle)
+    # Pass timeout_occurred flag to show timeout message in results section
+    if timeout_occurred:
+        all_correct = parse_and_display_results(answers, puzzle, timeout_seconds=timeout_seconds)
+    else:
+        all_correct = parse_and_display_results(answers, puzzle)
+    
+    # Return whether all parts are correct, if timeout occurred, and if we have answers
+    has_answers = answers != (-1,)
+    return (all_correct, timeout_occurred, has_answers)
 
 
 def parse_arguments():
@@ -389,6 +724,9 @@ Examples:
     parser.add_argument('--refresh-examples', action='store_true',
                        help='Force refresh examples (ignore cached .examples files)')
     
+    parser.add_argument('--timeout', type=int, default=60,
+                       help='Timeout for solver execution in seconds (0 = no timeout, default: 60)')
+    
     # Enable argcomplete if available with custom completers
     # Note: Disabled to use bash completion for proper numeric day ordering
     # if ARGCOMPLETE_AVAILABLE and argcomplete:
@@ -428,7 +766,7 @@ def display_extracted_examples(puzzle: Puzzle, force_refresh: bool = False):
         print("  ❓ No examples extracted")
 
 
-def run_day(year: int, day_number: int, parsed_args):
+def run_day(year: int, day_number: int, parsed_args, suppress_solver_prints: bool = False):
     """Run a specific day with given arguments."""
     day_str = str(day_number).zfill(2)
     print(f"\n🎄 Advent of Code - Year {year} - Day {day_str}")
@@ -437,9 +775,9 @@ def run_day(year: int, day_number: int, parsed_args):
     if parsed_args.save_input:
         puzzle = Puzzle(year, day_number)
         if not save_input_to_file(puzzle, verbose=True):
-            return False
+            return (False, False, False)  # (all_correct, timeout_occurred, has_answers)
         print("  ✅ Input saved successfully")
-        return True  # Exit after saving input if that's all that was requested
+        return (False, False, False)  # Not actually solving, just saving
     
     # Add day directory to Python path
     day_path = f"./events/year_{year}/day_{day_str}/"
@@ -450,7 +788,7 @@ def run_day(year: int, day_number: int, parsed_args):
         module = __import__(f"day_{day_str}")
     except ImportError as e:
         print(f"❌ Could not import day_{day_str}: {e}")
-        return False
+        return (False, False, False)  # (all_correct, timeout_occurred, has_answers)
     
     # Set up preprocessing function for solve_day to use
     if "preprocessing" in dir(module):
@@ -461,7 +799,7 @@ def run_day(year: int, day_number: int, parsed_args):
     # Check if solver exists
     if 'solver' not in dir(module):
         print(f"❌ No solver function defined in day_{day_str}")
-        return False
+        return (False, False, False)  # (all_correct, timeout_occurred, has_answers)
     
     puzzle = Puzzle(year, day_number)
     
@@ -481,12 +819,129 @@ def run_day(year: int, day_number: int, parsed_args):
             if not parsed_args.force:
                 user_input = input("Continue with real input anyway? (y/N): ")
                 if user_input.lower() not in ['y', 'yes']:
-                    return False
+                    return (False, False, False)  # (all_correct, timeout_occurred, has_answers)
     
     # Run on real input
     print("🚀 Running on real input...")
-    solve_day(puzzle, use_local_input=not parsed_args.no_local, preprocessing_func=preprocessing_func)
-    return True
+    timeout_display = (
+        "disabled" if parsed_args.timeout == 0
+        else f"{parsed_args.timeout} second{'s' if parsed_args.timeout != 1 else ''}"
+    )
+    print(f"  ⏱️  Timeout set to {timeout_display}")
+    result = solve_day(puzzle, use_local_input=not parsed_args.no_local,
+                       preprocessing_func=preprocessing_func,
+                       suppress_solver_prints=suppress_solver_prints,
+                       timeout_seconds=parsed_args.timeout)
+    # result is a 3-tuple (all_correct, timeout_occurred, has_answers)
+    all_correct, timeout_occurred, has_answers = result
+    return (all_correct, timeout_occurred, has_answers)
+
+
+def display_scoreboard(year: int, days_to_run: list, day_results: dict):
+    """Display a formatted scoreboard of all days."""
+    total_days = len(days_to_run)
+    successful_days = sum(
+        1 for d in days_to_run
+        if day_results.get(d, {}).get('success', False)
+    )
+    
+    print(f"\n{'='*70}")
+    print(f"🏆 Scoreboard - Advent of Code {year}")
+    print(f"{'='*70}")
+    print(f"{'Day':<6} {'Status':<20} {'Notes':<42}")
+    print(f"{'-'*70}")
+    
+    # Check if we're running the full year (all 25 days)
+    is_full_year = len(days_to_run) == 25 and all(d in days_to_run for d in range(1, 26))
+    
+    # Check if all days 1-24 are complete
+    days_1_24_complete = all(
+        day_results.get(d, {}).get('success', False) for d in range(1, 25)
+    ) if is_full_year else False
+    
+    for day_num in days_to_run:
+        day_str = str(day_num).zfill(2)
+        result_info = day_results.get(day_num, {})
+        
+        success = result_info.get('success', False)
+        notes = result_info.get('notes', '')
+        
+        # Special handling for day 25
+        if day_num == 25 and success:
+            # Day 25 is marked complete - check if part 2 is actually unlocked
+            part2_unlocked = is_full_year and days_1_24_complete
+            if not part2_unlocked:
+                # Part 2 is not unlocked - show as incomplete
+                status_emoji = "🚧"
+                status_text = "Incomplete"
+                notes_display = "Part 2 locked (others incomplete)"
+            else:
+                # Part 2 is unlocked
+                status_emoji = "✅"
+                status_text = "Complete"
+                notes_display = notes[:40]
+        else:
+            # Determine emoji and status text based on result for other days
+            if success:
+                status_emoji = "✅"
+                status_text = "Complete"
+                notes_display = notes[:40]
+            elif "Timeout" in notes:
+                status_emoji = "⏱️"
+                status_text = "Timed out"
+                notes_display = notes[:40]
+            elif "Incomplete" in notes:
+                status_emoji = "🚧"
+                status_text = "Incomplete"
+                notes_display = notes[:40]
+            else:
+                status_emoji = "❌"
+                status_text = "Failed"
+                notes_display = notes[:40]
+        
+        print(f"{day_str:<6} {status_emoji} {status_text:<17} {notes_display:<42}")
+    
+    print(f"{'='*70}")
+    # Count stars: 2 per complete day, 1 per incomplete day
+    # Special case: Day 25's part 2 is auto-unlocked only if:
+    # - We're running all 25 days AND
+    # - All days 1-24 are complete AND  
+    # - Day 25 part 1 is solved
+    
+    star_count = 0
+    
+    # Check if we're running the full year (all 25 days)
+    is_full_year = len(days_to_run) == 25 and all(d in days_to_run for d in range(1, 26))
+    
+    # Check if all days 1-24 are complete
+    days_1_24_complete = all(
+        day_results.get(d, {}).get('success', False) for d in range(1, 25)
+    ) if is_full_year else False
+    
+    for d in days_to_run:
+        if d == 25:
+            # Special handling for day 25
+            day_25_info = day_results.get(25, {})
+            day_25_success = day_25_info.get('success', False)
+            day_25_incomplete = 'Incomplete' in day_25_info.get('notes', '')
+            
+            if day_25_success:
+                # Day 25 complete: part 2 granted only if full year + all 1-24 complete
+                star_count += 2 if (is_full_year and days_1_24_complete) else 1
+            elif day_25_incomplete:
+                # Day 25 incomplete: only 1 star for part 1
+                star_count += 1
+        else:
+            # Regular days 1-24
+            if day_results.get(d, {}).get('success', False):
+                star_count += 2  # 2 stars for complete days
+            elif 'Incomplete' in day_results.get(d, {}).get('notes', ''):
+                star_count += 1  # 1 star for incomplete days
+    
+    percentage = 100 * successful_days // total_days if total_days > 0 else 0
+    print(f"📊 Summary: Total: {total_days}, Successful: {successful_days}/{total_days} "
+          f"({percentage}%), Stars: {star_count}/50 ⭐")
+    print(f"{'='*70}\n")
 
 
 # Global preprocessing function placeholder
@@ -523,14 +978,44 @@ if __name__ == '__main__':
     
     # Run each day
     success_count = 0
+    suppress_prints = len(days_to_run) > 1
+    day_results = {}  # Track results for scoreboard
+    
     for day_num in days_to_run:
         try:
-            if run_day(args.year, day_num, args):
+            result = run_day(args.year, day_num, args, suppress_solver_prints=suppress_prints)
+            all_correct, timeout_occurred, has_answers = result
+            
+            if all_correct and not timeout_occurred:
                 success_count += 1
+                day_results[day_num] = {'success': True, 'result': '✅', 'notes': 'Completed'}
+            elif timeout_occurred:
+                day_results[day_num] = {
+                    'success': False,
+                    'result': '⏱️',
+                    'notes': 'Timeout'
+                }
+            elif has_answers and not all_correct:
+                # Solver ran and returned answers, but not all are correct
+                day_results[day_num] = {'success': False, 'result': '🚧', 'notes': 'Incomplete'}
+            else:
+                # Solver didn't run or had an error
+                day_results[day_num] = {'success': False, 'result': '❌', 'notes': 'Failed'}
         except KeyboardInterrupt:
             print("\n⏹️ Interrupted by user")
             break
-        except (ImportError, FileNotFoundError, AttributeError) as e:
-            print(f"❌ Error running day {day_num}: {e}")
+        except Exception as exc:  # pylint: disable=broad-except
+            exc_type = type(exc).__name__
+            exc_msg = str(exc)[:100]  # Truncate long error messages
+            print(f"❌ Error running day {day_num} ({exc_type}): {exc_msg}")
+            day_results[day_num] = {
+                'success': False,
+                'result': '❌',
+                'notes': f'Error: {exc_type}'
+            }
     
-    print(f"\n🏁 Completed {success_count}/{len(days_to_run)} days successfully")
+    # Display scoreboard if running all or many days
+    if len(days_to_run) > 1:
+        display_scoreboard(args.year, days_to_run, day_results)
+    
+    print(f"🏁 Completed {success_count}/{len(days_to_run)} days successfully")
