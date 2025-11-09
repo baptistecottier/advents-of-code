@@ -3,6 +3,7 @@ Advent of Code - Year 2020 - Day 3
 https://adventofcode.com/2020/day/3
 """
 
+from math import prod
 from pythonfw.classes import Particule2D
 
 
@@ -34,4 +35,4 @@ def solver(trees: set, width: int, height: int) -> tuple[int, int]:
                 cnt += 1
             me.move()
         counts.append(cnt)
-    return counts[-1], sum(counts)
+    return counts[-1], prod(counts)
