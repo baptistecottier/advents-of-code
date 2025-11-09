@@ -251,7 +251,9 @@ def save_input_to_file(puzzle: Puzzle, verbose: bool = True) -> bool:
 def parse_and_display_results(answers, puzzle, timeout_seconds=None):
     """Parse and nicely display the puzzle results with colored output.
     
-    Returns: bool - True if all parts are correct, False otherwise
+    Returns: tuple - (all_correct, parts_solved_on_aoc) where:
+        - all_correct: bool, True if solver gave correct answers
+        - parts_solved_on_aoc: tuple, which parts are actually solved on AOC (1, 2, or both)
     """
     import io
     from contextlib import redirect_stdout, redirect_stderr
@@ -259,11 +261,13 @@ def parse_and_display_results(answers, puzzle, timeout_seconds=None):
     
     print("📊 Results:")
     all_correct = True
+    parts_solved = []  # Track which parts are actually solved on AOC
     
     for part, answer in enumerate(answers, 1):
         part_letter = "a" if part == 1 else "b"
         medal = "🥇" if part == 1 else "🥈"
         is_correct = True  # Track if this part is correct
+        is_solved_on_aoc = False  # Track if this part is actually solved on AOC
         
         # Capture the output from aocd submit
         stdout_capture = io.StringIO()
@@ -283,14 +287,18 @@ def parse_and_display_results(answers, puzzle, timeout_seconds=None):
             # Check if aocd prevented the submission (returns None and prints message)
             if result is None and "aocd will not submit" in output:
                 colored_status = color_text("✅ Correct (already known)", "green")
+                is_solved_on_aoc = True
             # Parse the aocd output to determine status and color
             elif "already solved with same answer" in output:
                 colored_status = color_text("✅ Correct (already solved)", "green")
+                is_solved_on_aoc = True
             elif "already solved with different answer" in output:
                 colored_status = color_text("🤔 Incorrect (but already solved)", "yellow")
                 is_correct = False
+                is_solved_on_aoc = True  # Part IS solved on AOC, even though solver is wrong
             elif "That's the right answer" in output:
                 colored_status = color_text("🎉 Correct (new submission)", "green")
+                is_solved_on_aoc = True
             elif "That's not the right answer" in output:
                 colored_status = color_text("❌ Incorrect", "red")
                 is_correct = False
@@ -315,6 +323,7 @@ def parse_and_display_results(answers, puzzle, timeout_seconds=None):
                 is_correct = False
             elif "already solved" in error_msg:
                 colored_status = color_text("✅ Correct (already solved)", "green")
+                is_solved_on_aoc = True
             else:
                 colored_status = color_text(f"⚠️  {error_msg[:50]}", "yellow")
                 is_correct = False
@@ -341,8 +350,12 @@ def parse_and_display_results(answers, puzzle, timeout_seconds=None):
         # If any part is incorrect, the whole day is incorrect
         if not is_correct:
             all_correct = False
+        
+        # Track which parts are solved on AOC
+        if is_solved_on_aoc:
+            parts_solved.append(part)
     
-    return all_correct
+    return (all_correct, tuple(parts_solved))
 
 
 class SolverTimeoutError(Exception):
@@ -672,17 +685,17 @@ def solve_day(puzzle: Puzzle, use_local_input: bool = True, preprocessing_func=N
     # Display results with nice formatting
     # Pass timeout_occurred flag to show timeout message in results section
     if timeout_occurred:
-        all_correct = parse_and_display_results(answers, puzzle, timeout_seconds=timeout_seconds)
+        all_correct, parts_solved_on_aoc = parse_and_display_results(answers, puzzle, timeout_seconds=timeout_seconds)
     else:
-        all_correct = parse_and_display_results(answers, puzzle)
+        all_correct, parts_solved_on_aoc = parse_and_display_results(answers, puzzle)
     
-    # Return whether all parts are correct, if timeout occurred, and if we have answers
-    # has_answers should be True only if we have actual valid answers (not None, not -1)
+    # Return whether all parts are correct, if timeout occurred, and which parts are solved on AOC
+    # has_valid_answers should be True only if we have actual valid answers (not None, not -1)
     has_valid_answers = (
         answers != (-1,) and 
         not all(isinstance(a, tuple) and a[1] is None or a is None for a in answers)
     )
-    return (all_correct, timeout_occurred, has_valid_answers)
+    return (all_correct, timeout_occurred, has_valid_answers, parts_solved_on_aoc)
 
 
 def parse_arguments():
@@ -782,9 +795,9 @@ def run_day(year: int, day_number: int, parsed_args, suppress_solver_prints: boo
     if parsed_args.save_input:
         puzzle = Puzzle(year, day_number)
         if not save_input_to_file(puzzle, verbose=True):
-            return (False, False, False)  # (all_correct, timeout_occurred, has_answers)
+            return (False, False, False, ())  # (all_correct, timeout, has_answers, parts_solved)
         print("  ✅ Input saved successfully")
-        return (False, False, False)  # Not actually solving, just saving
+        return (False, False, False, ())  # Not actually solving, just saving
     
     # Add day directory to Python path
     # Use absolute path to work from any directory, resolving symlinks
@@ -797,7 +810,7 @@ def run_day(year: int, day_number: int, parsed_args, suppress_solver_prints: boo
         module = __import__(f"day_{day_str}")
     except ImportError as e:
         print(f"❌ Could not import day_{day_str}: {e}")
-        return (False, False, False)  # (all_correct, timeout_occurred, has_answers)
+        return (False, False, False, ())  # (all_correct, timeout, has_answers, parts_solved)
     
     # Set up preprocessing function for solve_day to use
     if "preprocessing" in dir(module):
@@ -808,7 +821,7 @@ def run_day(year: int, day_number: int, parsed_args, suppress_solver_prints: boo
     # Check if solver exists
     if 'solver' not in dir(module):
         print(f"❌ No solver function defined in day_{day_str}")
-        return (False, False, False)  # (all_correct, timeout_occurred, has_answers)
+        return (False, False, False, ())  # (all_correct, timeout, has_answers, parts_solved)
     
     puzzle = Puzzle(year, day_number)
     
@@ -828,7 +841,7 @@ def run_day(year: int, day_number: int, parsed_args, suppress_solver_prints: boo
             if not parsed_args.force:
                 user_input = input("Continue with real input anyway? (y/N): ")
                 if user_input.lower() not in ['y', 'yes']:
-                    return (False, False, False)  # (all_correct, timeout_occurred, has_answers)
+                    return (False, False, False, ())  # (all_correct, timeout, has_answers, parts_solved)
     
     # Run on real input
     print("🚀 Running on real input...")
@@ -841,9 +854,9 @@ def run_day(year: int, day_number: int, parsed_args, suppress_solver_prints: boo
                        preprocessing_func=preprocessing_func,
                        suppress_solver_prints=suppress_solver_prints,
                        timeout_seconds=parsed_args.timeout)
-    # result is a 3-tuple (all_correct, timeout_occurred, has_answers)
-    all_correct, timeout_occurred, has_answers = result
-    return (all_correct, timeout_occurred, has_answers)
+    # result is a 4-tuple (all_correct, timeout_occurred, has_answers, parts_solved_on_aoc)
+    all_correct, timeout_occurred, has_answers, parts_solved_on_aoc = result
+    return (all_correct, timeout_occurred, has_answers, parts_solved_on_aoc)
 
 
 def display_scoreboard(year: int, days_to_run: list, day_results: dict):
@@ -993,7 +1006,7 @@ if __name__ == '__main__':
     for day_num in days_to_run:
         try:
             result = run_day(args.year, day_num, args, suppress_solver_prints=suppress_prints)
-            all_correct, timeout_occurred, has_answers = result
+            all_correct, timeout_occurred, has_answers, parts_solved_on_aoc = result
             
             if all_correct and not timeout_occurred:
                 success_count += 1
@@ -1004,9 +1017,12 @@ if __name__ == '__main__':
                     'result': '⏱️',
                     'notes': 'Timeout'
                 }
-            elif has_answers and not all_correct:
-                # Solver ran and returned answers, but not all are correct
+            elif parts_solved_on_aoc == (1,) and not has_answers:
+                # Only part 1 solved on AOC and no valid solver answers - show as incomplete
                 day_results[day_num] = {'success': False, 'result': '🚧', 'notes': 'Incomplete'}
+            elif has_answers and not all_correct:
+                # Solver ran and returned answers, but not all are correct - Failed
+                day_results[day_num] = {'success': False, 'result': '❌', 'notes': 'Failed'}
             else:
                 # Solver didn't run or had an error
                 day_results[day_num] = {'success': False, 'result': '❌', 'notes': 'Failed'}
