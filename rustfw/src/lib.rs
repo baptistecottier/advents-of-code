@@ -8,7 +8,7 @@ macro_rules! main {
         use {
             aho_corasick::{AhoCorasick, PatternID},
             aoc::screen_reader,
-            grid::grid,
+            grid::Grid,
             itertools::{chain, iproduct, multizip, repeat_n, FoldWhile, Itertools},
             md5::compute,
             mod_exp::mod_exp,

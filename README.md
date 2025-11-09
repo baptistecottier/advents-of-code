@@ -1,11 +1,39 @@
-# 🎁 Advent of Code Solutions
+# Advent of Code Solutions
 
-A comprehensive development environment for Advent of Code with professional CLI tools, shell autocompletion, and intelligent automation.
+A comprehensive development environment for [Advent of Code](https://adventofcode.com) with CLI tools, shell autocompletion, and intelligent automation.
 
-Here are my solutions for the [Advent of Code](https://adventofcode.com) challenges 🎄⭐🎅🏻.
-Some puzzles are solved in Python 🐍, some are solved in Rust 🦀.
+## 📊 Progress Summary
 
-Thanks [Scotow](https://github.com/scotow) for the initial framework and precious coding advices.
+<table>
+<tr VALIGN = TOP>
+<td>
+
+**Year**      | **🐍** | **🦀** |
+:---:         | :---:  | :---:  |
+[2025](#2025) |   0    |   0    |
+[2024](#2024) |  50    |  22    |
+[2023](#2023) |  31    |  12    |
+[2022](#2022) |  34    |  18    |
+[2021](#2021) |  33    |   8    |
+[2020](#2020) |  48    |  16    |
+
+</td>
+<td>
+
+**Year**      | **🐍** | **🦀** |
+:---:         | :---:  | :---:  |
+[2019](#2019) |  37    |   2    |
+[2018](#2018) |  45    |   8    |
+[2017](#2017) |  50    |  24    |
+[2016](#2016) |  50    |  28    |
+[2015](#2015) |  50    |  44    |
+
+</td>
+</tr>
+</table>
+
+
+*Thanks [Scotow](https://github.com/scotow) for the initial framework and precious coding advice.*
 
 ## 🚀 Quick Start
 
@@ -68,36 +96,7 @@ echo "YOUR_SESSION_TOKEN" > ~/.config/aocd/token
 source setup.sh
 ```
 
-## 🎄 Summary
-<table>
-<tr VALIGN = TOP>
-<td>
-
-Year          |   🐍   |   🦀  |
-:---:         | :---:  | :--: |
-[2025](#2025) | 0      | 0
-[2024](#2024) | 50     | 26
-[2023](#2023) | 38     | 12
-[2022](#2022) | 40     | 26
-[2021](#2021) | 43     | 8 
-[2020](#2020) | 48     | 16
-</td>
-<td>
-
-Year          |   🐍   |   🦀  |
-:---:         | :----: | :--: |
-[2019](#2019) | 38     | 10
-[2018](#2018) | 47     | 13
-[2017](#2017) | 50     | 24
-[2016](#2016) | 50     | 40
-[2015](#2015) | 50     | 45
-</td>
-</tr> 
-
-</table>
-
-
-## ⭐ Yearly detailed scores
+## ⭐ Detailed Progress by Year
 
 <details>
     <summary> 
@@ -212,17 +211,17 @@ Year          |   🐍   |   🦀  |
 | 12 | [Hill Climbing Algorithm     ](events/year_2022/day_12/day_12.md#day-12-hill-climbing-algorithm)  | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/year_2022/day_12/day_12.py) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/year_2022/day_12/day_12.rs) |
 | 13 | [Distress Signal             ](events/year_2022/day_13/day_13.md#day-13-distress-signal)          | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/year_2022/day_13/day_13.py) |                                                                                        |
 | 14 | [Regolith Reservoir          ](events/year_2022/day_14/day_14.md#day-14-regolith-reservoir)       | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/year_2022/day_14/day_14.py) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/year_2022/day_14/day_14.rs) |
-| 15 | [Beacon Exclusion Zone       ](events/year_2022/day_15/day_15.md#day-15-beacon-exclusion-zone)    | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/year_2022/day_15/day_15.py) |                                                                                        |
-| 16 | [Proboscidea Volcanium       ](events/year_2022/day_16/day_16.md#day-16-proboscidea-volcanium)    | [⭐  ](https://github.com/baptistecottier/advents-of-code/tree/main/events/year_2022/day_16/day_16.py) |                                                                                        |                                                                |                                                                                        |                                                                                        |
+| 15 | [Beacon Exclusion Zone       ](events/year_2022/day_15/day_15.md#day-15-beacon-exclusion-zone)    | 
+| 16 | [Proboscidea Volcanium       ](events/year_2022/day_16/day_16.md#day-16-proboscidea-volcanium)    | 
 | 17 | Pyroclastic Flow                                                                     |                                                           |                                                                                        |
 | 18 | [Boiling Boulders            ](events/year_2022/day_18/day_18.md#day-18-boiling-boulders)         | [⭐  ](https://github.com/baptistecottier/advents-of-code/tree/main/events/year_2022/day_18/day_18.py) |                                                                                        |
 | 19 | Not Enough Minerals                                                                  |                                                                                      |                                                                                        |
 | 20 | [Grove Positioning System    ](events/year_2022/day_20/day_20.md#day-20-grove-positioning-system) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/year_2022/day_20/day_20.py) |                                                                                        |
 | 21 | [Monkey Math                 ](events/year_2022/day_21/day_21.md#day-21-monkey-math)              | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/year_2022/day_21/day_21.py) |                                                                                        |
 | 22 | [Monkey Map                  ](events/year_2022/day_22/day_22.md#day-22-monkey-map)               | [⭐  ](https://github.com/baptistecottier/advents-of-code/tree/main/events/year_2022/day_22/day_22.py) |                                                                                        |                                                                           |                                                                                      |                                                                                        |
-| 23 | [Unstable Diffusion          ](events/year_2022/day_23/day_23.md#day-23-unstable-diffusion)       | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/year_2022/day_23/day_23.py) |                                                                                        |
+| 23 | [Unstable Diffusion          ](events/year_2022/day_23/day_23.md#day-23-unstable-diffusion)       | 
 | 24 | Blizzard Basin                                                                       |                                                                                      |                                                                                        |
-| 25 | [Full of Hot Air             ](events/year_2022/day_25/day_25.md#day-25-full-of-hot-air)          | [⭐  ](https://github.com/baptistecottier/advents-of-code/tree/main/events/year_2022/day_25/day_25.py) |                                                                                        |
+| 25 | [Full of Hot Air             ](events/year_2022/day_25/day_25.md#day-25-full-of-hot-air)          | 
 
 </details>
 
@@ -317,16 +316,16 @@ Year          |   🐍   |   🦀  |
 | 12 | [The N-Body Problem                  ](events/year_2019/day_12/day_12.md#day-12-the-n-body-problem)                | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/year_2019/day_12/day_12.py) |                                                                                        |
 | 13 | [Care Package                        ](events/year_2019/day_13/day_13.md#day-13-care-package)                      | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/year_2019/day_13/day_13.py) |                                                                                        |
 | 14 | Space Stoichiometry                                                                                   |                                                                                        |                                                                                        |
-| 15 | [Oxygen System                       ](events/year_2019/day_15/day_15.md#day-15-oxygen-system)                     | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/year_2019/day_15/day_15.py) |                                                                                        |
+| 15 | [Oxygen System                       ](events/year_2019/day_15/day_15.md#day-15-oxygen-system)                     | 
 | 16 | [Flawed Frequency Transmission       ](events/year_2019/day_16/day_16.md#day-16-flawed-frequency-transmission)     | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/year_2019/day_16/day_16.py) |                                                                                        |
-| 17 | [Set and Forget                      ](events/year_2019/day_17/day_17.md#day-17-set-and-forget)                    | [⭐  ](https://github.com/baptistecottier/advents-of-code/tree/main/events/year_2019/day_17/day_17.py) |                                                                                        |
+| 17 | [Set and Forget                      ](events/year_2019/day_17/day_17.md#day-17-set-and-forget)                    | [⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/year_2019/day_17/day_17.py) |                                                                                        |
 | 18 | Many-Worlds Interpretation                                                                            |                                                                                        |                                                                                        |
 | 19 | [Tractor Beam                        ](events/year_2019/day_19/day_19.md#day-19-tractor-beam)                      | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/year_2019/day_19/day_19.py) |                                                                                        |
 | 20 | [Donut Maze                          ](events/year_2019/day_20/day_20.md#day-20-donut-maze)                        | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/year_2019/day_20/day_20.py) |                                                                                        |
 | 21 | Springdroid Adventure                                                                                 |                                                                                        |                                                                                        |
 | 22 | [Slam Shuffle                        ](events/year_2019/day_22/day_22.md#day-22-slam-shuffle)                      | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/year_2019/day_22/day_22.py) |                                                                                        |
 | 23 | Category Six                                                                                          |                                                                                        |                                                                                        |
-| 24 | [Planet of Discord                   ](events/year_2019/day_24/day_24.md#day-24-planet-of-discord)                 | [⭐  ](https://github.com/baptistecottier/advents-of-code/tree/main/events/year_2019/day_24/day_24.py) |                                                                                        |
+| 24 | [Planet of Discord                   ](events/year_2019/day_24/day_24.md#day-24-planet-of-discord)                 | 
 | 25 | Cryostasis                                                                                            |                                                                                        |                                                                                        |
 
 </details>
@@ -358,8 +357,8 @@ Year          |   🐍   |   🦀  |
 | 18 | [Settlers of The North Pole            ](events/year_2018/day_18/day_18.md#day-18-settlers-of-the-north-pole)           | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/year_2018/day_18/day_18.py) |                                                                                        |
 | 19 | [Go With The Flow                      ](events/year_2018/day_19/day_19.md#day-19-go-with-the-flow)                     | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/year_2018/day_19/day_19.py) |                                                                                        |
 | 20 | [A Regular Map                         ](events/year_2018/day_20/day_20.md#day-20-a-regular-map)                        | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/year_2018/day_20/day_20.py) |                                                                                        |
-| 21 | [Chronal Conversion                    ](events/year_2018/day_21/day_21.md#day-21-chronal-conversion)                   | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/year_2018/day_21/day_21.py) |                                                                                        |
-| 22 | [Mode Maze                             ](events/year_2018/day_22/day_22.md#day-22-mode-maze)                            | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/year_2018/day_22/day_22.py) |                                                                                        |
+| 21 | [Chronal Conversion                    ](events/year_2018/day_21/day_21.md#day-21-chronal-conversion)                   | [⭐⭐ (slow)](https://github.com/baptistecottier/advents-of-code/tree/main/events/year_2018/day_21/day_21.py) |                                                                                        |
+| 22 | [Mode Maze                             ](events/year_2018/day_22/day_22.md#day-22-mode-maze)                            | |                                                                                        |
 | 23 | [Experimental Emergency Teleportation  ](events/year_2018/day_23/day_23.md#day-23-experimental-emergency-teleportation) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/year_2018/day_23/day_23.py) |                                                                                        |
 | 24 | [Immune System Simulator 20XX          ](events/year_2018/day_24/day_24.md#day-24-immune-system-simulator-20xx)         | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/year_2018/day_24/day_24.py) |                                                                                        |
 | 25 | [Four-Dimensional Adventure            ](events/year_2018/day_25/day_25.md#day-25-four-dimensional-adventure)           | [⭐  ](https://github.com/baptistecottier/advents-of-code/tree/main/events/year_2018/day_25/day_25.py) |                                                                                        |
@@ -390,7 +389,7 @@ Year          |   🐍   |   🦀  |
 | 15 | [Dueling Generators                        ](events/year_2017/day_15/day_15.md#day-15-dueling-generators)                    | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/year_2017/day_15/day_15.py) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/year_2017/day_15/day_15.rs) |
 | 16 | [Permutation Promenade                     ](events/year_2017/day_16/day_16.md#day-16-permutation-promenade)                 | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/year_2017/day_16/day_16.py) |                                                                                        |
 | 17 | [Spinlock                                  ](events/year_2017/day_17/day_17.md#day-17-spinlock)                              | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/year_2017/day_17/day_17.py) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/year_2017/day_17/day_17.rs) |
-| 18 | [Duet                                      ](events/year_2017/day_18/day_18.md#day-18-duet)                                  | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/year_2017/day_18/day_18.py) |                                                                                        |
+| 18 | [Duet                                       ](events/year_2017/day_18/day_18.md#18-duet)                                     | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/year_2017/day_18/day_18.py) |                                                                                        |
 | 19 | [A Series of Tubes                         ](events/year_2017/day_19/day_19.md#day-19-a-series-of-tubes)                     | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/year_2017/day_19/day_19.py) |                                                                                        |
 | 20 | [Particle Swarm                            ](events/year_2017/day_20/day_20.md#day-20-particle-swarm)                        | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/year_2017/day_20/day_20.py) |                                                                                        |
 | 21 | [Fractal Art                               ](events/year_2017/day_21/day_21.md#day-21-fractal-art)                           | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/year_2017/day_21/day_21.py) |                                                                                        |

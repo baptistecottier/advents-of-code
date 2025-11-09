@@ -25,3 +25,4 @@ rustfw/src/lib.rs
 # Config files
 .pylintrc
 rename.py
+unsolved_problems.md
