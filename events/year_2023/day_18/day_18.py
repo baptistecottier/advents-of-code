@@ -11,7 +11,7 @@ def preprocessing(puzzle_input):
     x, y = 0, 0
     board = set()
     for line in puzzle_input.splitlines():
-        print(line)
+        # print(line)
         d, n, h = line.split(' ')
         match h[-2]: 
             case '0' : dx, dy = 1, 0
