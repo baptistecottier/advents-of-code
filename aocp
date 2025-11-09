@@ -715,7 +715,13 @@ def solve_day(puzzle: Puzzle, use_local_input: bool = True, preprocessing_func=N
                    for a in answers)
         )
 
-    return (all_correct, timeout_occurred, has_valid_answers, parts_solved_on_aoc)
+    # Count the number of valid answers returned
+    num_parts_returned = 0
+    if has_valid_answers and answers:
+        num_parts_returned = len(answers)
+    
+    return (all_correct, timeout_occurred, has_valid_answers, 
+            parts_solved_on_aoc, num_parts_returned)
 
 
 def parse_arguments():
@@ -815,9 +821,9 @@ def run_day(year: int, day_number: int, parsed_args, suppress_solver_prints: boo
     if parsed_args.save_input:
         puzzle = Puzzle(year, day_number)
         if not save_input_to_file(puzzle, verbose=True):
-            return (False, False, False, ())  # (all_correct, timeout, has_answers, parts_solved)
+            return (False, False, False, (), 0)
         print("  ✅ Input saved successfully")
-        return (False, False, False, ())  # Not actually solving, just saving
+        return (False, False, False, (), 0)
     
     # Add day directory to Python path
     # Use absolute path to work from any directory, resolving symlinks
@@ -830,7 +836,7 @@ def run_day(year: int, day_number: int, parsed_args, suppress_solver_prints: boo
         module = __import__(f"day_{day_str}")
     except ImportError as e:
         print(f"❌ Could not import day_{day_str}: {e}")
-        return (False, False, False, ())  # (all_correct, timeout, has_answers, parts_solved)
+        return (False, False, False, (), 0)
     
     # Set up preprocessing function for solve_day to use
     if "preprocessing" in dir(module):
@@ -841,7 +847,7 @@ def run_day(year: int, day_number: int, parsed_args, suppress_solver_prints: boo
     # Check if solver exists
     if 'solver' not in dir(module):
         print(f"❌ No solver function defined in day_{day_str}")
-        return (False, False, False, ())  # (all_correct, timeout, has_answers, parts_solved)
+        return (False, False, False, (), 0)
     
     puzzle = Puzzle(year, day_number)
     
@@ -861,7 +867,7 @@ def run_day(year: int, day_number: int, parsed_args, suppress_solver_prints: boo
             if not parsed_args.force:
                 user_input = input("Continue with real input anyway? (y/N): ")
                 if user_input.lower() not in ['y', 'yes']:
-                    return (False, False, False, ())  # (all_correct, timeout, has_answers, parts_solved)
+                    return (False, False, False, (), 0)
     
     # Run on real input
     print("🚀 Running on real input...")
@@ -874,9 +880,12 @@ def run_day(year: int, day_number: int, parsed_args, suppress_solver_prints: boo
                        preprocessing_func=preprocessing_func,
                        suppress_solver_prints=suppress_solver_prints,
                        timeout_seconds=parsed_args.timeout)
-    # result is a 4-tuple (all_correct, timeout_occurred, has_answers, parts_solved_on_aoc)
-    all_correct, timeout_occurred, has_answers, parts_solved_on_aoc = result
-    return (all_correct, timeout_occurred, has_answers, parts_solved_on_aoc)
+    # result is a 5-tuple: (all_correct, timeout_occurred, has_answers,
+    # parts_solved_on_aoc, num_parts_returned)
+    (all_correct, timeout_occurred, has_answers,
+     parts_solved_on_aoc, num_parts_returned) = result
+    return (all_correct, timeout_occurred, has_answers, parts_solved_on_aoc,
+            num_parts_returned)
 
 
 def display_scoreboard(year: int, days_to_run: list, day_results: dict):
@@ -1026,11 +1035,21 @@ if __name__ == '__main__':
     for day_num in days_to_run:
         try:
             result = run_day(args.year, day_num, args, suppress_solver_prints=suppress_prints)
-            all_correct, timeout_occurred, has_answers, parts_solved_on_aoc = result
+            (all_correct, timeout_occurred, has_answers, parts_solved_on_aoc,
+             num_parts_returned) = result
             
             if all_correct and not timeout_occurred:
-                success_count += 1
-                day_results[day_num] = {'success': True, 'result': '✅', 'notes': 'Completed'}
+                # Check if both parts were returned (day has 2 parts)
+                if num_parts_returned < 2:
+                    # Only one part returned when two are available - mark as incomplete
+                    day_results[day_num] = {
+                        'success': False,
+                        'result': '🚧',
+                        'notes': f'Incomplete (1/{2} parts)'
+                    }
+                else:
+                    success_count += 1
+                    day_results[day_num] = {'success': True, 'result': '✅', 'notes': 'Completed'}
             elif timeout_occurred:
                 day_results[day_num] = {
                     'success': False,
