@@ -22,6 +22,7 @@ def preprocessing(puzzle_input: str, image_width: int = 25, image_height: int = 
 
     for n, c in enumerate(puzzle_input):
         layers[n // image_size][int(c)].add((n % image_width, (n // image_width) % image_height))
+
     return layers
 
 
