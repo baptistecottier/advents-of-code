@@ -34,28 +34,15 @@ def preprocessing(puzzle_input: str) -> tuple[int, int, list[list[list[int]]]]:
 
     details = []
     for state in infos[1:]:
-        result = parse(
-            (
-                """In state {}:\n  """
-                """
-    If the current value is 0:\n    """
-                """
-    - Write the value {:d}.\n    """
-                """
-    - Move one slot to the {}.\n    """
-                """
-    - Continue with state {}.\n  """
-                """
-    If the current value is 1:\n    """
-                """
-    - Write the value {:d}.\n    """
-                """
-    - Move one slot to the {}.\n    """
-                """
-    - Continue with state {}."""
-            ),
-            state,
-        )
+        result = parse(("""In state {}:\n  """
+                        """If the current value is 0:\n    """
+                        """- Write the value {:d}.\n    """
+                        """- Move one slot to the {}.\n    """
+                        """- Continue with state {}.\n  """
+                        """If the current value is 1:\n    """
+                        """- Write the value {:d}.\n    """
+                        """- Move one slot to the {}.\n    """
+                        """- Continue with state {}."""), state)
 
         if isinstance(result, Result):
             _, b, c, d, e, f, g = result
