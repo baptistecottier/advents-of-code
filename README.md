@@ -63,12 +63,12 @@ options:
 
 **Examples:**
 ```bash
-aocp 2024 1              # Run year 2024, day 1
-aocp 2024                # Run all days for year 2024
-aocp 2024 --days 1-5     # Run days 1-5
-aocp 2024 --days 1,3,5   # Run specific days
-aocp 2024 1 -e           # Test examples before running
-aocp 2024 1 --force      # Run real input even if examples fail
+aocp 2024 1               # Run year 2024, day 1
+aocp 2024                 # Run all days for year 2024
+aocp 2024 --days 1-5      # Run days 1-5
+aocp 2024 --days 1,3,5    # Run specific days
+aocp 2024 1 -e            # Test examples before running
+aocp 2024 1 --force       # Run real input even if examples fail
 aocp 2024 1 --timeout 120 # Set timeout to 120 seconds
 ```
 
@@ -77,12 +77,12 @@ aocp 2024 1 --timeout 120 # Set timeout to 120 seconds
 Run Rust solutions with:
 
 ```bash
-aocr 2024 1              # Run year 2024, day 1
-aocr 2024                # Run all days for year 2024
-aocr 2024 1 --release    # Build in release mode
-aocr 2024 1 --check      # Check compilation only
-aocr 2024 --days 1-5     # Run days 1-5
-aocr 2024 --days 1,3,5   # Run specific days
+aocr 2024 1               # Run year 2024, day 1
+aocr 2024                 # Run all days for year 2024
+aocr 2024 1 --release     # Build in release mode
+aocr 2024 1 --check       # Check compilation only
+aocr 2024 --days 1-5      # Run days 1-5
+aocr 2024 --days 1,3,5    # Run specific days
 ```
 
 ## ⭐ Detailed Progress by Year
