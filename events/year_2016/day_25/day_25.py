@@ -64,14 +64,14 @@ def run(instructions: list[tuple[int, str, str | int]], a: int) -> int:
     while True:
         task, reg, val = instructions[instruction]
         if isinstance(val, str):
-            register[reg] = register.get(val)
+            register[reg] = register.get_value(val)
 
         else:
             match task:
                 case 1:
                     register[reg] += val
                 case 2:
-                    if register.get(reg) != 0:
+                    if register.get_value(reg) != 0:
                         instruction += val - 1
                 case 3:
                     if tictac == register[reg]:
