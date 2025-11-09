@@ -478,24 +478,23 @@ def run_solver_with_timeout(module_path, module_name, solver_name, args,
         elapsed = (datetime.datetime.now() - start_time).total_seconds()
         remaining_timeout = max(0.01, timeout_seconds - elapsed)
         
+        # Check timeout FIRST - if exceeded, kill process immediately
+        if elapsed > timeout_seconds:
+            if process.is_alive():
+                # Be aggressive: kill directly without terminate first
+                process.kill()
+                process.join(timeout=0.2)
+            parent_conn.close()
+            # Return timeout with partial results if any
+            if partial_results:
+                sorted_results = tuple(
+                    partial_results[i] for i in sorted(partial_results.keys())
+                )
+                return (False, sorted_results, intermediate_results)
+            else:
+                return (False, None, intermediate_results)
+        
         if process.is_alive():
-            if elapsed > timeout_seconds:
-                # Timeout occurred
-                process.terminate()
-                process.join(timeout=1)
-                if process.is_alive():
-                    process.kill()
-                    process.join(timeout=0.5)
-                parent_conn.close()
-                # Return partial results collected so far
-                if partial_results:
-                    sorted_results = tuple(
-                        partial_results[i] for i in sorted(partial_results.keys())
-                    )
-                    return (False, sorted_results, intermediate_results)
-                else:
-                    return (False, None, intermediate_results)
-        else:
             # Process finished, collect any remaining messages
             while parent_conn.poll(timeout=0.01):
                 try:
