@@ -12,6 +12,12 @@ from operator import and_, inv, lshift, or_, rshift
 from pythonfw.classes import Register
 
 
+# Module-level identity function (required for multiprocessing pickling)
+def _identity(x: int) -> int:
+    """Identity function - returns input unchanged."""
+    return x
+
+
 @dataclass
 class Gate:
     """
@@ -43,7 +49,7 @@ def preprocessing(puzzle_input: str) -> list[Gate]:
 
     Examples:
         >>> preprocessing("123 -> x")
-        [Gate(op=<function <lambda> at ...>, wire_out='x', wire_in=('123',))]
+        [Gate(op=_identity, wire_out='x', wire_in=('123',))]
 
         >>> preprocessing("NOT x -> h")
         [Gate(op=<function inv at ...>, wire_out='h', wire_in=('x',))]
@@ -56,7 +62,7 @@ def preprocessing(puzzle_input: str) -> list[Gate]:
         in_, out_ = gate.split(" -> ")
         data = in_.split(" ")
         if len(data) == 1:
-            circuit.append(Gate(lambda x: x, out_, (data[0],)))
+            circuit.append(Gate(_identity, out_, (data[0],)))
         elif len(data) == 2:
             circuit.append(Gate(inv, out_, (data[1],)))
         else:
@@ -89,7 +95,7 @@ def solver(circuit: list[Gate], wire: str = "a") -> tuple[int, int]:
         is the result after setting wire 'b' to the initial signal value
 
     Examples:
-        >>> gates = [Gate(lambda: 123, 'x', ()), Gate(lambda x: x, 'a', ('x',))]
+        >>> gates = [Gate(_identity, 'x', ()), Gate(_identity, 'a', ('x',))]
         >>> solver(gates)
         (123, 123)
     """
@@ -104,6 +110,7 @@ def solver(circuit: list[Gate], wire: str = "a") -> tuple[int, int]:
         return wires["a"] % pow(2, 16)
 
     signal = run(circuit)
-    circuit[0] = Gate(lambda x: x, "b", (str(signal),))
+    circuit[0] = Gate(_identity, "b", (str(signal),))
 
     return signal, run(circuit)
+
