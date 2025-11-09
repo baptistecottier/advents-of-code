@@ -106,11 +106,11 @@ class Particule2D():
     def __str__(self):
         return f"{self.pos.x},{self.pos.y}"
 
-    def rotate_left(self):
+    def rotate_right(self):
         """Rotates the current velocity vector 90 degrees counter-clockwise."""
         self.vel.x, self.vel.y = - self.vel.y, self.vel.x
 
-    def rotate_right(self):
+    def rotate_left(self):
         """Rotates the velocity vector 90 degrees clockwise."""
         self.vel.x, self.vel.y = self.vel.y, - self.vel.x
 
