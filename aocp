@@ -13,7 +13,6 @@ import io
 import json
 import multiprocessing
 import os
-import resource
 import sys
 import threading
 import traceback
@@ -391,32 +390,10 @@ def _preprocessing_wrapper(preprocessing_func, data, timeout_seconds):
 
 
 def _solver_process_wrapper(conn, module_path, module_name, solver_name, args,
-                            suppress_output, memory_limit_mb=0):
-    """Wrapper to run solver in a subprocess and send result back via pipe.
-
-    Args:
-        memory_limit_mb: Memory limit in MB (0 = unlimited)
-    """
+                            suppress_output):
+    """Wrapper to run solver in a subprocess and send result back via pipe."""
     import os
 
-    # Apply memory limit if specified
-    if memory_limit_mb > 0:
-        try:
-            memory_bytes = memory_limit_mb * 1024 * 1024
-            # Use soft limit only (won't fail if current exceeds)
-            resource.setrlimit(resource.RLIMIT_AS, (memory_bytes, memory_bytes))
-        except ValueError:
-            # Soft limit exceeds hard limit on this system
-            try:
-                # Try to set to hard limit instead
-                hard_limit = resource.getrlimit(resource.RLIMIT_AS)[1]
-                resource.setrlimit(resource.RLIMIT_AS, (memory_bytes, hard_limit))
-            except (ValueError, OSError):
-                # If still failing, just continue without limit
-                pass
-        except OSError:
-            # Other OS errors, continue without limit
-            pass
     if suppress_output:
         devnull_fd = os.open(os.devnull, os.O_WRONLY)
         os.dup2(devnull_fd, 1)  # Redirect fd 1 (stdout) to /dev/null
@@ -464,7 +441,7 @@ def _solver_process_wrapper(conn, module_path, module_name, solver_name, args,
 
 
 def run_solver_with_timeout(module_path, module_name, solver_name, args,
-                            timeout_seconds, suppress_output=False, memory_limit_mb=0):
+                            timeout_seconds, suppress_output=False):
     """
     Run solver function with timeout using multiprocessing.
 
@@ -487,7 +464,7 @@ def run_solver_with_timeout(module_path, module_name, solver_name, args,
     process = multiprocessing.Process(
         target=_solver_process_wrapper,
         args=(child_conn, module_path, module_name, solver_name, args,
-              suppress_output, memory_limit_mb)
+              suppress_output)
     )
     process.daemon = False
     process.start()
@@ -605,8 +582,7 @@ def run_solver_with_timeout(module_path, module_name, solver_name, args,
 
 
 def solve_day(puzzle: Puzzle, use_local_input: bool = True, preprocessing_func=None,
-              suppress_solver_prints: bool = False, timeout_seconds: int = 60,
-              memory_limit_mb: int = 1024):
+              suppress_solver_prints: bool = False, timeout_seconds: int = 60):
     """
     Solve an Advent of Code puzzle by importing the corresponding day module
     and running its solver.
@@ -754,8 +730,7 @@ def solve_day(puzzle: Puzzle, use_local_input: bool = True, preprocessing_func=N
                     'solver',
                     puzzle_input,
                     remaining_timeout,
-                    suppress_output=suppress_solver_prints,
-                    memory_limit_mb=memory_limit_mb
+                    suppress_output=suppress_solver_prints
                 )
 
                 if not completed:
@@ -888,10 +863,6 @@ Examples:
                         help='Timeout for solver execution in seconds '
                              '(0 = no timeout, default: 60)')
 
-    parser.add_argument('--memory-limit', type=int, default=1024,
-                        help='Memory limit in MB (0 = unlimited, '
-                             'default: 1024)')
-
     # Enable argcomplete if available with custom completers
     # Note: Disabled to use bash completion for proper numeric day ordering
     # if ARGCOMPLETE_AVAILABLE and argcomplete:
@@ -999,19 +970,10 @@ def run_day(year: int, day_number: int, parsed_args, suppress_solver_prints: boo
         else f"{parsed_args.timeout} second{'s' if parsed_args.timeout != 1 else ''}"
     )
     print(f"  ⏱️  Timeout set to {timeout_display}")
-
-    # Display memory limit
-    memory_display = (
-        "unlimited" if parsed_args.memory_limit == 0
-        else f"{parsed_args.memory_limit} MB"
-    )
-    print(f"  💾 Memory limit set to {memory_display}")
-
     result = solve_day(puzzle, use_local_input=not parsed_args.no_local,
                        preprocessing_func=preprocessing_func,
                        suppress_solver_prints=suppress_solver_prints,
-                       timeout_seconds=parsed_args.timeout,
-                       memory_limit_mb=parsed_args.memory_limit)
+                       timeout_seconds=parsed_args.timeout)
     # result is a 5-tuple: (all_correct, timeout_occurred, has_answers,
     # parts_solved_on_aoc, num_parts_returned)
     (all_correct, timeout_occurred, has_answers,
