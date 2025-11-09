@@ -8,14 +8,30 @@ from collections.abc import Callable
 from random import random
 
 
+# Define picklable functions for logic operations
+def and_op(w, x, y):
+    """AND gate operation."""
+    return w[x] and w[y]
+
+
+def xor_op(w, x, y):
+    """XOR gate operation."""
+    return w[x] ^ w[y]
+
+
+def or_op(w, x, y):
+    """OR gate operation."""
+    return w[x] or w[y]
+
+
 def preprocessing(puzzle_input: str) -> tuple[dict[str, int], list[tuple[str, str, str, Callable]]]:
     """
     Parses the puzzle input into initial wire values and a list of logic gate operations.
     """
     inits, ops = puzzle_input.split('\n\n')
+
     wires = {}
     connections = []
-
     for init in inits.splitlines():
         w, v = init.split(': ')
         wires[w] = int(v)
@@ -24,9 +40,9 @@ def preprocessing(puzzle_input: str) -> tuple[dict[str, int], list[tuple[str, st
         (a, o, b, _, c) = op.split(' ')
         wires[c] = None
         match o:
-            case 'AND': connections.append((a, b, c, lambda w, x, y: w[x] and w[y]))
-            case 'XOR': connections.append((a, b, c, lambda w, x, y: w[x] ^ w[y]))
-            case 'OR': connections.append((a, b, c, lambda w, x, y: w[x] or w[y]))
+            case 'AND': connections.append((a, b, c, and_op))
+            case 'XOR': connections.append((a, b, c, xor_op))
+            case 'OR': connections.append((a, b, c, or_op))
 
     return wires, connections
 
