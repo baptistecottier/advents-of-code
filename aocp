@@ -677,8 +677,12 @@ def solve_day(puzzle: Puzzle, use_local_input: bool = True, preprocessing_func=N
         all_correct = parse_and_display_results(answers, puzzle)
     
     # Return whether all parts are correct, if timeout occurred, and if we have answers
-    has_answers = answers != (-1,)
-    return (all_correct, timeout_occurred, has_answers)
+    # has_answers should be True only if we have actual valid answers (not None, not -1)
+    has_valid_answers = (
+        answers != (-1,) and 
+        not all(isinstance(a, tuple) and a[1] is None or a is None for a in answers)
+    )
+    return (all_correct, timeout_occurred, has_valid_answers)
 
 
 def parse_arguments():
