@@ -10,17 +10,19 @@ import argparse
 import builtins
 import datetime
 import io
+import json
 import multiprocessing
 import os
+import resource
 import sys
 import threading
+import traceback
 from contextlib import redirect_stdout, redirect_stderr
 from pathlib import Path
 
 # Third-party import
 from aocd.models import Puzzle
-
-
+from aocd.exceptions import AocdError
 from aocd import submit
 
 
@@ -145,7 +147,6 @@ def save_examples_to_file(puzzle: Puzzle, examples: list) -> bool:
     examples_path = examples_dir / f"day_{day_str}.examples"
 
     try:
-        import json
         with open(examples_path, 'w', encoding='utf-8') as f:
             json.dump(examples, f, indent=2, ensure_ascii=False)
 
@@ -158,8 +159,6 @@ def save_examples_to_file(puzzle: Puzzle, examples: list) -> bool:
 
 def load_examples_from_file(puzzle: Puzzle) -> list:
     """Load examples from a .examples file if it exists."""
-    import json
-
     day_str = str(puzzle.day).zfill(2)
     examples_path = Path(f"./events/year_{puzzle.year}/day_{day_str}/day_{day_str}.examples")
 
@@ -196,15 +195,15 @@ def extract_examples_from_puzzle(puzzle: Puzzle, force_refresh: bool = False) ->
             {'input': '())', 'expected_a': '-1', 'expected_b': None},
             {'input': ')))', 'expected_a': '-3', 'expected_b': None},
         ],
-        # 2020 Day 1 examples  
+        # 2020 Day 1 examples
         (2020, 1): [
             {'input': '1721\n979\n366\n299\n675\n1456', 'expected_a': '514579', 'expected_b': None},
         ],
     }
-
     key = (puzzle.year, puzzle.day)
     if key in known_examples:
-        print(f"  📚 Found {len(known_examples[key])} known examples for {puzzle.year} day {puzzle.day}")
+        examples_count = len(known_examples[key])
+        print(f"  📚 Found {examples_count} known examples for {puzzle.year} day {puzzle.day}")
         examples = known_examples[key]
         # Save the examples for future use
         save_examples_to_file(puzzle, examples)
@@ -250,10 +249,6 @@ def parse_and_display_results(answers, puzzle, timeout_seconds=None):
         - all_correct: bool, True if solver gave correct answers
         - parts_solved_on_aoc: tuple, which parts are actually solved on AOC (1, 2, or both)
     """
-    import io
-    from contextlib import redirect_stdout, redirect_stderr
-    from aocd.exceptions import AocdError
-
     print("📊 Results:")
     all_correct = True
     parts_solved = []  # Track which parts are actually solved on AOC
@@ -403,7 +398,6 @@ def _solver_process_wrapper(conn, module_path, module_name, solver_name, args,
         memory_limit_mb: Memory limit in MB (0 = unlimited)
     """
     import os
-    import resource
 
     # Apply memory limit if specified
     if memory_limit_mb > 0:
@@ -452,7 +446,6 @@ def _solver_process_wrapper(conn, module_path, module_name, solver_name, args,
                     # Send each result immediately as it arrives
                     conn.send(('result', (idx, item)))
             except Exception:
-                import traceback
                 conn.send(('error', traceback.format_exc()))
                 return
             # Signal completion
@@ -615,14 +608,16 @@ def solve_day(puzzle: Puzzle, use_local_input: bool = True, preprocessing_func=N
               suppress_solver_prints: bool = False, timeout_seconds: int = 60,
               memory_limit_mb: int = 1024):
     """
-    Solve an Advent of Code puzzle by importing the corresponding day module and running its solver.
+    Solve an Advent of Code puzzle by importing the corresponding day module
+    and running its solver.
 
     Args:
         puzzle: AOC Puzzle object containing year, day, and input data
-        use_local_input: If True, attempts to use local input file first, 
+        use_local_input: If True, attempts to use local input file first,
                         falls back to puzzle.input_data if file not found or empty
         preprocessing_func: Optional function to preprocess input data
-        suppress_solver_prints: If True, suppresses all print output from solver and preprocessing
+        suppress_solver_prints: If True, suppresses all print output from
+                               solver and preprocessing
 
     Examples:
         >>> puzzle = Puzzle(year=2022, day=15)
@@ -637,7 +632,8 @@ def solve_day(puzzle: Puzzle, use_local_input: bool = True, preprocessing_func=N
 
     if use_local_input:
         try:
-            input_path = f"./events/year_{puzzle.year}/day_{str(puzzle.day).zfill(2)}/day_{str(puzzle.day).zfill(2)}.input"
+            day_str = str(puzzle.day).zfill(2)
+            input_path = f"./events/year_{puzzle.year}/day_{day_str}/day_{day_str}.input"
             with open(input_path, encoding="utf-8") as data:
                 file_content = data.read().rstrip('\n')
                 if file_content:  # Only use local file if it has content
@@ -650,10 +646,16 @@ def solve_day(puzzle: Puzzle, use_local_input: bool = True, preprocessing_func=N
                             remaining_preprocess_timeout = 60  # Large default if no timeout
 
                         if suppress_solver_prints:
-                            with redirect_stdout(io.StringIO()), redirect_stderr(io.StringIO()):
-                                puzzle_input = _preprocessing_wrapper(preprocessing_func, file_content, remaining_preprocess_timeout)
+                            stdout_redir = redirect_stdout(io.StringIO())
+                            stderr_redir = redirect_stderr(io.StringIO())
+                            with stdout_redir, stderr_redir:
+                                puzzle_input = _preprocessing_wrapper(
+                                    preprocessing_func, file_content,
+                                    remaining_preprocess_timeout)
                         else:
-                            puzzle_input = _preprocessing_wrapper(preprocessing_func, file_content, remaining_preprocess_timeout)
+                            puzzle_input = _preprocessing_wrapper(
+                                preprocessing_func, file_content,
+                                remaining_preprocess_timeout)
                     else:
                         puzzle_input = file_content
                     print(f"  📁 Using local input: {input_path}")
@@ -662,11 +664,14 @@ def solve_day(puzzle: Puzzle, use_local_input: bool = True, preprocessing_func=N
         except SolverTimeoutError as e:
             print(f"  ⏱️  Preprocessing timeout: {e}")
             # Return failure with timeout flag
-            return (False, True, False, (), 0)  # all_correct, timeout_occurred, has_answers, parts_solved, num_parts
+            timeout_ret = (False, True, False, (), 0)
+            return timeout_ret  # all_correct, timeout_occurred, has_answers,
+            # parts_solved, num_parts
 
     if puzzle_input is None:
         # Try to save the input locally for future use
-        input_path = f"./events/year_{puzzle.year}/day_{str(puzzle.day).zfill(2)}/day_{str(puzzle.day).zfill(2)}.input"
+        day_str = str(puzzle.day).zfill(2)
+        input_path = f"./events/year_{puzzle.year}/day_{day_str}/day_{day_str}.input"
         try:
             save_input_to_file(puzzle, verbose=False)
             print("  💾 Input auto-saved for future use")
@@ -682,10 +687,16 @@ def solve_day(puzzle: Puzzle, use_local_input: bool = True, preprocessing_func=N
                         remaining_preprocess_timeout = 60  # Large default if no timeout
 
                     if suppress_solver_prints:
-                        with redirect_stdout(io.StringIO()), redirect_stderr(io.StringIO()):
-                            puzzle_input = _preprocessing_wrapper(preprocessing_func, file_data, remaining_preprocess_timeout)
+                        stdout_redir = redirect_stdout(io.StringIO())
+                        stderr_redir = redirect_stderr(io.StringIO())
+                        with stdout_redir, stderr_redir:
+                            puzzle_input = _preprocessing_wrapper(
+                                preprocessing_func, file_data,
+                                remaining_preprocess_timeout)
                     else:
-                        puzzle_input = _preprocessing_wrapper(preprocessing_func, file_data, remaining_preprocess_timeout)
+                        puzzle_input = _preprocessing_wrapper(
+                            preprocessing_func, file_data,
+                            remaining_preprocess_timeout)
                 else:
                     puzzle_input = file_data
                 print(f"  📁 Using auto-saved input: {input_path}")
@@ -700,17 +711,25 @@ def solve_day(puzzle: Puzzle, use_local_input: bool = True, preprocessing_func=N
                     remaining_preprocess_timeout = 60  # Large default if no timeout
 
                 if suppress_solver_prints:
-                    with redirect_stdout(io.StringIO()), redirect_stderr(io.StringIO()):
-                        puzzle_input = _preprocessing_wrapper(preprocessing_func, puzzle.input_data, remaining_preprocess_timeout)
+                    stdout_redir = redirect_stdout(io.StringIO())
+                    stderr_redir = redirect_stderr(io.StringIO())
+                    with stdout_redir, stderr_redir:
+                        puzzle_input = _preprocessing_wrapper(
+                            preprocessing_func, puzzle.input_data,
+                            remaining_preprocess_timeout)
                 else:
-                    puzzle_input = _preprocessing_wrapper(preprocessing_func, puzzle.input_data, remaining_preprocess_timeout)
+                    puzzle_input = _preprocessing_wrapper(
+                        preprocessing_func, puzzle.input_data,
+                        remaining_preprocess_timeout)
             else:
                 puzzle_input = puzzle.input_data
             print("  🌐 Using remote input from AOC")
         except SolverTimeoutError as e:
             print(f"  ⏱️  Preprocessing timeout: {e}")
             # Return failure with timeout flag
-            return (False, True, False, (), 0)  # all_correct, timeout_occurred, has_answers, parts_solved, num_parts
+            timeout_ret = (False, True, False, (), 0)
+            return timeout_ret  # all_correct, timeout_occurred, has_answers,
+            # parts_solved, num_parts
 
     # Add day directory to Python path to ensure we load the correct module
     # Use absolute path to work from any directory, resolving symlinks
@@ -768,7 +787,6 @@ def solve_day(puzzle: Puzzle, use_local_input: bool = True, preprocessing_func=N
             print(f"  ⚠️  Solver error ({exc_type}): {exc_msg}")
             # For single day runs, show full traceback
             if suppress_solver_prints is False:
-                import traceback
                 print("\n  Full traceback:")
                 traceback.print_exc()
             answers = (-1,)
@@ -796,7 +814,7 @@ def solve_day(puzzle: Puzzle, use_local_input: bool = True, preprocessing_func=N
             answers != () and
             answers is not None and
             not all(isinstance(a, tuple) and a[1] is None or a is None
-                   for a in answers)
+                    for a in answers)
         )
     else:
         all_correct, parts_solved_on_aoc = parse_and_display_results(answers, puzzle)
@@ -806,7 +824,7 @@ def solve_day(puzzle: Puzzle, use_local_input: bool = True, preprocessing_func=N
             answers != () and
             answers is not None and
             not all(isinstance(a, tuple) and a[1] is None or a is None
-                   for a in answers)
+                    for a in answers)
         )
 
     # Count the number of valid answers returned
@@ -814,7 +832,7 @@ def solve_day(puzzle: Puzzle, use_local_input: bool = True, preprocessing_func=N
     if has_valid_answers and answers:
         num_parts_returned = len(answers)
 
-    return (all_correct, timeout_occurred, has_valid_answers, 
+    return (all_correct, timeout_occurred, has_valid_answers,
             parts_solved_on_aoc, num_parts_returned)
 
 
@@ -826,7 +844,7 @@ def parse_arguments():
         epilog="""
 Examples:
   aocp 2024 1                    # Run day 1 of 2024
-  aocp 2024 1 --examples         # Test examples first  
+  aocp 2024 1 --examples         # Test examples first
   aocp 2024 1 --no-local         # Use remote input only
   aocp 2024 1 --save-input       # Save puzzle input to local file
   aocp 2024                      # Run all days of 2024
@@ -837,44 +855,47 @@ Examples:
 
     parser.add_argument('year', type=int, help='Year (e.g., 2024)')
 
-    parser.add_argument('day', type=int, nargs='?', 
-                       help='Day number (1-25). If omitted, runs all days.')
+    parser.add_argument('day', type=int, nargs='?',
+                        help='Day number (1-25). If omitted, runs all days.')
 
     parser.add_argument('--days', type=str,
-                       help='Specify days to run: "1-5" for range or "1,3,5" for specific days')
+                        help='Specify days to run: "1-5" for range or "1,3,5" '
+                             'for specific days')
 
     parser.add_argument('-e', '--examples', action='store_true',
-                       help='Test examples before running on real input')
+                        help='Test examples before running on real input')
 
     parser.add_argument('-ev', '--examples-verbose', action='store_true',
-                       help='Test examples with verbose output')
+                        help='Test examples with verbose output')
 
     parser.add_argument('--no-local', action='store_true',
-                       help='Skip local input files, use remote input only')
-
+                        help='Skip local input files, use remote input only')
     parser.add_argument('--force', action='store_true',
-                       help='Run on real input even if examples fail')
+                        help='Run on real input even if examples fail')
 
     parser.add_argument('--save-input', action='store_true',
-                       help='Save puzzle input to local .input file')
+                        help='Save puzzle input to local .input file')
 
     parser.add_argument('--extract-examples', action='store_true',
-                       help='Extract and display examples from puzzle description')
+                        help='Extract and display examples from '
+                             'puzzle description')
 
     parser.add_argument('--refresh-examples', action='store_true',
-                       help='Force refresh examples (ignore cached .examples files)')
+                        help='Force refresh examples (ignore cached '
+                             '.examples files)')
 
     parser.add_argument('--timeout', type=int, default=60,
-                       help='Timeout for solver execution in seconds (0 = no timeout, default: 60)')
+                        help='Timeout for solver execution in seconds '
+                             '(0 = no timeout, default: 60)')
 
     parser.add_argument('--memory-limit', type=int, default=1024,
-                       help='Memory limit in MB (0 = unlimited, default: 1024)')
+                        help='Memory limit in MB (0 = unlimited, '
+                             'default: 1024)')
 
     # Enable argcomplete if available with custom completers
     # Note: Disabled to use bash completion for proper numeric day ordering
     # if ARGCOMPLETE_AVAILABLE and argcomplete:
     #     argcomplete.autocomplete(parser)
-
     return parser.parse_args()
 
 
@@ -900,7 +921,9 @@ def display_extracted_examples(puzzle: Puzzle, force_refresh: bool = False):
     if examples:
         print(f"  📋 Extracted {len(examples)} examples:")
         for i, example in enumerate(examples, 1):
-            print(f"    {i}. Input: {example['input'][:50]}{'...' if len(example['input']) > 50 else ''}")
+            input_preview = example['input'][:50]
+            has_more = '...' if len(example['input']) > 50 else ''
+            print(f"    {i}. Input: {input_preview}{has_more}")
             if example.get('expected_a'):
                 print(f"       Expected Part A: {example['expected_a']}")
             if example.get('expected_b'):
@@ -939,7 +962,10 @@ def run_day(year: int, day_number: int, parsed_args, suppress_solver_prints: boo
     if "preprocessing" in dir(module):
         preprocessing_func = module.preprocessing
     else:
-        preprocessing_func = lambda x: x
+        def _no_op(x):
+            """Default preprocessing that returns input unchanged."""
+            return x
+        preprocessing_func = _no_op
 
     # Check if solver exists
     if 'solver' not in dir(module):
@@ -1062,7 +1088,7 @@ def display_scoreboard(year: int, days_to_run: list, day_results: dict):
     # Count stars: 2 per complete day, 1 per incomplete day
     # Special case: Day 25's part 2 is auto-unlocked only if:
     # - We're running all 25 days AND
-    # - All days 1-24 are complete AND  
+    # - All days 1-24 are complete AND
     # - Day 25 part 1 is solved
 
     star_count = 0
@@ -1102,7 +1128,12 @@ def display_scoreboard(year: int, days_to_run: list, day_results: dict):
 
 
 # Global preprocessing function placeholder
-pp = lambda x: x
+def _default_preprocessing(x):
+    """Default preprocessing that returns input unchanged."""
+    return x
+
+
+pp = _default_preprocessing
 
 
 if __name__ == '__main__':
@@ -1146,11 +1177,16 @@ if __name__ == '__main__':
 
             if all_correct and not timeout_occurred:
                 # Check if both parts were returned (day has 2 parts)
-                # Special case: Day 25 only has 1 part, so it's complete if num_parts_returned >= 1
+                # Special case: Day 25 only has 1 part, so it's complete if
+                # num_parts_returned >= 1
                 if day_num == 25:
                     if num_parts_returned >= 1:
                         success_count += 1
-                        day_results[day_num] = {'success': True, 'result': '✅', 'notes': 'Completed'}
+                        day_results[day_num] = {
+                            'success': True,
+                            'result': '✅',
+                            'notes': 'Completed'
+                        }
                     else:
                         day_results[day_num] = {
                             'success': False,
@@ -1158,7 +1194,8 @@ if __name__ == '__main__':
                             'notes': 'Incomplete'
                         }
                 elif num_parts_returned < 2:
-                    # Only one part returned when two are available - mark as incomplete
+                    # Only one part returned when two are available -
+                    # mark as incomplete
                     day_results[day_num] = {
                         'success': False,
                         'result': '🚧',
