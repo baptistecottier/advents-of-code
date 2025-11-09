@@ -1,0 +1,27 @@
+[
+  {
+    "input": "(())",
+    "expected_a": "0",
+    "expected_b": null
+  },
+  {
+    "input": "()()",
+    "expected_a": "0",
+    "expected_b": null
+  },
+  {
+    "input": "(((",
+    "expected_a": "3",
+    "expected_b": null
+  },
+  {
+    "input": "())",
+    "expected_a": "-1",
+    "expected_b": null
+  },
+  {
+    "input": ")))",
+    "expected_a": "-3",
+    "expected_b": null
+  }
+]
