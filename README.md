@@ -2,6 +2,8 @@
 
 Solutions for [Advent of Code](https://adventofcode.com) in Python and Rust.
 
+*Thanks [Scotow](https://github.com/scotow) for the initial framework and precious coding advice.*
+
 ## 📊 Progress Summary
 
 <table>
