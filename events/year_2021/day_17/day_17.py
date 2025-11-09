@@ -21,12 +21,11 @@ def preprocessing(puzzle_input: str) -> tuple[int, ...]:
     return target
 
 
-def solver(target: tuple[int, ...]) -> tuple[int, int]:
+def solver(tx_min: int, tx_max: int, ty_min: int, ty_max: int) -> tuple[int, int]:
     """
     Simulates projectile motion to find the highest y-position and the number of initial velocities
     that land within the target area.
     """
-    tx_min, tx_max, ty_min, ty_max = target
 
     global_max_y = 0
     good_init_velo = 0
