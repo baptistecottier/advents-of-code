@@ -24,6 +24,10 @@ aho-corasick = "1.1.3"
 roots = "0.0.8"
 
 [[bin]]
+name = "aocr"
+path = "src/bin/aocr.rs"
+
+[[bin]]
 name = "2015-01"
 path = "../events/year_2015/day_01/day_01.rs"
 

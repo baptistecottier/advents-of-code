@@ -25,6 +25,10 @@ from aocd.exceptions import AocdError
 from aocd import submit
 
 
+# ===========================================================================
+# Utility Functions
+# ===========================================================================
+
 def color_text(txt: str, color: str):
     """
     Return the given text string wrapped in ANSI color codes for terminal output.
@@ -50,95 +54,81 @@ def color_text(txt: str, color: str):
 
 
 def _check_example_answers(my_answers, answer_a, answer_b):
-    """Check example answers and print results."""
-    success = True
-    answers = list(zip([1, 2], my_answers, [answer_a, answer_b]))
+    """Check if example answers match expected results."""
+    if isinstance(my_answers, tuple):
+        my_a = my_answers[0] if len(my_answers) > 0 else None
+        my_b = my_answers[1] if len(my_answers) > 1 else None
+    else:
+        my_a, my_b = my_answers, None
 
-    for part, guess, answer in answers:
-        if not answer:
-            continue
-        if str(guess) == str(answer):
-            print(f"  |__Part {part}: {color_text('pass', 'green')}")
-        else:
-            print((f"""  |__Part {part}: {color_text('fail', 'red')}."""
-                   f"""Your guess: {guess}. Answer: {answer}"""))
-            success = False
+    a_correct = str(my_a) == str(answer_a) if answer_a else True
+    b_correct = str(my_b) == str(answer_b) if answer_b and my_b else True
 
-    return success
+    return a_correct and b_correct
 
 
 def _format_answers(answers):
-    """Format answers for comparison."""
-    my_answers = ["None", "None"]
-    for part, answer in enumerate(answers):
-        my_answers[part] = str(answer)
-        if isinstance(answer, tuple):
-            my_answers[part] = answer[1]
-
-    if my_answers and isinstance(my_answers[0], builtins.tuple):
-        my_answers = [guess for (_, guess) in my_answers[::-1]]
-
-    return my_answers
+    """Format answers for display."""
+    if isinstance(answers, tuple):
+        return ", ".join(str(a) for a in answers)
+    return str(answers)
 
 
 def _process_example_data(day_module, data):
-    """Process example data through preprocessing if available."""
-    if 'preprocessing' in dir(day_module):
-        return day_module.preprocessing(data)
-    return data
+    """Process example data and prepare arguments."""
+    if "get_example_input" in dir(day_module):
+        return day_module.get_example_input(data)
+    return data.get("input", data)
 
 
-def _solve_example(day_module, data, example_args):
-    """Solve an example using the day module's solver."""
-    if 'solver' not in dir(day_module):
-        return (-1,)
-
-    match example_args, isinstance(data, builtins.tuple):
-        case None, True:
-            return day_module.solver(*data)
-        case None, False:
-            return day_module.solver(data)
-        case _, True:
-            return day_module.solver(*data, **example_args)
-        case _, False:
-            return day_module.solver(data, **example_args)
+def _solve_example(day_module, example_args):
+    """Solve a single example."""
+    try:
+        result = day_module.solver(example_args)
+        return result
+    except (TypeError, ValueError, KeyError, AttributeError):
+        return None
 
 
 def solve_examples(puzzle, details=False):
-    """
-    Solve and validate puzzle examples.
+    """Load examples from file and test them."""
+    day_str = str(puzzle.day).zfill(2)
+    day_module_path = Path(f"./events/year_{puzzle.year}/day_{day_str}")
 
-    Args:
-        puzzle: The puzzle object containing examples to test.
-        details (bool): Whether to print detailed example information.
+    if not day_module_path.exists():
+        return []
 
-    Returns:
-        bool: True if all examples passed, False otherwise.
-    """
-    examples_success = True
-    day_module = __import__(f"day_{str(puzzle.day).zfill(2)}")
+    sys.path.insert(0, str(day_module_path))
+    day_module = __import__(f"day_{day_str}")
 
-    for i, (data, answer_a, answer_b, example_args) in enumerate(puzzle.examples, 1):
+    examples = load_examples_from_file(puzzle)
+    if not examples:
+        return []
+
+    results = []
+    for i, example in enumerate(examples, 1):
+        example_input = _process_example_data(day_module, example)
+        my_answer = _solve_example(day_module, example_input)
+        answer_a = example.get("expected_a")
+        answer_b = example.get("expected_b")
+        is_correct = _check_example_answers(my_answer, answer_a, answer_b)
+
         if details:
-            print(puzzle.examples[i - 1])
+            print(f"  Example {i}: {'✅' if is_correct else '❌'} "
+                  f"(got {_format_answers(my_answer)})")
+            if not is_correct:
+                if answer_a:
+                    print(f"    Expected part A: {answer_a}")
+                if answer_b:
+                    print(f"    Expected part B: {answer_b}")
 
-        print(f"----Example {i}")
+        results.append(is_correct)
 
-        processed_data = _process_example_data(day_module, data)
-        answers = _solve_example(day_module, processed_data, example_args)
-        my_answers = _format_answers(answers)
-
-        if not _check_example_answers(my_answers, answer_a, answer_b):
-            examples_success = False
-
-    return examples_success
+    return results
 
 
 def save_examples_to_file(puzzle: Puzzle, examples: list) -> bool:
     """Save examples to a .examples file."""
-    if not examples:
-        return False
-
     day_str = str(puzzle.day).zfill(2)
     examples_dir = Path(f"./events/year_{puzzle.year}/day_{day_str}")
     examples_dir.mkdir(parents=True, exist_ok=True)
@@ -199,6 +189,7 @@ def extract_examples_from_puzzle(puzzle: Puzzle, force_refresh: bool = False) ->
             {'input': '1721\n979\n366\n299\n675\n1456', 'expected_a': '514579', 'expected_b': None},
         ],
     }
+
     key = (puzzle.year, puzzle.day)
     if key in known_examples:
         examples_count = len(known_examples[key])
@@ -208,143 +199,153 @@ def extract_examples_from_puzzle(puzzle: Puzzle, force_refresh: bool = False) ->
         save_examples_to_file(puzzle, examples)
         return examples
 
-    print(f"  ❓ No examples available for {puzzle.year} day {puzzle.day} (would need web scraping)")
+    print(f"  ❓ No known examples for {puzzle.year} day {puzzle.day}")
     return []
 
 
 def save_input_to_file(puzzle: Puzzle, verbose: bool = True) -> bool:
-    """Save puzzle input to local .input file."""
+    """Save puzzle input to a local .input file."""
+    day_str = str(puzzle.day).zfill(2)
+    input_dir = Path(f"./events/year_{puzzle.year}/day_{day_str}")
+    input_dir.mkdir(parents=True, exist_ok=True)
+
+    input_path = input_dir / f"day_{day_str}.input"
+
     try:
-        input_dir = Path(f"./events/year_{puzzle.year}/day_{str(puzzle.day).zfill(2)}")
-        input_dir.mkdir(parents=True, exist_ok=True)
-
-        input_path = input_dir / f"day_{str(puzzle.day).zfill(2)}.input"
-
-        # Check if file already exists and has content
-        if input_path.exists() and input_path.stat().st_size > 0:
-            if verbose:
-                print(f"  📁 Input file already exists: {input_path}")
-            return True
-
-        # Fetch and save the input
-        input_data = puzzle.input_data
         with open(input_path, 'w', encoding='utf-8') as f:
-            f.write(input_data)
+            f.write(puzzle.input_data)
 
         if verbose:
-            print(f"  💾 Saved input to: {input_path}")
+            print(f"  💾 Input saved to: {input_path}")
         return True
-
-    except (OSError, IOError, ConnectionError) as e:
+    except (OSError, IOError) as e:
         if verbose:
             print(f"  ❌ Failed to save input: {e}")
         return False
 
 
+# ============================================================================
+# Main aocp Functions
+# ============================================================================
+
+
+def _submit_answer(answer, part, puzzle):
+    """Submit answer to AOC and capture output."""
+    stdout_capture = io.StringIO()
+    stderr_capture = io.StringIO()
+
+    part_letter = "a" if part == 1 else "b"
+
+    with redirect_stdout(stdout_capture), redirect_stderr(stderr_capture):
+        if isinstance(answer, builtins.tuple):
+            fixed_part, fixed_answer = answer
+            submit_result = submit(fixed_answer, fixed_part, puzzle.day, puzzle.year)
+        else:
+            submit_result = submit(str(answer), part_letter, puzzle.day, puzzle.year)
+
+    output = stdout_capture.getvalue() + stderr_capture.getvalue()
+    return submit_result, output
+
+
+def _parse_submission_result(submit_result, output):
+    """Parse AOC submission result and return status info."""
+    # Define status mappings
+    correct_statuses = [
+        (submit_result is None and "aocd will not submit" in output,
+            "✅ Correct (already known)", "green"),
+        ("already solved with same answer" in output, "✅ Correct (already solved)", "green"),
+        ("That's the right answer" in output, "🎉 Correct (new submission)", "green")
+    ]
+
+    incorrect_statuses = [
+        ("already solved with different answer" in output,
+         "🤔 Incorrect (but already solved)", "yellow", True),
+        ("That's not the right answer" in output, "❌ Incorrect", "red", False),
+        ("You gave an answer too recently" in output, "⏰ Rate limited", "yellow", False)
+    ]
+
+    # Check for correct answers
+    for condition, message, color in correct_statuses:
+        if condition:
+            return True, True, color_text(message, color)
+
+    # Check for incorrect answers
+    for condition, message, color, is_solved in incorrect_statuses:
+        if condition:
+            return False, is_solved, color_text(message, color)
+
+    # Default case for unexpected responses
+    print(f"  ⚠️  Unexpected submission response:\n{output}")
+    return False, False, color_text("📤 Submitted", "blue")
+
+
+def _handle_aocd_error(error_msg):
+    """Handle AocdError and return status info."""
+    if "is certain that" in error_msg and "is incorrect" in error_msg:
+        return False, False, color_text("❌ Incorrect (cached)", "red")
+    if "already solved" in error_msg:
+        return True, True, color_text("✅ Correct (already solved)", "green")
+    return False, False, color_text(f"⚠️  {error_msg[:50]}", "yellow")
+
+
+def _handle_network_error(error):
+    """Handle network errors and return status message."""
+    error_type = type(error).__name__
+    if "SSL" in error_type or "certificate" in str(error).lower():
+        return "❌ SSL/Certificate error (network issue)"
+    if "Connection" in error_type or "Timeout" in error_type:
+        return "❌ Network error"
+    return f"⚠️  {error_type}"
+
+
+def _show_timeout_message(timeout_seconds, part, total_parts):
+    """Show timeout message if needed."""
+    if timeout_seconds is not None and part == total_parts:
+        print(f"    ⏱️ Solver execution timed out after {timeout_seconds} seconds")
+
+
 def parse_and_display_results(answers, puzzle, timeout_seconds=None):
     """Parse and nicely display the puzzle results with colored output.
 
-    Returns: tuple - (all_correct, parts_solved_on_aoc) where:
-        - all_correct: bool, True if solver gave correct answers
+    Returns: tuple - (all_results_correct, parts_solved_on_aoc) where:
+        - all_results_correct: bool, True if solver gave correct answers
         - parts_solved_on_aoc: tuple, which parts are actually solved on AOC (1, 2, or both)
     """
     print("📊 Results:")
-    all_correct = True
-    parts_solved = []  # Track which parts are actually solved on AOC
+    all_results_correct = True
+    parts_solved = []
 
     for part, answer in enumerate(answers, 1):
-        part_letter = "a" if part == 1 else "b"
         medal = "🥇" if part == 1 else "🥈"
-        is_correct = True  # Track if this part is correct
-        is_solved_on_aoc = False  # Track if this part is actually solved on AOC
-
-        # Capture the output from aocd submit
-        stdout_capture = io.StringIO()
-        stderr_capture = io.StringIO()
+        is_correct = True
+        is_solved_on_aoc = False
 
         try:
-            with redirect_stdout(stdout_capture), redirect_stderr(stderr_capture):
-                if isinstance(answer, builtins.tuple):
-                    fixed_part, fixed_answer = answer
-                    result = submit(fixed_answer, fixed_part, puzzle.day, puzzle.year)
-                else:
-                    result = submit(str(answer), part_letter, puzzle.day, puzzle.year)
-
-            # Get the captured output
-            output = stdout_capture.getvalue() + stderr_capture.getvalue()
-
-            # Check if aocd prevented the submission (returns None and prints message)
-            if result is None and "aocd will not submit" in output:
-                colored_status = color_text("✅ Correct (already known)", "green")
-                is_solved_on_aoc = True
-            # Parse the aocd output to determine status and color
-            elif "already solved with same answer" in output:
-                colored_status = color_text("✅ Correct (already solved)", "green")
-                is_solved_on_aoc = True
-            elif "already solved with different answer" in output:
-                colored_status = color_text("🤔 Incorrect (but already solved)", "yellow")
-                is_correct = False
-                is_solved_on_aoc = True  # Part IS solved on AOC, even though solver is wrong
-            elif "That's the right answer" in output:
-                colored_status = color_text("🎉 Correct (new submission)", "green")
-                is_solved_on_aoc = True
-            elif "That's not the right answer" in output:
-                colored_status = color_text("❌ Incorrect", "red")
-                is_correct = False
-            elif "You gave an answer too recently" in output:
-                colored_status = color_text("⏰ Rate limited", "yellow")
-                is_correct = False  # Can't confirm correctness
-            else:
-                print(f"  ⚠️  Unexpected submission response:\n{output}")
-                colored_status = color_text("📤 Submitted", "blue")
-                is_correct = False  # Unknown status
+            submit_result, output = _submit_answer(answer, part, puzzle)
+            is_correct, is_solved_on_aoc, colored_status = _parse_submission_result(submit_result,
+                                                                                    output)
 
             print(f"  {medal} Part {part}: {answer} - {colored_status}")
-
-            # Show timeout message if this is the last part and timeout occurred
-            if timeout_seconds is not None and part == len(answers):
-                print(f"    ⏱️ Solver execution timed out after {timeout_seconds} seconds")
+            _show_timeout_message(timeout_seconds, part, len(answers))
 
         except AocdError as e:
-            error_msg = str(e)
-            if "is certain that" in error_msg and "is incorrect" in error_msg:
-                colored_status = color_text("❌ Incorrect (cached)", "red")
-                is_correct = False
-            elif "already solved" in error_msg:
-                colored_status = color_text("✅ Correct (already solved)", "green")
-                is_solved_on_aoc = True
-            else:
-                colored_status = color_text(f"⚠️  {error_msg[:50]}", "yellow")
-                is_correct = False
+            is_correct, is_solved_on_aoc, colored_status = _handle_aocd_error(str(e))
             print(f"  {medal} Part {part}: {answer} - {colored_status}")
+            _show_timeout_message(timeout_seconds, part, len(answers))
 
-            # Show timeout message if this is the last part and timeout occurred
-            if timeout_seconds is not None and part == len(answers):
-                print(f"    ⏱️ Solver execution timed out after {timeout_seconds} seconds")
-        except (ConnectionError, TimeoutError, Exception) as e:
-            error_type = type(e).__name__
-            if "SSL" in error_type or "certificate" in str(e).lower():
-                status_msg = "❌ SSL/Certificate error (network issue)"
-            elif "Connection" in error_type or "Timeout" in error_type:
-                status_msg = "❌ Network error"
-            else:
-                status_msg = f"⚠️  {error_type}"
+        except (ConnectionError, TimeoutError, OSError) as e:
+            status_msg = _handle_network_error(e)
             print(f"  {medal} Part {part}: {answer} - {color_text(status_msg, 'red')}")
             is_correct = False
+            _show_timeout_message(timeout_seconds, part, len(answers))
 
-            # Show timeout message if this is the last part and timeout occurred
-            if timeout_seconds is not None and part == len(answers):
-                print(f"    ⏱️ Solver execution timed out after {timeout_seconds} seconds")
-
-        # If any part is incorrect, the whole day is incorrect
         if not is_correct:
-            all_correct = False
+            all_results_correct = False
 
-        # Track which parts are solved on AOC
         if is_solved_on_aoc:
             parts_solved.append(part)
 
-    return (all_correct, tuple(parts_solved))
+    return (all_results_correct, tuple(parts_solved))
 
 
 class SolverTimeoutError(Exception):
@@ -372,7 +373,7 @@ def _preprocessing_wrapper(preprocessing_func, data, timeout_seconds):
     def run_preprocessing():
         try:
             result_container.append(preprocessing_func(data))
-        except Exception as e:
+        except (OSError, ValueError, KeyError, TypeError) as e:
             exception_container.append(e)
 
     thread = threading.Thread(target=run_preprocessing, daemon=True)
@@ -390,9 +391,10 @@ def _preprocessing_wrapper(preprocessing_func, data, timeout_seconds):
 
 
 def _solver_process_wrapper(conn, module_path, module_name, solver_name, args,
-                            suppress_output):
+                            suppress_output=False):
     """Wrapper to run solver in a subprocess and send result back via pipe."""
     import os
+    import traceback
 
     if suppress_output:
         devnull_fd = os.open(os.devnull, os.O_WRONLY)
@@ -422,7 +424,7 @@ def _solver_process_wrapper(conn, module_path, module_name, solver_name, args,
                     results.append(item)
                     # Send each result immediately as it arrives
                     conn.send(('result', (idx, item)))
-            except Exception:
+            except (OSError, StopIteration):
                 conn.send(('error', traceback.format_exc()))
                 return
             # Signal completion
@@ -433,8 +435,7 @@ def _solver_process_wrapper(conn, module_path, module_name, solver_name, args,
                 conn.send(('done', result))
             else:
                 conn.send(('done', (result,)))
-    except Exception:
-        import traceback
+    except (OSError, ImportError, AttributeError):
         conn.send(('error', traceback.format_exc()))
     finally:
         conn.close()
@@ -463,8 +464,8 @@ def run_solver_with_timeout(module_path, module_name, solver_name, args,
     parent_conn, child_conn = multiprocessing.Pipe()
     process = multiprocessing.Process(
         target=_solver_process_wrapper,
-        args=(child_conn, module_path, module_name, solver_name, args,
-              suppress_output)
+        args=(child_conn, module_path, module_name, solver_name, args),
+        kwargs={'suppress_output': suppress_output}
     )
     process.daemon = False
     process.start()
@@ -513,7 +514,7 @@ def run_solver_with_timeout(module_path, module_name, solver_name, args,
                         break
                     elif status == 'error':
                         parent_conn.close()
-                        raise Exception(f"Solver error: {data}")
+                        raise RuntimeError(f"Solver error: {data}")
                 except EOFError:
                     done = True
                     break
@@ -553,7 +554,7 @@ def run_solver_with_timeout(module_path, module_name, solver_name, args,
                     done = True
                 elif status == 'error':
                     parent_conn.close()
-                    raise Exception(f"Solver error: {data}")
+                    raise RuntimeError(f"Solver error: {data}")
             except EOFError:
                 done = True
 
@@ -569,16 +570,6 @@ def run_solver_with_timeout(module_path, module_name, solver_name, args,
                 return (True, sorted_results, intermediate_results)
             else:
                 return (True, None, intermediate_results)
-
-    # Fallback return (should not reach here, but just in case)
-    parent_conn.close()
-    if partial_results:
-        sorted_results = tuple(
-            partial_results[i] for i in sorted(partial_results.keys())
-        )
-        return (False, sorted_results, intermediate_results)
-    else:
-        return (False, None, intermediate_results)
 
 
 def solve_day(puzzle: Puzzle, use_local_input: bool = True, preprocessing_func=None,
@@ -635,8 +626,7 @@ def solve_day(puzzle: Puzzle, use_local_input: bool = True, preprocessing_func=N
                     else:
                         puzzle_input = file_content
                     print(f"  📁 Using local input: {input_path}")
-        except FileNotFoundError:
-            pass
+
         except SolverTimeoutError as e:
             print(f"  ⏱️  Preprocessing timeout: {e}")
             # Return failure with timeout flag
@@ -724,7 +714,7 @@ def solve_day(puzzle: Puzzle, use_local_input: bool = True, preprocessing_func=N
                 elapsed = (datetime.datetime.now() - start_time).total_seconds()
                 remaining_timeout = max(1, timeout_seconds - elapsed)
 
-                completed, answers, intermediate = run_solver_with_timeout(
+                completed, answers, _intermediate = run_solver_with_timeout(
                     day_path,
                     f"day_{str(puzzle.day).zfill(2)}",
                     'solver',
@@ -863,6 +853,9 @@ Examples:
                         help='Timeout for solver execution in seconds '
                              '(0 = no timeout, default: 60)')
 
+    parser.add_argument('-q', '--quiet', action='store_true',
+                        help='Suppress verbose output, show only results table')
+
     # Enable argcomplete if available with custom completers
     # Note: Disabled to use bash completion for proper numeric day ordering
     # if ARGCOMPLETE_AVAILABLE and argcomplete:
@@ -903,10 +896,12 @@ def display_extracted_examples(puzzle: Puzzle, force_refresh: bool = False):
         print("  ❓ No examples extracted")
 
 
-def run_day(year: int, day_number: int, parsed_args, suppress_solver_prints: bool = False):
+def run_day(year: int, day_number: int, parsed_args, suppress_solver_prints: bool = False,
+            quiet: bool = False):
     """Run a specific day with given arguments."""
     day_str = str(day_number).zfill(2)
-    print(f"\n🎄 Advent of Code - Year {year} - Day {day_str}")
+    if not quiet:
+        print(f"\n🎄 Advent of Code - Year {year} - Day {day_str}")
 
     # Save input if requested
     if parsed_args.save_input:
@@ -918,10 +913,18 @@ def run_day(year: int, day_number: int, parsed_args, suppress_solver_prints: boo
 
     # Add day directory to Python path
     # Use absolute path to work from any directory, resolving symlinks
-    script_dir = Path(os.path.realpath(__file__)).parent
-    day_path = str(script_dir / f"events/year_{year}/day_{day_str}/")
+    # Get project root (advents-of-code): aocp.py is in pythonfw/, so parent.parent
+    aocp_file = Path(os.path.realpath(__file__))  # /pythonfw/aocp.py
+    pythonfw_dir = aocp_file.parent  # /pythonfw
+    project_root = pythonfw_dir.parent  # /advents-of-code
+    day_path = str(project_root / f"events/year_{year}/day_{day_str}/")
+    
+    # Add project_root (parent of pythonfw) to path so day modules can import from pythonfw
+    # This allows: from pythonfw.classes import X
+    if str(project_root) not in sys.path:
+        sys.path.insert(0, str(project_root))
     if day_path not in sys.path:
-        sys.path.insert(0, day_path)
+        sys.path.insert(1, day_path)  # Insert after project root
 
     try:
         module = __import__(f"day_{day_str}")
@@ -969,10 +972,11 @@ def run_day(year: int, day_number: int, parsed_args, suppress_solver_prints: boo
         "disabled" if parsed_args.timeout == 0
         else f"{parsed_args.timeout} second{'s' if parsed_args.timeout != 1 else ''}"
     )
-    print(f"  ⏱️  Timeout set to {timeout_display}")
+    if not quiet:
+        print(f"  ⏱️  Timeout set to {timeout_display}")
     result = solve_day(puzzle, use_local_input=not parsed_args.no_local,
                        preprocessing_func=preprocessing_func,
-                       suppress_solver_prints=suppress_solver_prints,
+                       suppress_solver_prints=suppress_solver_prints or quiet,
                        timeout_seconds=parsed_args.timeout)
     # result is a 5-tuple: (all_correct, timeout_occurred, has_answers,
     # parts_solved_on_aoc, num_parts_returned)
@@ -984,109 +988,136 @@ def run_day(year: int, day_number: int, parsed_args, suppress_solver_prints: boo
 
 def display_scoreboard(year: int, days_to_run: list, day_results: dict):
     """Display a formatted scoreboard of all days."""
+    # Don't display if no results yet
+    if not day_results:
+        return
+    
     total_days = len(days_to_run)
     successful_days = sum(
         1 for d in days_to_run
         if day_results.get(d, {}).get('success', False)
     )
 
+    # Check if we're running the full year (all 25 days)
+    is_full_year = len(days_to_run) == 25 and all(d in days_to_run for d in range(1, 26))
+
+    # Check if all days 1-24 are complete
+    days_1_24_complete = all(
+        day_results.get(d, {}).get('success', False) for d in range(1, 25)
+    ) if is_full_year else False
+
+    # Build two-column table-style scoreboard
     print(f"\n{'='*70}")
     print(f"🏆 Scoreboard - Advent of Code {year}")
     print(f"{'='*70}")
-    print(f"{'Day':<6} {'Status':<20} {'Notes':<42}")
+    print(f"{'Day':<6} {'Status':<17} {'Notes':<6}  │  {'Day':<6} {'Status':<17} {'Notes':<6}")
     print(f"{'-'*70}")
-
-    # Check if we're running the full year (all 25 days)
-    is_full_year = len(days_to_run) == 25 and all(d in days_to_run for d in range(1, 26))
-
-    # Check if all days 1-24 are complete
-    days_1_24_complete = all(
-        day_results.get(d, {}).get('success', False) for d in range(1, 25)
-    ) if is_full_year else False
-
-    for day_num in days_to_run:
-        day_str = str(day_num).zfill(2)
+    
+    # Build rows with two columns
+    for i in range(0, len(days_to_run), 2):
+        # First column
+        day_num = days_to_run[i]
         result_info = day_results.get(day_num, {})
-
         success = result_info.get('success', False)
         notes = result_info.get('notes', '')
-
-        # Special handling for day 25
-        if day_num == 25 and success:
-            # Day 25 is marked complete - check if part 2 is actually unlocked
+        
+        # Determine status for first column
+        if day_num not in day_results:
+            # Day not run yet
+            status_emoji = ""
+            status_text = ""
+            stars = ""
+        elif day_num == 25 and success:
             part2_unlocked = is_full_year and days_1_24_complete
-            if not part2_unlocked:
-                # Part 2 is not unlocked - show as incomplete
-                status_emoji = "🚧"
-                status_text = "Incomplete"
-                notes_display = "Part 2 locked (others incomplete)"
-            else:
-                # Part 2 is unlocked
-                status_emoji = "✅"
-                status_text = "Complete"
-                notes_display = notes[:40]
+            status_emoji = "✅"
+            status_text = "Complete"
+            stars = "⭐" if not part2_unlocked else "⭐⭐"
+        elif success:
+            status_emoji = "✅"
+            status_text = "Complete"
+            stars = "⭐⭐"
+        elif "Incomplete" in notes:
+            status_emoji = "🚧"
+            status_text = "Incomplete"
+            stars = "⭐"
+        elif "Timeout" in notes:
+            status_emoji = "⏱️"
+            status_text = "Timed out"
+            stars = ""
         else:
-            # Determine emoji and status text based on result for other days
-            if success:
+            status_emoji = "❌"
+            status_text = "Failed"
+            stars = ""
+        
+        day_str = str(day_num).zfill(2)
+        status_display = f"{status_emoji} {status_text}"
+        left_col = f"{day_str:<6} {status_display:<17} {stars:<6}"
+        
+        # Second column (if exists)
+        if i + 1 < len(days_to_run):
+            day_num = days_to_run[i + 1]
+            result_info = day_results.get(day_num, {})
+            success = result_info.get('success', False)
+            notes = result_info.get('notes', '')
+            
+            # Determine status for second column
+            if day_num not in day_results:
+                # Day not run yet
+                status_emoji = ""
+                status_text = ""
+                stars = ""
+            elif day_num == 25 and success:
+                part2_unlocked = is_full_year and days_1_24_complete
                 status_emoji = "✅"
                 status_text = "Complete"
-                notes_display = notes[:40]
-            elif "Timeout" in notes:
-                status_emoji = "⏱️"
-                status_text = " Timed out"
-                notes_display = notes[:40]
+                stars = "⭐" if not part2_unlocked else "⭐⭐"
+            elif success:
+                status_emoji = "✅"
+                status_text = "Complete"
+                stars = "⭐⭐"
             elif "Incomplete" in notes:
                 status_emoji = "🚧"
                 status_text = "Incomplete"
-                notes_display = notes[:40]
+                stars = "⭐"
+            elif "Timeout" in notes:
+                status_emoji = "⏱️"
+                status_text = "Timed out"
+                stars = ""
             else:
                 status_emoji = "❌"
                 status_text = "Failed"
-                notes_display = notes[:40]
-
-        print(f"{day_str:<6} {status_emoji} {status_text:<17} {notes_display:<42}")
-
+                stars = ""
+            
+            day_str = str(day_num).zfill(2)
+            status_display = f"{status_emoji} {status_text}"
+            right_col = f"{day_str:<6} {status_display:<17} {stars:<6}"
+            
+            print(f"{left_col}  │  {right_col}")
+        else:
+            print(f"{left_col}")
+    
     print(f"{'='*70}")
-    # Count stars: 2 per complete day, 1 per incomplete day
-    # Special case: Day 25's part 2 is auto-unlocked only if:
-    # - We're running all 25 days AND
-    # - All days 1-24 are complete AND
-    # - Day 25 part 1 is solved
 
+    # Count stars
     star_count = 0
-
-    # Check if we're running the full year (all 25 days)
-    is_full_year = len(days_to_run) == 25 and all(d in days_to_run for d in range(1, 26))
-
-    # Check if all days 1-24 are complete
-    days_1_24_complete = all(
-        day_results.get(d, {}).get('success', False) for d in range(1, 25)
-    ) if is_full_year else False
-
     for d in days_to_run:
         if d == 25:
-            # Special handling for day 25
             day_25_info = day_results.get(25, {})
             day_25_success = day_25_info.get('success', False)
             day_25_incomplete = 'Incomplete' in day_25_info.get('notes', '')
 
             if day_25_success:
-                # Day 25 complete: part 2 granted only if full year + all 1-24 complete
                 star_count += 2 if (is_full_year and days_1_24_complete) else 1
             elif day_25_incomplete:
-                # Day 25 incomplete: only 1 star for part 1
                 star_count += 1
         else:
-            # Regular days 1-24
             if day_results.get(d, {}).get('success', False):
-                star_count += 2  # 2 stars for complete days
+                star_count += 2
             elif 'Incomplete' in day_results.get(d, {}).get('notes', ''):
-                star_count += 1  # 1 star for incomplete days
+                star_count += 1
 
     percentage = 100 * successful_days // total_days if total_days > 0 else 0
-    print(f"📊 Summary: Total: {total_days}, Successful: {successful_days}/{total_days} "
-          f"({percentage}%), Stars: {star_count} ⭐")
-    print(f"{'='*70}\n")
+    print(f"  {successful_days}/{total_days} days completed │ {star_count} ⭐ ({percentage}%)\n")
 
 
 # Global preprocessing function placeholder
@@ -1098,7 +1129,8 @@ def _default_preprocessing(x):
 pp = _default_preprocessing
 
 
-if __name__ == '__main__':
+def main():
+    """Main entry point for aocp"""
     args = parse_arguments()
 
     # Determine which days to run
@@ -1133,7 +1165,16 @@ if __name__ == '__main__':
 
     for day_num in days_to_run:
         try:
-            result = run_day(args.year, day_num, args, suppress_solver_prints=suppress_prints)
+            # In quiet mode, suppress stdout from solve_day
+            if args.quiet:
+                with redirect_stdout(io.StringIO()):
+                    result = run_day(args.year, day_num, args,
+                                     suppress_solver_prints=suppress_prints,
+                                     quiet=args.quiet)
+            else:
+                result = run_day(args.year, day_num, args,
+                                 suppress_solver_prints=suppress_prints,
+                                 quiet=args.quiet)
             (all_correct, timeout_occurred, has_answers, parts_solved_on_aoc,
              num_parts_returned) = result
 
@@ -1147,7 +1188,7 @@ if __name__ == '__main__':
                         day_results[day_num] = {
                             'success': True,
                             'result': '✅',
-                            'notes': 'Completed'
+                            'notes': '⭐'
                         }
                     else:
                         day_results[day_num] = {
@@ -1165,7 +1206,7 @@ if __name__ == '__main__':
                     }
                 else:
                     success_count += 1
-                    day_results[day_num] = {'success': True, 'result': '✅', 'notes': 'Completed'}
+                    day_results[day_num] = {'success': True, 'result': '✅', 'notes': '⭐⭐'}
             elif timeout_occurred:
                 day_results[day_num] = {
                     'success': False,
@@ -1181,6 +1222,14 @@ if __name__ == '__main__':
             else:
                 # Solver didn't run or had an error
                 day_results[day_num] = {'success': False, 'result': '❌', 'notes': 'Failed'}
+            
+            # Display scoreboard after each day in quiet mode (progressive updates)
+            if args.quiet and len(days_to_run) > 1 and day_results:
+                # Use a simple redraw without ANSI codes - just print fresh table
+                print("\033[H\033[J", end='', flush=True)  # Clear screen
+                display_scoreboard(args.year, days_to_run, day_results)
+                sys.stdout.flush()
+                
         except KeyboardInterrupt:
             print("\n⏹️ Interrupted by user")
             break
@@ -1194,7 +1243,9 @@ if __name__ == '__main__':
                 'notes': f'Error: {exc_type}'
             }
 
-    # Display scoreboard if running all or many days
+    # Display scoreboard based on mode
+    # In quiet mode with multiple days: show only scoreboard
+    # In normal mode: show scoreboard after verbose output
     if len(days_to_run) > 1:
         display_scoreboard(args.year, days_to_run, day_results)
 
@@ -1205,6 +1256,5 @@ if __name__ == '__main__':
     os._exit(0)
 
 
-
-
-
+if __name__ == '__main__':
+    main()

@@ -1,0 +1,30 @@
+#!/usr/local/bin/python3
+# -*- coding: utf-8 -*-
+
+"""Wrapper script for aocp module"""
+
+import sys
+import os
+from pathlib import Path
+
+# Add pythonfw directory to path so aocp can be imported
+# This script is at pythonfw/bin/aocp, so parent.parent gives advents-of-code
+# and we need to add pythonfw itself
+script_path = Path(__file__).resolve()
+bin_dir = script_path.parent  # pythonfw/bin
+pythonfw_dir = bin_dir.parent  # pythonfw
+project_root = pythonfw_dir.parent  # advents-of-code
+
+# Change to project root so aocp can find events/ directory
+os.chdir(project_root)
+
+# Add project_root to path so aocp.py can be imported and pythonfw package is available
+sys.path.insert(0, str(project_root))
+
+# Remove the script's directory from sys.path to avoid polluting it
+if str(script_path.parent) in sys.path:
+    sys.path.remove(str(script_path.parent))
+
+if __name__ == '__main__':
+    from pythonfw.aocp import main
+    main()

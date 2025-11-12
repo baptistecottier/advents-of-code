@@ -1,13 +1,19 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
+#!/bin/bash
 
-"""
-Advent of Code Rust runner - companion to aocp for Rust solutions.
-"""
+# Wrapper script for aocr Rust binary
+# Find the actual location of this script (following symlinks)
+SCRIPT=$(readlink -f "$0")
+SCRIPT_DIR=$(dirname "$SCRIPT")
+RUSTFW_DIR=$(dirname "$SCRIPT_DIR")
+BINARY="$RUSTFW_DIR/target/release/aocr"
 
-import argparse
-import subprocess
-import sys
+if [ ! -f "$BINARY" ]; then
+    echo "❌ aocr binary not found at $BINARY"
+    echo "Build it with: cd $RUSTFW_DIR && cargo build --bin aocr --release"
+    exit 1
+fi
+
+exec "$BINARY" "$@"
 from pathlib import Path
 
 try:
