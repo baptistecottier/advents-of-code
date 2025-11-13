@@ -36,54 +36,33 @@ Solutions for [Advent of Code](https://adventofcode.com) in Python and Rust.
 
 ## 🚀 Usage
 
-### aocp - Python Runner
+Choose your preferred implementation language:
 
-```
-usage: aocp [-h] [--days DAYS] [-e] [-ev] [--no-local] [--force] 
-            [--save-input] [--extract-examples] [--refresh-examples] 
-            [--timeout TIMEOUT] year [day]
+### 🐍 [Python with aocp](pythonfw/README.md)
 
-positional arguments:
-  year                  Year (e.g., 2024)
-  day                   Day number (1-25). If omitted, runs all days.
+The Python framework provides a full-featured Advent of Code solver runner with options for testing examples, input management, and more.
 
-options:
-  -h, --help            show this help message and exit
-  --days DAYS           Specify days to run: "1-5" for range or "1,3,5" for specific days
-  -e, --examples        Test examples before running on real input
-  -ev, --examples-verbose
-                        Test examples with verbose output
-  --no-local            Skip local input files, use remote input only
-  --force               Run on real input even if examples fail
-  --save-input          Save puzzle input to local .input file
-  --extract-examples    Extract and display examples from puzzle description
-  --refresh-examples    Force refresh examples (ignore cached .examples files)
-  --timeout TIMEOUT     Timeout for solver execution in seconds (0 = no timeout, default: 60)
-```
-
-**Examples:**
+**Quick start:**
 ```bash
 aocp 2024 1               # Run year 2024, day 1
 aocp 2024                 # Run all days for year 2024
-aocp 2024 --days 1-5      # Run days 1-5
-aocp 2024 --days 1,3,5    # Run specific days
-aocp 2024 1 -e            # Test examples before running
-aocp 2024 1 --force       # Run real input even if examples fail
-aocp 2024 1 --timeout 120 # Set timeout to 120 seconds
+aocp 2024 --days 1-5 --quiet   # Run days 1-5 quietly
 ```
 
-### aocr - Rust Runner
+[→ See pythonfw/README.md for full documentation](pythonfw/README.md)
 
-Run Rust solutions with:
+### 🦀 [Rust with aocr](rustfw/README.md)
 
+The Rust framework provides a high-performance CLI tool for running compiled Rust solutions.
+
+**Quick start:**
 ```bash
 aocr 2024 1               # Run year 2024, day 1
 aocr 2024                 # Run all days for year 2024
-aocr 2024 1 --release     # Build in release mode
-aocr 2024 1 --check       # Check compilation only
-aocr 2024 --days 1-5      # Run days 1-5
-aocr 2024 --days 1,3,5    # Run specific days
+aocr 2024 1-5             # Run days 1-5
 ```
+
+[→ See rustfw/README.md for full documentation](rustfw/README.md)
 
 ## ⭐ Detailed Progress by Year
 
