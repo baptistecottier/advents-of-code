@@ -7,7 +7,6 @@ A high-performance Rust CLI tool for running Advent of Code solutions across mul
 ### Installation
 
 ```bash
-cd /Users/baptistecottier/Documents/Code/Puzzles/advents-of-code
 bash scripts/install_aocr.sh
 ```
 
