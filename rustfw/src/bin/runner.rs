@@ -25,12 +25,6 @@ fn find_project_root() -> Result<PathBuf, String> {
         }
     }
     
-    // Try common location
-    let common = PathBuf::from("/Users/baptistecottier/Documents/Code/Puzzles/advents-of-code");
-    if common.join("events").exists() && common.join("rustfw").exists() {
-        return Ok(common);
-    }
-    
     Err("Could not find project root. Make sure you're in the advents-of-code directory or a subdirectory.".to_string())
 }
 
