@@ -34,11 +34,8 @@ Solutions for [Advent of Code](https://adventofcode.com) in Python and Rust.
 </tr>
 </table>
 
-## 🚀 Usage
 
-Choose your preferred implementation language:
-
-### 🐍 [Python with aocp](pythonfw/README.md)
+## 🐍 [Python (with `aocp`)](pythonfw/README.md)
 
 The Python framework provides a full-featured Advent of Code solver runner with options for testing examples, input management, and more.
 
@@ -51,7 +48,7 @@ aocp 2024 --days 1-5 --quiet   # Run days 1-5 quietly
 
 [→ See pythonfw/README.md for full documentation](pythonfw/README.md)
 
-### 🦀 [Rust with aocr](rustfw/README.md)
+## 🦀 [Rust (with `aocr`)](rustfw/README.md)
 
 The Rust framework provides a high-performance CLI tool for running compiled Rust solutions.
 
