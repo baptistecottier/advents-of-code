@@ -13,33 +13,16 @@ aocp <year> --days <days> [options]
 ### Arguments
 
 - `<year>`: The year to run (e.g., 2015, 2023)
-- `<day(s)>`: Optional day(s)--days  to run (format examples below)
+- `<day(s)>`: Optional day(s) to run (format examples below)
 
 ### Day Selection
 
-Run a single day:
 ```bash
-aocp 2015 1
-```
-
-Run a range of days:
-```bash
-aocp 2015 --days 1-5
-```
-
-Run specific days:
-```bash
-aocp 2015 --days 1,3,7,12,25
-```
-
-Run mixed ranges and specific days:
-```bash
-aocp 2015 --days 1-3,7,12-15,25
-```
-
-Run all days in a year:
-```bash
-aocp 2015
+aocp 2015 1                     # Run a single day
+aocp 2015 --days 1-5            # Run a range of days
+aocp 2015 --days 1,3,7,12,25    # Run specific days
+aocp 2015 --days 1-3,7,12-15,25 # Run mixed ranges and specific days
+aocp 2015                       # Run all days in a year
 ```
 
 ### Options

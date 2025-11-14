@@ -14,57 +14,41 @@ This builds the binary in release mode and installs it globally to `/usr/local/b
 
 ```
 aocr <year> [options]
-aocr <year> <days> [options]
+aocr <year> <day> [options]
+aocr <year> --days <days> [options]
 ```
 
 ### Arguments
 
 - `<year>`: The year to run (e.g., 2015, 2023)
-- `<days>`: Optional days to run (format examples below)
+- `<day(s)>`: Optional day(s) to run (format examples below)
 
 ### Day Selection
 
-Run a single day:
 ```bash
-aocr 2015 1
-```
-
-Run a range of days:
-```bash
-aocr 2015 1-5
-```
-
-Run specific days:
-```bash
-aocr 2015 1,3,7,12,25
-```
-
-Run mixed ranges and specific days:
-```bash
-aocr 2015 1-3,7,12-15,25
-```
-
-Run all days in a year (shows scoreboard):
-```bash
-aocr 2015
+aocr 2015 1                     # Run a single day
+aocr 2015 --days 1-5            # Run a range of days
+aocr 2015 --days 1,3,7,12,25    # Run specific days
+aocr 2015 --days 1-3,7,12-15,25 # Run mixed ranges and specific days
+aocr 2015                       # Run all days in a year
 ```
 
 ## 📊 Progress Summary
 
-| Year | Progress |
-| :-: | :- |
-| 2024 | ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ 22/50 |
-| 2023 | ⭐⭐⭐⭐⭐⭐ 12/50 |
-| 2022 | ⭐⭐⭐⭐⭐⭐⭐⭐⭐ 18/50 |
-| 2021 | ⭐⭐⭐⭐ 8/50 |
-| 2020 | ⭐⭐⭐⭐⭐⭐⭐⭐ 16/50 |
-| 2019 | ⭐ 2/50 |
-| 2018 | ⭐⭐⭐⭐ 8/50 |
-| 2017 | ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ 24/50 |
-| 2016 | ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ 28/50 |
-| 2015 | ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ 44/50 |
-
-**Total: 182/550 ⭐ (33%)**
+| Year | Progress | Score |
+| :-: | -: | :- |
+| 2025 |                    | 0/24|
+| 2024 | ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐| 22/50 |
+| 2023 | ⭐⭐⭐⭐⭐⭐| 12/50 |
+| 2022 | ⭐⭐⭐⭐⭐⭐⭐⭐⭐| 18/50 |
+| 2021 | ⭐⭐⭐⭐| 8/50 |
+| 2020 | ⭐⭐⭐⭐⭐⭐⭐⭐| 16/50 |
+| 2019 | ⭐| 2/50 |
+| 2018 | ⭐⭐⭐⭐| 8/50 |
+| 2017 | ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐| 24/50 |
+| 2016 | ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐| 28/50 |
+| 2015 | ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐| 44/50 |
+||**Total**| 182/524
 
 ## Solver File Format
 
