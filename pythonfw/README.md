@@ -1,6 +1,6 @@
 # AOCP - Advent of Code Python Framework
 
-A command-line tool for running Advent of Code puzzle solutions and displaying results in a scoreboard.
+A command-line tool for running Advent of Code puzzle solutions and displaying results in a scoreboard. This tool uses a cookie to reach the expected answers and determine if the solution you provided is correct or not.
 
 ## Command-Line Usage
 
