@@ -1,6 +1,6 @@
 # AOCR - Advent of Code Rust Runner
 
-A high-performance Rust CLI tool for running Advent of Code solutions.
+A Rust CLI tool for running Advent of Code solutions and testing them against expected answers.
 
 ## Installation
 
