@@ -4,9 +4,6 @@ https://adventofcode.com/2025/day/1
 """
 
 
-from networkx import bellman_ford_path
-
-
 def preprocessing(puzzle_input: str) -> list[int]:
     """
     Converts puzzle input into a list of signed integers based on rotation direction.
