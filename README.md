@@ -12,7 +12,7 @@ Solutions for [Advent of Code](https://adventofcode.com) in Python and Rust.
 
 **Year**      | **🐍** | **🦀** |
 :---:         | :---:  | :---:  |
-[2025](#2025) |   0    |   0    |
+[2025](#2025) |   4    |   0    |
 [2024](#2024) |  50    |  22    |
 [2023](#2023) |  31    |  12    |
 [2022](#2022) |  35    |  18    |
@@ -70,8 +70,8 @@ aocr 2024 1-5             # Run days 1-5
 
 | Day | Title                     | Python | Rust |
 | :-: | :------------------------ | :----: | :--: |
-| 01 | [TBD](events/year_2025/day_01/day_01.md) |  |  |
-| 02 | [TBD](events/year_2025/day_02/day_02.md) |  |  |
+| 01 | [Secret Entrance](events/year_2025/day_01/day_01.md) |  |  |
+| 02 | [Gift Shop](events/year_2025/day_02/day_02.md) |  |  |
 | 03 | [TBD](events/year_2025/day_03/day_03.md) |  |  |
 | 04 | [TBD](events/year_2025/day_04/day_04.md) |  |  |
 | 05 | [TBD](events/year_2025/day_05/day_05.md) |  |  |
