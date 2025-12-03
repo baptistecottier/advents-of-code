@@ -70,9 +70,9 @@ aocr 2024 1-5             # Run days 1-5
 
 | Day | Title                     | Python | Rust |
 | :-: | :------------------------ | :----: | :--: |
-| 01 | [Secret Entrance](events/year_2025/day_01/day_01.md) |  |  |
-| 02 | [Gift Shop](events/year_2025/day_02/day_02.md) |  |  |
-| 03 | [Lobby](events/year_2025/day_03/day_03.md) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/year_2025/day_03/day_03.py)  |  |
+| 01 | [Secret Entrance ](events/year_2025/day_01/day_01.md)    | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/year_2025/day_01/day_01.py) |  |
+| 02 | [Gift Shop       ](events/year_2025/day_02/day_02.md)    | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/year_2025/day_02/day_02.py) |  |
+| 03 | [Lobby           ](events/year_2025/day_03/day_03.md)    | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/year_2025/day_03/day_03.py) |  |
 | 04 | [TBD](events/year_2025/day_04/day_04.md) |  |  |
 | 05 | [TBD](events/year_2025/day_05/day_05.md) |  |  |
 | 06 | [TBD](events/year_2025/day_06/day_06.md) |  |  |
