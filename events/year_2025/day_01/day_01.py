@@ -5,6 +5,11 @@ https://adventofcode.com/2025/day/1
 
 
 def preprocessing(puzzle_input: str) -> list[int]:
+    """
+    Parse puzzle input into rotation instructions where positive values represent right turns and
+    negative values represent left turns.
+    """
+
     instructions: list[int] = []
     for line in puzzle_input.splitlines():
         way, clicks = line[0], int(line[1:])
@@ -18,8 +23,7 @@ def preprocessing(puzzle_input: str) -> list[int]:
 
 def solver(instructions: list[int]) -> tuple[int, int]:
     """
-    Solves both parts of the puzzle.
-    Returns a tuple (part1_result, part2_result).
+    Simulates a rotation system tracking zero crossings and pass counts through a modulo 100 cycle.
     """
     rotation = 50
     zero_cnt = 0
