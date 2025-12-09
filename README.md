@@ -12,7 +12,7 @@ Solutions for [Advent of Code](https://adventofcode.com) in Python and Rust.
 
 **Year**      | **🐍** | **🦀** |
 :---:         | :---:  | :---:  |
-[2025](#2025) |  16    |   0    |
+[2025](#2025) |  18    |   0    |
 [2024](#2024) |  50    |  22    |
 [2023](#2023) |  31    |  12    |
 [2022](#2022) |  35    |  18    |
@@ -68,20 +68,20 @@ aocr 2024 1-5             # Run days 1-5
     <a id="2025"><h2>2025 🖼️</h2></a>
     </summary>
 
-| Day | Title                     | Python | Rust |
-| :-: | :------------------------ | :----: | :--: |
-| 01 | [Secret Entrance     ](events/year_2025/day_01/day_01.md)    | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/year_2025/day_01/day_01.py) |  |
-| 02 | [Gift Shop           ](events/year_2025/day_02/day_02.md)    | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/year_2025/day_02/day_02.py) |  |
-| 03 | [Lobby               ](events/year_2025/day_03/day_03.md)    | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/year_2025/day_03/day_03.py) |  |
-| 04 | [Printing Department ](events/year_2025/day_04/day_04.md)    | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/year_2025/day_04/day_04.py) |  |
-| 05 | [Cafeteria           ](events/year_2025/day_05/day_05.md)    | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/year_2025/day_05/day_05.py) |  |
-| 06 | [Trash Compactor     ](events/year_2025/day_06/day_06.md)    | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/year_2025/day_06/day_06.py) |  |
-| 07 | [Laboratories        ](events/year_2025/day_07/day_07.md)    | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/year_2025/day_07/day_07.py) |  |
-| 08 | [Playground          ](events/year_2025/day_08/day_08.md)    | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/year_2025/day_08/day_08.py) |  |
-| 09 | [TBD](events/year_2025/day_09/day_09.md) |  |  |
-| 10 | [TBD](events/year_2025/day_10/day_10.md) |  |  |
-| 11 | [TBD](events/year_2025/day_11/day_11.md) |  |  |
-| 12 | [TBD](events/year_2025/day_12/day_12.md) |  |  |
+| Day | Title                                                       | Python                                                                                                    | Rust |
+| :-: | :------------------------                                   | :----:                                                                                                    | :--: |
+| 01 | [Secret Entrance     ](events/year_2025/day_01/day_01.md)    | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/year_2025/day_01/day_01.py)    |  |
+| 02 | [Gift Shop           ](events/year_2025/day_02/day_02.md)    | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/year_2025/day_02/day_02.py)    |  |
+| 03 | [Lobby               ](events/year_2025/day_03/day_03.md)    | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/year_2025/day_03/day_03.py)    |  |
+| 04 | [Printing Department ](events/year_2025/day_04/day_04.md)    | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/year_2025/day_04/day_04.py)    |  |
+| 05 | [Cafeteria           ](events/year_2025/day_05/day_05.md)    | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/year_2025/day_05/day_05.py)    |  |
+| 06 | [Trash Compactor     ](events/year_2025/day_06/day_06.md)    | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/year_2025/day_06/day_06.py)    |  |
+| 07 | [Laboratories        ](events/year_2025/day_07/day_07.md)    | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/year_2025/day_07/day_07.py)    |  |
+| 08 | [Playground          ](events/year_2025/day_08/day_08.md)    | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/year_2025/day_08/day_08.py)    |  |
+| 09 | [Movie Theater       ](events/year_2025/day_09/day_09.md)    | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/year_2025/day_09/day_09.py)    |  |
+| 10 | [TBD                 ](events/year_2025/day_10/day_10.md)    |                                                                                                          |  |
+| 11 | [TBD                 ](events/year_2025/day_11/day_11.md)    |                                                                                                          |  |
+| 12 | [TBD                 ](events/year_2025/day_12/day_12.md)    |                                                                                                          |  |
 
 </details>
 
