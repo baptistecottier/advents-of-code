@@ -25,7 +25,7 @@ def solver(ranges: list[tuple[int, int]]) -> tuple[int, int]:
     invalid_register = defaultdict(int)
 
     for start, end in ranges:
-        for product_id in range(start, end + 1):
+        for product_id in range(max(11, start), end + 1):
             str_id = str(product_id)
             half_length = len(str_id) // 2
 
