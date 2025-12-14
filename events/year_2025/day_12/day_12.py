@@ -6,20 +6,24 @@ https://adventofcode.com/2025/day/12
 
 def preprocessing(puzzle_input: str) -> list[str]:
     """
-    Processes the puzzle input into a suitable data structure.
+    Parses the puzzle input string into a list of regions, each represented as [width, length,
+    presents].
     """
-    return puzzle_input.strip().split('\n')
+
+    grids = puzzle_input.split('\n\n')[-1]
+
+    regions = []
+    for grid in grids.splitlines():
+        data = grid.split()
+        width, length = tuple(map(int, data[0][:-1].split('x')))
+        presents = list(map(int, data[1:]))
+        regions.append([width, length, presents])
+    return regions
 
 
-def solver(data: list[str]) -> tuple[int, int]:
+def solver(regions: list[tuple[int, int, list[int]]]) -> int:
     """
-    Solves both parts of the puzzle.
-    Returns a tuple (part1_result, part2_result).
+    Calculates the number of regions where the sum of the elements in the list `p` multiplied by 9
+    does not exceed the product of `w` and `l`.
     """
-    # TODO: Implement part 1
-    part1 = 0
-    
-    # TODO: Implement part 2  
-    part2 = 0
-    
-    return part1, part2
+    return sum(sum(p) * 9 <= w * l for w, l, p in regions)

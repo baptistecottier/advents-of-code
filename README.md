@@ -12,7 +12,7 @@ Solutions for [Advent of Code](https://adventofcode.com) in Python and Rust.
 
 **Year**      | **🐍** | **🦀** |
 :---:         | :---:  | :---:  |
-[2025](#2025) |  22    |   0    |
+[2025](#2025) |  24    |   0    |
 [2024](#2024) |  50    |  22    |
 [2023](#2023) |  31    |  12    |
 [2022](#2022) |  35    |  18    |
@@ -81,7 +81,16 @@ aocr 2024 1-5             # Run days 1-5
 | 09 | [Movie Theater       ](events/year_2025/day_09/day_09.md)    | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/year_2025/day_09/day_09.py)    |  |
 | 10 | [Factory             ](events/year_2025/day_10/day_10.md)    | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/year_2025/day_10/day_10.py)    |  |
 | 11 | [Reactor             ](events/year_2025/day_11/day_11.md)    | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/year_2025/day_11/day_11.py)    |  |
-| 12 | [TBD                 ](events/year_2025/day_12/day_12.md)    |                                                                                                          |  |
+| 12 | [Christmas Tree Farm ](events/year_2025/day_12/day_12.md)    | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/year_2025/day_12/day_12s=::::::::çç
+
+
+
+
+
+
+
+mplo
+.py)    |  |
 
 </details>
 
