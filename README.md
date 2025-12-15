@@ -81,7 +81,7 @@ aocr 2024 1-5             # Run days 1-5
 | 09 | [Movie Theater       ](events/year_2025/day_09/day_09.md)    | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/year_2025/day_09/day_09.py)    |  |
 | 10 | [Factory             ](events/year_2025/day_10/day_10.md)    | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/year_2025/day_10/day_10.py)    |  |
 | 11 | [Reactor             ](events/year_2025/day_11/day_11.md)    | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/year_2025/day_11/day_11.py)    |  |
-| 12 | [Christmas Tree Farm ](events/year_2025/day_12/day_12.md)    | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/year_2025/day_12/day_12s=::::::::çç
+| 12 | [Christmas Tree Farm ](events/year_2025/day_12/day_12.md)    | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/year_2025/day_12/day_12.py)    |  |
 
 
 
