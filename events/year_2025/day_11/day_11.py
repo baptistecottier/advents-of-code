@@ -24,12 +24,12 @@ def solver(edge_list: list[tuple[int, int]]) -> tuple[int, int]:
     Solves a graph path-counting problem by first performing topological sorting on the input edge
     list. Calculates the number of paths from 'you' to 'out' for the first part of the solution.
     For the second part, uses conditional logic to count paths between specific nodes ('fft',
-    'dac', 'svr', 'out'). 
-    
+    'dac', 'svr', 'out').
+
     As the graph is non-cyclic, if no direct path exists from 'fft' to 'dac', it means the path to
     follow is 'svr' -> 'dac' -> 'fft' -> 'out'. Otherwise, it multiplies path counts from 'svr' to
     'fft' and from 'dac' to 'out'.
-    
+
     Returns both results as a tuple of integers.
     """
     sorted_graph = topological_sort(edge_list)

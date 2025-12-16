@@ -6,7 +6,7 @@ https://adventofcode.com/2025/day/5
 
 def union(intervals: list[tuple[int, int]]) -> list[tuple[int, int]]:
     """
-    Union of a list of intervals 
+    Compute the union of a list of intervals.
     """
     if not intervals:
         return []
@@ -33,7 +33,7 @@ def preprocessing(puzzle_input: str) -> tuple[list[int], list[tuple[int, int]]]:
     for _range in _ranges.splitlines():
         _min, _max = tuple(map(int, _range.split('-')))
         ranges.append((_min, _max))
-    ranges = union(ranges) # union returned a sorted list of ranges
+    ranges = union(ranges)  # union returned a sorted list of ranges
     ids = list(map(int, _ids.splitlines()))
 
     return ids, ranges

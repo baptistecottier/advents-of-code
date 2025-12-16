@@ -28,7 +28,7 @@ def preprocessing(puzzle_input: str
 
 
 def solver(coordinates: dict[float, tuple[tuple[int, int], tuple[int, int]]], l_dist: int
-           )-> tuple[int, int]:
+           ) -> tuple[int, int]:
     """
     Solves both parts of the puzzle.
     Returns a tuple (part1_result, part2_result).
@@ -47,8 +47,8 @@ def solver(coordinates: dict[float, tuple[tuple[int, int], tuple[int, int]]], l_
             return checkprod, pt[0][0] * pt[1][0]
 
         if n == 999:
-            l = sorted([len(c) for c in circuits])
-            checkprod = l[-1] * l[-2] * l[-3]
+            sorted_lengths = sorted([len(c) for c in circuits])
+            checkprod = sorted_lengths[-1] * sorted_lengths[-2] * sorted_lengths[-3]
 
     raise ValueError("Impossible to connect all pairs")
 

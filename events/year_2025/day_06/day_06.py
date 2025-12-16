@@ -4,7 +4,7 @@ https://adventofcode.com/2025/day/6
 """
 
 from math import prod
-from typing import Callable
+from collections.abc import Callable
 
 
 def preprocessing(puzzle_input: str) -> list[tuple[list[list[str]], Callable]]:

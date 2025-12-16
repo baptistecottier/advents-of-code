@@ -22,7 +22,7 @@ def solver(rolls: set[tuple[int, int]]) -> tuple[int, int]:
     Iteratively removes positions with fewer than 4 neighbors until no more can be removed.
     Returns the count removed in the first iteration and the total count removed.
     """
-    removed = [1, -1] # Set as it to pass the while predicate and not modifying the final sum
+    removed = [1, -1]  # Set as it to pass the while predicate while not modifying the final sum
     neighbours = ((-1, -1), (0, -1), (1, -1),
                   (-1, 0),           (1, 0),
                   (-1, 1),  (0, 1),  (1, 1))

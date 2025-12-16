@@ -22,9 +22,9 @@ def solver(banks: list[list[int]]) -> Iterator[int]:
         yield sum(compute_largest_joltage(bank, size) for bank in banks)
 
 
-def compute_largest_joltage(bank: list[int], size: int) -> int :
+def compute_largest_joltage(bank: list[int], size: int) -> int:
     """
-    Given a bank, compute the largest possible joltage 
+    Given a bank, compute the largest possible joltage.
     """
     if len(bank) < size:
         raise ValueError("Not enought batteries")

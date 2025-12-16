@@ -20,7 +20,7 @@ def preprocessing(puzzle_input: str) -> list[str]:
 
 def solver(red_tiles: list) -> tuple[int, int]:
     """
-    Calculates the largest rectangle area that can be formed from a set of red tiles, 
+    Calculates the largest rectangle area that can be formed from a set of red tiles,
     distinguishing between rectangles fully contained within the main shape and those that are not.
     """
     areas = {True: 0, False: 0}
@@ -42,7 +42,7 @@ def solver(red_tiles: list) -> tuple[int, int]:
                     break
         geometries.append(Polygon(coords))
 
-    geometries = sorted(geometries, key = lambda g: g.area, reverse = True)
+    geometries = sorted(geometries, key=lambda g: g.area, reverse=True)
     main_shape = geometries[0]
 
     for hole in geometries[1:]:

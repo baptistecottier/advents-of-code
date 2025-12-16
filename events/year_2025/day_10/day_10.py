@@ -67,11 +67,11 @@ def find_smallest_solution(matrix_a: list[list[int]], vector_b: list[int]):
     programming to solve the system.
     """
     n = len(matrix_a[0])
-    np_a = np.array(matrix_a, dtype = int)
-    np_b = np.array(vector_b, dtype = int)
+    np_b = np.array(vector_b, dtype=int)
+    np_a = np.array(matrix_a, dtype=int)
     a_ub = np.vstack([np_a, -np_a])
     b_ub = np.hstack([np_b, -np_b])
     c = np.ones(n)
-    integrality=[1 for _ in range(n)]
-    res = linprog(c, A_ub = a_ub, b_ub = b_ub, integrality = integrality)
+    integrality = [1 for _ in range(n)]
+    res = linprog(c, A_ub=a_ub, b_ub=b_ub, integrality=integrality)
     return int(res.x.sum())
