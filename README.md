@@ -23,7 +23,7 @@ Year          |   🐍   |   🦀  |
 Year          |   🐍   |   🦀  |
 :---:         | :----: | :--: |
 [2019](#2019) | 38     | 10
-[2018](#2018) | 47     | 13
+[2018](#2018) | 50     | 13
 [2017](#2017) | 50     | 24
 [2016](#2016) | 50     | 38
 [2015](#2015) | 50     | 45
@@ -268,7 +268,7 @@ Year          |   🐍   |   🦀  |
 | 14 | [Chocolate Charts                      ](events/year_2018/day_14/day_14.md#day-14-chocolate-charts)                     | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/year_2018/day_14/day_14.py) |                                                                                        |
 | 15 | [Beverage Bandits                      ](events/year_2018/day_15/day_15.md#day-15-beverage-bandits)                     | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/year_2018/day_15/day_15.py) |                                                                                     |                                                                                        |
 | 16 | [Chronal Classification                ](events/year_2018/day_16/day_16.md#day-16-chronal-classification)               | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/year_2018/day_16/day_16.py) |                                                                                        |
-| 17 | Reservoir Research                                                                                      |                                                                                        |                                                                                        |
+| 17 | Reservoir Research                                                                                                      | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/year_2018/day_17/day_17.py) |                                                                                       |                                                                                        |
 | 18 | [Settlers of The North Pole            ](events/year_2018/day_18/day_18.md#day-18-settlers-of-the-north-pole)           | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/year_2018/day_18/day_18.py) |                                                                                        |
 | 19 | [Go With The Flow                      ](events/year_2018/day_19/day_19.md#day-19-go-with-the-flow)                     | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/year_2018/day_19/day_19.py) |                                                                                        |
 | 20 | [A Regular Map                         ](events/year_2018/day_20/day_20.md#day-20-a-regular-map)                        | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/year_2018/day_20/day_20.py) |                                                                                        |
