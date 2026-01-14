@@ -326,7 +326,7 @@ aocr 2024 1-5             # Run days 1-5
 | 22 | [Mode Maze                             ](events/year_2018/day_22/day_22.md#day-22-mode-maze)                            | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/year_2018/day_22/day_22.py)|                                                                                        |
 | 23 | [Experimental Emergency Teleportation  ](events/year_2018/day_23/day_23.md#day-23-experimental-emergency-teleportation) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/year_2018/day_23/day_23.py) |                                                                                        |
 | 24 | [Immune System Simulator 20XX          ](events/year_2018/day_24/day_24.md#day-24-immune-system-simulator-20xx)         | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/year_2018/day_24/day_24.py) |                                                                                        |
-| 25 | [Four-Dimensional Adventure            ](events/year_2018/day_25/day_25.md#day-25-four-dimensional-adventure)           | [⭐  ](https://github.com/baptistecottier/advents-of-code/tree/main/events/year_2018/day_25/day_25.py) |                                                                                        |
+| 25 | [Four-Dimensional Adventure            ](events/year_2018/day_25/day_25.md#day-25-four-dimensional-adventure)           | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/year_2018/day_25/day_25.py) |                                                                                        |
 
 </details>
 
