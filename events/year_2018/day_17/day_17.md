@@ -167,3 +167,11 @@ How many tiles can be reached by the water? __To prevent counting forever__, ign
 So, in the example above, counting both water at rest (`~`) and other sand tiles the water can hypothetically reach (`|`), the total number of tiles the water can reach is __`57`__.
 
 __How many tiles can the water reach__ within the range of `y` values in your scan?
+
+## ***Part Two***
+
+After a very long time, the water spring will run dry. How much water will be retained?
+
+In the example above, water that won't eventually drain out is shown as `~`, a total of __`29`__ tiles.
+
+__How many water tiles are left__ after the water spring stops producing water and all remaining water not at rest has drained?
