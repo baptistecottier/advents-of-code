@@ -5,18 +5,28 @@ Some puzzles are solved in Python 🐍, some are solved in Rust 🦀.
 
 Thanks [Scotow](https://github.com/scotow) for the initial framework and precious coding advices.
 
-## 🎄 Summary
+## 📊 Progress Summary
+*Click on any year below for detailed day-by-day progress.
+Starting from year 2025, Advent of Code contains 12 days, thus only 24 stars are reachable.*
 <table>
 <tr VALIGN = TOP>
 <td>
 
-Year          |   🐍   |   🦀  |
-:---:         | :---:  | :--: |
-[2024](#2024) | 50     | 20
-[2023](#2023) | 38     | 12
-[2022](#2022) | 40     | 26
-[2021](#2021) | 43     | 8 
-[2020](#2020) | 48     | 16
+**Year**      | **🐍** | **🦀** |
+:---:         | :---:  | :---:  |
+[2025](#2025) |  24    |   0    |
+
+</td>
+<td>
+
+**Year**      | **🐍** | **🦀** |
+:---:         | :---:  | :---:  |
+[2024](#2024) |  50    |  22    |
+[2023](#2023) |  31    |  12    |
+[2022](#2022) |  35    |  18    |
+[2021](#2021) |  33    |   8    |
+[2020](#2020) |  48    |  16    |
+
 </td>
 <td>
 
