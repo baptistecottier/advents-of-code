@@ -21,20 +21,22 @@ def preprocessing(puzzle_input: str):
         else:
             for x in range(start, end + 1):
                 clay.add((x, axis))
-    draw(clay, "plain_ground.txt")
-    if not os.path.exists("./rehydrated_ground.txt"):
-        with open("rehydrated_ground.txt", "w", encoding="utf-8") as fh:
+    draw(clay, "./events/year_2018/day_17/plain_ground.txt")
+    if not os.path.exists("./events/year_2018/day_17/rehydrated_ground.txt"):
+        with open("./events/year_2018/day_17/rehydrated_ground.txt", "w", encoding="utf-8") as fh:
             fh.write("")
     print("Ground drawed in 'plain_ground.txt'. If not existing before, a file named",
           "'rehydrated_ground.txt' also has been created. \nIt won't be replaced in further calls.")
     input("Press Enter when you have finished the simulation in 'rehydrated_ground'.txt'")
+    return True
 
-
-def solver() -> tuple[int, int]:
+def solver(filled) -> tuple[int, int]:
     """
     Retrieve manual filling data to solve the puzzles.
     """
-    with open("rehydrated_ground.txt", encoding="utf-8") as file:
+    if not filled:
+        return 0, 0
+    with open("./events/year_2018/day_17/rehydrated_ground.txt", encoding="utf-8") as file:
         content = file.read()
         rest = content.count('~')
         hypo = content.count('|')
@@ -62,7 +64,7 @@ def draw(clay: set[tuple[int, int]], filename: str) -> None:
         fh.write(content)
 
 
-with open("day_17.input", encoding="utf-8") as f:
-    pi = f.read()
-preprocessing(pi)
-print(solver())
+# with open("./day_17.input", encoding="utf-8") as f:
+#     pi = f.read()
+# preprocessing(pi)
+# print(solver(True))

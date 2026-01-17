@@ -236,12 +236,12 @@ def _submit_answer(answer, part, puzzle):
 
     part_letter = "a" if part == 1 else "b"
 
-    # with redirect_stdout(stdout_capture), redirect_stderr(stderr_capture):
-    if isinstance(answer, builtins.tuple):
-        fixed_part, fixed_answer = answer
-        submit_result = submit(fixed_answer, fixed_part, puzzle.day, puzzle.year)
-    else:
-        submit_result = submit(str(answer), part_letter, puzzle.day, puzzle.year)
+    with redirect_stdout(stdout_capture), redirect_stderr(stderr_capture):
+        if isinstance(answer, builtins.tuple):
+            fixed_part, fixed_answer = answer
+            submit_result = submit(fixed_answer, fixed_part, puzzle.day, puzzle.year)
+        else:
+            submit_result = submit(str(answer), part_letter, puzzle.day, puzzle.year)
 
     output = stdout_capture.getvalue() + stderr_capture.getvalue()
     return submit_result, output
