@@ -1,10 +1,10 @@
-# ___Day 17: Reservoir Research___
+# _**Day 17: Reservoir Research**_
 
 You arrive in the year 18. If it weren't for the coat you got in 1018, you would be very cold: the North Pole base hasn't even been constructed.
 
-Rather, it hasn't been constructed __yet__. The Elves are making a little progress, but there's not a lot of liquid water in this climate, so they're getting very dehydrated. Maybe there's more underground?
+Rather, it hasn't been constructed **yet**. The Elves are making a little progress, but there's not a lot of liquid water in this climate, so they're getting very dehydrated. Maybe there's more underground?
 
-You scan a two-dimensional vertical slice of the ground nearby and discover that it is mostly __sand__ with veins of __clay__. The scan only provides data with a granularity of __square meters__, but it should be good enough to determine how much water is trapped there. In the scan, `x` represents the distance to the right, and `y` represents the distance down. There is also a __spring of water__ near the surface at `x=500, y=0`. The scan identifies __which square meters are clay__ (your puzzle input).
+You scan a two-dimensional vertical slice of the ground nearby and discover that it is mostly **sand** with veins of **clay**. The scan only provides data with a granularity of **square meters**, but it should be good enough to determine how much water is trapped there. In the scan, `x` represents the distance to the right, and `y` represents the distance down. There is also a **spring of water** near the surface at `x=500, y=0`. The scan identifies **which square meters are clay** (your puzzle input).
 
 For example, suppose your scan shows the following veins of clay:
 
@@ -41,7 +41,7 @@ Rendering clay as `#`, sand as `.`, and the water spring as `+`, and with `x`inc
 13 ....#######...
 ```
 
-The spring of water will produce water __forever__. Water can move through sand, but is blocked by clay. Water __always moves down__ when possible, and spreads to the left and right otherwise, filling space that has clay on both sides and falling out otherwise.
+The spring of water will produce water **forever**. Water can move through sand, but is blocked by clay. Water **always moves down** when possible, and spreads to the left and right otherwise, filling space that has clay on both sides and falling out otherwise.
 
 For example, if five squares of water are created, they will flow downward until they reach the clay and settle there. Water that has come to rest is shown here as `~`, while sand through which water has passed (but which is now dry again) is shown as `|`:
 
@@ -162,16 +162,17 @@ Finally, while there is nowhere left for the water to settle, it can reach a few
 ...|.......|..    (line not counted: below maximum y value)
 ```
 
-How many tiles can be reached by the water? __To prevent counting forever__, ignore tiles with a `y` coordinate smaller than the smallest `y` coordinate in your scan data or larger than the largest one. Any `x` coordinate is valid. In this example, the lowest `y` coordinate given is `1`, and the highest is `13`, causing the water spring (in row `0`) and the water falling off the bottom of the render (in rows `14` through infinity) to be ignored.
+How many tiles can be reached by the water? **To prevent counting forever**, ignore tiles with a `y` coordinate smaller than the smallest `y` coordinate in your scan data or larger than the largest one. Any `x` coordinate is valid. In this example, the lowest `y` coordinate given is `1`, and the highest is `13`, causing the water spring (in row `0`) and the water falling off the bottom of the render (in rows `14` through infinity) to be ignored.
 
-So, in the example above, counting both water at rest (`~`) and other sand tiles the water can hypothetically reach (`|`), the total number of tiles the water can reach is __`57`__.
+So, in the example above, counting both water at rest (`~`) and other sand tiles the water can hypothetically reach (`|`), the total number of tiles the water can reach is **`57`**.
 
-__How many tiles can the water reach__ within the range of `y` values in your scan?
+**How many tiles can the water reach** within the range of `y` values in your scan?
+
 
 ## ***Part Two***
 
 After a very long time, the water spring will run dry. How much water will be retained?
 
-In the example above, water that won't eventually drain out is shown as `~`, a total of __`29`__ tiles.
+In the example above, water that won't eventually drain out is shown as `~`, a total of _`29`_ tiles.
 
-__How many water tiles are left__ after the water spring stops producing water and all remaining water not at rest has drained?
+**How many water tiles are left** after the water spring stops producing water and all remaining water not at rest has drained?

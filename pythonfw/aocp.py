@@ -396,11 +396,11 @@ def _solver_process_wrapper(conn, module_path, module_name, solver_name, args,
     import os
     import traceback
 
-    if suppress_output:
-        devnull_fd = os.open(os.devnull, os.O_WRONLY)
-        os.dup2(devnull_fd, 1)  # Redirect fd 1 (stdout) to /dev/null
-        os.dup2(devnull_fd, 2)  # Redirect fd 2 (stderr) to /dev/null
-        os.close(devnull_fd)
+    # if suppress_output:
+    #     devnull_fd = os.open(os.devnull, os.O_WRONLY)
+    #     os.dup2(devnull_fd, 1)  # Redirect fd 1 (stdout) to /dev/null
+    #     os.dup2(devnull_fd, 2)  # Redirect fd 2 (stderr) to /dev/null
+    #     os.close(devnull_fd)
 
     try:
         # Add module path and import the module in the subprocess
