@@ -30,6 +30,7 @@ def preprocessing(puzzle_input: str):
     input("Press Enter when you have finished the simulation in 'rehydrated_ground'.txt'")
     return True
 
+
 def solver(filled) -> tuple[int, int]:
     """
     Retrieve manual filling data to solve the puzzles.
@@ -62,9 +63,3 @@ def draw(clay: set[tuple[int, int]], filename: str) -> None:
         content += line + '\n'
     with open(filename, 'w', encoding='utf-8') as fh:
         fh.write(content)
-
-
-# with open("./day_17.input", encoding="utf-8") as f:
-#     pi = f.read()
-# preprocessing(pi)
-# print(solver(True))
