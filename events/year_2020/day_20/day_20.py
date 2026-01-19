@@ -9,7 +9,7 @@ https://adventofcode.com/2020/day/20
 from itertools import product
 from math      import prod
 from dataclasses import dataclass
-from itertools import combinations
+from collections import defaultdict
 
 
 @dataclass
@@ -42,7 +42,6 @@ def preprocessing(puzzle_input):
     score = {(a, b, c): set() for a, b, c in product((0, 1, 2, 3), (0, 1), (0, 1))}
     tiles = []
 
-    print(score)
     for tile in list_tiles:
         tile_id = int(tile[0].split(' ')[1][:-1])
         body = {(x, y) for x, y in product(
@@ -52,14 +51,17 @@ def preprocessing(puzzle_input):
         border = {(0, 0, 0): get_borders(body, size),
                   (0, 1, 0): get_borders(flipv(body, size), size),
                   (0, 0, 1): get_borders(fliph(body, size), size),
-                  (0, 1, 1): get_borders(flipv(fliph(body, size), size), size)}
+                  (0, 1, 1): get_borders(flipv(fliph(body, size), size), size)
+                  }
 
-        for r in [1, 2, 3]:
-            body = rotate(body, size)
-            border[(r, 0, 0)] = get_borders(body, size)
-            border[(r, 1, 0)] = get_borders(flipv(body, size), size)
-            border[(r, 0, 1)] = get_borders(fliph(body, size), size)
-            border[(r, 1, 1)] = get_borders(flipv(fliph(body, size), size), size)
+        for r in [1]:
+            _body = rotate(body, size)
+            # if r == 3:
+            #     body = rotate(body, size)
+
+            border[(r, 0, 0)] = get_borders(_body, size)
+            border[(r, 1, 0)] = get_borders(flipv(_body, size), size)
+            border[(r, 0, 1)] = get_borders(fliph(_body, size), size)
 
         tiles.append(Tile(tile_id, border, body, score))
 
@@ -82,21 +84,261 @@ def display(coords, size):
             else : line += '.'
         print(line)
 
-def solver(size, tiles: Tile):
-    for ta, tb in combinations(tiles, 2):
-        ba : dict = ta.borders
-        bb : dict = tb.borders
+def is_monster(x, y, coords):
+    return all((pos in coords) for pos in (
+        (x + 18, y),
+        (x, y + 1), (x+ 5, y + 1), (x + 6, y + 1), (x + 11, y + 1), (x + 12, y + 1), (x+ 17, y + 1), (x + 18, y + 1), (x + 19, y + 1),
+        (x + 1, y + 2), (x + 4, y + 2), (x + 7, y + 2), (x + 10, y + 2), (x + 13, y + 2), (x + 16, y + 2)
+    ))
 
-        for ((ra, fva, fha), pa), ((rb, fvb, fhb), pb) in product(ba.items(), bb.items()):
-            boo = border_match(pa, pb)
-            if boo : 
-                ta.score[(ra, fva, fha)].add(tb.id)
-                tb.score[(rb, fvb, fhb)].add(ta.id)
+def solver(size, tiles: Tile):
+    t = defaultdict(set)
+    for tile in tiles:
+        border = tile.borders
+        for b in border.values():
+            t[tuple(sorted(b.E))].add(tile.id)
+            t[tuple(sorted(b.W))].add(tile.id)
+            t[tuple(sorted(b.N))].add(tile.id)
+            t[tuple(sorted(b.S))].add(tile.id)
+    matchs = defaultdict(int)
+    for v in t.values():
+        for vv in v:
+            matchs[vv]+= len(v)
+    corners = set()
+    y = t.values()
+    sides = set()
+    others = set()
+    img_side = int(len(tiles) ** .5)
+
+
+    image = [[0 for _ in range(img_side)] for _ in range(img_side)]
+    for k, v in matchs.items():
+        if v == 12:
+            corners.add(k)
+        elif v == 14:
+            sides.add(k)
+        else:
+            others.add(k)
+
+    yield prod(corners)
+    current = corners.pop()
+
+    image[0][0] = current
+
+    i = 1
+    while i < img_side - 1:
+        found = False
+        for a in y:
+            if found:
                 break
-    for tile in tiles: 
-        print(tile.id, sum(len(x) for x in tile.score.values()))
-    yield 2
- 
+            if current in a:
+                for s in sides:
+                    if s in a:
+                        sides.remove(s)
+                        current = s
+                        image[0][i] = current
+                        i += 1
+                        found = True
+                        break
+    found = False
+    for a in y:
+            if found:
+                break
+            if current in a:
+                for s in corners:
+                    if s in a:
+                        corners.remove(s)
+                        current = s
+                        image[0][i] = current
+                        i += 1
+                        found = True
+                        break
+
+    for j in range(1, img_side - 1):
+        found = False
+        for a in y:
+            if found:
+                break
+            if image[j-1][0] in a:
+                for s in sides:
+                    if s in a:
+                        image[j][0] = s
+                        sides.remove(s)
+                        found = True
+                        break
+        found = False
+        for a in y:
+            if found:
+                break
+            if image[j-1][img_side - 1] in a:
+                for s in sides:
+                    if s in a:
+                        image[j][img_side - 1] = s
+                        sides.remove(s)
+                        found = True
+                        break
+        
+        for i in range(1, img_side - 1):
+            found = False
+            for a in y:
+                if found:
+                    break
+                if image[j][i-1] in a:
+                    for o in others:
+                        if o in a:
+                            if {image[j-1][i], o} not in y:
+                                continue
+                            found = True
+                            image[j][i] = o
+                            others.remove(o)
+                            break
+    found = False
+    for a in y:
+        if found:
+            break
+        if image[img_side - 2][0] in a:
+            for s in corners:
+                if s in a:
+                    image[img_side - 1][0] = s
+                    corners.remove(s)
+                    found = True
+                    break
+    found = False
+    for a in y:
+        if found:
+            break
+        if image[img_side - 2][img_side - 1] in a:
+            for s in corners:
+                if s in a:
+                    image[img_side - 1][img_side - 1] = s
+                    corners.remove(s)
+                    found = True
+                    break
     
-def border_match(pa, pb):
-    return (pa.N == pb.S) or (pa.S == pb.N) or (pa.E == pb.W) or (pa.W == pb.E)
+    for i in range(1, img_side - 1):
+        found = False
+        for a in y:
+            if found:
+                break
+            if image[img_side - 1][i-1] in a:
+                for o in sides:
+                    if o in a:
+                        if {image[img_side - 2][i], o} not in y:
+                            continue
+                        found = True
+                        image[img_side - 1][i] = o
+                        sides.remove(o)
+                        break
+
+    candidates = {}
+
+    for y, line in enumerate(image):
+        for x, tile in enumerate(line):
+            candidates[tile] = set()
+            goal = []
+            if y < img_side - 1:
+                for k, _v in t.items():
+                    if _v == {image[y][x], image[y+1][x]}:
+                        goal.append(set(k))
+
+        
+                for tt in tiles: # type: ignore
+                    if tt.id == image[y][x]:
+                        for (rr, vv, hh), v in tt.borders.items():
+                            if getattr(v, "S") in goal:
+                                candidates[tt.id].add((rr, vv, hh))
+                goal = []
+                for k, _v in t.items():
+                    if x < img_side - 1:
+                        if _v == {image[y][x], image[y][x+1]}:
+                            goal.append(set(k))
+                    if x == img_side - 1:
+                        if _v == {image[y][x-1], image[y][x]}:
+                            goal.append(set(k))
+
+
+                for (rr, vv, hh) in candidates[image[y][x]].copy():
+                    for ttt in tiles:
+                        if ttt.id == image[y][x]:
+                            if x < img_side - 1:
+                                if all((ttt.borders[(rr, vv, hh)].E != g) for g in goal):
+                                    candidates[ttt.id].remove((rr, vv, hh))
+
+                            if x == img_side - 1:
+                                if all((ttt.borders[(rr, vv, hh)].W != g) for g in goal):
+                                    candidates[ttt.id].remove((rr, vv, hh))
+                                break
+            if y == img_side - 1:
+                for k, _v in t.items():
+                    if _v == {image[y-1][x], image[y][x]}:
+                        goal.append(set(k))
+        
+                for tt in tiles:
+                    if tt.id == image[y][x]:
+                        for (rr, vv, hh), v in tt.borders.items():
+                            if getattr(v, "N") in goal:
+                                candidates[tt.id].add((rr, vv, hh))
+
+                goal = []
+                for k, _v in t.items():
+                    if x < img_side - 1:
+                        if _v == {image[y][x], image[y][x+1]}:
+                            goal.append(set(k))
+                    if x == img_side - 1:
+                        if _v == {image[y][x-1], image[y][x]}:
+                            goal.append(set(k))
+
+                for (rr, vv, hh) in candidates[image[y][x]].copy():
+                    for ttt in tiles:
+                        if ttt.id == image[y][x]:
+                            if x < img_side - 1:
+                                if all((ttt.borders[(rr, vv, hh)].E != g) for g in goal):
+                                    candidates[ttt.id].remove((rr, vv, hh))
+
+                            if x == img_side - 1:
+                                if all((ttt.borders[(rr, vv, hh)].W != g) for g in goal):
+                                    candidates[ttt.id].remove((rr, vv, hh))
+                                break
+
+    final_coords = set()
+    final = [['.' for _ in range(img_side * (size - 2))] for _ in range(img_side * (size - 2))]
+    for y, line in enumerate(image):
+        for x, tile in enumerate(line):
+            for _t in tiles:
+                if _t.id == tile:
+                    bdy = _t.body
+                    r, v, h = candidates[tile].pop()
+
+                    for _ in range(r):
+                        bdy = rotate(bdy, size)
+                    if v:
+                        bdy = flipv(bdy, size)
+                    if h:
+                        bdy = fliph(bdy, size)
+                    for tx in range(0, (size - 2)):
+                        for ty in range(0, (size - 2)):
+                            if (tx + 1, ty + 1) in bdy:
+                                final[(size - 2)*y + ty][(size - 2)*x + tx] = '#'
+                                final_coords.add(((size - 2)*x + tx, (size - 2)*y + ty))
+                    break
+
+                    
+
+    for r in range(4):
+        for v in range(2):
+            for h in range(2):
+                cnt = 0
+                coords = final_coords.copy()
+                for _ in range(r):
+                    coords = rotate(coords, img_side * (size - 2))
+                if v:
+                    coords = flipv(coords, img_side * (size - 2))
+                if h:
+                    coords = fliph(coords, img_side * (size - 2))
+                for x in range(img_side * (size - 2)):
+                    for y in range(img_side * (size - 2)):
+                            if is_monster(x, y, coords):
+                                cnt += 15
+                if cnt != 0:
+                    yield len(final_coords) - cnt
+                    return

@@ -24,7 +24,7 @@ Starting from year 2025, Advent of Code contains 12 days, thus only 24 stars are
 [2023](#2023) |  31    |  12    |
 [2022](#2022) |  35    |  18    |
 [2021](#2021) |  33    |   8    |
-[2020](#2020) |  48    |  16    |
+[2020](#2020) |  50    |  16    |
 
 </td>
 <td>
@@ -260,12 +260,12 @@ aocr 2024 1-5             # Run days 1-5
 | 17 | [Conway Cubes              ](events/year_2020/day_17/day_17.md#day-17-conway-cubes)            | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/year_2020/day_17/day_17.py) |                                                                                        |
 | 18 | [Operation Order           ](events/year_2020/day_18/day_18.md#day-18-operation-order)         | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/year_2020/day_18/day_18.py) |                                                                                        |
 | 19 | [Monster Messages          ](events/year_2020/day_19/day_19.md#day-19-monster-messages)        | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/year_2020/day_19/day_19.py) |                                                                                        |
-| 20 | [Jurassic Jigsaw           ](events/year_2020/day_20/day_20.md#day-20-jurassic-jigsaw)         | [⭐  ](https://github.com/baptistecottier/advents-of-code/tree/main/events/year_2020/day_20/day_20.py) |                                                                                        |
+| 20 | [Jurassic Jigsaw           ](events/year_2020/day_20/day_20.md#day-20-jurassic-jigsaw)         | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/year_2020/day_20/day_20.py) |                                                                                        |
 | 21 | [Allergen Assessment       ](events/year_2020/day_21/day_21.md#day-21-allergen-assessment)     | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/year_2020/day_21/day_21.py) |                                                                                        |
 | 22 | [Crab Combat               ](events/year_2020/day_22/day_22.md#day-22-crab-combat)             | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/year_2020/day_22/day_22.py) |                                                                                        |
 | 23 | [Crab Cups                 ](events/year_2020/day_23/day_23.md#day-23-crab-cups)               | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/year_2020/day_23/day_23.py) |                                                                                        |
 | 24 | [Lobby Layout              ](events/year_2020/day_24/day_24.md#day-24-lobby-layout)            | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/year_2020/day_24/day_24.py) |                                                                                        |
-| 25 | [Combo Breaker             ](events/year_2020/day_25/day_25.md#day-25-combo-breaker)           | [⭐  ](https://github.com/baptistecottier/advents-of-code/tree/main/events/year_2020/day_25/day_25.py) |                                                                                        |
+| 25 | [Combo Breaker             ](events/year_2020/day_25/day_25.md#day-25-combo-breaker)           | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/year_2020/day_25/day_25.py) |                                                                                        |
 
 </details>
 
