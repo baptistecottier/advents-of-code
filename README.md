@@ -21,7 +21,7 @@ Starting from year 2025, Advent of Code contains 12 days, thus only 24 stars are
 **Year**      | **🐍** | **🦀** |
 :---:         | :---:  | :---:  |
 [2024](#2024) |  50    |  22    |
-[2023](#2023) |  31    |  12    |
+[2023](#2023) |  39    |  12    |
 [2022](#2022) |  35    |  18    |
 [2021](#2021) |  33    |   8    |
 [2020](#2020) |  50    |  16    |
@@ -152,7 +152,7 @@ aocr 2024 1-5             # Run days 1-5
 | 14 | [Parabolic Reflector Dish             ](events/year_2023/day_14/day_14.md#day-14-parabolic-reflector-dish)       | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/year_2023/day_14/day_14.py) |                                                                                        |
 | 15 | [Lens Library                         ](events/year_2023/day_15/day_15.md#day-15-lens-library)                   | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/year_2023/day_15/day_15.py) | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/year_2023/day_15/day_15.rs) |
 | 16 | [The Floor Will Be Lava               ](events/year_2023/day_16/day_16.md#day-16-the-floor-will-be-lava)         | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/year_2023/day_16/day_16.py) |                                                                                        |
-| 17 | [Clumsy Crucible                      ](events/year_2023/day_17/day_17.md#day-17-clumsy-crucible)                | [⭐  ](https://github.com/baptistecottier/advents-of-code/tree/main/events/year_2023/day_17/day_17.py) |                                                                                        |                                                          |                                                                                        |                                                                                        |
+| 17 | [Clumsy Crucible                      ](events/year_2023/day_17/day_17.md#day-17-clumsy-crucible)                | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/year_2023/day_17/day_17.py) |                                                                                        |                                                          |                                                                                        |                                                                                        |
 | 18 | [Lavaduct Lagoon                      ](events/year_2023/day_18/day_18.md#day-18-lavaduct-lagoon)                | [⭐  ](https://github.com/baptistecottier/advents-of-code/tree/main/events/year_2023/day_18/day_18.py) |                                                                                        |
 | 19 | [Aplenty                              ](events/year_2023/day_19/day_19.md#day-19-aplenty)                        | [⭐  ](https://github.com/baptistecottier/advents-of-code/tree/main/events/year_2023/day_19/day_19.py) |                                                                                        |
 | 20 | Pulse Propagation                                                                                   |                                                                                        |                                                                                        |
