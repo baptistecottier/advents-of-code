@@ -31,7 +31,7 @@ Starting from year 2025, Advent of Code contains 12 days, thus only 24 stars are
 
 Year          |   🐍   |   🦀  |
 :---:         | :----: | :--: |
-[2019](#2019) | 38     | 10
+[2019](#2019) | 39     | 10
 [2018](#2018) | 50     | 13
 [2017](#2017) | 50     | 24
 [2016](#2016) | 50     | 38
@@ -292,7 +292,7 @@ aocr 2024 1-5             # Run days 1-5
 | 14 | Space Stoichiometry                                                                                   |                                                                                        |                                                                                        |
 | 15 | [Oxygen System                       ](events/year_2019/day_15/day_15.md#day-15-oxygen-system)                     | 
 | 16 | [Flawed Frequency Transmission       ](events/year_2019/day_16/day_16.md#day-16-flawed-frequency-transmission)     | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/year_2019/day_16/day_16.py) |                                                                                        |
-| 17 | [Set and Forget                      ](events/year_2019/day_17/day_17.md#day-17-set-and-forget)                    | [⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/year_2019/day_17/day_17.py) |                                                                                        |
+| 17 | [Set and Forget                      ](events/year_2019/day_17/day_17.md#day-17-set-and-forget)                    | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/year_2019/day_17/day_17.py) |                                                                                        |
 | 18 | Many-Worlds Interpretation                                                                            |                                                                                        |                                                                                        |
 | 19 | [Tractor Beam                        ](events/year_2019/day_19/day_19.md#day-19-tractor-beam)                      | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/year_2019/day_19/day_19.py) |                                                                                        |
 | 20 | [Donut Maze                          ](events/year_2019/day_20/day_20.md#day-20-donut-maze)                        | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/year_2019/day_20/day_20.py) |                                                                                        |
