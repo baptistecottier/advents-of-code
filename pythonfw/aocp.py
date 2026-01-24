@@ -236,6 +236,11 @@ def _submit_answer(answer, part, puzzle):
 
     part_letter = "a" if part == 1 else "b"
 
+    # First check if we already have the correct answer stored
+    stored_answer = getattr(puzzle, f'answer_{part_letter}', None)
+    if stored_answer and str(answer) == str(stored_answer):
+        return None, "already solved with same answer"
+
     with redirect_stdout(stdout_capture), redirect_stderr(stderr_capture):
         if isinstance(answer, builtins.tuple):
             fixed_part, fixed_answer = answer
@@ -249,30 +254,33 @@ def _submit_answer(answer, part, puzzle):
 
 def _parse_submission_result(submit_result, output):
     """Parse AOC submission result and return status info."""
-    # Define status mappings
-    correct_statuses = [
-        (submit_result is None and "aocd will not submit" in output,
-            "✅ Correct (already known)", "green"),
-        ("already solved with same answer" in output, "✅ Correct (already solved)", "green"),
-        ("That's the right answer" in output, "🎉 Correct (new submission)", "green")
-    ]
-
+    
+    # Check for incorrect answers FIRST (more specific conditions)
     incorrect_statuses = [
-        ("already solved with different answer" in output,
-         "🤔 Incorrect (but already solved)", "yellow", True),
+        ("It is certain that" in output and "is incorrect" in output, "❌ Incorrect (verified wrong)", "red", True),
+        ("already solved with different answer" in output, "🤔 Incorrect (but already solved)", "yellow", True),
         ("That's not the right answer" in output, "❌ Incorrect", "red", False),
         ("You gave an answer too recently" in output, "⏰ Rate limited", "yellow", False)
     ]
-
-    # Check for correct answers
+    
+    for condition, message, color, is_solved in incorrect_statuses:
+        if condition:
+            return False, is_solved, color_text(message, color)
+    
+    # Then check for correct answers
+    correct_statuses = [
+        ("already solved with same answer" in output, "✅ Correct (already solved)", "green"),
+        # Only match "That's the right answer" if it's not in a historical context
+        ("That's the right answer" in output and "previously submitted" not in output, "🎉 Correct (new submission)", "green")
+    ]
+    
     for condition, message, color in correct_statuses:
         if condition:
             return True, True, color_text(message, color)
 
-    # Check for incorrect answers
-    for condition, message, color, is_solved in incorrect_statuses:
-        if condition:
-            return False, is_solved, color_text(message, color)
+    # Handle cases where aocd refuses to submit (but we don't know why)
+    if submit_result is None and "aocd will not submit" in output:
+        return False, False, color_text("⚠️ aocd refused submission", "yellow")
 
     # Default case for unexpected responses
     print(f"  ⚠️  Unexpected submission response:\n{output}")
