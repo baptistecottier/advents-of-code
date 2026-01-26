@@ -55,7 +55,7 @@ def get_otp_key(salt: str, recursions: int = 1) -> list[int]:
         for start in range(28):
             if md5_hash[start: start + 5] == md5_hash[start] * 5:
                 target = md5_hash[start: start + 3]
-                for candidate in range(max(0, index - 1000) + 1, index):
+                for candidate in range(max(0, index - 1001) + 1, index):
                     if candidate in hashes:
                         candidate_hash = hashes[candidate]
                     else:

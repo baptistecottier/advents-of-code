@@ -46,7 +46,7 @@ def solver(strings: str) -> tuple[int, int]:
         l_str = len(string) - 1
         if (
             any(string.count(pair) > 1 for pair in (string[i: i + 2] for i in range(l_str)))
-            and any(a == c and a != b for (a, b, c) in (string[i: i + 3] for i in range(l_str - 1)))
+            and any(a == c for (a, _, c) in (string[i: i + 3] for i in range(l_str - 1)))
         ):
             nice_new_rules += 1
 
