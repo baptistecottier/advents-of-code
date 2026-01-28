@@ -3,50 +3,69 @@ Advent of Code - Year 2023 - Day 12
 https://adventofcode.com/2023/day/12
 """
 
+from functools import cache
 from collections.abc import Iterator
-from itertools import product
 
 
 def preprocessing(puzzle_input: str) -> list[tuple[str, list[int]]]:
     """
-    Parses the puzzle input into a sorted list of tuples containing condition strings and
+    Parses the puzzle input into a list of tuples containing condition strings and
     corresponding integer patterns.
     """
     records = []
-    for conditions, pattern in (line.split(' ') for line in puzzle_input.splitlines()):
-        pattern = [int(p) for p in pattern.split(',')]
-        records.append((conditions, pattern))
-    return sorted(records, key=lambda x: len(x[0]))
+    for conditions, groups in (line.split(' ') for line in puzzle_input.splitlines()):
+        groups = [int(p) for p in groups.split(',')]
+        records.append((conditions, groups))
+    return records
 
 
 def solver(records: list[tuple[str, list[int]]]) -> Iterator[int]:
     """
-    Yields the result of testing the provided records using the test function.
+    Solves both parts of the spring records problem using dynamic programming.
     """
-    yield test(records)
-    # yield test(records, 4) # Theoritically correct
+    yield sum(count_arrangements(condition, tuple(groups))
+              for condition, groups in records)
+    yield sum(count_arrangements('?'.join([condition] * 5), tuple(groups * 5))
+              for condition, groups in records)
 
 
-def test(records: list[tuple[str, list[int]]], rep: int = 0) -> int:
+def count_arrangements(condition: str, groups: tuple[int, ...]) -> int:
     """
-    Counts the number of valid arrangements of '#' and '.' in the given records that match the
-    specified patterns, optionally repeating them.
+    Count valid arrangements using dynamic programming with memoization.
     """
-    cnt = 0
-    for condition, pattern in records:
-        condition += f'?{condition}' * rep
-        pattern += rep * pattern
-        nb_jokers = condition.count('?')
-        k = condition.count('#')
-        for jokers in product(['#', '.'], repeat=nb_jokers):
-            if jokers.count('#') != sum(pattern) - k:
-                continue
-            c = condition
-            j = list(jokers)
-            while j:
-                c = c.replace('?', j.pop(), 1)
-            if c.count('#') == sum(pattern):
-                test_value = [item.count('#') for item in c.split('.') if item != '']
-                if test_value == pattern:
-                    cnt += 1
-    return cnt
+    return _cnt_arrgmnts(condition, groups, 0, 0, 0)
+
+
+@cache
+def _cnt_arrgmnts(
+        condition: str,
+        groups: tuple[int, ...],
+        pos: int,
+        group_index: int,
+        group_size: int) -> int:
+    """
+    Dynamic programming function to count arrangements.
+    """
+    if pos == len(condition):
+        if group_index == len(groups) and group_size == 0:
+            return 1
+        if group_index == len(groups) - 1 and group_size == groups[group_index]:
+            return 1
+        return 0
+
+    possible_chars = {'#': '#', '.': '.', '?': '#.'}
+    record = condition[pos]
+    total = 0
+
+    for c in possible_chars[record]:
+        if c == '.':
+            if group_size == 0:
+                total += _cnt_arrgmnts(condition, groups, pos + 1, group_index, 0)
+            elif group_size == groups[group_index]:
+                total += _cnt_arrgmnts(condition, groups, pos + 1, group_index + 1, 0)
+
+        elif c == '#':
+            if group_index < len(groups) and group_size < groups[group_index]:
+                total += _cnt_arrgmnts(condition, groups, pos + 1, group_index, group_size + 1)
+
+    return total
