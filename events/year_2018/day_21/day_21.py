@@ -1,80 +1,62 @@
 """
 Advent of Code - Year 2018 - Day 21
 https://adventofcode.com/2018/day/21
+
+Fast solution that implements the algorithm directly instead of simulating the VM.
 """
 
-# Standard imports
 from collections.abc import Iterator
 
-# First party import
-from events.year_2018.day_19.day_19 import update_reg
 
-
-def preprocessing(puzzle_input: str) -> tuple[int,
-                                              list[tuple[str, int, int, int]],
-                                              tuple[int, int]]:
+def preprocessing(puzzle_input: str) -> int:
     """
-    Parses the puzzle input and extracts the instruction pointer, instructions, and the instruction
-    involving register 0.
-
-    Args:
-        puzzle_input (str): The raw input string representing the instructions.
-
-    Returns:
-        tuple: (ip, instructions, inst_with_reg_0)
-            ip (int): The instruction pointer index.
-            instructions (list): List of instructions as tuples (op, a, b, c).
-            inst_with_reg_0 (tuple): Tuple containing the line index and register index where
-            register 0 is involved.
+    Extracts and returns the initial value from line 8 of the puzzle input.
     """
-    instructions = []
+
     lines = puzzle_input.splitlines()
-    ip = int(lines.pop(0)[-1])
-    inst_with_reg_0 = (-1, -1)
-
-    for n, line in enumerate(lines):
-        details = line.split()
-        a, b, c = list(int(n) for n in details[1:])
-        if 0 in [a, b] and 'r' in details[0]:
-            inst_with_reg_0 = (n, a if b == 0 else b)
-        instructions.append((details[0], a, b, c))
-
-    if inst_with_reg_0 == (-1, -1):
-        raise ValueError("At least one instruction must imply register 0")
-    return ip, instructions, inst_with_reg_0
+    initial_value = int(lines[8].split()[1])
+    return initial_value
 
 
-def solver(ip: int,
-           instructions: list[tuple[str, int, int, int]],
-           inst_with_reg_0: tuple[int, int]) -> Iterator[int]:
+def generate_sequence(initial_value: int) -> Iterator[int]:
     """
-    Simulates the program and yields values of the register involved with register 0 at the special
-    instruction.
-
-    Args:
-        ip (int): The instruction pointer index.
-        instructions (list): List of instructions as tuples (op, a, b, c).
-        inst_with_reg_0 (tuple): Tuple containing the line index and register index where register
-        0 is involved.
-
-    Yields:
-        int: The value of the register at the special instruction (first and last unique value
-        before repetition).
+    Generate the sequence of values that the assembly program produces.
+    This is a reverse-engineered version of the VM program.
     """
-    line_inst_with_0, register_with_0 = inst_with_reg_0
-    expected = 0
-    visited = set()
-    reg = [0, 0, 0, 0, 0, 0]
+    r1 = 0
 
     while True:
-        if reg[ip] == line_inst_with_0:
-            if expected == 0:
-                yield reg[register_with_0]
-            if reg[register_with_0] in visited:
-                yield expected
-                break
-            expected = reg[register_with_0]
-            visited.add(expected)
+        r4 = r1 | 65536
+        r1 = initial_value
 
-        update_reg(reg, instructions[reg[ip]])
-        reg[ip] += 1
+        while True:
+            r5 = r4 & 255
+            r1 = (r1 + r5) & 16777215
+            r1 = (r1 * 65899) & 16777215
+
+            if r4 < 256:
+                break
+            r4 //= 256
+
+        yield r1
+
+
+def solver(initial_value: int) -> Iterator[int]:
+    """
+    Finds the first and last unique values in a sequence before a cycle is detected.
+    """
+    seen_values = set()
+    previous_value = 0
+    first_yield = True
+
+    for value in generate_sequence(initial_value):
+        if first_yield:
+            yield value
+            first_yield = False
+
+        if value in seen_values:
+            yield previous_value
+            return
+
+        seen_values.add(value)
+        previous_value = value
