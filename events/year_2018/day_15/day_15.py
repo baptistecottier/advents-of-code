@@ -191,14 +191,16 @@ def move(unit: Unit, units: list[Unit], cave: set[tuple[int, int]]) -> tuple[int
     ux = nx = unit.x
     uy = ny = unit.y
     min_dist = 1_000
-
     for start in [(ux, uy - 1), (ux - 1, uy), (ux + 1, uy), (ux, uy + 1)]:
         adv_dist, adv_unit = find_closest_adversary(
                                 start,
                                 cave.copy(),
                                 units,
                                 adv_type[unit.type])
-        if 0 <= adv_dist < min_dist:
+        if (0 <= adv_dist < min_dist
+            or (adv_unit is not None and target is not None
+                and adv_dist == min_dist
+                and (adv_unit.y, adv_unit.x) < (target.y, target.x))):
             target = adv_unit
             nx, ny = start
             min_dist = adv_dist

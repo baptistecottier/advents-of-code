@@ -37,51 +37,33 @@ def preprocessing(puzzle_input: str) -> tuple[dict[tuple[int, int], str], list[C
 def solver(circuit: dict[tuple[int, int], str], carts: list[Cart]) -> tuple[str, str]:
     """
     Simulates cart movement on a circuit until only one cart remains.
-
-    Args:
-        circuit: Dictionary mapping (x,y) coordinates to track characters ('+', '\\', '/')
-        carts: List of Cart objects with position, velocity, and choice state
-
-    Returns:
-        Tuple of (first_crash_location, last_cart_location) as strings
-
-    Raises:
-        ValueError: If no crash occurs during simulation
-
-    Examples:
-        >>> circuit = {(0,0): '+', (1,0): '-'}
-        >>> carts = [Cart(0, 0, 1, 0), Cart(2, 0, -1, 0)]
-        >>> solver(circuit, carts)
-        ('1,0', '0,0')
     """
-    tick = 0
-    first_crash = None
+    first_crash = ""
+    new_carts = []
 
-    while len(carts) != 1:
+    while True:
         cart = carts.pop()
         cart.move()
+        crash = False
+        for _carts in [carts, new_carts]:
+            for c in _carts:
+                if cart.xy() == c.xy():
+                    if first_crash == "":
+                        first_crash = str(cart)
+                    _carts.remove(c)
+                    crash = True
 
-        if cart.xy() in (item.xy() for item in carts):
-            carts = list(item for item in carts if item.xy() != cart.xy())
-            if first_crash is None:
-                first_crash = str(cart)
-            continue
-
-        match (circuit[cart.xy()], abs(cart.vel.x)):
-            case ('+', _):
-                if cart.choice == 0:
-                    cart.rotate_left()
-                elif cart.choice == 2:
-                    cart.rotate_right()
+        if not crash:
+            match (circuit[cart.xy()], abs(cart.vel.x), cart.choice):
+                case ('\\', 0, _) | ('/', 1, _) | ('+', _, 0): cart.rotate_left()
+                case ('\\', 1, _) | ('/', 0, _) | ('+', _, 2): cart.rotate_right()
+            if circuit[cart.xy()] == '+':
                 cart.choice = (cart.choice + 1) % 3
-            case ('\\', 0) | ('/', 1): cart.rotate_left()
-            case ('\\', 1) | ('/', 0): cart.rotate_right()
+            new_carts.append(cart)
 
-        carts.insert(0, cart)
-        if (tick := tick + 1) % len(carts) == 0:
-            carts.sort(reverse=True, key=lambda x: x.pos)
-
-    if first_crash is None:
-        raise ValueError("No crash occurs!")
-
-    return first_crash, str(carts[0])
+        if carts == []:
+            if len(new_carts) == 1:
+                last_cart = new_carts.pop()
+                return first_crash, last_cart
+            carts = sorted(new_carts, reverse=True, key=lambda x: x.pos)
+            new_carts.clear()

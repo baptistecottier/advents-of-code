@@ -57,13 +57,13 @@ def run(ip: int, instructions: list[tuple[str, int, int, int]], reg_zero: int) -
     """
     cycle = 1
     reg = [reg_zero, 0, 0, 0, 0, 0]
-    while reg[5] == 0:
+    while any(r == 0 for r in reg[1:]):
         update_reg(reg, instructions[reg[ip]])
         cycle += 1
         reg[ip] += 1
         if reg[ip] + 1 > len(instructions):
             return reg[0]
-    return sum_divisors(reg[3])
+    return sum_divisors(max(reg))
 
 
 def sum_divisors(n: int) -> int:
