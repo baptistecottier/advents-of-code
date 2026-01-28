@@ -22,7 +22,7 @@ Starting from year 2025, Advent of Code contains 12 days, thus only 24 stars are
 :---:         | :---:  | :---:  |
 [2024](#2024) |  50    |  22    |
 [2023](#2023) |  39    |  12    |
-[2022](#2022) |  35    |  18    |
+[2022](#2022) |  42    |  18    |
 [2021](#2021) |  33    |   8    |
 [2020](#2020) |  50    |  16    |
 
@@ -194,7 +194,7 @@ aocr 2024 1-5             # Run days 1-5
 | 21 | [Monkey Math                 ](events/year_2022/day_21/day_21.md#day-21-monkey-math)              | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/year_2022/day_21/day_21.py) |                                                                                        |
 | 22 | [Monkey Map                  ](events/year_2022/day_22/day_22.md#day-22-monkey-map)               | [⭐  ](https://github.com/baptistecottier/advents-of-code/tree/main/events/year_2022/day_22/day_22.py) |                                                                                        |                                                                           |                                                                                      |                                                                                        |
 | 23 | [Unstable Diffusion          ](events/year_2022/day_23/day_23.md#day-23-unstable-diffusion)       | 
-| 24 | Blizzard Basin                                                                       |                                                                                      |                                                                                        |
+| 24 | [Blizzard Basin              ](events/year_2022/day_24/day_24.md#day-24-blizzard-bassin)          | [⭐⭐](https://github.com/baptistecottier/advents-of-code/tree/main/events/year_2022/day_24/day_24.py) |                                                                                        |                                                                              |                                                                                        |
 | 25 | [Full of Hot Air             ](events/year_2022/day_25/day_25.md#day-25-full-of-hot-air)          | [⭐  ](https://github.com/baptistecottier/advents-of-code/tree/main/events/year_2022/day_25/day_25.py) |                                                                                        |                                                                           |                                                                                      |                                                                                        |
 
 </details>

@@ -1,83 +1,107 @@
-# type: ignore
-# pylint: skip-file
-# flake8: noqa
-
 """
 Advent of Code - Year 2022 - Day 24
 https://adventofcode.com/2022/day/24
 """
 
-def preprocessing(puzzle_input):
+from collections import deque, defaultdict
+import math
+
+
+def extract_map(lines):
+    """
+    Extracts walls and blizzard positions from input lines, computing blizzard locations for all
+    time steps. Returns a set of wall coordinates and a dictionary mapping time to sets of blizzard
+    positions.
+    """
     walls = set()
-    blizzards = defaultdict(set)
-    for y, line in enumerate(puzzle_input.splitlines()):
-        for x, c in enumerate(line):
+    blizzards = []
+    w = len(lines[0]) - 2
+    h = len(lines) - 2
+
+    for y, line in enumerate(lines, -1):
+        for x, c in enumerate(line, -1):
             match c:
                 case '#': walls.add((x, y))
-                case '>': blizzards[(x, y)].add((1, 0))
-                case 'v': blizzards[(x, y)].add((0, 1))
-                case '<': blizzards[(x, y)].add((-1, 0))
-                case '^': blizzards[(x, y)].add((0, -1))
-                case '.': 
-                    if y == 0: start = x
-                    else: end = x
-    return walls, blizzards, start, (end, y), x
+                case '>': blizzards.append((x, y, 1, 0))
+                case 'v': blizzards.append((x, y, 0, 1))
+                case '<': blizzards.append((x, y, -1, 0))
+                case '^': blizzards.append((x, y, 0, -1))
+                case _:
+                    continue
 
-from collections import deque
-def solver(walls, blizzards, start, end, w):
-    _, h = end
-    queue = deque([[(start, 0)]])
-    seen = set([(start, 0)])
-    len_path = 1
-    blizzards = update(blizzards, h, w)
+    blizzard_by_minute = defaultdict(set)
+
+    for t in range(math.lcm(w, h)):
+        for bx, by, dx, dy in blizzards:
+            blizzard_by_minute[t].add((
+                (bx + dx * t) % w,
+                (by + dy * t) % h))
+
+    return walls, blizzard_by_minute
+
+
+def preprocessing(puzzle_input):
+    """
+    Parses puzzle input to extract walls, blizzard positions at each time step, start/end points,
+    and grid dimensions. Returns preprocessed data structures for pathfinding through a
+    blizzard-filled valley.
+    """
+    lines = puzzle_input.splitlines()
+
+    walls, blizzards_by_minute = extract_map(lines)
+
+    h = len(lines) - 2
+    x_start = lines[0].index('.') - 1
+    walls.add((x_start, -2))
+
+    x_end = lines[-1].index('.') - 1
+    walls.add((x_end, h + 1))
+
+    return walls, blizzards_by_minute, (x_start, -1), (x_end, h)
+
+
+def solver(walls, blizzard_by_minute, start, target):
+    """
+    Solves the blizzard crossing puzzle by finding the shortest path from start to target,
+    then back to start, and finally back to target again.
+    """
+
+    time_1 = cross_blizzard(walls, blizzard_by_minute, start, target, 0)
+    yield time_1
+    time_2 = cross_blizzard(walls, blizzard_by_minute, target, start, time_1)
+    time_3 = cross_blizzard(walls, blizzard_by_minute, start, target, time_2)
+    yield time_3
+
+
+def cross_blizzard(walls, blizzard_by_minute, start, target, minutes):
+    """
+    Find the shortest path from start to target while avoiding moving blizzards using BFS.
+    Returns the minimum time needed to reach the target position.
+    """
+
+    queue = deque([(*start, minutes)])
+    visited = set()
+    cycle_length = len(blizzard_by_minute)
+
     while queue:
-        moved = False
-        path = queue.popleft()
-        print(path)
-        if len(path) == len_path + 1:
-            blizzards = update(blizzards, h, w)
-            # print(blizzards)
-            len_path += 1
-            print(len_path)
-        x, y = path[-1]
-        if (x, y) == end:
-            print(path)
-            yield len(path) - 1
-            break
-        for x2, y2 in ((x + 1, y), (x - 1, y), (x, y + 1), (x, y - 1)):
-            if (x2, y2) not in blizzards.keys() and (x2, y2) not in walls and y2 >= 0 and x2 >= 0:
-                queue.append(path + [(x2, y2)])
-                seen.add((x2, y2))
-                moved = True
-        if not moved: queue.append(path + [(x, y)])
+        x, y, time = queue.popleft()
 
+        if (x, y) == target:
+            return time
 
-from collections import defaultdict
-def update(blizzards, h, w):
+        state = (x, y, time % cycle_length)
+        if state in visited:
+            continue
+        visited.add(state)
 
-    print('#' * (w + 1))
-    for dy in range(1, h):
-        line = "#"
-        for dx in range(1, w):
-            if (dx, dy) not in blizzards.keys():
-                line += "."
-            elif len(blizzards[(dx, dy)]) > 1: 
-                line += str(len(blizzards[(dx, dy)]))
-            else:
-                a, b = blizzards[(dx, dy)].pop()
-                line += {(1, 0): '>', (-1, 0): '<', (0, 1): 'v', (0, -1): '^'}[(a, b)]
-                blizzards[(dx, dy)].add((a, b))
-        print(line+"#")
-    print('#' * (w + 1))
-    new = defaultdict(set)
-    for (x, y), v in blizzards.items():
-        for dx, dy in v:
-            tx = x + dx
-            if tx > (w - 1): tx = 1
-            if tx < 1 : tx = w - 1
-            ty = (y + dy)
-            if ty > (h - 1): ty = 1
-            if ty < 1: ty = h - 1
-            new[(tx, ty)].add((dx, dy))
-    return new
+        for dx, dy in [(0, 0), (-1, 0), (1, 0), (0, -1), (0, 1)]:
+            pos = x + dx, y + dy
 
+            if pos in walls:
+                continue
+
+            if pos in blizzard_by_minute[(time + 1) % cycle_length]:
+                continue
+
+            queue.append((*pos, time + 1))
+    raise ValueError("Too much blizzard! Target unreachable!")
