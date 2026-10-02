@@ -10,7 +10,7 @@ from itertools import product
 from parse import parse, Result
 
 
-def preprocessing(puzzle_input: str) -> dict[int, list[int]]:
+def preprocessing(puzzle_input: str) -> list[list[int]]:
     """
     Parse and sort timestamped records from puzzle input, extracting date and time components.
     """
@@ -21,16 +21,18 @@ def preprocessing(puzzle_input: str) -> dict[int, list[int]]:
         if isinstance(result, Result):
             if "Guard" in result[5]:
                 guard_id = int(result[5].split(' ')[2][1:])
-                continue
-            records.append((result[4], guard_id))
-    timesheet = get_timesheet(records)
-    return timesheet
+            else:
+                guard_id = -1
+            records.append(result[:5] + (guard_id,))
+    return records
 
 
-def solver(timesheet: dict[int, list[int]]) -> tuple[int, int]:
+def solver(records: list[list[int]]) -> tuple[int, int]:
     """
     Solve guard duty puzzle using two strategies to find optimal guard-minute combinations.
     """
+    timesheet = get_timesheet(records)
+
     lazy_guard = max(timesheet.keys(),
                      key=lambda g: sum(timesheet[g]))
     strategy_1 = lazy_guard * timesheet[lazy_guard].index(max(timesheet[lazy_guard]))
@@ -41,16 +43,19 @@ def solver(timesheet: dict[int, list[int]]) -> tuple[int, int]:
     return strategy_1, strategy_2
 
 
-def get_timesheet(records: list[tuple[int, ...]]) -> dict[int, list[int]]:
+def get_timesheet(records) -> dict[int, list[int]]:
     """
     Generate a timesheet tracking sleep minutes for guards from shift records.
     """
     timesheet = {}
-    for i in range(0, len(records), 2):
-        (start_m, guard_id) = records[i]
-        (end_m, guard_id) = records[i+1]
-        if guard_id not in timesheet:
-            timesheet[guard_id] = [0 for _ in range(60)]
-        for j in range(start_m, end_m):
-            timesheet[guard_id][j] += 1
+    guard = 0
+
+    for i, record in enumerate(records[:-1]):
+        if record[-1] == -1:
+            for j in range(record[-2], records[i+1][-2]):
+                timesheet[guard][j] += 1
+        else:
+            guard = record[-1]
+            if guard not in timesheet:
+                timesheet[guard] = [0 for _ in range(60)]
     return timesheet
