@@ -14,13 +14,13 @@ __pycache__/
 # Virtual environment
 .venv/
 
-# Framework files (auto-generated)
-pythonfw/classes.py
-pythonfw/functions.py
-pythonfw/ship_computer.py
+# Puzzle inputs (Advent of Code asks not to publish them)
+*.input
+.puzzle-submitter/
+
+# Local Rust build configuration
 rustfw/Cargo.lock
 rustfw/Cargo.toml
-rustfw/src/lib.rs
 
 # Config files
 .pylintrc
