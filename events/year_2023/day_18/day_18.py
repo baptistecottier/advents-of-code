@@ -1,42 +1,47 @@
-# pylint: skip-file
-# flake8: noqa
-# type: ignore
-
 """
 Advent of Code - Year 2023 - Day 18
 https://adventofcode.com/2023/day/18
 """
 
-def preprocessing(puzzle_input): 
-    x, y = 0, 0
-    board = set()
+from shapely import Polygon
+
+
+def preprocessing(puzzle_input: str) -> list[Polygon]:
+    """
+    Returns polygons formed by each instructions parameters.
+    """
+    x1, y1 = 0, 0
+    x2, y2 = 0, 0
+    instructions = [[(0, 0)], [(0, 0)]]
     for line in puzzle_input.splitlines():
-        # print(line)
-        d, n, h = line.split(' ')
-        match h[-2]: 
-            case '0' : dx, dy = 1, 0
-            case '2' : dx, dy = -1, 0
-            case '3' : dx, dy = 0, -1
-            case '1' : dx, dy = 0, 1
-        for _ in range(int(h[2:-2], 16)):
-            x, y = x + dx, y + dy
-            board.add((x, y))
-    return board
-from collections import deque
+        d1, n1, h = line.split(' ')
 
-def fill(maze, start):
-    queue = deque([[start]])
-    seen = set([start])
-    
-    while queue:
-        path = queue.popleft()
-        x, y = path[-1]
-        for x2, y2 in ((x + 1, y), (x - 1, y), (x, y + 1), (x, y - 1)):
-            if (x2, y2) not in seen and (x2, y2) not in maze:
-                queue.append((x2, y2))
-                seen.add((x2, y2))
-    return len(seen)
+        # Proceed with first approach
+        dx = (1, 0, -1, 0)["RDLU".index(d1)]
+        dy = (0, 1, 0, -1)["RDLU".index(d1)]
+        n1 = int(n1)
+        x1, y1 = x1 + n1 * dx, y1 + n1 * dy
+        instructions[0].append((x1, y1))
 
-def solver(board):
-    yield len(board) + fill(board, (1, 1))
+        # Proceed with second approach
+        d2 = int(h[-2]) % 4
+        dx = (1, 0, -1, 0)[d2]
+        dy = (0, 1, 0, -1)[d2]
+        n2 = int(h[2:-2], 16)
+        x2, y2 = x2 + n2 * dx, y2 + n2 * dy
+        instructions[1].append((x2, y2))
+    instructions[0].append((0, 0))
+    instructions[1].append((0, 0))
+    return [
+        Polygon(instructions[0]),
+        Polygon(instructions[1])
+    ]
 
+
+def solver(polygons: list[Polygon]):
+    """
+    Compute the number of cubic meters of lava the lagoon could hold using the Pick's
+    theorem.
+    """
+    for poly in polygons:
+        yield int(poly.length // 2 + poly.area) + 1

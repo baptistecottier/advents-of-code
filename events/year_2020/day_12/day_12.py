@@ -39,10 +39,10 @@ def navigate(instructions: list[tuple[str, int]], velocity: tuple[int, int], att
             case 'W': tx = -val
             case 'L':
                 for _ in range(val // 90):
-                    ferry.rotate_left()
+                    ferry.rotate_right()
             case 'R':
                 for _ in range(val // 90):
-                    ferry.rotate_right()
+                    ferry.rotate_left()
             case 'F':
                 for _ in range(val):
                     ferry.move()

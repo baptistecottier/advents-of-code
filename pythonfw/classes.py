@@ -128,3 +128,9 @@ class Particule2D():
         self.vel.y += self.acc.y
         self.pos.x += self.vel.x
         self.pos.y += self.vel.y
+    
+    def move_in_path(self, path):
+        """Checks if the particle can move to the next position and moves if possible."""
+        if (self.pos.x + self.vel.x, self.pos.y + self.vel.y) in path:
+            return True
+        return False

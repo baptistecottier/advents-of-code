@@ -12,14 +12,16 @@ class Program(defaultdict):
     A class that simulates an Intcode-like virtual machine with support for parameter modes, memory
     management, and input/output operations.
     """
-    def __init__(self, intcode, phase=None):
+    def __init__(self, intcode, inputs=None):
         self.memory: defaultdict = defaultdict(int)
         for n, v in enumerate(intcode):
             self.memory[n] = v
         self.ptr: int = 0
         self.base: int = 0
         self.halt: bool = False
-        self.phase: None | int = phase
+        if isinstance(inputs, int):
+            inputs = [inputs]
+        self.inputs: None | list = inputs
 
     def get_memory(self):
         """
@@ -63,9 +65,10 @@ class Program(defaultdict):
 
                 case 3:
                     i_out, = self.extract_indexes(op, 1)
-                    if self.phase is not None:
-                        self.memory[i_out] = self.phase
-                        self.phase = None
+                    if self.inputs is not None:
+                        self.memory[i_out] = self.inputs.pop(0)
+                        if self.inputs == []:
+                            self.inputs = None
                     else:
                         self.memory[i_out] = signal.pop(0)
 

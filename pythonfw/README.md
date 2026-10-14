@@ -1,132 +1,36 @@
-# AOCP - Advent of Code Python Framework
+# Python
 
-A command-line tool for running Advent of Code puzzle solutions and displaying results in a scoreboard. This tool uses a cookie to reach the expected answers and determine if the solution you provided is correct or not.
+Code shared by the Python solutions, and the benchmark behind the [scoreboard](../README.md#scoreboard).
 
-## Command-Line Usage
+## Solutions
 
-```
-aocp <year> [options]
-aocp <year> <day> [options]
-aocp <year> --days <days> [options]
-```
-
-### Arguments
-
-- `<year>`: The year to run (e.g., 2015, 2023)
-- `<day(s)>`: Optional day(s) to run (format examples below)
-
-### Day Selection
-
-```bash
-aocp 2015 1                     # Run a single day
-aocp 2015 --days 1-5            # Run a range of days
-aocp 2015 --days 1,3,7,12,25    # Run specific days
-aocp 2015 --days 1-3,7,12-15,25 # Run mixed ranges and specific days
-aocp 2015                       # Run all days in a year
-```
-
-### Options
-
-- `-q, --quiet`: Show only the scoreboard (suppress solver output)
-- `-t, --timeout <seconds>`: Set timeout per day (default: 60)
-
-### Examples
-
-```bash
-# Run day 1 of 2015
-aocp 2015 1
-
-# Run days 1-10 with quiet output
-aocp 2015 --days 1-10 --quiet
-
-# Run days 1, 5, and 10-15 with 30 second timeout
-aocp 2023 --days 1,5,10-15 --timeout 30
-
-# Run all days of 2024 quietly
-aocp 2024 --quiet
-```
-
-## 📊 Progress Summary
-
-| Year | Progress | Score
-| :-: | -: | -: |
-| 2025 |     | 0/24 |
-| 2024 | ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐    | 50/50 |
-| 2023 | ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐                   | 31/50 |
-| 2022 | ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐                 | 35/50 |
-| 2021 | ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐                   | 33/50 |
-| 2020 | ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐      | 48/50 |
-| 2019 | ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐                | 37/50 |
-| 2018 | ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐       | 45/50 |
-| 2017 | ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐    | 50/50 |
-| 2016 | ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐    | 50/50 |
-| 2015 | ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐    | 50/50 |
-||**Total** |429/524
-
-## Solver File Format
-
-Each day's solution should be in a file with a `solve(data)` function that returns a tuple of answers.
-
-Example: `events/year_2015/day_01/day_01.py`
+Each day is `events/year_YYYY/day_DD/day_DD.py`, run and submitted with
+[Puzzle Submitter](https://github.com/baptistecottier/puzzle-submitter-vscode):
 
 ```python
-def solve(data: str) -> tuple:
-    """
-    Solve the day's puzzle.
-    
-    Args:
-        data: Raw puzzle input as string
-        
-    Returns:
-        Tuple of (part1_answer, part2_answer)
-    """
-    lines = data.strip().split('\n')
-    
-    # Part 1 logic
-    part1 = 0
-    for line in lines:
-        part1 += int(line)
-    
-    # Part 2 logic
-    part2 = part1 * 2
-    
-    return (part1, part2)
+def preprocessing(puzzle_input: str):  # optional, parses the raw input
+    ...
+
+
+def solver(data):                      # returns, or yields, the answer of each part
+    yield part_1
+    yield part_2
 ```
 
-## Directory Structure
+When `preprocessing` returns a tuple, it is unpacked: `solver(*data)`.
+Helpers shared between days live in `functions.py` and `classes.py`.
 
-```
-events/
-├── year_2015/
-│   ├── day_01/
-│   │   ├── day_01.py       # Solver module with solve() function
-│   │   └── day_01.input    # Puzzle input file
-│   ├── day_02/
-│   │   ├── day_02.py
-│   │   └── day_02.input
-│   └── ...
-├── year_2016/
-│   └── ...
-└── ...
+## Benchmark
+
+```bash
+python pythonfw/benchmark.py                   # every year, Python and Rust
+python pythonfw/benchmark.py 2024 --days 1-5   # some days only
+python pythonfw/benchmark.py --lang python     # one language
+python pythonfw/benchmark.py --changed         # only what changed since its last run
+python pythonfw/benchmark.py --render          # redraw from events/benchmarks.json
 ```
 
-### Output
-
-Default mode shows detailed output for each day. Add `--quiet` to show only the final scoreboard:
-
-```
-🎯 Running 3 day(s) for year 2015
-📅 Days: 1, 2, 3
-
-======================================================================
-🏆 Scoreboard - Advent of Code 2015
-======================================================================
-Day    Status            Notes   │  Day    Status            Notes 
-----------------------------------------------------------------------
-01     ✅ Complete        ⭐⭐      │  02     ✅ Complete        ⭐⭐    
-03     ✅ Complete        ⭐⭐    
-======================================================================
-  3/3 days completed │ 6 ⭐ (100%)
-
-🏁 Completed 3/3 days successfully
-```
+Each day runs in its own process with a 5 minute timeout; the time covers preprocessing
+and solving. Answers are checked against the ones Puzzle Submitter recorded as correct.
+Results are stored in `events/benchmarks.json`, from which `scoreboard.py` writes the
+homepage scoreboard and the year pages.
