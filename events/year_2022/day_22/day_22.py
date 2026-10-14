@@ -23,8 +23,7 @@ def preprocessing(puzzle_input: str):
                 walls.add((x, y))
     dx, dy = turn_left((1, 0))
     path = []   
-    print("R" + raw_path)
-    for t, n in re.findall("(L|R)(\d+)", "R" + raw_path):
+    for t, n in re.findall(r"(L|R)(\d+)", "R" + raw_path):
         if t == 'L':
             dx, dy = turn_left((dx, dy))
             path.append((int(n), (dx, dy)))
@@ -46,6 +45,9 @@ def turn_right(dir):
 
 
 def solver(tiles, walls, path):
+    yield solver_map(tiles, walls, path)
+
+def solver_map(tiles, walls, path):
     both = walls.union(tiles)
     x, y = min(tiles, key=lambda x: (x[1], x[0]))
     dx = dy = 0
@@ -86,4 +88,59 @@ def solver(tiles, walls, path):
                 y = next_y
 
     facing = {(1, 0): 0, (0, 1): 1, (-1, 0): 2, (0, -1): 3}
-    yield 1_000 * (y + 1) + 4 * (x + 1) + facing[(dx, dy)]
+    return 1_000 * (y + 1) + 4 * (x + 1) + facing[(dx, dy)]
+
+
+def solver_dice(tiles, walls, path):
+    both = walls.union(tiles)
+    x, y = min(tiles, key=lambda x: (x[1], x[0]))
+    dx = dy = 0
+    for n, (dx, dy) in path:
+        for _ in range(n):
+            next_x, next_y = x + dx, y + dy
+            
+            # Check if next position is a wall
+            if (next_x, next_y) in walls:
+                continue
+            
+            # If next position is out of bounds, wrap around
+            if (next_x, next_y) not in tiles:
+                if y == 50 and 100 <= x < 150:
+                    x = 99
+                    y = 50 + (x - 100)
+                    dx = 0
+                    dy = -1
+                # match dx, dy:
+                #     case 1, 0:
+                #         tx = min(a for a, b in both if b == y)
+                #         if (tx, y) not in walls:
+                #             x = tx
+                #         continue
+                #     case -1, 0:
+                #         tx = max(a for a, b in both if b == y)
+                #         if (tx, y) not in walls:
+                #             x = tx
+                #         continue
+                #     case 0, 1:
+                #         ty = min(b for a, b in both if a == x)
+                #         if (x, ty) not in walls:
+                #             y = ty
+                #         continue
+                #     case 0, -1:
+                #         ty = max(b for a, b in both if a == x)
+                #         if (x, ty) not in walls:
+                #             y = ty
+                #         continue
+            else:
+                # Normal move to adjacent tile
+                x = next_x
+                y = next_y
+
+    facing = {(1, 0): 0, (0, 1): 1, (-1, 0): 2, (0, -1): 3}
+    return 1_000 * (y + 1) + 4 * (x + 1) + facing[(dx, dy)]
+
+
+#       1
+#   4   3   6
+#       5
+#     (2 derrière)
