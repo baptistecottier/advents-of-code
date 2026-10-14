@@ -3,27 +3,10 @@ revision = 3
 requires-python = ">=3.12"
 
 [[package]]
-name = "advent-of-code-data"
-version = "2.2.0"
-source = { registry = "https://pypi.org/simple" }
-dependencies = [
-    { name = "aocd-example-parser" },
-    { name = "beautifulsoup4" },
-    { name = "pebble" },
-    { name = "tzdata", marker = "sys_platform == 'win32'" },
-    { name = "urllib3" },
-]
-sdist = { url = "https://files.pythonhosted.org/packages/2f/bb/629bac90178b949420be5945d05b439ce5bd15f22c1b17b3de53e1cdaebc/advent_of_code_data-2.2.0.tar.gz", hash = "sha256:5116fec76f849671ff504a3c45f5b4e12b7a348527267abecefb9d35b954150c", size = 48040, upload-time = "2026-01-19T05:27:58.575Z" }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/13/a0/31dd15dcdd9b6dd14f57eceedc8187abce2de8de29f01572b9d0b3d08fd8/advent_of_code_data-2.2.0-py3-none-any.whl", hash = "sha256:01c2e7ad422deeb112f8efa2bfe4c4473b2645d429235b8b317fe4c12677119d", size = 39708, upload-time = "2026-01-19T05:27:57.238Z" },
-]
-
-[[package]]
 name = "advents-of-code"
 version = "0.1.0"
 source = { virtual = "." }
 dependencies = [
-    { name = "advent-of-code-data" },
     { name = "networkx" },
     { name = "numexpr" },
     { name = "parse" },
@@ -35,7 +18,6 @@ dependencies = [
 
 [package.metadata]
 requires-dist = [
-    { name = "advent-of-code-data", specifier = ">=2.1.1" },
     { name = "networkx", specifier = ">=3.2.1" },
     { name = "numexpr", specifier = ">=2.10.2" },
     { name = "parse", specifier = ">=1.22.1" },
@@ -43,28 +25,6 @@ requires-dist = [
     { name = "scipy", specifier = ">=1.13.1" },
     { name = "shapely", specifier = ">=2.0.7" },
     { name = "z3-solver", specifier = ">=4.16.0.0" },
-]
-
-[[package]]
-name = "aocd-example-parser"
-version = "2025.12.12"
-source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/3a/a0/eba53430b963fd1ad6f1cce5ed051295a24e948a23ab9efb1fa509638109/aocd_example_parser-2025.12.12.tar.gz", hash = "sha256:1ec8c3610e9afcdafe098fbcdb3c64e8dc88e2bbfe39b44f686b7d4b2709ca75", size = 14780, upload-time = "2026-01-19T04:10:10.043Z" }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/6b/ba/b2574b2c709e6f1a51173528466b0285372461d8f0ed13b5a2a530161712/aocd_example_parser-2025.12.12-py3-none-any.whl", hash = "sha256:64b55d9dbb6415f90684f7f00278003b785a52d9369113d81fa41d54430b38ae", size = 13211, upload-time = "2026-01-19T04:10:08.489Z" },
-]
-
-[[package]]
-name = "beautifulsoup4"
-version = "4.15.0"
-source = { registry = "https://pypi.org/simple" }
-dependencies = [
-    { name = "soupsieve" },
-    { name = "typing-extensions" },
-]
-sdist = { url = "https://files.pythonhosted.org/packages/43/65/318323f98dbee45d42dff61d8f047181bc6f2268a9068cfad035a46be5af/beautifulsoup4-4.15.0.tar.gz", hash = "sha256:288e3ca7d54b06f2ac191970bc275c1939cb46d450b255bf6718b04aa37ab4f7", size = 632571, upload-time = "2026-06-07T16:44:20.453Z" }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/88/c6/92fcd42f1ba33e1184263f25bfabf3d27c383410470f169e4b8163bf9c17/beautifulsoup4-4.15.0-py3-none-any.whl", hash = "sha256:d6f88de62e1d4e38ecb1077eb9724cd0eff29d2a08ca16a401e9b9e93f117cf9", size = 109924, upload-time = "2026-06-07T16:44:21.566Z" },
 ]
 
 [[package]]
@@ -185,15 +145,6 @@ source = { registry = "https://pypi.org/simple" }
 sdist = { url = "https://files.pythonhosted.org/packages/a4/f2/0b504486c2a5564798607d3860e48ed19c6443d5e9cc3ec61cc6b8b4ef58/parse-1.22.1.tar.gz", hash = "sha256:d3a4740ec3da338e2b258b2d69741b731eadfddca59e24a14bc4ee5fce38c911", size = 36970, upload-time = "2026-05-26T03:44:52.624Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/6f/c5/7c16e99869e1f422629092cfd23e3b58e461988c3f9c36fd3624bb4142e6/parse-1.22.1-py2.py3-none-any.whl", hash = "sha256:20f0925a46f06602485ac90d751764d0697fd8455aaa97489ba8953a4b66de32", size = 20925, upload-time = "2026-05-26T03:44:51.156Z" },
-]
-
-[[package]]
-name = "pebble"
-version = "5.2.0"
-source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/66/3b/7debef984e227a70798963cf2e5ea90882f62bca659b33cbd421a453abd1/pebble-5.2.0.tar.gz", hash = "sha256:8e0a5f6a1cfdd0ac1bfc4a789e20d2b4b895de976e547d23b7de23b71ef39b34", size = 39811, upload-time = "2026-01-25T12:05:11.422Z" }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/b5/de/1cce5274efcb921484998864820f2ba41679ea472daef748a7bc03fc0bb7/pebble-5.2.0-py3-none-any.whl", hash = "sha256:6237a792a78524648857ec6d2dae069c91a45bdef18daf957078a56e2dd8e0a8", size = 34881, upload-time = "2026-01-25T12:05:09.714Z" },
 ]
 
 [[package]]
@@ -384,42 +335,6 @@ wheels = [
     { url = "https://files.pythonhosted.org/packages/7c/75/c24ed871c576d7e2b64b04b1fe3d075157f6eb54e59670d3f5ffb36e25c7/shapely-2.1.2-cp314-cp314t-musllinux_1_2_x86_64.whl", hash = "sha256:361b6d45030b4ac64ddd0a26046906c8202eb60d0f9f53085f5179f1d23021a0", size = 4169511, upload-time = "2025-09-24T13:51:36.297Z" },
     { url = "https://files.pythonhosted.org/packages/b1/f7/b3d1d6d18ebf55236eec1c681ce5e665742aab3c0b7b232720a7d43df7b6/shapely-2.1.2-cp314-cp314t-win32.whl", hash = "sha256:b54df60f1fbdecc8ebc2c5b11870461a6417b3d617f555e5033f1505d36e5735", size = 1602607, upload-time = "2025-09-24T13:51:37.757Z" },
     { url = "https://files.pythonhosted.org/packages/9a/f6/f09272a71976dfc138129b8faf435d064a811ae2f708cb147dccdf7aacdb/shapely-2.1.2-cp314-cp314t-win_amd64.whl", hash = "sha256:0036ac886e0923417932c2e6369b6c52e38e0ff5d9120b90eef5cd9a5fc5cae9", size = 1796682, upload-time = "2025-09-24T13:51:39.233Z" },
-]
-
-[[package]]
-name = "soupsieve"
-version = "2.8.4"
-source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/47/2c/0a5f6f8ee0d5589e48c7640213ed5175d52cf540a06725b628cc1a45d6ce/soupsieve-2.8.4.tar.gz", hash = "sha256:e121fd02e975c695e4e9e8774a5ee35d74714b59307868dcc5319ad2d9e3328e", size = 121110, upload-time = "2026-05-24T13:55:57.154Z" }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/5e/f5/0c41cb68dcae6b7de4fac4188a3a9589e21fb31df21ea3a2e888db95e6c9/soupsieve-2.8.4-py3-none-any.whl", hash = "sha256:e7e6b0769c8f51ed59acab6e994b00621096cfb1c640a7509295987388fbaf65", size = 37304, upload-time = "2026-05-24T13:55:55.406Z" },
-]
-
-[[package]]
-name = "typing-extensions"
-version = "4.16.0"
-source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/f6/cc/6253133b5bb138fc3306cebfbda2c520f545d36b5be2c7255cc528bb45d6/typing_extensions-4.16.0.tar.gz", hash = "sha256:dc983d19a509c94dba722ee6abd33940f7c05a89e243c47e907eb4db6f1a43e5", size = 113555, upload-time = "2026-07-02T08:40:05.92Z" }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/49/d3/b8441a820a491ddfc024b0b0cf0393375b75ea13866d9c66727e54c2fc80/typing_extensions-4.16.0-py3-none-any.whl", hash = "sha256:481caa481374e813c1b176ada14e97f1f67a4539ce9cfeb3f350d78d6370c2e8", size = 45571, upload-time = "2026-07-02T08:40:04.659Z" },
-]
-
-[[package]]
-name = "tzdata"
-version = "2026.3"
-source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/92/ff/5a28bdfd8c3ebec42564ac7d0e54ca3db65044a9314a97f9564fa7a1e926/tzdata-2026.3.tar.gz", hash = "sha256:4a1518b8993086a7982523e071643f3c0e5f213e75b21318e78bcabfff9d1415", size = 198674, upload-time = "2026-07-10T08:50:37.887Z" }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/e5/6d/b53b99a9f2766d095985947a5782f1702cabb129a34f7a802d7197af832f/tzdata-2026.3-py2.py3-none-any.whl", hash = "sha256:dc096730c87af6cab1b171c9d532be840741ff5d459015e7f6947bd7d7e54931", size = 348168, upload-time = "2026-07-10T08:50:36.46Z" },
-]
-
-[[package]]
-name = "urllib3"
-version = "2.7.0"
-source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/53/0c/06f8b233b8fd13b9e5ee11424ef85419ba0d8ba0b3138bf360be2ff56953/urllib3-2.7.0.tar.gz", hash = "sha256:231e0ec3b63ceb14667c67be60f2f2c40a518cb38b03af60abc813da26505f4c", size = 433602, upload-time = "2026-05-07T16:13:18.596Z" }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/7f/3e/5db95bcf282c52709639744ca2a8b149baccf648e39c8cc87553df9eae0c/urllib3-2.7.0-py3-none-any.whl", hash = "sha256:9fb4c81ebbb1ce9531cce37674bbc6f1360472bc18ca9a553ede278ef7276897", size = 131087, upload-time = "2026-05-07T16:13:17.151Z" },
 ]
 
 [[package]]

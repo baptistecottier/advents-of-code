@@ -5,7 +5,6 @@ description = "Advent of Code solutions in Python and Rust"
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
-    "advent-of-code-data>=2.1.1",
     "networkx>=3.2.1",
     "numexpr>=2.10.2",
     "parse>=1.22.1",

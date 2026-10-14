@@ -18,10 +18,6 @@ __pycache__/
 *.input
 .puzzle-submitter/
 
-# Local Rust build configuration
-rustfw/Cargo.lock
-rustfw/Cargo.toml
-
 # Config files
 .pylintrc
 rename.py
