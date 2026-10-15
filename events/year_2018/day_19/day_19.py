@@ -94,17 +94,17 @@ def update_reg(reg: list[int], instruction: tuple[str, int, int, int]) -> None:
         case 'addi': reg[c] = reg[a] + b
         case 'mulr': reg[c] = reg[a] * reg[b]
         case 'muli': reg[c] = reg[a] * b
-        case 'gtrr': reg[c] = int(reg[a] > reg[b])
-        case 'eqrr': reg[c] = int(reg[a] == reg[b])
+        case 'gtrr': reg[c] = reg[a] > reg[b]
+        case 'eqrr': reg[c] = reg[a] == reg[b]
         case 'setr': reg[c] = reg[a]
         case 'seti': reg[c] = a
         case 'banr': reg[c] = reg[a] & reg[b]
         case 'bani': reg[c] = reg[a] & b
         case 'borr': reg[c] = reg[a] | reg[b]
         case 'bori': reg[c] = reg[a] | b
-        case 'gtir': reg[c] = int(a > reg[b])
-        case 'gtri': reg[c] = int(reg[a] > b)
-        case 'eqir': reg[c] = int(a == reg[b])
-        case 'eqri': reg[c] = int(reg[a] == b)
+        case 'gtir': reg[c] = a > reg[b]
+        case 'gtri': reg[c] = reg[a] > b
+        case 'eqir': reg[c] = a == reg[b]
+        case 'eqri': reg[c] = reg[a] == b
         case _:
             raise ValueError("Unknown operator")
