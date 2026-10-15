@@ -240,7 +240,7 @@
     "20": {"title": "Pulse Propagation", "python": {"status": "error", "parts": ["missing", "missing"], "time": null, "date": "2026-10-14", "error": "AttributeError: module 'day_20' has no attribute 'solver'", "code": "0745d13c286c"}},
     "21": {"title": "Step Counter", "python": {"status": "error", "parts": ["missing", "missing"], "time": null, "date": "2026-10-14", "error": "AttributeError: module 'day_21' has no attribute 'solver'", "code": "412b4ea5eda8"}},
     "22": {"title": "Sand Slabs", "python": {"status": "solved", "parts": ["ok", "ok"], "time": 0.1703, "date": "2026-10-14", "code": "a5fe4f99eda2"}},
-    "23": {"title": "A Long Walk", "python": {"status": "wrong", "parts": ["ok", "missing"], "time": 0.5744, "date": "2026-10-14", "code": "17fc4ca01662"}},
+    "23": {"title": "A Long Walk", "python": {"status": "solved", "parts": ["ok", "ok"], "time": 7.1193, "date": "2026-10-15", "code": "556ded2a005b"}},
     "24": {"title": "Never Tell Me The Odds", "python": {"status": "wrong", "parts": ["ok", "missing"], "time": 0.018, "date": "2026-10-14", "code": "d3d17ba1e897"}},
     "25": {"title": "Snowverload", "python": {"status": "wrong", "parts": ["unknown"], "time": 0.8733, "date": "2026-10-14", "code": "f8c9e5d0cbdc"}}
   },

@@ -4,12 +4,12 @@
 
 | | Python | Rust |
 | :-- | --: | --: |
-| Stars | 38/50 | 12/50 |
-| `█` solved in under 10 s | 17 | 6 |
+| Stars | 39/50 | 12/50 |
+| `█` solved in under 10 s | 18 | 6 |
 | `▓` solved in under 5 min | 0 | 0 |
-| `░` one part only | 4 | 0 |
+| `░` one part only | 3 | 0 |
 | ` ` not solved | 4 | 19 |
-| Time of solved days | 4.8 s | 48 ms |
+| Time of solved days | 11.9 s | 48 ms |
 
 | Day | Puzzle | Python |  | Rust |  |
 | --: | :-- | :-- | --: | :-- | --: |
@@ -35,7 +35,7 @@
 | 20 | [Pulse Propagation](https://adventofcode.com/2023/day/20) | ` ` [☆☆](day_20/day_20.py) | error | ` ` ☆☆ |  |
 | 21 | [Step Counter](https://adventofcode.com/2023/day/21) | ` ` [☆☆](day_21/day_21.py) | error | ` ` ☆☆ |  |
 | 22 | [Sand Slabs](https://adventofcode.com/2023/day/22) | `█` [★★](day_22/day_22.py) | 170 ms | ` ` ☆☆ |  |
-| 23 | [A Long Walk](https://adventofcode.com/2023/day/23) | `░` [★☆](day_23/day_23.py) | 574 ms | ` ` ☆☆ |  |
+| 23 | [A Long Walk](https://adventofcode.com/2023/day/23) | `█` [★★](day_23/day_23.py) | 7.1 s | ` ` ☆☆ |  |
 | 24 | [Never Tell Me The Odds](https://adventofcode.com/2023/day/24) | `░` [★☆](day_24/day_24.py) | 18 ms | ` ` ☆☆ |  |
 | 25 | [Snowverload](https://adventofcode.com/2023/day/25) | ` ` [?☆](day_25/day_25.py) | 873 ms | ` ` ☆☆ |  |
 
