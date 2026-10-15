@@ -1,5 +1,5 @@
 {
-  "meta": {"timeout": 300, "machine": "Apple M3", "date": "2026-10-14", "python": "3.12.13", "rust": "1.99.0"},
+  "meta": {"timeout": 300, "machine": "Apple M3", "date": "2026-10-15", "python": "3.12.13", "rust": "1.99.0"},
   "years": {
   "2015": {
     "1": {"title": "Not Quite Lisp", "python": {"status": "solved", "parts": ["ok", "ok"], "time": 0.0003, "date": "2026-10-14", "code": "23788b5eb480"}, "rust": {"status": "solved", "parts": ["ok", "ok"], "time": 0.0032, "date": "2026-10-14", "code": "73e8fc51b859"}},
@@ -101,9 +101,9 @@
     "16": {"title": "Chronal Classification", "python": {"status": "solved", "parts": ["ok", "ok"], "time": 0.0225, "date": "2026-10-14", "code": "44a265631e27"}},
     "17": {"title": "Reservoir Research", "python": {"status": "solved", "parts": ["ok", "ok"], "time": 0.0236, "date": "2026-10-14", "code": "58914dd34fc9"}},
     "18": {"title": "Settlers of The North Pole", "python": {"status": "solved", "parts": ["ok", "ok"], "time": 0.9918, "date": "2026-10-14", "code": "d1861c4d7578"}},
-    "19": {"title": "Go With The Flow", "python": {"status": "solved", "parts": ["ok", "ok"], "time": 0.0002, "date": "2026-10-14", "code": "b36f830e772f"}},
+    "19": {"title": "Go With The Flow", "python": {"status": "solved", "parts": ["ok", "ok"], "time": 0.0001, "date": "2026-10-15", "code": "429cd4a0601c"}},
     "20": {"title": "A Regular Map", "python": {"status": "solved", "parts": ["ok", "ok"], "time": 0.0172, "date": "2026-10-14", "code": "6ab30ce8c527"}},
-    "21": {"title": "Chronal Conversion", "python": {"status": "timeout", "parts": ["ok", "missing"], "time": null, "date": "2026-10-14", "code": "be829248845c"}},
+    "21": {"title": "Chronal Conversion", "python": {"status": "solved", "parts": ["ok", "ok"], "time": 269.918, "date": "2026-10-15", "code": "7dd49687a39f"}},
     "22": {"title": "Mode Maze", "python": {"status": "solved", "parts": ["ok", "ok"], "time": 0.3074, "date": "2026-10-14", "code": "8f4704a42d7e"}},
     "23": {"title": "Experimental Emergency Teleportation", "python": {"status": "solved", "parts": ["ok", "ok"], "time": 32.5808, "date": "2026-10-14", "code": "30db8c8d23cc"}},
     "24": {"title": "Immune System Simulator 20XX", "python": {"status": "solved", "parts": ["ok", "ok"], "time": 0.4245, "date": "2026-10-14", "code": "8880781eb1d0"}},

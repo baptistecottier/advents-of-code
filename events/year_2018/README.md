@@ -4,12 +4,12 @@
 
 | | Python | Rust |
 | :-- | --: | --: |
-| Stars | 48/50 | 10/50 |
+| Stars | 50/50 | 10/50 |
 | `█` solved in under 10 s | 22 | 5 |
-| `▓` solved in under 5 min | 2 | 0 |
-| `░` one part only | 1 | 0 |
+| `▓` solved in under 5 min | 3 | 0 |
+| `░` one part only | 0 | 0 |
 | ` ` not solved | 0 | 20 |
-| Time of solved days | 1 min 05 s | 3.3 s |
+| Time of solved days | 5 min 35 s | 3.3 s |
 
 | Day | Puzzle | Python |  | Rust |  |
 | --: | :-- | :-- | --: | :-- | --: |
@@ -33,10 +33,10 @@
 | 18 | [Settlers of The North Pole](https://adventofcode.com/2018/day/18) | `█` [★★](day_18/day_18.py) | 992 ms | ` ` ☆☆ |  |
 | 19 | [Go With The Flow](https://adventofcode.com/2018/day/19) | `█` [★★](day_19/day_19.py) | < 1 ms | ` ` ☆☆ |  |
 | 20 | [A Regular Map](https://adventofcode.com/2018/day/20) | `█` [★★](day_20/day_20.py) | 17 ms | ` ` ☆☆ |  |
-| 21 | [Chronal Conversion](https://adventofcode.com/2018/day/21) | `░` [★☆](day_21/day_21.py) | > 5 min | ` ` ☆☆ |  |
+| 21 | [Chronal Conversion](https://adventofcode.com/2018/day/21) | `▓` [★★](day_21/day_21.py) | 4 min 30 s | ` ` ☆☆ |  |
 | 22 | [Mode Maze](https://adventofcode.com/2018/day/22) | `█` [★★](day_22/day_22.py) | 307 ms | ` ` ☆☆ |  |
 | 23 | [Experimental Emergency Teleportation](https://adventofcode.com/2018/day/23) | `▓` [★★](day_23/day_23.py) | 32.6 s | ` ` ☆☆ |  |
 | 24 | [Immune System Simulator 20XX](https://adventofcode.com/2018/day/24) | `█` [★★](day_24/day_24.py) | 424 ms | ` ` ☆☆ |  |
-| 25 | [Four-Dimensional Adventure](https://adventofcode.com/2018/day/25) | `█` [★☆](day_25/day_25.py) | 4.2 s | ` ` ☆☆ |  |
+| 25 | [Four-Dimensional Adventure](https://adventofcode.com/2018/day/25) | `█` [★★](day_25/day_25.py) | 4.2 s | ` ` ☆☆ |  |
 
-<sub>`█` solved in under 10 s &emsp; `▓` solved in under 5 min &emsp; `░` one part only &emsp; ` ` not solved<br>Python 3.12.13 · Rust 1.99.0 (release) · Apple M3 · 14 October 2026</sub>
+<sub>`█` solved in under 10 s &emsp; `▓` solved in under 5 min &emsp; `░` one part only &emsp; ` ` not solved<br>Python 3.12.13 · Rust 1.99.0 (release) · Apple M3 · 15 October 2026</sub>

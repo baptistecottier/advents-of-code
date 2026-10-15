@@ -16,13 +16,13 @@ Solutions for [Advent of Code](https://adventofcode.com) in Python and Rust, sub
 | [2021](events/year_2021/README.md) | `█████` `█████` `█████` ` █   ` `    █` | 33/50 | `██   ` `██   ` `     ` `     ` `     ` | 8/50 |
 | [2020](events/year_2020/README.md) | `█████` `█████` `████▓` `█▓███` `█████` | 50/50 | `█████` `███  ` `     ` `     ` `     ` | 16/50 |
 | [2019](events/year_2019/README.md) | `█████` `█████` `██░██` `██ ██` ` █   ` | 39/50 | `█    ` `     ` `     ` `     ` `     ` | 2/50 |
-| [2018](events/year_2018/README.md) | `████▓` `█████` `█████` `█████` `░█▓██` | 48/50 | `███ █` `█    ` `     ` `     ` `     ` | 10/50 |
+| [2018](events/year_2018/README.md) | `████▓` `█████` `█████` `█████` `▓█▓██` | 50/50 | `███ █` `█    ` `     ` `     ` `     ` | 10/50 |
 | [2017](events/year_2017/README.md) | `█████` `█████` `█████` `█████` `███▓█` | 50/50 | `█████` `█ ██ ` `█ █ █` ` █   ` `     ` | 24/50 |
 | [2016](events/year_2016/README.md) | `████▓` `█████` `███▓█` `█████` `█████` | 50/50 | `████▓` `█████` `██ ▓█` `████ ` `  ██ ` | 40/50 |
 | [2015](events/year_2015/README.md) | `█████` `█████` `█████` `█████` `█▓███` | 50/50 | `█████` ` ████` `█████` `█████` `█ ███` | 45/50 |
-| **Total** | `█` 224 `▓` 8 `░` 9 ` ` 21 | **470/524** | `█` 99 `▓` 2 `░` 1 ` ` 160 | **202/524** |
+| **Total** | `█` 224 `▓` 9 `░` 8 ` ` 21 | **472/524** | `█` 99 `▓` 2 `░` 1 ` ` 160 | **202/524** |
 
-<sub>`█` solved in under 10 s &emsp; `▓` solved in under 5 min &emsp; `░` one part only &emsp; ` ` not solved<br>Python 3.12.13 · Rust 1.99.0 (release) · Apple M3 · 14 October 2026</sub>
+<sub>`█` solved in under 10 s &emsp; `▓` solved in under 5 min &emsp; `░` one part only &emsp; ` ` not solved<br>Python 3.12.13 · Rust 1.99.0 (release) · Apple M3 · 15 October 2026</sub>
 <!-- scoreboard:end -->
 
 ## Puzzle Submitter
