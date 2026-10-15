@@ -4,89 +4,69 @@ https://adventofcode.com/2022/day/18
 """
 
 # Standard imports
+from collections import deque
 from collections.abc import Iterator
 
-# First party imports
-from pythonfw.classes import Point
 
-
-def preprocessing(puzzle_input: str) -> list[list[int]]:
+def preprocessing(puzzle_input: str) -> set[tuple[int, ...]]:
     """
-    Converts a comma-separated string input into a list of lists of integers.
+    Converts the comma-separated coordinates of each cube into a set of tuples.
     """
-    droplet = []
+    droplet = set()
     for line in puzzle_input.splitlines():
-        droplet.append(list(map(int, line.split(','))))
+        droplet.add(tuple(map(int, line.split(','))))
     return droplet
 
 
-def solver(droplet: list[list[int]]) -> Iterator[int]:
+def solver(droplet: set[tuple[int, ...]]) -> Iterator[int]:
     """
-    Calculates and yields the surface area of a 3D droplet represented as a list of coordinate
-    triplets.
+    Yields the surface area of the droplet, i.e. the faces of its cubes not touching another
+    cube, then its exterior surface area, i.e. the faces reached by the steam.
     """
-    cnt = 0
-    for i, a in enumerate(droplet):
-        for b in droplet[i+1:]:
-            if any(
-                    a[n % 3] == b[n % 3] and
-                    a[(n + 1) % 3] == b[(n + 1) % 3] and
-                    abs(a[(n + 2) % 3] - b[(n + 2) % 3]) == 1
-                    for n in range(3)):
-                cnt += 1
-
-    yield 6 * len(droplet) - 2 * cnt
-
-
-def part_2(droplet: list[list[int]]) -> None:
-    """
-    Calculates and the list of air pockets within the bounding box of a droplet structure.
-    """
-    max_x = max(a[0] for a in droplet)
-    max_y = max(a[1] for a in droplet)
-    max_z = max(a[2] for a in droplet)
-    min_x = min(a[0] for a in droplet)
-    min_y = min(a[1] for a in droplet)
-    min_z = min(a[2] for a in droplet)
-    pt_min = Point(min_x, min_y, min_z)
-    pt_max = Point(max_x, max_y, max_z)
-    steam = []
-    air = []
-    fill((0, 0, 0), pt_min, pt_max, droplet, steam)
-    for x in range(min_x, max_x):
-        for y in range(min_y, max_y):
-            for z in range(min_z, max_z):
-                if [x, y, z] not in steam and [x, y, z] not in droplet:
-                    air.append([x, y, z])
-    print("air:", air)
+    steam = fill(droplet)
+    faces = 6 * len(droplet)
+    cnt_droplet = 0
+    cnt_steam = 0
+    for (x, y, z) in droplet:
+        for node in (
+             (x, y, z - 1), (x, y - 1, z), (x - 1, y, z),
+             (x, y, z + 1), (x, y + 1, z), (x + 1, y, z)):
+            if node in droplet:
+                cnt_droplet += 1
+            if node in steam:
+                cnt_steam += 1
+    yield faces - cnt_droplet
+    yield cnt_steam
 
 
-def fill(pos: tuple[int, int, int],
-         pt_min: Point,
-         pt_max: Point,
-         droplet: list[list[int]],
-         steam: list[tuple[int, int, int]]
-         ) -> None:
+def fill(droplet: set[tuple[int, ...]]) -> set[tuple[int, ...]]:
     """
-    Recursively fills a 3D space starting from a given position, marking visited positions in
-    'steam' and avoiding positions in 'droplet' within specified bounds.
+    Fills the air around the droplet with steam, starting from a corner of its bounding box
+    enlarged by one cube on each side so that the steam can flow all around the droplet.
+    Returns the cubes reached by the steam: air pockets enclosed in the droplet are left out.
     """
-    steam.append(pos)
-    print(pos)
-    if pos in droplet or pos in steam:
-        return
+    min_x = min(x for x, _, _ in droplet) - 1
+    min_y = min(y for _, y, _ in droplet) - 1
+    min_z = min(z for _, _, z in droplet) - 1
+    max_x = max(x for x, _, _ in droplet) + 1
+    max_y = max(y for _, y, _ in droplet) + 1
+    max_z = max(z for _, _, z in droplet) + 1
 
-    [x, y, z] = pos
-    if z-1 > pt_min.z:
-        fill((x, y, z-1), pt_min, pt_max, droplet, steam)
-    if z+1 < pt_max.z:
-        fill((x, y, z+1), pt_min, pt_max, droplet, steam)
-    if y-1 > pt_min.y:
-        fill((x, y-1, z), pt_min, pt_max, droplet, steam)
-    if y+1 < pt_max.y:
-        fill((x, y+1, z), pt_min, pt_max, droplet, steam)
-    if x-1 > pt_min.x:
-        fill((x-1, y, z), pt_min, pt_max, droplet, steam)
-    if x+1 < pt_max.x:
-        fill((x+1, y, z), pt_min, pt_max, droplet, steam)
-    return
+    queue = deque([(min_x, min_y, min_z)])
+    steam = set()
+    while queue:
+        x, y, z = queue.pop()
+        for tx, ty, tz in (
+                (x, y, z - 1), (x, y - 1, z), (x - 1, y, z),
+                (x, y, z + 1), (x, y + 1, z), (x + 1, y, z)):
+            if (tx, ty, tz) in droplet or (tx, ty, tz) in steam:
+                continue
+            if tx not in range(min_x, max_x + 1):
+                continue
+            if ty not in range(min_y, max_y + 1):
+                continue
+            if tz not in range(min_z, max_z + 1):
+                continue
+            queue.append((tx, ty, tz))
+        steam.add((x, y, z))
+    return steam
