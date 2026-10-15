@@ -208,7 +208,7 @@
     "15": {"title": "Beacon Exclusion Zone", "python": {"status": "timeout", "parts": ["ok", "missing"], "time": null, "date": "2026-10-14", "code": "5412844dba39"}},
     "16": {"title": "Proboscidea Volcanium", "python": {"status": "error", "parts": ["missing", "missing"], "time": null, "date": "2026-10-14", "error": "AttributeError: module 'day_16' has no attribute 'solver'", "code": "64aed8ce4342"}},
     "17": {"title": "Pyroclastic Flow", "python": {"status": "error", "parts": ["missing", "missing"], "time": null, "date": "2026-10-14", "error": "AttributeError: module 'day_17' has no attribute 'solver'", "code": "344dae31aa0d"}},
-    "18": {"title": "Boiling Boulders", "python": {"status": "wrong", "parts": ["ok", "missing"], "time": 1.0156, "date": "2026-10-14", "code": "5761d9b0575f"}},
+    "18": {"title": "Boiling Boulders", "python": {"status": "solved", "parts": ["ok", "ok"], "time": 0.0214, "date": "2026-10-15", "code": "625a80022f4a"}},
     "19": {"title": "Not Enough Minerals"},
     "20": {"title": "Grove Positioning System", "python": {"status": "solved", "parts": ["ok", "ok"], "time": 1.7665, "date": "2026-10-14", "code": "b4920cd92b6b"}},
     "21": {"title": "Monkey Math", "python": {"status": "solved", "parts": ["ok", "ok"], "time": 0.8352, "date": "2026-10-14", "code": "e1d527d03aee"}},

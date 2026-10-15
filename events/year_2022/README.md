@@ -4,10 +4,10 @@
 
 | | Python | Rust |
 | :-- | --: | --: |
-| Stars | 38/50 | 22/50 |
-| `█` solved in under 10 s | 18 | 11 |
+| Stars | 39/50 | 22/50 |
+| `█` solved in under 10 s | 19 | 11 |
 | `▓` solved in under 5 min | 0 | 0 |
-| `░` one part only | 3 | 0 |
+| `░` one part only | 2 | 0 |
 | ` ` not solved | 4 | 14 |
 | Time of solved days | 4.0 s | 48 ms |
 
@@ -30,7 +30,7 @@
 | 15 | [Beacon Exclusion Zone](https://adventofcode.com/2022/day/15) | `░` [★☆](day_15/day_15.py) | > 5 min | ` ` ☆☆ |  |
 | 16 | [Proboscidea Volcanium](https://adventofcode.com/2022/day/16) | ` ` [☆☆](day_16/day_16.py) | error | ` ` ☆☆ |  |
 | 17 | [Pyroclastic Flow](https://adventofcode.com/2022/day/17) | ` ` [☆☆](day_17/day_17.py) | error | ` ` ☆☆ |  |
-| 18 | [Boiling Boulders](https://adventofcode.com/2022/day/18) | `░` [★☆](day_18/day_18.py) | 1.0 s | ` ` ☆☆ |  |
+| 18 | [Boiling Boulders](https://adventofcode.com/2022/day/18) | `█` [★★](day_18/day_18.py) | 21 ms | ` ` ☆☆ |  |
 | 19 | [Not Enough Minerals](https://adventofcode.com/2022/day/19) | ` ` ☆☆ |  | ` ` ☆☆ |  |
 | 20 | [Grove Positioning System](https://adventofcode.com/2022/day/20) | `█` [★★](day_20/day_20.py) | 1.8 s | ` ` ☆☆ |  |
 | 21 | [Monkey Math](https://adventofcode.com/2022/day/21) | `█` [★★](day_21/day_21.py) | 835 ms | ` ` ☆☆ |  |
