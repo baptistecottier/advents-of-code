@@ -84,7 +84,7 @@ def solver(intcode: list[int]) -> Iterator[int]:
     program = Program(intcode)
     scaffold, x, y, robot = set(), 0, 0, None
 
-    while (output := program.run()) >= 0:
+    while (output := program.run()) is not None:
         match output:
             case 10:
                 x, y = -1, y + 1
