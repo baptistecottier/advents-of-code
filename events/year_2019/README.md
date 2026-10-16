@@ -39,4 +39,4 @@
 | 24 | [Planet of Discord](https://adventofcode.com/2019/day/24) | ` ` [☆☆](day_24/day_24.py) | error | ` ` ☆☆ |  |
 | 25 | [Cryostasis](https://adventofcode.com/2019/day/25) | ` ` [☆☆](day_25/day_25.py) | error | ` ` ☆☆ |  |
 
-<sub>`█` solved in under 10 s &emsp; `▓` solved in under 5 min &emsp; `░` one part only &emsp; ` ` not solved<br>Python 3.12.13 · Rust 1.99.0 (release) · Apple M3 · 15 October 2026</sub>
+<sub>`█` solved in under 10 s &emsp; `▓` solved in under 5 min &emsp; `░` one part only &emsp; ` ` not solved<br>Python 3.12.13 · Rust 1.99.0 (release) · Apple M3 · 16 October 2026</sub>

@@ -39,4 +39,4 @@
 | 24 | [Air Duct Spelunking](https://adventofcode.com/2016/day/24) | `█` [★★](day_24/day_24.py) | 54 ms | `█` [★★](day_24/day_24.rs) | 10 ms |
 | 25 | [Clock Signal](https://adventofcode.com/2016/day/25) | `█` [★★](day_25/day_25.py) | 453 ms | ` ` ☆☆ |  |
 
-<sub>`█` solved in under 10 s &emsp; `▓` solved in under 5 min &emsp; `░` one part only &emsp; ` ` not solved<br>Python 3.12.13 · Rust 1.99.0 (release) · Apple M3 · 15 October 2026</sub>
+<sub>`█` solved in under 10 s &emsp; `▓` solved in under 5 min &emsp; `░` one part only &emsp; ` ` not solved<br>Python 3.12.13 · Rust 1.99.0 (release) · Apple M3 · 16 October 2026</sub>
