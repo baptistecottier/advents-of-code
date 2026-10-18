@@ -133,7 +133,7 @@
     "21": {"title": "Springdroid Adventure", "python": {"status": "error", "parts": ["missing", "missing"], "time": null, "date": "2026-10-14", "error": "AttributeError: module 'day_21' has no attribute 'solver'", "code": "4f471039d9a7"}},
     "22": {"title": "Slam Shuffle", "python": {"status": "solved", "parts": ["ok", "ok"], "time": 0.0002, "date": "2026-10-14", "code": "165adffd49a1"}},
     "23": {"title": "Category Six", "python": {"status": "error", "parts": ["missing", "missing"], "time": null, "date": "2026-10-14", "error": "AttributeError: module 'day_23' has no attribute 'solver'", "code": "c78a06ca1598"}},
-    "24": {"title": "Planet of Discord", "python": {"status": "solved", "parts": ["ok", "ok"], "time": 0.3615, "date": "2026-10-18", "code": "3b0b61473420"}},
+    "24": {"title": "Planet of Discord", "python": {"status": "solved", "parts": ["ok", "ok"], "time": 0.3454, "date": "2026-10-18", "code": "b852e6b0daa6"}},
     "25": {"title": "Cryostasis", "python": {"status": "error", "parts": ["missing"], "time": null, "date": "2026-10-14", "error": "AttributeError: module 'day_25' has no attribute 'solver'", "code": "18122c572dc4"}}
   },
   "2020": {
