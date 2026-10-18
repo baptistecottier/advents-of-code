@@ -13,3 +13,6 @@ dependencies = [
     "shapely>=2.0.7",
     "z3-solver>=4.16.0.0",
 ]
+
+[tool.pyright]
+typeCheckingMode = "strict"
