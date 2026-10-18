@@ -4,12 +4,12 @@
 
 | | Python | Rust |
 | :-- | --: | --: |
-| Stars | 43/50 | 2/50 |
-| `█` solved in under 10 s | 21 | 1 |
+| Stars | 44/50 | 2/50 |
+| `█` solved in under 10 s | 22 | 1 |
 | `▓` solved in under 5 min | 0 | 0 |
-| `░` one part only | 1 | 0 |
+| `░` one part only | 0 | 0 |
 | ` ` not solved | 3 | 24 |
-| Time of solved days | 16.2 s | 3 ms |
+| Time of solved days | 16.6 s | 3 ms |
 
 | Day | Puzzle | Python |  | Rust |  |
 | --: | :-- | :-- | --: | :-- | --: |
@@ -36,7 +36,7 @@
 | 21 | [Springdroid Adventure](https://adventofcode.com/2019/day/21) | ` ` [☆☆](day_21/day_21.py) | error | ` ` ☆☆ |  |
 | 22 | [Slam Shuffle](https://adventofcode.com/2019/day/22) | `█` [★★](day_22/day_22.py) | < 1 ms | ` ` ☆☆ |  |
 | 23 | [Category Six](https://adventofcode.com/2019/day/23) | ` ` [☆☆](day_23/day_23.py) | error | ` ` ☆☆ |  |
-| 24 | [Planet of Discord](https://adventofcode.com/2019/day/24) | `░` [★☆](day_24/day_24.py) | < 1 ms | ` ` ☆☆ |  |
+| 24 | [Planet of Discord](https://adventofcode.com/2019/day/24) | `█` [★★](day_24/day_24.py) | 362 ms | ` ` ☆☆ |  |
 | 25 | [Cryostasis](https://adventofcode.com/2019/day/25) | ` ` [☆☆](day_25/day_25.py) | error | ` ` ☆☆ |  |
 
 <sub>`█` solved in under 10 s &emsp; `▓` solved in under 5 min &emsp; `░` one part only &emsp; ` ` not solved<br>Python 3.12.13 · Rust 1.99.0 (release) · Apple M3 · 18 October 2026</sub>
