@@ -12,10 +12,11 @@ def preprocessing(puzzle_input: str) -> tuple[set[int], set[tuple[int, int]]]:
     Returns the indices of the '#' characters of the image enhancement algorithm, and the
     coordinates (x, y) of the lit pixels of the input image.
     """
-    lines = puzzle_input.splitlines()
-    enhancement = {n for n, p in enumerate(lines[0]) if p == '#'}
+    sections = puzzle_input.split('\n\n')
+
+    enhancement = {n for n, p in enumerate(sections[0].replace('\n', '')) if p == '#'}
     light_pixels = set()
-    for y, line in enumerate(lines[2:]):
+    for y, line in enumerate(sections[1].splitlines()):
         for x, pixel in enumerate(line):
             if pixel == '#':
                 light_pixels.add((x, y))

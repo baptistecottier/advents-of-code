@@ -22,7 +22,7 @@ Solutions for [Advent of Code](https://adventofcode.com) in Python and Rust, sub
 | [2015](events/year_2015/README.md) | `█████` `█████` `█████` `█████` `█▓███` | 50/50 | `█████` ` ████` `█████` `█████` `█ ███` | 45/50 |
 | **Total** | `█` 229 `▓` 9 `░` 6 ` ` 18 | **480/524** | `█` 99 `▓` 2 `░` 1 ` ` 160 | **202/524** |
 
-<sub>`█` solved in under 10 s &emsp; `▓` solved in under 5 min &emsp; `░` one part only &emsp; ` ` not solved<br>1 result(s) measured on uncommitted code, marked † on the year pages<br>Python 3.12.13 · Rust 1.99.0 (release) · Apple M3 · 18 October 2026</sub>
+<sub>`█` solved in under 10 s &emsp; `▓` solved in under 5 min &emsp; `░` one part only &emsp; ` ` not solved<br>Python 3.12.13 · Rust 1.99.0 (release) · Apple M3 · 18 October 2026</sub>
 <!-- scoreboard:end -->
 
 ## Puzzle Submitter
