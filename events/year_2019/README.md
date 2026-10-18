@@ -4,12 +4,12 @@
 
 | | Python | Rust |
 | :-- | --: | --: |
-| Stars | 40/50 | 2/50 |
-| `█` solved in under 10 s | 20 | 1 |
+| Stars | 43/50 | 2/50 |
+| `█` solved in under 10 s | 21 | 1 |
 | `▓` solved in under 5 min | 0 | 0 |
-| `░` one part only | 0 | 0 |
-| ` ` not solved | 5 | 24 |
-| Time of solved days | 14.7 s | 3 ms |
+| `░` one part only | 1 | 0 |
+| ` ` not solved | 3 | 24 |
+| Time of solved days | 16.2 s | 3 ms |
 
 | Day | Puzzle | Python |  | Rust |  |
 | --: | :-- | :-- | --: | :-- | --: |
@@ -30,13 +30,13 @@
 | 15 | [Oxygen System](https://adventofcode.com/2019/day/15) | `█` [★★](day_15/day_15.py) | 942 ms | ` ` ☆☆ |  |
 | 16 | [Flawed Frequency Transmission](https://adventofcode.com/2019/day/16) | `█` [★★](day_16/day_16.py) | 4.4 s | ` ` ☆☆ |  |
 | 17 | [Set and Forget](https://adventofcode.com/2019/day/17) | `█` [★★](day_17/day_17.py) | 114 ms | ` ` ☆☆ |  |
-| 18 | [Many-Worlds Interpretation](https://adventofcode.com/2019/day/18) | ` ` [☆☆](day_18/day_18.py) | > 5 min | ` ` ☆☆ |  |
+| 18 | [Many-Worlds Interpretation](https://adventofcode.com/2019/day/18) | `█` [★★](day_18/day_18.py) | 1.5 s | ` ` ☆☆ |  |
 | 19 | [Tractor Beam](https://adventofcode.com/2019/day/19) | `█` [★★](day_19/day_19.py) | 1.2 s | ` ` ☆☆ |  |
 | 20 | [Donut Maze](https://adventofcode.com/2019/day/20) | `█` [★★](day_20/day_20.py) | 4.4 s | ` ` ☆☆ |  |
 | 21 | [Springdroid Adventure](https://adventofcode.com/2019/day/21) | ` ` [☆☆](day_21/day_21.py) | error | ` ` ☆☆ |  |
 | 22 | [Slam Shuffle](https://adventofcode.com/2019/day/22) | `█` [★★](day_22/day_22.py) | < 1 ms | ` ` ☆☆ |  |
 | 23 | [Category Six](https://adventofcode.com/2019/day/23) | ` ` [☆☆](day_23/day_23.py) | error | ` ` ☆☆ |  |
-| 24 | [Planet of Discord](https://adventofcode.com/2019/day/24) | ` ` [☆☆](day_24/day_24.py) | error | ` ` ☆☆ |  |
+| 24 | [Planet of Discord](https://adventofcode.com/2019/day/24) | `░` [★☆](day_24/day_24.py) | < 1 ms | ` ` ☆☆ |  |
 | 25 | [Cryostasis](https://adventofcode.com/2019/day/25) | ` ` [☆☆](day_25/day_25.py) | error | ` ` ☆☆ |  |
 
-<sub>`█` solved in under 10 s &emsp; `▓` solved in under 5 min &emsp; `░` one part only &emsp; ` ` not solved<br>Python 3.12.13 · Rust 1.99.0 (release) · Apple M3 · 16 October 2026</sub>
+<sub>`█` solved in under 10 s &emsp; `▓` solved in under 5 min &emsp; `░` one part only &emsp; ` ` not solved<br>Python 3.12.13 · Rust 1.99.0 (release) · Apple M3 · 18 October 2026</sub>

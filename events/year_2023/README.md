@@ -39,4 +39,4 @@
 | 24 | [Never Tell Me The Odds](https://adventofcode.com/2023/day/24) | `░` [★☆](day_24/day_24.py) | 18 ms | ` ` ☆☆ |  |
 | 25 | [Snowverload](https://adventofcode.com/2023/day/25) | ` ` [?☆](day_25/day_25.py) | 873 ms | ` ` ☆☆ |  |
 
-<sub>`█` solved in under 10 s &emsp; `▓` solved in under 5 min &emsp; `░` one part only &emsp; ` ` not solved<br>? no answer recorded by Puzzle Submitter, so it cannot be verified<br>Python 3.12.13 · Rust 1.99.0 (release) · Apple M3 · 16 October 2026</sub>
+<sub>`█` solved in under 10 s &emsp; `▓` solved in under 5 min &emsp; `░` one part only &emsp; ` ` not solved<br>? no answer recorded by Puzzle Submitter, so it cannot be verified<br>Python 3.12.13 · Rust 1.99.0 (release) · Apple M3 · 18 October 2026</sub>

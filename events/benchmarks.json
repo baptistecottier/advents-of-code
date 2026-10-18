@@ -1,5 +1,5 @@
 {
-  "meta": {"timeout": 300, "machine": "Apple M3", "date": "2026-10-16", "python": "3.12.13", "rust": "1.99.0"},
+  "meta": {"timeout": 300, "machine": "Apple M3", "date": "2026-10-18", "python": "3.12.13", "rust": "1.99.0"},
   "years": {
   "2015": {
     "1": {"title": "Not Quite Lisp", "python": {"status": "solved", "parts": ["ok", "ok"], "time": 0.0003, "date": "2026-10-14", "code": "23788b5eb480"}, "rust": {"status": "solved", "parts": ["ok", "ok"], "time": 0.0032, "date": "2026-10-14", "code": "73e8fc51b859"}},
@@ -127,13 +127,13 @@
     "15": {"title": "Oxygen System", "python": {"status": "solved", "parts": ["ok", "ok"], "time": 0.9422, "date": "2026-10-16", "code": "ad49c9a4a246"}},
     "16": {"title": "Flawed Frequency Transmission", "python": {"status": "solved", "parts": ["ok", "ok"], "time": 4.3774, "date": "2026-10-14", "code": "ed3b413785b3"}},
     "17": {"title": "Set and Forget", "python": {"status": "solved", "parts": ["ok", "ok"], "time": 0.1145, "date": "2026-10-16", "code": "0213e704bc9b"}},
-    "18": {"title": "Many-Worlds Interpretation", "python": {"status": "timeout", "parts": ["missing", "missing"], "time": null, "date": "2026-10-14", "code": "5c74dc91aab8"}},
+    "18": {"title": "Many-Worlds Interpretation", "python": {"status": "solved", "parts": ["ok", "ok"], "time": 1.5443, "date": "2026-10-18", "code": "504825ba5b82"}},
     "19": {"title": "Tractor Beam", "python": {"status": "solved", "parts": ["ok", "ok"], "time": 1.154, "date": "2026-10-16", "code": "67930d88b26d"}},
     "20": {"title": "Donut Maze", "python": {"status": "solved", "parts": ["ok", "ok"], "time": 4.3709, "date": "2026-10-14", "code": "18258e6bd5ce"}},
     "21": {"title": "Springdroid Adventure", "python": {"status": "error", "parts": ["missing", "missing"], "time": null, "date": "2026-10-14", "error": "AttributeError: module 'day_21' has no attribute 'solver'", "code": "4f471039d9a7"}},
     "22": {"title": "Slam Shuffle", "python": {"status": "solved", "parts": ["ok", "ok"], "time": 0.0002, "date": "2026-10-14", "code": "165adffd49a1"}},
     "23": {"title": "Category Six", "python": {"status": "error", "parts": ["missing", "missing"], "time": null, "date": "2026-10-14", "error": "AttributeError: module 'day_23' has no attribute 'solver'", "code": "c78a06ca1598"}},
-    "24": {"title": "Planet of Discord", "python": {"status": "error", "parts": ["missing", "missing"], "time": null, "date": "2026-10-14", "error": "AttributeError: module 'day_24' has no attribute 'solver'", "code": "e509f72bfa1a"}},
+    "24": {"title": "Planet of Discord", "python": {"status": "wrong", "parts": ["ok", "missing"], "time": 0.0005, "date": "2026-10-18", "code": "8cad32c87904"}},
     "25": {"title": "Cryostasis", "python": {"status": "error", "parts": ["missing"], "time": null, "date": "2026-10-14", "error": "AttributeError: module 'day_25' has no attribute 'solver'", "code": "18122c572dc4"}}
   },
   "2020": {
@@ -183,7 +183,7 @@
     "17": {"title": "Trick Shot", "python": {"status": "solved", "parts": ["ok", "ok"], "time": 0.1388, "date": "2026-10-14", "code": "a355dda41ada"}},
     "18": {"title": "Snailfish", "python": {"status": "error", "parts": ["missing", "missing"], "time": null, "date": "2026-10-14", "error": "AttributeError: module 'day_18' has no attribute 'solver'", "code": "668d93128a57"}},
     "19": {"title": "Beacon Scanner", "python": {"status": "wrong", "parts": ["wrong", "wrong"], "time": 0.0001, "date": "2026-10-14", "code": "5dc5eb3919f9"}},
-    "20": {"title": "Trench Map", "python": {"status": "solved", "parts": ["ok", "ok"], "time": 0.7361, "date": "2026-10-16", "code": "84783043896e"}},
+    "20": {"title": "Trench Map", "python": {"status": "solved", "parts": ["ok", "ok"], "time": 0.6602, "date": "2026-10-16", "code": "542172508f1c"}},
     "21": {"title": "Dirac Dice", "python": {"status": "error", "parts": ["missing", "missing"], "time": null, "date": "2026-10-14", "error": "AttributeError: module 'day_21' has no attribute 'solver'", "code": "94adae1bc079"}},
     "22": {"title": "Reactor Reboot", "python": {"status": "error", "parts": ["missing", "missing"], "time": null, "date": "2026-10-14", "error": "AttributeError: module 'day_22' has no attribute 'solver'", "code": "71a0aabee7cb"}},
     "23": {"title": "Amphipod"},
