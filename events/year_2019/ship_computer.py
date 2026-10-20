@@ -3,17 +3,26 @@ A module implementing an Intcode computer for Advent of Code 2019 puzzles.
 """
 
 from collections import defaultdict
-from collections.abc import Iterator
+from collections.abc import Callable, Iterable, Iterator
 from copy import deepcopy
+from operator import add, mul
 
 
-class Program(defaultdict):
+BINARY_OPS: dict[int, Callable[[int, int], int]] = {
+    1: add,
+    2: mul,
+    7: lambda a, b: int(a < b),
+    8: lambda a, b: int(a == b),
+}
+
+
+class Program:
     """
     A class that simulates an Intcode-like virtual machine with support for parameter modes, memory
     management, and input/output operations.
     """
-    def __init__(self, intcode, inputs=None):
-        self.memory: defaultdict = defaultdict(int)
+    def __init__(self, intcode: Iterable[int], inputs: int | list[int] | None = None):
+        self.memory: defaultdict[int, int] = defaultdict(int)
         for n, v in enumerate(intcode):
             self.memory[n] = v
         self.ptr: int = 0
@@ -21,9 +30,9 @@ class Program(defaultdict):
         self.halt: bool = False
         if isinstance(inputs, int):
             inputs = [inputs]
-        self.inputs: None | list = inputs
+        self.inputs: None | list[int] = inputs
 
-    def get_memory(self):
+    def get_memory(self) -> tuple[int, ...]:
         """
         Returns a deep copy of the current memory values as a tuple.
         """
@@ -43,6 +52,8 @@ class Program(defaultdict):
                     yield self.ptr
                 case 2:
                     yield self.base + self.memory[self.ptr]
+                case mode:
+                    raise ValueError(f"Unknown parameter mode {mode}")
             self.ptr += 1
 
     def run(self, *signal: int) -> int | None:
@@ -50,18 +61,14 @@ class Program(defaultdict):
         Executes the program loaded in memory, processing instructions and returning output or
         halting as specified by the opcodes.
         """
-        signal = list(signal)
+        signals = list(signal)
         while True:
             op = self.memory[self.ptr]
             self.ptr += 1
             match op % 100:
-                case 1:
+                case code if code in BINARY_OPS:
                     i_in1, i_in2, i_out = self.extract_indexes(op, 3)
-                    self.memory[i_out] = self.memory[i_in1] + self.memory[i_in2]
-
-                case 2:
-                    i_in1, i_in2, i_out = self.extract_indexes(op, 3)
-                    self.memory[i_out] = self.memory[i_in1] * self.memory[i_in2]
+                    self.memory[i_out] = BINARY_OPS[code](self.memory[i_in1], self.memory[i_in2])
 
                 case 3:
                     i_out, = self.extract_indexes(op, 1)
@@ -70,29 +77,17 @@ class Program(defaultdict):
                         if self.inputs == []:
                             self.inputs = None
                     else:
-                        self.memory[i_out] = signal.pop(0)
+                        self.memory[i_out] = signals.pop(0)
 
                 case 4:
                     i_out, = self.extract_indexes(op, 1)
                     return self.memory[i_out]
 
-                case 5:
+                case 5 | 6 as code:
                     i_in, i_out = self.extract_indexes(op, 2)
-                    if self.memory[i_in] != 0:
+                    # 5 jumps if the value is non-zero, 6 if it is zero
+                    if (self.memory[i_in] != 0) == (code == 5):
                         self.ptr = self.memory[i_out]
-
-                case 6:
-                    i_in, i_out = self.extract_indexes(op, 2)
-                    if self.memory[i_in] == 0:
-                        self.ptr = self.memory[i_out]
-
-                case 7:
-                    i_in1, i_in2, i_out = self.extract_indexes(op, 3)
-                    self.memory[i_out] = int(self.memory[i_in1] < self.memory[i_in2])
-
-                case 8:
-                    i_in1, i_in2, i_out = self.extract_indexes(op, 3)
-                    self.memory[i_out] = int(self.memory[i_in1] == self.memory[i_in2])
 
                 case 9:
                     i_out, = self.extract_indexes(op, 1)
@@ -101,3 +96,6 @@ class Program(defaultdict):
                 case 99:
                     self.halt = True
                     return None
+
+                case code:
+                    raise ValueError(f"Unknown opcode {code}")
