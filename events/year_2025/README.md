@@ -26,4 +26,4 @@
 | 11 | [Reactor](https://adventofcode.com/2025/day/11) | `█` [★★](day_11/day_11.py) | 104 ms | ` ` [☆☆](day_11/day_11.rs) | 3 ms |
 | 12 | [Christmas Tree Farm](https://adventofcode.com/2025/day/12) | `█` [★★](day_12/day_12.py) | 1 ms | ` ` [☆☆](day_12/day_12.rs) | 3 ms |
 
-<sub>`█` solved in under 10 s &emsp; `▓` solved in under 5 min &emsp; `░` one part only &emsp; ` ` not solved<br>Python 3.12.13 · Rust 1.99.0 (release) · Apple M3 · 18 October 2026</sub>
+<sub>`█` solved in under 10 s &emsp; `▓` solved in under 5 min &emsp; `░` one part only &emsp; ` ` not solved<br>Python 3.12.13 · Rust 1.99.0 (release) · Apple M3 · 20 October 2026</sub>

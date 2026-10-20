@@ -39,4 +39,4 @@
 | 24 | [Arithmetic Logic Unit](https://adventofcode.com/2021/day/24) | ` ` [☆☆](day_24/day_24.py) | < 1 ms | ` ` ☆☆ |  |
 | 25 | [Sea Cucumber](https://adventofcode.com/2021/day/25) | `█` [★☆](day_25/day_25.py) | 1.3 s | ` ` ☆☆ |  |
 
-<sub>`█` solved in under 10 s &emsp; `▓` solved in under 5 min &emsp; `░` one part only &emsp; ` ` not solved<br>Python 3.12.13 · Rust 1.99.0 (release) · Apple M3 · 18 October 2026</sub>
+<sub>`█` solved in under 10 s &emsp; `▓` solved in under 5 min &emsp; `░` one part only &emsp; ` ` not solved<br>Python 3.12.13 · Rust 1.99.0 (release) · Apple M3 · 20 October 2026</sub>
