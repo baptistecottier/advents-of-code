@@ -45,7 +45,7 @@ class Program(defaultdict):
                     yield self.base + self.memory[self.ptr]
             self.ptr += 1
 
-    def run(self, *signal) -> int | None:
+    def run(self, *signal: int) -> int | None:
         """
         Executes the program loaded in memory, processing instructions and returning output or
         halting as specified by the opcodes.
