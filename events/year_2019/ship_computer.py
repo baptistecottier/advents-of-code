@@ -56,6 +56,20 @@ class Program:
                     raise ValueError(f"Unknown parameter mode {mode}")
             self.ptr += 1
 
+    def next_input(self, signals: list[int]) -> int | None:
+        """
+        Pops the next input, taken from the inputs given at creation first, then from the signals
+        given to run. Returns None when there is none left.
+        """
+        if self.inputs is not None:
+            value = self.inputs.pop(0)
+            if self.inputs == []:
+                self.inputs = None
+            return value
+        if signals:
+            return signals.pop(0)
+        return None
+
     def run(self, *signal: int) -> int | None:
         """
         Executes the program loaded in memory, processing instructions and returning output or
@@ -72,12 +86,11 @@ class Program:
 
                 case 3:
                     i_out, = self.extract_indexes(op, 1)
-                    if self.inputs is not None:
-                        self.memory[i_out] = self.inputs.pop(0)
-                        if self.inputs == []:
-                            self.inputs = None
-                    else:
-                        self.memory[i_out] = signals.pop(0)
+                    if (value := self.next_input(signals)) is None:
+                        # Waits for an input: point back to this instruction to read it next run
+                        self.ptr -= 2
+                        return None
+                    self.memory[i_out] = value
 
                 case 4:
                     i_out, = self.extract_indexes(op, 1)
