@@ -39,4 +39,4 @@
 | 24 | [Electromagnetic Moat](https://adventofcode.com/2017/day/24) | `▓` [★★](day_24/day_24.py) | 12.1 s | ` ` ☆☆ |  |
 | 25 | [The Halting Problem](https://adventofcode.com/2017/day/25) | `█` [★★](day_25/day_25.py) | 1.3 s | ` ` ☆☆ |  |
 
-<sub>`█` solved in under 10 s &emsp; `▓` solved in under 5 min &emsp; `░` one part only &emsp; ` ` not solved<br>Python 3.12.13 · Rust 1.99.0 (release) · Apple M3 · 20 October 2026</sub>
+<sub>`█` solved in under 10 s &emsp; `▓` solved in under 5 min &emsp; `░` one part only &emsp; ` ` not solved<br>Python 3.12.13 · Rust 1.99.0 (release) · Apple M3 · 22 October 2026</sub>
