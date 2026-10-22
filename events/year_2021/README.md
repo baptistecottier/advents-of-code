@@ -4,11 +4,11 @@
 
 | | Python | Rust |
 | :-- | --: | --: |
-| Stars | 35/50 | 8/50 |
-| `█` solved in under 10 s | 18 | 4 |
+| Stars | 37/50 | 8/50 |
+| `█` solved in under 10 s | 19 | 4 |
 | `▓` solved in under 5 min | 0 | 0 |
 | `░` one part only | 0 | 0 |
-| ` ` not solved | 7 | 21 |
+| ` ` not solved | 6 | 21 |
 | Time of solved days | 5.0 s | 11 ms |
 
 | Day | Puzzle | Python |  | Rust |  |
@@ -28,7 +28,7 @@
 | 13 | [Transparent Origami](https://adventofcode.com/2021/day/13) | `█` [★★](day_13/day_13.py) | 2 ms | ` ` ☆☆ |  |
 | 14 | [Extended Polymerization](https://adventofcode.com/2021/day/14) | `█` [★★](day_14/day_14.py) | 1 ms | ` ` ☆☆ |  |
 | 15 | [Chiton](https://adventofcode.com/2021/day/15) | `█` [★★](day_15/day_15.py) | 2.5 s | ` ` ☆☆ |  |
-| 16 | [Packet Decoder](https://adventofcode.com/2021/day/16) | ` ` [☆☆](day_16/day_16.py) | < 1 ms | ` ` ☆☆ |  |
+| 16 | [Packet Decoder](https://adventofcode.com/2021/day/16) | `█` [★★](day_16/day_16.py) | < 1 ms | ` ` ☆☆ |  |
 | 17 | [Trick Shot](https://adventofcode.com/2021/day/17) | `█` [★★](day_17/day_17.py) | 139 ms | ` ` ☆☆ |  |
 | 18 | [Snailfish](https://adventofcode.com/2021/day/18) | ` ` [☆☆](day_18/day_18.py) | error | ` ` ☆☆ |  |
 | 19 | [Beacon Scanner](https://adventofcode.com/2021/day/19) | ` ` [☆☆](day_19/day_19.py) | < 1 ms | ` ` ☆☆ |  |

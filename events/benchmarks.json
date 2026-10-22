@@ -179,7 +179,7 @@
     "13": {"title": "Transparent Origami", "python": {"status": "solved", "parts": ["ok", "ok"], "time": 0.0018, "date": "2026-10-14", "code": "df8517dd3e41"}},
     "14": {"title": "Extended Polymerization", "python": {"status": "solved", "parts": ["ok", "ok"], "time": 0.0011, "date": "2026-10-14", "code": "ca9ff94dd885"}},
     "15": {"title": "Chiton", "python": {"status": "solved", "parts": ["ok", "ok"], "time": 2.5177, "date": "2026-10-14", "code": "1c5783a9de23"}},
-    "16": {"title": "Packet Decoder", "python": {"status": "wrong", "parts": ["wrong", "missing"], "time": 0.0003, "date": "2026-10-14", "code": "690cbdfb189b"}},
+    "16": {"title": "Packet Decoder", "python": {"status": "solved", "parts": ["ok", "ok"], "time": 0.0004, "date": "2026-10-22", "code": "4900242279f1"}},
     "17": {"title": "Trick Shot", "python": {"status": "solved", "parts": ["ok", "ok"], "time": 0.1388, "date": "2026-10-14", "code": "a355dda41ada"}},
     "18": {"title": "Snailfish", "python": {"status": "error", "parts": ["missing", "missing"], "time": null, "date": "2026-10-14", "error": "AttributeError: module 'day_18' has no attribute 'solver'", "code": "668d93128a57"}},
     "19": {"title": "Beacon Scanner", "python": {"status": "wrong", "parts": ["wrong", "wrong"], "time": 0.0001, "date": "2026-10-14", "code": "5dc5eb3919f9"}},
