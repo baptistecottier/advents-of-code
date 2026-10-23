@@ -1,5 +1,5 @@
 {
-  "meta": {"timeout": 300, "machine": "Apple M3", "date": "2026-10-22", "python": "3.12.13", "rust": "1.99.0"},
+  "meta": {"timeout": 300, "machine": "Apple M3", "date": "2026-10-23", "python": "3.12.13", "rust": "1.99.0"},
   "years": {
   "2015": {
     "1": {"title": "Not Quite Lisp", "python": {"status": "solved", "parts": ["ok", "ok"], "time": 0.0003, "date": "2026-10-14", "code": "23788b5eb480"}, "rust": {"status": "solved", "parts": ["ok", "ok"], "time": 0.0032, "date": "2026-10-14", "code": "73e8fc51b859"}},
@@ -181,7 +181,7 @@
     "15": {"title": "Chiton", "python": {"status": "solved", "parts": ["ok", "ok"], "time": 2.5177, "date": "2026-10-14", "code": "1c5783a9de23"}},
     "16": {"title": "Packet Decoder", "python": {"status": "solved", "parts": ["ok", "ok"], "time": 0.0004, "date": "2026-10-22", "code": "4900242279f1"}},
     "17": {"title": "Trick Shot", "python": {"status": "solved", "parts": ["ok", "ok"], "time": 0.1388, "date": "2026-10-14", "code": "a355dda41ada"}},
-    "18": {"title": "Snailfish", "python": {"status": "error", "parts": ["missing", "missing"], "time": null, "date": "2026-10-14", "error": "AttributeError: module 'day_18' has no attribute 'solver'", "code": "668d93128a57"}},
+    "18": {"title": "Snailfish", "python": {"status": "solved", "parts": ["ok", "ok"], "time": 0.9214, "date": "2026-10-23", "code": "01527abaae18"}},
     "19": {"title": "Beacon Scanner", "python": {"status": "wrong", "parts": ["wrong", "wrong"], "time": 0.0001, "date": "2026-10-14", "code": "5dc5eb3919f9"}},
     "20": {"title": "Trench Map", "python": {"status": "solved", "parts": ["ok", "ok"], "time": 0.6602, "date": "2026-10-16", "code": "542172508f1c"}},
     "21": {"title": "Dirac Dice", "python": {"status": "error", "parts": ["missing", "missing"], "time": null, "date": "2026-10-14", "error": "AttributeError: module 'day_21' has no attribute 'solver'", "code": "94adae1bc079"}},

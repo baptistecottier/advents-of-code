@@ -4,12 +4,12 @@
 
 | | Python | Rust |
 | :-- | --: | --: |
-| Stars | 37/50 | 8/50 |
-| `█` solved in under 10 s | 19 | 4 |
+| Stars | 39/50 | 8/50 |
+| `█` solved in under 10 s | 20 | 4 |
 | `▓` solved in under 5 min | 0 | 0 |
 | `░` one part only | 0 | 0 |
-| ` ` not solved | 6 | 21 |
-| Time of solved days | 5.0 s | 11 ms |
+| ` ` not solved | 5 | 21 |
+| Time of solved days | 6.0 s | 11 ms |
 
 | Day | Puzzle | Python |  | Rust |  |
 | --: | :-- | :-- | --: | :-- | --: |
@@ -30,7 +30,7 @@
 | 15 | [Chiton](https://adventofcode.com/2021/day/15) | `█` [★★](day_15/day_15.py) | 2.5 s | ` ` ☆☆ |  |
 | 16 | [Packet Decoder](https://adventofcode.com/2021/day/16) | `█` [★★](day_16/day_16.py) | < 1 ms | ` ` ☆☆ |  |
 | 17 | [Trick Shot](https://adventofcode.com/2021/day/17) | `█` [★★](day_17/day_17.py) | 139 ms | ` ` ☆☆ |  |
-| 18 | [Snailfish](https://adventofcode.com/2021/day/18) | ` ` [☆☆](day_18/day_18.py) | error | ` ` ☆☆ |  |
+| 18 | [Snailfish](https://adventofcode.com/2021/day/18) | `█` [★★](day_18/day_18.py) | 921 ms | ` ` ☆☆ |  |
 | 19 | [Beacon Scanner](https://adventofcode.com/2021/day/19) | ` ` [☆☆](day_19/day_19.py) | < 1 ms | ` ` ☆☆ |  |
 | 20 | [Trench Map](https://adventofcode.com/2021/day/20) | `█` [★★](day_20/day_20.py) | 660 ms | ` ` ☆☆ |  |
 | 21 | [Dirac Dice](https://adventofcode.com/2021/day/21) | ` ` [☆☆](day_21/day_21.py) | error | ` ` ☆☆ |  |
@@ -39,4 +39,4 @@
 | 24 | [Arithmetic Logic Unit](https://adventofcode.com/2021/day/24) | ` ` [☆☆](day_24/day_24.py) | < 1 ms | ` ` ☆☆ |  |
 | 25 | [Sea Cucumber](https://adventofcode.com/2021/day/25) | `█` [★☆](day_25/day_25.py) | 1.3 s | ` ` ☆☆ |  |
 
-<sub>`█` solved in under 10 s &emsp; `▓` solved in under 5 min &emsp; `░` one part only &emsp; ` ` not solved<br>Python 3.12.13 · Rust 1.99.0 (release) · Apple M3 · 22 October 2026</sub>
+<sub>`█` solved in under 10 s &emsp; `▓` solved in under 5 min &emsp; `░` one part only &emsp; ` ` not solved<br>Python 3.12.13 · Rust 1.99.0 (release) · Apple M3 · 23 October 2026</sub>
